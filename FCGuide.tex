@@ -446,8 +446,12 @@ pdfkeywords = {Loops, Integrals, Feynman diagrams, Amplitudes, Scattering, Kinem
 \begin{table}[H]
 \graybox{
 %Change RM 11 Sept 2003
-\begin{longtable}{p{0.42\textwidth ~~~~~~~} >{\flushleft\vspace*{-13.2pt}}p{0.50\textwidth ~~~~~~~}}
-%\begin{longtable}{p{0.32\textwidth ~~~~~~~} >{\flushleft\vspace*{-13.2pt}}p{0.55\textwidth ~~~~~~~}}
+%\begin{longtable}{p{0.42\textwidth ~~~~~~~} >{\flushleft\vspace*{-13.2pt}}p{0.50\textwidth ~~~~~~~}}
+% These numbers were chosen (after a lot of trials) to have some alignment
+% of \otabtwo, \otabthree and \domtog.
+% Typographically it just looks better, and is less tiresome for the eyes.
+% B.t.w. this also seems to have been the point with the layout of the old FeynCalc guide.
+\begin{longtable}{p{0.32\textwidth ~~~~~~~} >{\flushleft\vspace*{-13.2pt}}p{0.55\textwidth ~~~~~~~}}
 #1
 \end{longtable}
 }{.3}{.95}
@@ -580,11 +584,17 @@ pdfkeywords = {Loops, Integrals, Feynman diagrams, Amplitudes, Scattering, Kinem
 % Document
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\title{\raggedright \hspace*{1pt} {\bf ***DRAFT***} \\ FeynCalc 5.0 - A Guide for Quantum Field Theory practitioners}
-\author{\parbox{\textwidth}{\raggedright Rolf Mertig \\
+\title{\raggedright \hspace*{1pt} {\bf ***DRAFT***} \\
+\vspace*{12pt}
+{\LARGE FeynCalc 5.0}\\
+\vspace*{40pt}
+{\Large A Guide for Quantum Field Theory practitioners}}
+\author{\hspace*{-10pt}
+\parbox{\textwidth}{\raggedright Rolf Mertig \\
 and \\
 Frederik Orellana}}
-\date{\hspace*{4pt} \parbox{\textwidth}{\raggedright CERN\\ September 12th, 2003}}
+%\date{\hspace*{4pt} \parbox{\textwidth}{\raggedright CERN\\ September 12th, 2003}}
+\date{}
 {\sffamily
 \maketitle
 }
