@@ -15,9 +15,10 @@ The main features of \fphi are:
 \item \fa is used for generating Feynman diagrams and amplitudes, including counter-terms. Power counting and storing of Feynman rules is systematized.
 \end{itemize}
 
-\subsection{Chiral quantum fields and lagrangians}
+\subsection{Quantum Fields}
 
-\fphi comes with a number of predefined chiral models (or configurations). These define lagrangians etc. in terms of quantum fields. Which configuration and lagrangians are loaded should be defined before startup of \fc. The list of available configurations and lagrangians can be found by browsing the directory "HighEnergyPhysics/Phi/Configurations" and "HighEnergyPhysics/Phi/Lagrangians".
+\fphi comes with a number of predefined chiral models (or configurations). These define lagrangians etc. in terms of quantum fields. Which configuration and lagrangians are loaded should be defined before startup of \fc. The list of available configurations and lagrangians can be found by browsing the directory "HighEnergyPhysics/Phi/Configurations" and "HighEnergyPhysics/Phi/Lagrangians". When loading a langrangian, it is added to the database of lagrangians, \mb{Lagrangian}. In section \ref{chptLags} we shall discuss how to construct such lagrangians.
+
 \beom
 \dtog{
 Quit[];\\\\
@@ -26,8 +27,20 @@ Quit[];\\\\
 \$Configuration = "ChPTVirtualPhotons2";\\
 \$Lagrangians = {"ChPTVirtualPhotons2"[2], \\
 \mindent "ChPTVirtualPhotons2"[4]};\\\\
-Get["HighEnergyPhysics`FeynCalc`"];\\}{}{Quit the kernel and reload \fc with the packages \fphi and \fa enabled. We may specify to load the some \fphi model and lagrangians, in this case we choose "ChPTVirtualPhotons2" and its two lagrangians.}
-\domtog{}{}{The database of lagrangians has been enlarged with lagrangians specified. We may inspect one of them. In section \ref{chptLags} we shall discuss how to construct such lagrangians.}
+Get["HighEnergyPhysics`FeynCalc`"];\\}{}{Quit the kernel and reload \fc with the packages \fphi and \fa enabled. Have \fphi load "ChPTVirtualPhotons2" and its two lagrangians.}
+\domtog{Lagrangian[ChPTVirtualPhotons2[2]]}{$
+\frac{1}{4}\multsp \big(\langle \chi \SixPointedStar {{\ScriptCapitalU \
+}^{\dagger }}\rangle + \langle {{\chi }^{\dagger }}\SixPointedStar \
+\ScriptCapitalU \rangle + \langle {{\ScriptCapitalD }_{\mu \
+}}(\ScriptCapitalU )\SixPointedStar {{{{\ScriptCapitalD }_{\mu \
+}}(\ScriptCapitalU )}^{\dagger }}\rangle \big)\multsp {{(f_{\pi \
+})}^2} - \frac{1}{2}\multsp \lambda \multsp {{\partial }_{\mu \
+}}\big({{{{\gamma }}}_{\mu }}\big)\multsp {{\partial }_{\nu \
+}}({{{{\gamma }}}_{\nu }}) - \frac{1}{4}\multsp \big({{{{\gamma \
+}}}_{\mu \nu }}\SixPointedStar {{{{\gamma }}}_{\mu \nu }}\big) +  \\
+{{C}}\multsp \langle {{Q}_{R}}\SixPointedStar \
+\ScriptCapitalU \SixPointedStar {{Q}_{L}}\SixPointedStar \
+{{\ScriptCapitalU }^{\dagger }}\rangle$}{We may inspect one of them.}
 \enom
 \otabtwo{
 \mbs{\$Configuration} & string variable determining which configuration is loaded at startup\cr
@@ -91,17 +104,17 @@ is using ``\mb{$.$}'' and the operators of page \pageref{partialDs}. The ``\mb{$
 The \mma \mb{Dot} is used for multiplication of Dirac matrices and the multiplication of SU($N$) matrices with SU($N$) vectors, \mb{NM} (``\mb{$\SixPointedStar$}'' in \mb{OutputForm}) is used for multiplication of SU($N$) matrices, \mb{IsoDot} (``\mb{$\cdot$}'' in \mb{OutputForm}) is used for multiplication of SU($N$) iso-vectors, \mb{UGenerator} denotes generators of SU($N$), \mb{CommutatorReduce} pulls out abelian quantities of non-abelian products. These functions are introduced more systematically in the following section.
 
 \otabtwo{
-\mbs{\mb{FieldDerivative[g[x], x, \{l1, l2, ...\}]}} & calculates
-$\frac{\partial}{\partial x_{l1}}\frac{\partial}{\partial x_{l2}}\ldots$ on the
-expression \mb{g[x]}\cr
-\mbs{\mb{CovariantFieldField Derivative[g[x], x, \{l1, l2, ...\}]}} &
+\mbs{\mb{FieldDerivative[g[x], x, \{{\sl l1}, {\sl l2}, ...\}]}} & calculates
+$\frac{\partial}{\partial {\sl x}_{\sl l1}}\frac{\partial}{\partial {\sl x}_{\sl l2}}\ldots$ on
+the expression \mb{g[{\sl x}]}\cr
+\mbs{\mb{CovariantFieldField Derivative[g[{\sl x}], {\sl x}, \{{\sl l1}, {\sl l2}, ...\}]}} &
 as above but with the vector and axial-vector source field  terms included. This is
 defined in the chosen configuration file\cr
 }{Derivatives acting on \mb{QuantumField}s.}
 
 Many operations can be performed on expressions like the ones above. We shall see some in the ChPT examples to come. But first we turn to some of the objects that \fphi adds to the basic framework of \fc. Of the many utilities, we shall focus on SU($N$) functions and the interaction with \fa. Notice that in ChPT, a condensed notation is used and objects like \mb{MM[x]} and \mb{SMM[x]} actually contain \mb{QuantumField}s. Remember that an explanation of the various symbols can be obtained by using the \mb{?} operator.
 
-\subsection{Chiral vectors, matrices and structure constants in SU(2) and SU(3)}
+\subsection{Vectors, Matrices and Structure Constants in SU(2) and SU(3)}
 
 \otabtwo{
 \mbs{IsoVector[{\sl v}]} & represents an SU(2) or SU(3) multiplet with number of
@@ -114,8 +127,8 @@ corresponding to the dimension of the representation (2 or 3)\cr
 \otabthree{
 {\sl option name} & {\sl default value} &\cr
 \hhline
-\mbs{SUNN[{\sl v}]} & number of quark flavours. Either 2 or 3 & \mb{2} \cr
-\mbs{UDimension[{\sl v}]} & dimension of the representation & \mb{Automatic}\cr
+\mbs{SUNN} & \mb{2} & number of quark flavours. Either 2 or 3 \cr
+\mbs{UDimension} & \mb{Automatic} & dimension of the representation\cr
 }{Options determining the dimension of SU($N$) vectors and matrices.}
 
 Several way are provided to work with SU($N$) vectors and matrices. One can work directly with the vectors and matrices using the multiplications listed below.
@@ -125,9 +138,18 @@ Several way are provided to work with SU($N$) vectors and matrices. One can work
 \mbs{IsoDot[{\sl a}, {\sl b}]} & dot product for iso-vectors {\sl a}, {\sl b}\cr
 \mbs{IsoCross[{\sl a}, {\sl b}]} & anti-symmetric cross product for isospin vectors {\sl a}, {\sl b}\cr
 \mbs{IsoSymmetricCross} & symmetric cross product for isospin vectors {\sl a}, {\sl b}\cr
+\mbs{Dot[{\sl a}, {\sl b}]} & the usual dot product, ``\mb{.}'', is used multiplication of \mb{UVectors} with \mb{UVectors} or \mb{UMatrices}\cr
 }{Multiplication operators for SU($N$) vectors and matrices.}
 
-Another possibility  is to write out the components explicitly, using the functions listed below.
+\otabtwo{
+\mbs{Adjoint[{\sl m}]} & the adjoint {\sl m}$^\dagger$ of a matrix {\sl m}\cr
+\mbs{Conjugate[{\sl m}]} & the conjugate {\sl m}$^{\rm c}$ of a matrix {\sl m}\cr
+\mbs{Transpose[{\sl m}]} & the transpose {\sl m}$^{\rm t}$ of a matrix {\sl m}\cr
+}{Operations on matrices.}
+
+
+Another possibility  is to write out the components explicitly using
+\mb{WriteOutUMatrices} and/or \mb{WriteOutIsoVectors}.
 
 \otabtwo{
 \mbs{WriteOutUMatrices[{\sl exp}]} & write out SU($N$) vectors in {\sl exp}\cr
@@ -141,22 +163,77 @@ A third possibility is to work with the components using symbolic indices.
 contracted indices\cr
 \mbs{IndicesCleanup[{\sl exp}]} & renames Lorentz and SU($N$) indices in a systematic way\cr
 \mbs{SUNReduce[{\sl exp}]} & does some reduction on expressions involving SU($N$) indices\cr
+\mbs{CommutatorReduce[{\sl exp}]} & does some reduction on expressions containing non-abelian  SU($N$) products in {\sl exp}\cr
 }{Writing out components of SU($N$) vectors and matrices using symbolic indices and cleaning up afterwards.}
 
 \otabtwo{
-\mbs{CommutatorReduce[{\sl exp}]} & does some reduction on expressions containing non-abelian  SU($N$) products in {\sl exp}\cr
-}{Reducing non-abelian  SU($N$) products.}
+\mbs{DeclareUMatrix[{\sl a}]} & causes the symbol {\sl a} to be treated as a matrix by \mb{NM} and other functions \cr
+\mbs{DeclareUScalar[{\sl a}]} & causes the symbol {\sl a} to be treated as a scalar by \mb{NM} and other functions \cr
+}{Matrices and scalars of SU(2) or SU(3).}
 
-UGenerator, SU2Delta, SU2F, ...
+Applying \mb{IsoIndicesSupply} on expressions using \mb{IsoDot}, etc.~will result in expressions
+involving the Kronecker delta function and the structure constants of SU($N$), with $N=2$
+or $N=3$, depending on the setting of the option \mb{SUNN}.
 
-\subsection{Chiral lagrangians}
+\otabtwo{
+\mbs{SU2Delta[{\sl i}, {\sl j}]} & the Kronecker delta function $\delta_{i j}$ in SU(2)\cr
+\mbs{SU2F[{\sl i}, {\sl j}, {\sl k}]} & the antisymmetric structure constants $d_{i j k}$ in SU(2)\cr
+\mbs{SU3Delta[{\sl i}, {\sl j}]} & the Kronecker delta function $\delta_{i j}$ in SU(3)\cr
+\mbs{SU3F[{\sl i}, {\sl j}, {\sl k}]} & the antisymmetric structure constants $d_{i j k}$ in SU(3)\cr
+\mbs{SU3D[{\sl i}, {\sl j}, {\sl k}]} & the symmetric structure constants $d_{i j k}$ in SU(3)\cr
+}{The Kronecker delta function and the structure constants of SU(2) and SU(3).}
+
+\otabtwo{
+\mbs{UGenerator[{\sl i}]} & \mb{UMatrix[UGenerator[{\sl i}]]} is the {\sl i}'th generator of SU($N$) 
+}{Generators of SU(2) or SU(3).}
+
+
+\subsection{Models and Lagrangians}
 \label{chptLags}
 
-\subsection{Chiral divergent one-loop generating functionals}
+In ChPT one finds a number of symbols representing matrices of fields with various
+transformation properties under SU($N$)$\times$SU($N$). Some of these symbols are common
+to all ChPT models and are provided by the package \fphi itself, others are defined in
+the model files and are only available upon loading the right configuration.
 
-\subsection{Chiral power counting with \fa}
+The constants of the various models usually have head \mb{ParticleMass},
+\mb{CouplingConstant} or \mb{DecayConstant}. 
+
+\otabtwo{
+\mbs{ParticleMass[{\sl p}]} & mass of the particle {\sl p}\cr
+\mbs{CouplingConstant[{\sl c}]} & some coupling constant {\sl c}\cr
+\mbs{DecayConstant[{\sl p}]} & decay constant of the particle {\sl p}\cr
+}{Heads for physical constants.}
+
+As we have seen, the convention used for the symbols representing quantum fields used in ChPT
+is to give them the head \mb{Particle}. This is in order to be able to have an extra argument
+specifying whether a quantity is renormalized or not.
+
+\otabtwo{
+\mbs{Particle[{\sl p}]} & represents a particle or source
+{\sl p} should be a member of the list \mb{\$Particles}\cr
+\mbs{\$Particles} & a list of available particles and sources of the active configuration (\mb{\$Configuration})\cr
+}{Head for particle names.}
+
+\otabtwo{
+\mbs{RenormalizationState[{\sl i}]} & label whether a quantity is renormalized ({\sl i}=0) or renormalized ({\sl i}=1)\cr
+}{Option of \mb{Particle}.}
+
+\otabtwo{
+\mbs{UQuarkMass[]} & \mb{UMatrix[UQuarkMass[]]} is the quark mass matrix\cr
+\mbs{UChi[]} & \mb{UMatrix[UChi[]]} is the $\chi$ of ChPT\cr
+\mbs{MM[{\sl x}]} & the $U$ of ChPT. Notice that \fphi displays this as $\ScriptCapitalU$\cr
+\mbs{QuarkCondensate[]} & the quark condensate $B_0 = \braket{ 0 | q \bar{q} | 0 }$\cr
+}{ChPT symbols available under all configurations.}
+
+
+\subsection{One-loop Divergent Generating Functionals}
+
+\subsection{Power Counting with \fa}
 
 The database of amplitudes has been enlarged with all amplitudes calculated and stored using \mb{CheckF}
 
-\subsection{Example:\; $\pi^\pm \, \rightarrow  \, \mu^\pm \, \nu_\mu \, \gamma$}
+\subsection{Example: Radiative Pion Decay}
+
+$\pi^\pm \, \rightarrow  \, \mu^\pm \, \nu_\mu \, \gamma$
 
