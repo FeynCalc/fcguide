@@ -8,7 +8,7 @@ written in \mma.
 %capabilities provided.
 
 This book is for the practicioners of perturbative calculations in QCD, the Standard Model,
-Heavy Quark Effective Theories and similar theories.
+Chiral Perturbation Theory and similar theories.
 The book serves as a technical manual of \fc, augmented by textbook and research example calculations.
 The user is assumed to know Quantum Field Theory and have some understanding of \mma.
 %It is strongly recommended to study the \mma book \cite{Mathematica} by
@@ -17,14 +17,13 @@ The user is assumed to know Quantum Field Theory and have some understanding of 
 The original idea of \fc was to provide convenient tools 
 for radiative corrections in the Standard Model of particle physics. 
 The input for \fc, the analytical expressions for the diagrams, can be 
-entered by hand or can be taken directly from the output of another 
-package, \fa\ \cite{feynarts} .
+entered by hand or can be taken directly from the output of the Feynman diagram generator \fa\ \cite{feynarts} .
 The user can provide certain additional  information about the process 
 under consideration, i.e. the kinematics and the choice of the standard 
 matrix elements may be defined. Once this is done, \fc performs the 
 algebraic calculations like tensor algebra, tensor integral decomposition and reduction,
 yielding a polynomial in standard matrix elements,  special functions, kinematical 
-variables and scalars.
+variables and scalars suitable for further nuermical evaluation.
 
 \fc also provides calculator-like features. You enter a Dirac trace 
 in a very similar notation to that used when doing calculations by hand, and 
@@ -72,6 +71,8 @@ the code used should be thoroughly checked. Reinventing the wheel for every calc
 \item{{\bf Algorithm optimization.} The more people using (an implementation of) an algorithm, the better the chances of improving (the implementation of) it.}
 
 \item{{\bf Fast prototyping.} Quickly trying out new quantum field theory models should be made easier by using the building blocks provided by a clear standardization as well as a set of functions for the most common calculational tasks.}
+
+\item{{\bf Checks.} \fc can be used to check your hand calculations or the results of other programs.
 
 \end{itemize}
 
@@ -161,8 +162,9 @@ Model, such as:
 
 \end{itemize}
 
-No attempt was made to provide tools for tree-level calculations. 
-For this purpose other programs appeared, among them another  \mma package, \hip \cite{yeh}, developed at SLAC.
+No real attempt was made to provide tools for tree-level calculations. 
+For this purpose other programs appeared, among them another  \mma package, \hip \cite{yeh}, developed at SLAC, 
+CompHEP \cite{comphep}, and of course FORM \cite{form}.
 
 \subsubsection*{1992-1995 : \fc 2.0-2.2, unification and simplification.}
 
@@ -184,7 +186,7 @@ Applications include 2-loop spin-independent and spin-dependent Altarelli-Parisi
 
 \item The new typesetting capabilities of \mma 3 (TraditionalForm) were used to substantially improve the look of the output. Typesetting rules were added for e.g. \({\overvar{\partial }{\rightarrow}}_{\mu } \multsp \).
 
-\item Code was written to allow new abstract datatypes, for example for noncommutative algebra and for special integrals.
+\item Code was written to allow new abstract data types, for example for noncommutative algebra and for special integrals.
 
 \item QCD tools for the Operator Product Expansion  (OPE)
 were added.
