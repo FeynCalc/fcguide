@@ -1,15 +1,18 @@
 \section{Introduction}
 
-\fc is a ($\ge 3$) collection of utilities for algebraic calculations in 
-high energy physics. It is implemented as a \mma package; that is,
+\fc is a collection of utilities for algebraic calculations in 
+High Energy Physics. It is implemented as a \mma package; that is,
 a number of extensions to the programming language \mma,
-themselves written in \mma. In the section below are described some of the main new
-capabilities provided.
+written in \mma. 
+%In the section below are described some of the main new
+%capabilities provided.
 
-This document is the technical manual of \fc; explanations are sometimes rather short.
-The user is assumed to know Quantum Field Theory and \mma.
-It is strongly recommended to study the \mma book \cite{Mathematica} by
-Stephen Wolfram before starting with \fc.
+This book is for the practicioners of perturbative calculations in QCD, the Standard Model,
+Heavy Quark Effective Theories and similar theories.
+The book serves as a technical manual of \fc, augmented by textbook and research example calculations.
+The user is assumed to know Quantum Field Theory and have some understanding of \mma.
+%It is strongly recommended to study the \mma book \cite{Mathematica} by
+%Stephen Wolfram before starting with \fc.
 
 The original idea of \fc was to provide convenient tools 
 for radiative corrections in the Standard Model of particle physics. 
@@ -33,17 +36,29 @@ More complex algebraic operations have also been implemented, notably derivation
 of polynomials in quantum fields with respect to such fields.
 
 Over the years, the detailed course of and motivation for the development of \fc has
-changed somewhat both in scope and focus. This has several reasons: 1) the different research
-interests of the two authors; 2) the relative slowness of \mma and the rapid development of
-multi-loop calculations carried out with tools more suited for very large scale calculations;
-3) the rapid development of the raw computing power of hardware. The first two points have had as consequence that the focus has moved away from providing cutting edge results of loop calculations
-in the Standard Model and in QCD. The last point has had as consequence that it has been possible
-to explore other types of calculations, namely complex algebraic manipulations of quantum fields
+changed somewhat both in scope and focus. The reasons were  the different research
+interests of the two authors, the relative slowness of \mma and the rapid development of
+multi-loop calculations carried out with tools \cite{form, formcalc} more suited 
+for very large scale calculations.
+%3) the rapid development of the raw computing power of hardware. 
+As a consequence the focus has moved away from providing cutting edge results of multi-loop calculations
+in the Standard Model and in QCD. 
+
+However, due to improvements in software and hardware it became possible
+to explore other types of calculations, e.g. complex algebraic manipulations of quantum fields
 and lagrangians, traditionally done by hand only.
 
-Despite the motivations driving development, the central vision remains largely the same: \fc was conceived as and continues to be developed as a general-purpose modular package for quantum field theory calculations. Dirac algebra utilities, functional derivation utilities, integral tables etc. have been clearly separated off in distinct functions which do well-defined operations.  Such basic functions can then be used  on a higher level to build sophisticated model dependent functions.
+Despite the motivations driving development, the central vision remains largely the same: 
+\fc was conceived as and continues to be developed as a general-purpose, relatively easy to use,
+modular toolbox for quantum field theory calculations. 
+Dirac algebra utilities, Lorentz and Color algebra manipulation capabilities, 
+functional derivation utilities, integral and other tables have been cleanly 
+separated off in distinct functions which 
+do well-defined operations.  
+Such basic functions can then be used  on a higher level to build sophisticated model dependent functions.
 
-In the following we list what we consider the most important missions of the \fc project:
+In the following we list what we consider the most important goals of the \fc project:
+%%SOFAR
 
 \begin{itemize}
 
@@ -80,7 +95,12 @@ to feyncalc@feyncalc.org.
 
 \subsection{Version History}
 
-The roots of \fc go back to 1987. During a stay as a graduate student in Albuquerque, New Mexico, Rolf Mertig learned to program in Macsyma \cite{Drinkard:1981dr} from the experts Stanly Steinberg and Michael Wester. Meanwhile in Germany, elementary particle physicists needed automation of the calculation of Feynman diagrams of eletro-weak processes to one loop. The algorithms were provided mostly by Ansgar Denner and Manfred B\ODoubleDot{}hm and implemented in a purely functional way by Rolf Mertig during the years 1987 - 1989. 
+The roots of \fc go back to 1987. 
+During a stay as a graduate student in Albuquerque, New Mexico, Rolf Mertig learned to program in Macsyma \cite{Drinkard:1981dr} from the experts Stanly Steinberg and Michael Wester. Back to Germany, 
+elementary particle physicists needed automation of the calculation of Feynman diagrams of eletroweak 
+processes to one loop. The algorithms were partially developed together with 
+Ansgar Denner and Manfred B\ODoubleDot{}hm and implemented in a 
+purely functional way by Rolf Mertig during the years 1987 - 1989. 
 
 The basic idea was to have general functions for some of the more mechanical parts of the diagram calculations, generalizable tools for use in calculations of different 1-loop processes, especially 1\(\rightarrow \)2 and 2\(\rightarrow \)2 processes. These included tools for:
 
@@ -111,7 +131,7 @@ and the 2-loop photon self-energy in QED.}
 
 However, at the end of 1989 several problems showed up with the Macsyma implementation. The purely functional programming style proved to be difficult to debug and, in fact, inappropriate. The rudimentary pattern matcher in Macsyma was not useful. There was no way to incorporate new functions easily into the whole Macsyma system, and no possibility of providing online documentation. Furthermore, Macsyma's memory managment ("garbage collection") was slow when handling large expressions.
 
-In early 1990 it became clear that \mma was a much more natural (programming) environment for \fc.
+In early 1990 it became clear that \mma was a much more natural programming environment for \fc.
 
 \subsubsection*{1990-1991 : The first version  of \fc in \mma}
 
@@ -129,8 +149,8 @@ Model, such as:
 \({\rm gg}\multsp \rightarrow \multsp 
 {\rm t \overline{t}} \multsp , \multsp \multsp
 {{\rm e}^+}{{\rm e}^-}\multsp \rightarrow \multsp {\rm Z}\multsp {\rm H}\multsp, \multsp \multsp
-{{\rm W}^+}{{\rm W}^-}\multsp \)\(\rightarrow \) \({{\rm W}^+}{{\rm W}^-}\multsp, \multsp \multsp
-{\rm ZZ} \rightarrow {\rm ZZ} \),
+%{{\rm W}^+}{{\rm W}^-}\multsp \)\(\rightarrow \) \({{\rm W}^+}{{\rm W}^-}\multsp, \multsp \multsp
+{\rm gg} \rightarrow {\rm t\bar{t}} \),
 
 \item background field gauge calculations,
 
@@ -141,17 +161,26 @@ Model, such as:
 
 \end{itemize}
 
-No attempt was made to provide tools for tree-level calculations. For this purpose other programs appeared, among them another  \mma package, \hip \cite{yeh}, developed at SLAC.
+No attempt was made to provide tools for tree-level calculations. 
+For this purpose other programs appeared, among them another  \mma package, \hip \cite{yeh}, developed at SLAC.
 
 \subsubsection*{1992-1995 : \fc 2.0-2.2, unification and simplification.}
 
-During this period of development the SU(3) algebra was changed to SU($N$). Several tools for automatic tree-level calculation were added, for example the function \mb{SquareAmplitude}. (Unfortunately, the  documentation was not updated.) All sub-packages were put into one file \(\big(\simeq {{10}^4}\) lines), "FeynCalc2.2beta.m".
+During this period of development the SU(3) algebra was changed to SU($N$). Several tools for automatic tree-level calculation were added, for example the function \mb{SquareAmplitude}. (Unfortunately, the  documentation was not updated.) All sub-packages were put into one file \(\big(\simeq {{10}^4}\) lines), "FeynCalc2.2beta.m" \footnote{This file is still available upon request}.
 
-\subsubsection*{1993-1996 : \fc 3.0, modularization, typesetting, OPE}
+\subsubsection*{1993-1996 : \fc 3.0, modularization, typesetting, Operator Product Expansion (OPE)}
 
 Due to the rapidly increasing amount of code, \fc was reorganized in a modular way. The definitions of each function are contained in a package file which is loaded only on demand. For the maintenance of hundreds of packages, totalling 2.5 megabytes, software engineering was needed.
 
 \begin{itemize}
+
+\item
+In these years many improvements were made to the code, driven by the work of the author (Rolf Mertig) 
+together with Willy van Neerven in perturbative Quantum Chromo Dynamics (QCD).
+
+One effort was to build data bases: Convolutions, integrals, tensor integral transformation formulae, Feynman rules, 
+and Feynman parameterizations. 
+Applications include 2-loop spin-independent and spin-dependent Altarelli-Parisi splitting functions \cite{spinsplit}.
 
 \item The new typesetting capabilities of \mma 3 (TraditionalForm) were used to substantially improve the look of the output. Typesetting rules were added for e.g. \({\overvar{\partial }{\rightarrow}}_{\mu } \multsp \).
 
@@ -168,10 +197,6 @@ for twist-2 (and higher) operators.
 
 \subsubsection*{1997-2000 : \fc 4.0-4.1, QCD and OPE, ChPT, tables}
 
-In these years many improvements were made to the code, driven by the work of the author (Rolf Mertig) in perturbative Quantum Chromo Dynamics (QCD).
-
-One effort was to build data bases: Convolutions, integrals, tensor integral transformation formulae, Feynman rules, and Feynman parameterizations. Applications include 2-loop spin-dependent and spin-independent Altarelli-Parisi splitting functions.
-
 Another was the package \tarcer, which was initially an independent project, but then integrated into \fc.  \tarcer \cite{Mertig:1998vk} adds two-loop functionality for propagator-type integrals using the recurrence relations of Tarasov \cite{Tarasov:1997kx}.
 
 In 2000 maintenance of the package was taken over by Frederik Orellana. He worked in Chiral Perturbation Theory \cite{Gasser:1984gg} (ChPT) and made some changes, as well as adding code to \fc in order to support ChPT and effective theories in general, and interfacing with \fa. Also, first implementations of the 'tHooft-Veltman formulae \cite{'tHooft:1978xw} for numerical evaluation of the one-loop integrals $B_0, C_0$ and $D_0$ were added.
@@ -180,15 +205,22 @@ In 2000 maintenance of the package was taken over by Frederik Orellana. He worke
 
 \begin{itemize}
 
-\item{Download the file "HighEnergyPhysics-4.2.tar.gz" or "HighEnergyPhysics-4.2.zip" (if you're using using Windows you'll probably want the zip file).}
+\item{Download the file "HighEnergyPhysics-5.0.tar.gz" or "HighEnergyPhysics-5.0.zip"}
 
 \item{If you already have an old installation and have costumized the file "FCConfig.m", back it up.}
 
-\item{Unpack the archive in either one of the following places:
+\item{Unpack the archive in any of the following places:
+
 \begin{itemize}
-\item The \mma installation "Applications" directory: Under {\sc unix}/{\sc linux} this would typically be "/usr/local/Mathematica/AddOns/Applications/". Under Windows it would typically be "C:\char`\\Program Files\char`\\Wolfram Research\char`\\Mathematica\char`\\4.1 \char`\\AddOns\char`\\Applications". Under {\sc Mac OS} it would typically be "Macintosh HD:Applications:Wolfram Research:Mathematica:4.1:AddOns:Applications".
-\item Your local "Applications" directory: Under {\sc unix}/{\sc linux} this is "~/.Mathematica/x/AddOns/Applications/", where the tilde refers to you home directory and the x to your version of \mma (e.g.~4.0 or 4.1; as of version 4.2 of \mma, "x/AddOns/" should be left out). Under other architectures there is no such directory.
-\end{itemize}}
+
+\item{Anywhere on your file system. If the location is not on the Mathematica \mb{\$Path} you will have to load
+FeynCalc by \mb{<</myfullpathname/HighEnergyPhysics/FeynCalc.m}} 
+
+\item One of the Mathematica "Applications" directories: Under {\sc unix}/{\sc linux} this is, for Mathematica 4.2 or higher,
+"~/.Mathematica/Applications/", where the tilde refers to you home directory.
+For other operating systems evaluate \mb{\$UserAddOnsDirectory} or \mb{\$AddOnsDirectory} in \mma
+\end{itemize}
+}
 
 \item{If you've made any customizations in the configuration file "FCConfig.m", merge them from the file you've moved away into the new file.}
 
@@ -196,7 +228,9 @@ In 2000 maintenance of the package was taken over by Frederik Orellana. He worke
 
 \item{Choose 'Rebuild Help Index' from the 'Help' menu.}
 
-\item Load \fc with \mb{<<HighEnergyPhysics`FeynCalc`}
+\item Load \fc with \mb{<<HighEnergyPhysics`FeynCalc`} or by \mb{<<HighEnergyPhysics`FeynCalc`}
 
 \end{itemize}
+
+
 

@@ -180,10 +180,10 @@ The \mma \mb{Dot}, ``\mb{.}'', is used in the input as noncommutative
 %associative
 multiplication operator for the objects \mb{DiracMatrix},
 \mb{DiracSlash}, \mb{Spinor}, \mb{LeptonSpinor}, \mb{QuarkSpinor}
-and \mb{GellMannMatrix}.
+and \mb{SUNT}.
 The ``\mb{.}'' may also be used as a delimiter instead of the ``\mb{,}''
 within the functions \mb{DiracMatrix}, \mb{DiracSlash} and
-\mb{GellMannMatrix}.
+\mb{SUNT}.
 
 In the output with \mb{FeynCalcForm} the ``\mb{.}''
 as noncommutative multiplication operator
@@ -440,7 +440,7 @@ lagrangians.
 \beom
 \domtog{QuantumField[$\psi$]}{\ $\psi$\hfil\\
 }{
-Some field $\psi$.
+A scalar field $\psi$.
 }
 \domtog{QuantumField[$\psi$, \{i\}]}{\ $\psi_i$\hfil\\
 }{
@@ -455,4 +455,109 @@ Some field $g$ with an SU($N$) index $i$ and a Lorentz index $\nu$.
 This is the notation for the space-time derivative $\partial/\partial x^\mu$ of the same field.
 }
 \enom
+
+\subsection{Propagators}
+
+Several utility functions for input of propagators are available.
+
+\otabtwo{
+\mbs{GluonPropagator[{\sl p,  $\mu$,a,  $\nu$,b}]} & represents a gluon propagator $\Pi_{ab}^{\mu \nu}(p)$ \cr
+\mbs{GP[{\sl p, 1, 2}]} & is a short form for \mbox{\mbs{GluonPropagator[{\sl p, li1,ci1, li2,ci2}]}}   \cr
+\mbs{GhostPropagator[{\sl p, $\mu$,a, $\nu$,b}]} & represents a ghost propagator \cr
+\mbs{GHP[{\sl p, 1,2 }]} & is a short form for \mbox{\mbs{GhostPropagator[{\sl p, li1,ci1, li2,ci2}]}}  \cr
+\mbs{QuarkPropagator[{\sl p}]} & gives the massless quark propagator\cr
+\mbs{QuarkPropagator[{\sl p,m}]} & gives the quark propagator with mass m\cr
+\mbs{QP[{\sl p,m}]} & gives the quark propagator with mass m\cr
+}{Input functions for gluon ghost and quark propagators.}
+
+{\raggedleft 
+The options for \mbs{GluonPropagator} are:
+}
+\otabthree{
+{\sl option name} & {\sl default value} & \cr
+\hhline
+\mb{Gauge} & \mb{1} &  gauge choice (1: Feynman)\cr
+\mb{OPE} & \mb{0} &  whether to add the 2-gluon OPE Feynman rule\cr
+\mb{CounterTerm} & \mb{False} &  whether to add counter terms\cr
+\mb{CouplingConstant} & \mb{Gstrong} &  the coupling constant\cr
+\mb{Dimension} & \mb{D} &  the space-time dimension\cr
+}{Options for \mb{GluonPropagator}.}
+
+\beom
+\domtog{GluonPropagator[p,$\mu, a, \, \nu, b$ ]}{
+$-\frac{\ImaginaryI \multsp {g^{\mu \nu }}\multsp
+      {{\delta }_{a b}}}{{p^2}}
+$
+}{
+Enter a Gluon propagator.
+}
+\enom
+
+\beom
+\domtog{GP[q,1,2]}{
+$-\frac{\ImaginaryI \multsp {g^{i1 i2 }}\multsp
+      {{\delta }_{c1 c2}}}{{p^2}}
+$
+}{
+A convenient short way to enter a gluon propagator.
+}
+\enom
+
+\beom
+\domtog{GP[q,1,2, OPE->True]}{
+$
+-\frac{1}{2}\multsp \Omega \multsp ({{(-1)}^m}+1)\multsp
+    {{\delta }_{\Mvariable{c1}\NoBreak \Mvariable{c2}}}\multsp
+    (\Mfunction{O}_{\Mvariable{i1}\VeryThinSpace \Mvariable{i2}}^
+     {\Mvariable{G2}}\Mfunction{(}p))\multsp
+    {{\bigg(\frac{1}{{p^2}}\bigg)}^2}-
+   \frac{\ImaginaryI \multsp
+      {g^{\Mvariable{i1}\NoBreak \Mvariable{i2}}}\multsp
+      {{\delta }_{\Mvariable{c1}\NoBreak \Mvariable{c2}}}}{{p^2}}
+$
+}{
+A convenient short way to enter a gluon propagator and an OPE insertion.
+}
+\enom
+
+\beom
+\domtog{QuarkPropagator[p]}{
+$-\frac{\ImaginaryI \multsp {\gamma \cdot p }}{p^2}
+$
+}{
+Enter a quark propagator.
+}
+\enom
+
+{\raggedleft The options for \mbs{QuarkPropagator} are:}
+\otabthree{
+{\sl option name}     & {\sl default value} & \cr
+\hhline
+\mb{CounterTerm}      & \mb{False}   &  whether to add counter terms\cr
+\mb{CouplingConstant} & \mb{Gstrong} &  the coupling constant\cr
+\mb{Dimension}        & \mb{D}       &  the space-time dimension\cr
+\mb{Loop}             & \mb{0}       &  the loop order of the propagator \cr
+\mb{OPE}              & \mb{False}   &  whether to add the 2-gluon OPE Feynman rule\cr
+\mb{Polarization}     & \mb{0}       &  for OPE insertions this option is taken over \cr
+}{Options for QuarkPropagator.}
+
+
+\subsection{Vertex functions}
+
+\otabtwo{
+\mbs{GluonVertex[{\sl p, $\mu$,a, q, $\nu$,b, k, $\lambda$,c}]} & represents a gluon vertex $V_{abc}^{\mu \nu \lambda}(p,q,k)$
+ \cr
+\mbs{GV[{\sl p,1, q,2, k,3}]} & is a short form for \mbox{\mbs{GluonVertex[{\sl p, i1,c1, q,i2,c2, k,i3,c3}]}}   \cr
+}{Input functions for gluon vertex functions.}
+
+
+\subsection{Twist 2 Operators}
+
+
+
+
+
+
+
+
 
