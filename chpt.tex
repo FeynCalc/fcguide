@@ -23,7 +23,7 @@ The main features of \fphi are:
 \item A set of basic objects are provided that can be composed and manipulated to form ChPT
 lagrangians.
 \item The most common ChPT lagrangians are included and new ones can easily be defined.
-\item The lagrangians can be expanded in terms of pion (meson) fields, with SU(2) (SU(3)) flavour
+\item The lagrangians can be expanded in terms of pion (meson) fields, with SU(2) (SU(3)) flavor
 traces being done automatically.
 \item External sources can be switched off and on.
 \item \fa is used for generating Feynman diagrams and amplitudes, including counter-terms. Power
@@ -132,7 +132,7 @@ by using the \mb{?} operator.}.
 
 \subsection{Vectors, Matrices and Structure Constants in SU(2) and SU(3)}
 
-\mb{QuantumField}s may be grouped in flavour SU($N$) matrices or vectors\footnote{with SU($N$) we shall understand  SU($N$), where $N$=2 or 3.} with the functions \mb{IsoVector}, \mb{UMatrix} and \mb{UVector}. When this is done, these functions take over the space-time argument.
+\mb{QuantumField}s may be grouped in flavor SU($N$) matrices or vectors\footnote{with SU($N$) we shall understand  SU($N$), where $N$=2 or 3.} with the functions \mb{IsoVector}, \mb{UMatrix} and \mb{UVector}. When this is done, these functions take over the space-time argument.
 
 \otabtwo{
 \mbs{IsoVector[{\sl v}]} & represents an SU(2) or SU(3) multiplet with number of
@@ -145,7 +145,7 @@ corresponding to the dimension of the representation (2 or 3)\cr
 \otabthree{
 {\sl option name} & {\sl default value} &\cr
 \hhline
-\mbs{SUNN} & \mb{2} & number of quark flavours. Either 2 or 3 \cr
+\mbs{SUNN} & \mb{2} & number of quark flavors. Either 2 or 3 \cr
 \mbs{UDimension} & \mb{Automatic} & dimension of the representation\cr
 }{Options determining the dimension of SU($N$) vectors and matrices.}
 
@@ -174,11 +174,11 @@ The SU($N$) matrices and vectors may be multiplied with each other using some ne
 \mbs{Transpose[{\sl m}]} & the transpose {\sl m}$^{\rm t}$ of a matrix {\sl m}\cr
 }{Operations on matrices.}
 
-The matrices generating flavour SU($N$) are denoted \mb{UGenerator}.
+The matrices generating flavor SU($N$) are denoted \mb{UGenerator}.
 
 \otabtwo{
 \mbs{UGenerator[{\sl i}]} & \mb{UMatrix[UGenerator[{\sl i}]]} is the {\sl i}'th generator of SU($N$) 
-}{Generators of flavour SU(2) or SU(3).}
+}{Generators of flavor SU(2) or SU(3).}
 
 SU($N$) vectors and matrices may be written out explicitly using
 \mb{WriteOutUMatrices} and/or \mb{WriteOutIsoVectors}.
@@ -254,14 +254,14 @@ provided.
 \mbs{CommutatorReduce[{\sl exp}]} & does some reduction on expressions containing non-abelian  SU($N$) products in {\sl exp}\cr
 }{SU($N$) utilities.}
 
-To calculate the trace of flavour SU($N$) matrices, the function \mb{Utrace} is used.
+To calculate the trace of flavor SU($N$) matrices, the function \mb{Utrace} is used.
 This function distributes over sums. If the trace of a term is not known, \mb{Utrace} is
 simply replaced with \mb{Utrace1}, which displays in \mb{TraditionalForm} as $\braket{\cdots}$.
 
 \otabtwo{
-\mbs{UTrace[{\sl m}]} & calculate the flavour SU($N$) trace of the matrix {\sl m} \cr
+\mbs{UTrace[{\sl m}]} & calculate the flavor SU($N$) trace of the matrix {\sl m} \cr
 \mbs{UTrace1[{\sl m}]} & return value if the trace of {\sl m} is not known \cr
-}{The trace of flavour SU($N$) matrices.}
+}{The trace of flavor SU($N$) matrices.}
 
 \beom
 \dtog{id = IsoDot;\\
@@ -382,10 +382,10 @@ $k\multsp a({{k}_1})\multsp
 \enom
 
 \otabtwo{
-\mbs{DeclareUMatrix[{\sl a}]} & causes the symbol {\sl a} to be treated as a flavour SU($N$) matrix \cr
-\mbs{DeclareUScalar[{\sl a}]} & causes the symbol {\sl a} to be treated as a flavour SU($N$) scalar \cr
-\mbs{UndeclareUMatrix[{\sl a}]} & causes the symbol {\sl a} to seize being treated as a flavour SU($N$) matrix \cr
-\mbs{UndeclareUScalar[{\sl a}]} & causes the symbol {\sl a} to seize being treated as a flavour SU($N$) scalar \cr
+\mbs{DeclareUMatrix[{\sl a}]} & causes the symbol {\sl a} to be treated as a flavor SU($N$) matrix \cr
+\mbs{DeclareUScalar[{\sl a}]} & causes the symbol {\sl a} to be treated as a flavor SU($N$) scalar \cr
+\mbs{UndeclareUMatrix[{\sl a}]} & causes the symbol {\sl a} to seize being treated as a flavor SU($N$) matrix \cr
+\mbs{UndeclareUScalar[{\sl a}]} & causes the symbol {\sl a} to seize being treated as a flavor SU($N$) scalar \cr
 }{Matrices and scalars of SU(2) or SU(3).}
 
 \subsection{Model and Lagrangian Definitions}
@@ -566,9 +566,10 @@ where the $2 n$th list will have zeros for all but the $2 n$th entry, that is, t
 $\mathscr{O}(p^2)$ and $\mathscr{O}(p^4)$ couplings.
 \item The generic and classes "vectors" are each stored in separate files with extension
 ".Gen" and ".Mod" respectively, in the directory "HighEnergyPhysics/Phi/CouplingVectors".
-A naming convention is followed for these files and
-functions, \mb{XName} and  \mb{CheckF}, are provided for generating the correct name
-and for storing and retrieving from the directory "HighEnergyPhysics/Phi/CouplingVectors".
+A naming convention is followed for these files and a
+function, \mb{XName}, is provided for generating the correct name.
+Storing and retrieving from the directory "HighEnergyPhysics/Phi/CouplingVectors" can then
+be done with the function \mb{CheckDB}.
 \item The \fa model files "Automatic.gen" and "Automatic.mod" load the saved coupling "vectors"
 and generate correct \fa model definitions using the information of the active \fphi model.
 \end{itemize}
@@ -654,13 +655,13 @@ particular case this step is redundant.}
         \Muserfunction{SUNDelta}[3,\Mvariable{I2}]-
        \Muserfunction{SUNDelta}[\Mvariable{I1},\Mvariable{I2}])\}\}$}
 {The classes coupling "vector" is generated.}
-\dtog{CheckF[gencoup, 
+\dtog{CheckDB[gencoup, 
     XName[PhiModel \bm{$\rightarrow$} ChPTVirtualPhotons2, 
         VertexFields \bm{$\rightarrow$} {Pion[0], Pion[0], Photon[0],
              Photon[0]}, \\
              PerturbationOrder \bm{$\rightarrow$} 2] <> 
       ".Gen"];}{}{The generic coupling vector is saved.}
-\dtog{CheckF[classcoup, 
+\dtog{CheckDB[classcoup, 
     XName[PhiModel \bm{$\rightarrow$} ChPTVirtualPhotons2, 
         VertexFields \bm{$\rightarrow$} {Pion[0], Pion[0], Photon[0],
              Photon[0]}, \\
@@ -696,7 +697,7 @@ be used in a generic model file for \fa from the matrix element {\sl m}\cr
 \mbs{ClassesCoupling[{\sl l}]} & constructs the kinematical coupling "vector" to
 be used in a classes model file for \fa from the matrix element {\sl m}\cr
 \mbs{XName[{\sl opts}]} & generates a name for a coupling file, using the options {\sl opts}\cr
-\mbs{CheckF[{\sl exp}, {\sl fil}]} & checks if {\sl fil} exists.  If it does, gets {\sl fil} and
+\mbs{CheckDB[{\sl exp}, {\sl fil}]} & checks if {\sl fil} exists.  If it does, gets {\sl fil} and
 returns the loaded expressions.
 If {\sl fil} does not exist, evaluates {\sl exp}, saves it to {\sl fil} and returns the
 evaluated {\sl exp}\cr
