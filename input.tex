@@ -38,7 +38,7 @@ the \mb{TraditionalForm}-look of its objects, the output looks very much like
 typeset formulas. Again, the screen output cannot be copied and used
 as input. If the \mma default output format type
 \footnote{The \mma default output format type is set using the
-menu "Cell" $\rightarrow$ "Default Output Format Type".}
+menu 'Cell' $\rightarrow$ 'Default Output Format Type'.}
 is set to
 %\mb{OutputForm},
 \mb{InputForm} or \mb{StandardForm}, the
@@ -49,17 +49,17 @@ set the \mma default output format type to \mb{OutputForm} and set
 the \mma default output format type to \mb{TraditionalForm}.
 \end{itemize}
 
-In the rest of this guide, the examples given will use the notebook interface.
+In the rest of this guide the examples given will use the notebook interface.
 
 The internal structure of \fc
-is explained briefly in section \ref{inside} and in the
+is explained in section \ref{inside} and in the
 reference section \ref{rg}. Usually it is not necessary to know it.
 Notice simply that there are three layers of \fc: The input functions,
-an output representation of those and the internal structure.
+an output representation and the internal representation.
 
 In order to do calculations in the framework of $D$-dimensional
 regularization, \fc can be used for  calculations
-in 4, $D$
+in 4 or $D$
 %or $D-4$
 dimensions.
 The dimension of  metric tensors, Dirac matrices and  four-vectors
@@ -109,15 +109,15 @@ This is the typeset output.
 }{
 This is the input for $g^{\mu \nu}$.
 }
-\domtog{MetricTensor[$\mu$, $\nu$, Dimension $\rightarrow$ D]}{\ $g^{\mu \nu}$\hfil\\
+\domtog{MetricTensor[$\mu$, $\nu$, Dimension $\Rule$ D]}{\ $g^{\mu \nu}$\hfil\\
 }{
-A metric tensor $g^{\mu \nu}$ in \mb{D} dimensions
+A metric tensor $g^{\mu \nu}$ in $D$ dimensions
 is entered in this way.
 The number of dimensions is suppressed in the screen
 output
 (for notebook output. For terminal output,
 the number of dimensions is displayed as an index,
-\mb{\subscript{\rm g}{\rm D}[mu, nu]}).}
+\mb{\subscript{\rm \mb{g}}{\rm D}[mu, nu]}).}
 \domtog{FourVector[p,\ $\mu$]}{\ $p_{\mu}$\hfil\\
 }{
 A four-dimensional $p_{\mu}$.
@@ -127,7 +127,7 @@ A four-dimensional $p_{\mu}$.
 You may also enter a linear combination of
 four-vectors: $(p - 2\, q)_{\mu}$.
 }
-\domtog{FourVector[q,\ $\mu$,\ Dimension\ $\rightarrow$\ D]}{\ $q_\mu$\hfil\\
+\domtog{FourVector[q,\ $\mu$,\ Dimension\ $\Rule$\ D]}{\ $q_\mu$\hfil\\
 }{
 This is a $D$-dimensional $q_{\mu}$.
 }
@@ -157,6 +157,14 @@ option \mb{Dimension}.
 
 \subsection{Dirac Matrices}
 
+A Dirac matrix $\gamma^{\mu}$ is entered like \mb{DiracMatrix[$\mu$]}.
+For  $\bps = p_{\mu} \, \gamma^{\mu}$ you may use
+\mb{DiracSlash[p]}. Products of Dirac matrices or slashes are
+entered either by adding subsequent arguments, i.e.,
+\mb{DiracMatrix[{\sl mu},\ {\sl nu},\ ...]} and
+\mb{DiracSlash[{\sl p},\ {\sl q},\ ...]}, or by multiplying the
+\mb{DiracMatrix} and \mb{DiracSlash} with the \mma \mb{Dot}, ``\mb{.}''.
+
 \otabtwo{
 \mbs{DiracMatrix[{\sl mu},\ {\sl nu},\ ...]} & Dirac matrices
 $\;\gamma^{\mu}\;\gamma^{\nu}\ldots$ \cr
@@ -168,24 +176,16 @@ $\;\gamma^{\mu}\;\gamma^{\nu}\ldots$ \cr
 \mbs{DiracMatrix[7]} & $\gamma^{7} = (1-\gamma^{5})/2$ \cr
 }{Various input functions for Dirac matrices.}
 
-A Dirac matrix $\gamma^{\mu}$ is represented by \mb{DiracMatrix[mu]}.
-For  $\bps = p_{\mu} \, \gamma^{\mu}$ you may use
-\mb{DiracSlash[p]}. Products of Dirac matrices or slashes can
-either be entered by adding subsequent arguments, i.e.,
-\mb{DiracMatrix[{\sl mu},\ {\sl nu},\ ...]} and
-\mb{DiracSlash[p,\ q,\ ...]}, or by multiplying the
-\mb{DiracMatrix} and \mb{DiracSlash} with the \mma \mb{Dot}, ``.''.
-
-The \mma \mb{Dot}, ``.'', is used in the input as noncommutative
+The \mma \mb{Dot}, ``\mb{.}'', is used in the input as noncommutative
 %associative
 multiplication operator for the objects \mb{DiracMatrix},
 \mb{DiracSlash}, \mb{Spinor}, \mb{LeptonSpinor}, \mb{QuarkSpinor}
 and \mb{GellMannMatrix}.
-The ``.'' may also be used as a delimiter instead of the ``,''
+The ``\mb{.}'' may also be used as a delimiter instead of the ``\mb{,}''
 within the functions \mb{DiracMatrix}, \mb{DiracSlash} and
 \mb{GellMannMatrix}.
 
-In the output with \mb{FeynCalcForm} the ``.''
+In the output with \mb{FeynCalcForm} the ``\mb{.}''
 as noncommutative multiplication operator
 is suppressed.
 
@@ -238,13 +238,13 @@ As setting for \mb{Dimension}, a \mma \mb{Symbol}
 {\sl dim}, or {\sl dim}-4 are possible.
 
 \beom
-\domtog{DiracMatrix[$\mu$,\ Dimension\ $\rightarrow$\ D]}{\ $\gamma^{\mu}$\hfil\\
+\domtog{DiracMatrix[$\mu$,\ Dimension\ $\Rule$\ D]}{\ $\gamma^{\mu}$\hfil\\
 }{
 Entering of a D-dimensional  $\gamma^{\mu}$.
 The number of dimensions is suppressed in the screen
 output (for notebook output).
 }
-\domtog{DiracMatrix[mu,\ mu,\ Dimension\ $\rightarrow$\ D\ -\ 4]}{\ $\gamma^{\mu} \gamma^{\mu}$\hfil\\
+\domtog{DiracMatrix[mu,\ mu,\ Dimension\ $\Rule$\ D\ -\ 4]}{\ $\gamma^{\mu} \gamma^{\mu}$\hfil\\
 }{
 This is  $\gamma^{\mu} \,  \gamma^{\mu}$ in $D-4$ dimensions.
 }
@@ -252,7 +252,7 @@ This is  $\gamma^{\mu} \,  \gamma^{\mu}$ in $D-4$ dimensions.
 
 \subsection{Spinors}
 
-In \fc spinors are entered with the four functions \mb{SpinorU}, \mb{SpinorUBar}, \mb{SpinorV}, \mb{SpinorVBar}. Products of spinors with spinors or Dirac matrices (Fermion chains) are built with the \mma \mb{Dot}, ``.''.
+In \fc spinors are entered with the four functions \mb{SpinorU}, \mb{SpinorUBar}, \mb{SpinorV}, \mb{SpinorVBar}. Products of spinors with spinors or Dirac matrices (Fermion chains) are built with the \mma \mb{Dot}, ``\mb{.}''.
 %The only difference between \mb{QuarkSpinor} and \mb{LeptonSpinor}
 %is that Gell-Mann matrices (see section \ref{sun}) do not commute with quark spinors.
 
@@ -270,7 +270,7 @@ This is $\overline{u}(p, m) \, \bps$.
 }
 \domtog{DiracSlash[p]\ .\ SpinorU[p,\ m]}{\ $\gamma\cdot p \;\; u(p,m)$\hfil\\
 }{
-On the right of $\bps$ the spinor,
+On the right-hand side of $\bps$ the spinor,
 $u(p,m)$ is used.
 }
 \domtog{SpinorVBar[p,\ m]\ .\ DiracSlash[q,\ p]}{\ $\overline{v}(p,m) \;\; \gamma\cdot q \,\, \gamma\cdot p$\hfil\\
@@ -284,7 +284,7 @@ Here we have $\gamma\cdot p \, v(p,m)$.
 \domtog{SpinorU[p,\ 0]}{\ $u(p)$\hfil\\
 }{
 Enter a spinor obeying the massless Dirac equation.
-The \mb{FeynCalcForm} suppresses the 0.
+The 0 is not displayed in the output.
 }
 \domtog{SpinorU[p]}{\ $u(p)$\hfil\\
 }{
@@ -315,10 +315,10 @@ a massless spinor.
 \fc provides functions for the input of SU$(N$) matrices and the corresponding structure constants. More specialized input functions in SU(2) and SU(3) (Gell-Mann and Pauli matrices) are provided by the subpackage \fphi. These are described in the \fphi user's guide ???.
 
 \otabtwo{
-\mb{SUNT[a]} & the a'th generator, $T_a$, of SU($N$) in the fundamental representation \cr
+\mb{SUNT[{\sl a}]} & the {\sl a}'th generator, $T_a$, of SU($N$) in the fundamental representation \cr
 } {Input of SU($N$) matrices.}
 
-For noncommutative multiplication of SU($N$) matrices, use the \mma \mb{Dot}, ``.''.
+For noncommutative multiplication of SU($N$) matrices, use the \mma \mb{Dot}, ``\mb{.}''.
 
 \beom
 \domtog{SUNT[a]\ .\ SUNT[b]\ .\ SUNT[c]}{\ $T_a\, T_b\, T_c$\hfil\\
@@ -356,18 +356,18 @@ This is how you enter $f_{a\,b\,c}$.
 }{
 This is how you enter $d_{a\,b\,c}$.
 }
-\domtog{SUNF[a,\ b,\ c,\ Explicit\ $\rightarrow$\ True]}{\ $2\ \ComplexI\; (\,{\rm tr}(T_a\, T_c\, T_b)\, -\, {\rm tr}(T_a\, T_b\, T_c)\,)$\hfil\\
+\domtog{SUNF[a,\ b,\ c,\ Explicit\ $\Rule$\ True]}{\ $2\ \ComplexI\; (\,{\rm tr}(T_a\, T_c\, T_b)\, -\, {\rm tr}(T_a\, T_b\, T_c)\,)$\hfil\\
 }{
 They can be expressed in terms of the generating matrices (see section \ref{gelltrace} for a discussion of the trace).
 }
-\domtog{SUNF[a, b, c, Explicit $\rightarrow$ True]\ + \ 
-SUNF[a, c, b, Explicit $\rightarrow$ True]\; //\; Expand}{\ 0\hfil\\
+\domtog{SUNF[a, b, c, Explicit $\Rule$ True]\ + \ 
+SUNF[a, c, b, Explicit $\Rule$ True]\; //\; Expand}{\ 0\hfil\\
 }{
 Antisymmetry,
 $f_{a\,c\,b}\,= -f_{a\,b\,c}$.
 }
-\domtog{SUND[a, b, c, Explicit $\rightarrow$ True]\ - \ 
-SUND[a, c, b, Explicit $\rightarrow$ True]\; //\; Expand}{\ 0\hfil\\
+\domtog{SUND[a, b, c, Explicit $\Rule$ True]\ - \ 
+SUND[a, c, b, Explicit $\Rule$ True]\; //\; Expand}{\ 0\hfil\\
 }{Symmetry,
 $d_{a\,c\,b}\,= d_{a\,b\,c}$.}
 \enom
@@ -405,16 +405,16 @@ Since, however, some of the Passarino-Veltman integrals may be infrared divergen
 the fermionic (and photonic) small masses must remain as
 arguments of them and cannot be set to 0.
 In order to achieve this behavior, these small masses have to be
-entered with  head \mb{Small}.
-The idea is that every variable with head \mb{Small} evaluates
+entered with  head \mb{SmallVariable}.
+The idea is that every variable with head \mb{SmallVariable} evaluates
 to $0$, unless it is an argument of a scalar integral.
 
-You can avoid to explicitly wrap the head \mb{Small} around a mass by
+You can avoid to explicitly wrap the head \mb{SmallVariable} around a mass by
 using the option \mb{SmallVariables} of the function \mb{OneLoop}
 (the function \mb{OneLoop} is described in section \ref{passvelt}).
 
 \otabtwo{
-\mbs{Small[{\sl m}]} & head of a small mass $m$, $m \ll M$
+\mbs{SmallVariable[{\sl m}]} & head of a small mass $m$, $m \ll M$
 }{A head for small variables.}
 
 %\beom

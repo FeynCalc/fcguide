@@ -1,10 +1,10 @@
 \section{Elementary Calculations}
 
-You can use \fc for basic calculations like Lorentz algebra and Dirac and color trace evaluations. This chapter contains simple examples of such calculations.
+You can use \fc for basic calculations like Lorentz algebra and Dirac and colour trace evaluations. This chapter contains simple examples of such calculations.
 
 \subsection{Lorentz Algebra
 \label{contract}}
-The \mb{Contract} function contracts equal Lorentz indices, if at least one belongs
+The \mb{Contract} function contracts double Lorentz indices, if at least one belongs
 to a metric tensor, a four-vector or a Levi-Civita tensor.
 
 \otabtwo{
@@ -17,7 +17,7 @@ to a metric tensor, a four-vector or a Levi-Civita tensor.
 }{
 In four dimensions $g^{\mu}_{\mu}=4$.
 }
-\domtog{{Contract[MetricTensor[$\mu$,\ $\mu$,\ Dimension\ $\rightarrow$\ D]]\\
+\domtog{{Contract[MetricTensor[$\mu$,\ $\mu$,\ Dimension\ $\Rule$\ D]]\\
 }}{\ $D$\hfil\\
 }{
 While in $D$ dimensions $g^{\mu}_{\mu}=D$.
@@ -43,12 +43,12 @@ when calculating with \mb{FourVector}s.
 }{
 This contracts $g^{\alpha \beta} \, \gamma^{\alpha}$.
 }
-\domtog{{Contract[FourVector[q,\ al]\ DiracMatrix[al]]\\
+\domtog{{Contract[FourVector[q,\ $\alpha$]\ DiracMatrix[$\alpha$]]\\
 }}{\ $\gamma \cdot q$\hfil\\
 }{
 Contracting $q^{\alpha}\, \gamma^{\alpha}$ yields a Feynman slash.
 }
-\domtog{{Contract[LeviCivita[mu,\ nu,\ ro,\ si]\ FourVector[p,\ si]]\\
+\domtog{{Contract[LeviCivita[$\mu$,\ $\nu$,\ $\rho$,\ $\sigma$]\ FourVector[p,\ $\sigma$]]\\
 }}{\ $\varepsilon^{\mu \nu \rho p}$\hfil\\
 }{
 Contracting $\varepsilon^{\mu \nu \rho \sigma} \, p^{\sigma}$ gives 
@@ -76,7 +76,7 @@ yields $-6\, g^{\alpha \beta}$.
 FourVector[p, $\alpha$] FourVector[p, $\sigma$] * \\
 (FourVector[q, $\beta$] + FourVector[r, $\beta$]) * \\ 
 (FourVector[p, $\beta$] - FourVector[q, $\beta$]), \\
-Expanding $\rightarrow$ False]\\
+Expanding $\Rule$ False]\\
 }}{\ $(p^\beta\, -\, q^\beta)\, (q^\beta\, +\, r^\beta)\, p^2$\hfil\\
 }{
 Contracting only \\ $g^{\alpha \sigma}\,p^{\alpha}\,p^{\sigma}$ in 
@@ -116,7 +116,7 @@ Combine again.
 Consider again $q^{\alpha}\, (p-q)^{\alpha}$.\\
 \mb{Contract} expands scalar products.
 }
-\domtog{{\%\ /.\ ScalarProduct[q,\ q]\ $\rightarrow$\ 0\\
+\domtog{{\%\ /.\ ScalarProduct[q,\ q]\ $\Rule$\ 0\\
 }}{\ $p \cdot q$\hfil\\
 }{
 This is how you can substitute $q^{2} \rightarrow 0$ afterwards.
@@ -164,14 +164,14 @@ Basically it is just the implementation of the anticommutator relation $\{\gamma
 \otabtwo{
 \mbs{DiracEquation[{\sl expr}]} & apply the Dirac equation \cr
 \mbs{Chisholm[{\sl expr}]} &  apply the Chisholm identity \cr
-\mbs{DiracOrder[{\sl expr}]} & alphabetical ordering of Dirac matrices in {\sl expr} \cr
+\mbs{DiracOrder[{\sl expr}]} & alphabetically order Dirac matrices \cr
 \mbs{DiracOrder[{\sl expr},\ \{{\sl a},\ {\sl b},\ ...\}]} & 
-ordering according to $a, b, ...$ \cr
+order according to $a, b, ...$ \cr
 } {Manipulation functions for Dirac matrices and spinors.}
 
 All functions take as $expr$
-any expression with "." as the noncommutative multiplication operator between
-Dirac matrices or Dirac slashes.
+any expression with ``\mb{.}'' as the noncommutative multiplication operator between
+Dirac matrices and/or Dirac slashes.
 
 \beom
 
@@ -188,8 +188,7 @@ The Chisholm identity.
 \domtog{{DiracOrder[DiracMatrix[$\beta$,\ $\alpha$]]\\
 }}{\ $2\, g^{\alpha \beta}\, -\, \gamma^\alpha\, \gamma^\beta$\hfil\\
 }{
-Order the product $\gamma^{\beta} \, \gamma^{\alpha} \rightarrow 
- 2\, g^{\alpha \beta} - \gamma^{\alpha} \,\gamma^{\beta}$.
+Order the product $\gamma^{\beta} \, \gamma^{\alpha}$.
 }
 \domtog{{DiracOrder[\%,\ \{$\beta$,\ $\alpha$\}]\\
 }}{\ $\gamma^{\beta}\, \gamma^{\alpha}$\hfil\\
@@ -202,8 +201,8 @@ Anticommute back to  $\gamma^{\beta} \, \gamma^{\alpha}$.
 Simplifications like $\gamma^{\mu}\, \gamma^{\mu} \; \bps\,\bps=4 \,p^{2}$
 are built in.
 }
-\domtog{{DiracOrder[DiracMatrix[a,\ m,\ a,\ Dimension\ $\rightarrow$\ D]]\\
-}}{\ $2\,\gamma^m\, -\, D\,\gamma^m$\hfil\\
+\domtog{{DiracOrder[DiracMatrix[$\alpha$,\ $\mu$,\ $\alpha$,\ Dimension\ $\Rule$\ D]]\\
+}}{\ $2\,\gamma^\mu\, -\, D\,\gamma^\mu$\hfil\\
 }{
 $\gamma^{\alpha} \, \gamma^{\mu} \, \gamma^{\alpha} = (2 -D) \, \gamma^{\mu}$
 in $D$ dimensions.
@@ -226,8 +225,8 @@ $-\bps \, \bqs \, \bps\, = \,\bqs\,p^{2} - 2\,\bps\,(p \cdot q)$.
 {\sl option name} & {\sl default value} & \cr
 \hhline
 \mb{Expanding} & \mb{True} &  noncommutatively expand the result \cr
-\mb{DotSimplifyRelations} & \mb{\{\}} &   a list of substitution rules of the form \mb{DotSimplifyRelations $\rightarrow$ \{a . b $\rightarrow$ c, b\phat 2 $\rightarrow$ 0, ...\}} \cr
-\mb{DotPower} & \mb{False} &  whether noncommutative powers are represented by successive multiplication or by Power. \cr
+\mb{DotSimplifyRelations} & \mb{\{\}} &   a list of substitution rules of the form \mb{DotSimplifyRelations $\Rule$ \{a . b $\Rule$ c, b\phat 2 $\Rule$ 0, ...\}} \cr
+\mb{DotPower} & \mb{False} &  whether noncommutative powers are represented by successive multiplication or by \mb{Power}. \cr
 } {Options for \mb{DotSimplify}.}
 
 \beom
@@ -243,13 +242,13 @@ numerical factors out.}
 \domtog{{GA[$\mu$].(a GS[p] - b GS[q]).GS[q].GA[$\nu$]]\\
 }}{\ $\gamma^\mu\, .\, (a\;\; \gamma \cdot p\, -\, b\;\; \gamma \cdot q)\, .\, (\gamma \cdot q)\, .\, \gamma^\nu $\hfil\\
 }{Here is another product. Notice that we are using the shorthand \mb{FeynCalcExternal} form (see section \ref{int}) for input.}
-\domtog{{DotSimplify[\%,\ Expanding -> True]\\
+\domtog{{DotSimplify[\%,\ Expanding $\Rule$ True]\\
 }}{\ $a\, \gamma^\mu\, .\, (\gamma \cdot p)\, (\gamma \cdot q)\, .\, \gamma^\nu\, -\, b\, \gamma^\mu\, (\gamma \cdot q)\, .\, (\gamma \cdot q)\, .\, \gamma^\nu $\hfil\\
-}{With \mb{Expanding -> True} sums are distributed over. This also causes symbols not known as being noncommutative (see  section \ref{datatypes}) to be pulled out.}
-\domtog{{DotSimplify[\%,\ DotPower -> True]\\
+}{With \mb{Expanding $\Rule$ True} sums are distributed over. This also causes symbols not known as being noncommutative (see  section \ref{datatypes}) to be pulled out.}
+\domtog{{DotSimplify[\%,\ DotPower $\Rule$ True]\\
 }}{\ $a\, \gamma^\mu\, .\, (\gamma \cdot p)\, (\gamma \cdot q)\, .\, \gamma^\nu\, -\, b\, \gamma^\mu\, (\gamma \cdot q)^2\, .\, \gamma^\nu $\hfil\\
-}{With \mb{DotPower -> True} dot products of identical objects are replaced with powers.}
-\domtog{{DotSimplify[\%,\ DotPower -> True,\ DotSimplifyRelations -> \{GS[q]\phat 2 -> 1\}]\\
+}{With \mb{DotPower $\Rule$ True} dot products of identical objects are replaced with powers.}
+\domtog{{DotSimplify[\%,\ DotPower $\Rule$ True,\ DotSimplifyRelations $\Rule$ \{GS[q]\phat 2 $\Rule$ 1\}]\\
 }}{\ $a\, \gamma^\mu\, .\, (\gamma \cdot p)\, (\gamma \cdot q)\, .\, \gamma^\nu\, -\, b\, \gamma^\mu\, .\, \gamma^\nu $\hfil\\
 }{One may specify relations to be included in the simplification process.}
 \dtog{{DeclareNonCommutative[a, b, c];\\
@@ -272,9 +271,9 @@ $\gamma^6$ and $\gamma^7$ are replaced with their definitions \cr
 } {Simplification functions for Dirac matrices and spinors.}
 
 All functions take as $expr$
-%either subsequent \mb{DiracMatrix} or \mb{DiracSlash} separated by "," or
-any expression with "." as the noncommutative multiplication operator between
-Dirac matrices or Dirac slashes.
+%either subsequent \mb{DiracMatrix} or \mb{DiracSlash} separated by ``\mb{,}'' or
+any expression with ``\mb{.}'' as the noncommutative multiplication operator between
+Dirac matrices and/or Dirac slashes.
 
 \otabtwo{
 \mbs{DiracBasis} & a head wrapped around Dirac structures (and 1) by \mb{DiracReduce})\cr
@@ -288,7 +287,7 @@ ordered in a canonical way if they are between spinors.
 See below and section \ref{gamma5} for the treatment of $\gamma^{5}$ in $D$ dimensions.
 
 \beom
-\domtog{{DiracSimplify[DiracMatrix[$\mu$,\ $\mu$,\ Dimension\ $\rightarrow$\ D]]\\
+\domtog{{DiracSimplify[DiracMatrix[$\mu$,\ $\mu$,\ Dimension\ $\Rule$\ D]]\\
 }}{\ $D$\hfil\\
 }{
 This is $\gamma^{\mu} \, \gamma^{\mu} = D$.
@@ -349,14 +348,14 @@ $\overline{u}\,(\ps - m )= 0$.
 }{
 This is $\overline{v}\,\qs\,(\ps - m )= 2 \,\overline{v}\, p\cdot q$.
 }
-\domtog{{DiracSimplify[SpinorVBar[p,\ m]\ .\ DiracSlash[q,\ p]\ .\ 
-SpinorU[q,\ M]]\\
-}}{\ $\varphi(-p,\ m)\, .\, \varphi(q,\ M)\, (m\, M\, +\, 2\, p \cdot q)$\hfil\\
+\domtog{{DiracSimplify[SpinorVBar[p,\ m1]\ .\ DiracSlash[q,\ p]\ .\ 
+SpinorU[q,\ m2]]\\
+}}{\ $\varphi(-p,\ {\rm m}1)\, .\, \varphi(q,\ {\rm m}2)\, ({\rm m}1\, {\rm m}2\, +\, 2\, p \cdot q)$\hfil\\
 }{
 Also more complicated structures 
 are simplified; for example, \\
 $\overline{v}(p)\,\qs \, \ps \,u(q)  = 
-\overline{v}(p)\,\,u(p)\,[\, 2\, (p\cdot q) + m \,M\,]$.
+\overline{v}(p)\,\,u(p)\,[\, 2\, (p\cdot q) + m_1 \,m_2\,]$.
 }
 %\domtog{{DiracSimplify[QuarkSpinor[-p1]\ .\ GellMannMatrix[b]\ .\\
 %DiracSlash[q]\ .\ GellMannMatrix[a]\ .\\
@@ -386,9 +385,9 @@ The behaviour of \mb{DiracSimplify} may be tuned with the setting of various opt
 \mb{DiracReduce} reduces all four-dimensional Dirac matrices to the standard basis
 $(S,P,V,A,T)$ using the Chisholm identity. In the result the
 basic Dirac structures are wrapped with a head \mb{DiracBasis}.
-I.e., $S$ corresponds to \mb{DiracBasis[1]}, $P$ : \mb{DiracBasis[DiracMatrix[5]]},
-$V$: \mb{DiracBasis[DiracMatrix[$\mu$]]}, $A$: \mb{DiracBasis[DiracMatrix[$\mu$, 5]]},
-$T$: \mb{DiracBasis[DiracSigma[DiracMatrix[$\mu$, $\nu$]]]}.
+I.e., $S$ corresponds to \mb{DiracBasis[1]}, $P$ to \mb{DiracBasis[DiracMatrix[5]]},
+$V$ to \mb{DiracBasis[DiracMatrix[$\mu$]]}, $A$ to \mb{DiracBasis[DiracMatrix[$\mu$, 5]]},
+$T$ to \mb{DiracBasis[DiracSigma[DiracMatrix[$\mu$, $\nu$]]]}.
 By default \mb{DiracBasis} is substituted with \mb{Identity}.
 Notice that the result of \mb{DiracReduce} is given in \mb{FeynCalcExternal} notation,
 i.e., evtl. you may  want to use \mb{FeynCalcInternal} on the result.
@@ -438,7 +437,7 @@ As mentioned in section \ref{gamma5}, basic features of the Breitenlohner-Maison
 }}{}{
 Setting the Breitenlohner-Maison $\gamma^5$ scheme.
 }
-\domtog{{DiracMatrix[5]\ .\ DiracMatrix[$\mu$,\ Dimension\ $\rightarrow$D]\\
+\domtog{{DiracMatrix[5]\ .\ DiracMatrix[$\mu$,\ Dimension\ $\Rule$D]\\
 }}{\ $\gamma^5\, .\, \gamma^\mu$\hfil\\
 }{
 Entering $\gamma^5 \, \gamma^{\mu}$, with
@@ -452,7 +451,7 @@ Now only the 4-dimensional part of $\gamma^{\mu}$
 anticommutes, while the $D-4$ dimensional part $2\, \hat{\gamma}^\mu$
 commutes.
 }
-\domtog{{DiracMatrix[6]\ .\ DiracMatrix[$\mu$,\ Dimension$\rightarrow$D]\\
+\domtog{{DiracMatrix[6]\ .\ DiracMatrix[$\mu$,\ Dimension$\Rule$D]\\
 }}{\ $\gamma^6\, .\, \gamma^\mu$\hfil\\
 }{
 Project out the positive chirality part of $\gamma^{\mu}$.
@@ -462,7 +461,7 @@ Project out the positive chirality part of $\gamma^{\mu}$.
 The expression is expanded and
 $\gamma^5$ is moved to the right.
 }
-%\domtog{{test\ =\ 2\ DiracMatrix[mu]\ +\ DiracMatrix[mu,\ Dimension\ $\rightarrow$\ D]\ +\ %DiracMatrix[mu,\ Dimension\ $\rightarrow$\ D-4]\\
+%\domtog{{test\ =\ 2\ DiracMatrix[mu]\ +\ DiracMatrix[mu,\ Dimension\ $\Rule$\ D]\ +\ %DiracMatrix[mu,\ Dimension\ $\Rule$\ D-4]\\
 %}}{\ 2\ ga[mu]\ +\ \subscript{ga}{D-4}[mu]\ +\ \subscript{ga}{D}[mu]\hfil\\
 %}{
 %\fc does not simplify this sum directly,
@@ -497,8 +496,8 @@ Go back to naive $\gamma^5$ scheme (for some operations a kernel restart is nece
 \subsection{Dirac Traces}
 \label{traces}
 
-The function \mb{DiracTrace} takes as $expr$ either subsequent \mb{DiracMatrix} or \mb{DiracSlash} separated by "," or any expression with "." as
- noncommutative multiplication operator.
+The function \mb{DiracTrace} takes as $expr$ any expression with ``\mb{.}'' as
+noncommutative multiplication operator.
 
 The default of \mb{DiracTrace} is not to evaluate Dirac traces directly.
 For direct calculation the function \mb{Tr} can be used.
@@ -536,7 +535,7 @@ p^{\beta}$.
 
 If you want to do more complicated traces it is often convenient to introduce your own abbreviations. The following examples, some of which verify results given in \cite{Wo79}, show how to do this. 
 
-Consider a trace corresponding to the square of the $s$-channel diagram for $\gamma e$ scattering:
+Consider a trace corresponding to the square of the $s$-channel diagram for $\gamma$e scattering:
 
  \[ T_1 = \frac{1}{16}\,{\rm tr}[\, (\bps\,' + m)\,\gamma^{\alpha}\, 
       (\bps + \ks + m)\, \gamma^{\beta}\, (\bps + m)\,
@@ -545,11 +544,11 @@ Consider a trace corresponding to the square of the $s$-channel diagram for $\ga
   \]
 
 \beom
-\dtog{{(pps = DiracSlash[p'];\\
+\dtog{{pps = DiracSlash[p'];\\
 ps = DiracSlash[p];\\
 ks = DiracSlash[k];\\
 a = DiracMatrix[$\alpha$];\\
-b = DiracMatrix[$\beta$];)\\
+b = DiracMatrix[$\beta$];\\
 }}{}{
 Set the abbreviations for  
 Dirac matrices and slashes here.
@@ -557,9 +556,6 @@ Dirac matrices and slashes here.
 \domtog{{Tr[(pps + m).a.(ps + ks + m).b.(ps + m).b.(ps + ks + m).a/16]//Expand\\
 }}{$4\ m^4\ +\ 4\ k^2\ m^2\ +\ 4\ k \cdot p\ m^2\ -\ 4\ k \cdot p'\ m^2\ -\ 3\ p \cdot p'\ m^2\ +\ 2\ k \cdot p\ k \cdot p'\ +\ 2\ k \cdot p'\ p^2\ -\ k^2\ p \cdot p'\ +\ p^2\ p \cdot p'$\hfil}{
 This is the input for the trace $T_1$.
-
-The CPU time needed for the calculation 
-is of the order of seconds.
 }
 \dtog{{Clear[pps, ps, ks, a, b];}}{}{
 Clear symbols used.}
@@ -571,19 +567,19 @@ Another nontrivial example is a $D$-dimensional trace involving 14 Dirac matrice
  \bps_1 \, \gamma^{\nu} \,  \bps_3 \,\bps_1 \, \bps_2 \,)\]
 
 \beom
-\dtog{{a = DiracMatrix[$\alpha$, Dimension -> D];\\
-b = DiracMatrix[$\beta$, Dimension -> D];\\
-n = DiracMatrix[$\nu$, Dimension -> D];\\
+\dtog{{a = DiracMatrix[$\alpha$, Dimension $\Rule$ D];\\
+b = DiracMatrix[$\beta$, Dimension $\Rule$ D];\\
+n = DiracMatrix[$\nu$, Dimension $\Rule$ D];\\
 \{ps1, ps2, ps3\} = Map[DiracSlash, \{p1, p2, p3\}];}}{}{
 This defines abbreviations for \\
 trace $T_2$.
 $a, b, n$ denote $\gamma^{\alpha}, \gamma^{\beta},
 \gamma^{\nu}$ in $D$ dimensions.
 
-The last command sets $ps1 = \bps_1$, 
- $ps2 = \bps_2$, $ps3 = \bps_3$.
+The last command sets \mb{ps1} to $\bps_1$, 
+ \mb{ps2} to $\bps_2$ and \mb{ps3} to $\bps_3$.
 }
-\domtog{{Tr[b.a.ps1.ps2.n.b.ps2.ps3.a.ps1.n.ps3.ps1.ps2, PairCollect $\rightarrow$ True]\\
+\domtog{{Tr[b.a.ps1.ps2.n.b.ps2.ps3.a.ps1.n.ps3.ps1.ps2, PairCollect $\Rule$ True]\\
 }}{
 $4\, ((-288 + 224\, D - 56\, D^2 + 4\, D^3)\, {p_1 \cdot p_2}\, 
    {p_1 \cdot p_3}^2\, {p_2^2} + 
@@ -604,7 +600,7 @@ Here is the input for trace $T_2$.
 The result is again collected with respect 
 to scalar products. 
 }
-\domtog{{Tr[b.a.ps1.ps2.n.b.ps2.ps3.a.ps1.n.ps3.ps1.ps2\ /.\ D\ $\rightarrow$4, PairCollect $\rightarrow$ True]\\
+\domtog{{Tr[b.a.ps1.ps2.n.b.ps2.ps3.a.ps1.n.ps3.ps1.ps2\ /.\ D\ $\Rule$4, PairCollect $\Rule$ True]\\
 }}{$4\, (-32\, {p1 \cdot p2}\, 
    {p2 ^2}\, {p1 \cdot p3}^2 + 16\, {p1^2}\, 
    {p2^2}\, {p2 \cdot p3}\, {p1 \cdot p3} + 8\, {p1^2}\, 
@@ -612,8 +608,8 @@ to scalar products.
    {p3^2})$\hfil\\
 }{
 This calculates $T_2$ in four dimensions.
-Since the "." is used, the replacement 
-\mb{D $\rightarrow$ 4} applies to all Dirac matrices.
+Since the ``\mb{.}'' is used, the replacement 
+\mb{D $\Rule$ 4} applies to all Dirac matrices.
 The time needed would be twice as much without
 calculating the D-dimensional case before.
 }
@@ -632,7 +628,7 @@ Here you get the input ${\rm tr}(\,\gamma^{\alpha}\,\gamma^{\beta}\,
 You may then contract, e.g., with 
 $g^{\alpha \beta}$.
 }
-\domtog{{\% /. DiracTrace $\rightarrow$ Tr\\
+\domtog{{\% /. DiracTrace $\Rule$ Tr\\
 }}{\ $16\ g^{\rho \sigma}$\hfil\\
 }{
 This evaluates the Dirac trace.
@@ -661,9 +657,9 @@ the result of ${\rm tr}(\,\gamma^{a} \, \gamma^{b} \,\gamma^{c} \,\gamma^{d}
 } {Options for \mb{DiracTrace}.}
 
 \mb{Tr} takes the options of \mb{DiracTrace}, but the 
-default setting of \op{{\sl DiracTraceEvaluate}} is \mb{True}. 
-Additionally, \mb{Tr} takes the two options \mb{SUNTrace} and \mb{SUNNToCACF},
-which control if and how SU($N$) traces are evaluated. This is elaborated upon
+default setting of \mb{DiracTraceEvaluate} is \mb{True}. 
+Additionally, \mb{Tr} takes the two options \mb{SUNTrace} and \mb{SUNNToCACF}, 
+which control if and how SU($N$) traces are evaluated. This is elaborated 
 in section \ref{gelltrace}.
 
 The option \mb{PairCollect} determines whether the resulting polynomial is 
@@ -693,11 +689,11 @@ s+t+u=m_1^{2} + m_2^{2} + m_3^{2} + m_4^{2}
 \]
 can often be used to get a compact result.  If you set the option
 
-\mcode{Mandelstam\ $\rightarrow$\ \{s,\ t,\ u,\ m1\phat 2\ +\ m2\phat 2\ +\ m3\phat 2\ +\ m4\phat 2\}}
+\mcode{Mandelstam\ $\Rule$\ \{s,\ t,\ u,\ m1\phat 2\ +\ m2\phat 2\ +\ m3\phat 2\ +\ m4\phat 2\}}
 
 \fc tries to figure out the best choice of $s, t$ or $u$ in each factor of the result.
 
-As an example for calculating a trace in terms of Mandelstam variables, consider  the following squared amplitude from the process $gg\rightarrow t\overline{t}$, with $\Sigma_1^{\alpha \rho}$ and $\Sigma_2^{\beta \rho}$ as polarization sums for the gluons.
+As an example for calculating a trace in terms of Mandelstam variables, consider  the following squared amplitude from the process gg $\rightarrow$ t$\overline{\rm t}$, with $\Sigma_1^{\alpha \rho}$ and $\Sigma_2^{\beta \rho}$ as polarization sums for the gluons.
 \[
 \begin{array}{rcl}
 T_3 &=& {\rm tr}(\,\gamma^{\sigma}\,(\ks_1 - \bps_1 - m_t)\, \gamma^{\rho}\,(\bps_1+m_t)
@@ -721,21 +717,19 @@ polsum2\ =\ PolarizationSum[$\beta$,\ $\sigma$,\ k2,\ p1\ -\ p2];\\
 p1al\ =\ FourVector[p1,\ $alpha$];\\
 p2be\ =\ FourVector[p2,\ $\beta$];\\
 }}{}{
-Set up $s,t,u$ for  $gg\rightarrow t\overline{t}$, with 
+Set up $s,t,u$ for  gg $\rightarrow$ t$\overline{\rm t}$, with 
 $k_1, k_2$ as gluon and $p_1, p_2$ as fermion momenta.
-Again abbreviations with capital letters are introduced 
-for the Dirac matrices and slashes.
-$polsum1$ and $polsum2$ are the polarization sums for the 
-gluons. As external momentum the choice $n = p_1 - p_2$ 
-has been made.
+Again abbreviations are introduced for the Dirac matrices and slashes.
+\mb{polsum1} and \mb{polsum2} are the polarization sums for the 
+gluons.
 }
 \domtog{{Tr[\ (polsum1\ polsum2\ p1al\ p2be\ si)\ .\\
 (ks1\ -\ ps1\ -\ m)\ .\ ro\ .\ (ps1\ +\ m)\ .\\
-(ps2\ -\ m), Mandelstam\ $\rightarrow$\ \{s,\ t,\ u,\ 2\ m\phat 2\}\ ]
+(ps2\ -\ m), Mandelstam\ $\Rule$\ \{s,\ t,\ u,\ 2\ m\phat 2\}\ ]
 }}{\ -\Frac{2\ m\ s\ (\Superscript{m}{4}\ -\ t\ u)\ (8\ \Superscript{m}{4}\ -\ \Superscript{t}{2}\ \ -\ \Superscript{u}{2}\ -\ 6\ t\ u)}
 {\Superscript{(t\ -\ u)}{3}}\hfil\\
 }{
-This is a possible input for trace $T_3$.
+This is a possible input for the trace $T_3$.
 \fc contracts first all Lorentz indices and 
 then calculates the trace.
 
@@ -772,8 +766,8 @@ calculations.
 \dtog{Clear[ks1,ps1,ps2,si,ro,polsum1,polsum2,p1al,p2be];}{}{Clear symbols used.}
 \enom
 
-Since Dirac matrices can be given in any dimensions,
-\fc is also able to calculate traces in $D-4$ dimensions.
+Since Dirac matrices can be given in any number of dimensions,
+\fc is also able to calculate traces in e.g. $d-4$ dimensions.
 
 Defining 
 $T(n) = {\rm tr}( \gamma_{\mu_1} \,\gamma_{\mu_2} \, ...
@@ -783,45 +777,46 @@ we give a list of timings and results for $T(8)$ to $T(11)$.
 The trace $T(10)$ is a verification of the result given in \cite{laut}.
 
 \beom
-\dtog{{T[n\_]\ :=\ T[n]\ =\ Block[\{gammas,\ calc\},\\
+\dtog{{t[n\_]\ :=\ t[n]\ =\ Block[\{gammas,\ calc\},\\
 \ gammas\ =\ Dot\ @@\ Table[\ \\
-\ DiracMatrix[a[i],\ Dimension\ $\rightarrow$\ (d\ -\ 4)],\\
+\ DiracMatrix[a[i],\ Dimension\ $\Rule$\ (d\ -\ 4)],\\
 \{i,\ 1,\ n\}\ ];\\
 \ calc\ =\ Timing[\ Tr[\ gammas\ .\ gammas\ ] // Expand\ ];\\
 \ Print["Time\ =\ ",\ calc[[1]]\ ];\\
 calc[[2]]];\\
 }}{}{
-This is a little program defining $T$.
+This is a little program defining $t$.
 The dimension of each particular Dirac matrix is
 set to $d-4$.
 
 The calculations were done with \mma 4.2 under Linux on a 1.8 GHz Pentium 4 box with 256 MB of RAM.
 }
-\domptog{{T[8]\\
+\domptog{{t[8]\\
 }}{
 $123469824\ -\ 135962624\ d\ +\ 63224832\ d^2\ -\ 
 16145920\ d^3\ +\ 2461760\ d^4\ -\ 227584\ d^5\ +\ 12320\ d^6\ -\ 352\ d^7\ +\ 4\ d^8$\hfil\\
 }{
 This calculates a trace of 16 matrices.
 }{Time\ =\ 0.58\ Second\\}
-\domptog{{T[9]\\
+\domptog{{t[9]\\
 }}{
 $-1879576576\ +\ 2220901376\ d\ -\ 1127626752\ d^2\ +\ 321806848\ d^3\ -\ 56625408\ d^4\ +\ 6331584\ d^5\ -\ 446208\ d^6 \ +\ 18912\ d^7\ -\ 432\ d^8\ +\ 4\ d^9$\hfil\\
 }{
 Here we have 18.
 }{Time\ =\ 1.6\ Second\\}
-\domptog{{T[10]\\
+\domptog{{t[10]\\
 }}{
 $-31023169536\ +\ 38971179008\ d\ -\ 21328977920\ d^2\ +\ 6679521280\ d^3\ -\ 1320732160\ d^4\ +\ 171464832\ d^5\ -\ 14710080\ d^6\ +\ 816960\ d^7\ -\ 27840\ d^8\ +\ 520\ d^9\ -\ 4\ d^{10}$\hfil\\
 }{
 The trace of 20 Dirac matrices.
 }{Time\ =\ 5.88\ Second\\}
-\domptog{{T[11]\\
+\domptog{{t[11]\\
 }}{
 $551768735744\ -\ 731506905088\ d\ +\ 427299186688\ d^2\ -\ 144858475520\ d^3\ +\ 31576821760\ d^4\ -\ 4629805312\ d^5\ +\ 463655808\ d^6\ -\ 31521600\ d^7\ +\ 1415040\ d^8\ -\ 39600\ d^9\ +\ 616\ d^{10}\ -\ 4\ d^{11}$\hfil\\
 }{
 With 22 Dirac matrices it gets slow.
 }{Time\ =\ 23.15\ Second\\}
+\dtog{Clear[t];}{}{Clean up.}
 \enom
 
 \subsection{SU($N$) Traces and Algebra}
@@ -869,13 +864,11 @@ The result of \mb{SUNSimplify} involves either $N$ or the Casimir invariants $C_
 } {Options for \mb{SUNSimplify}.}
 
 \beom
-\domtog{{SUNF[a,\ b,\ c,\ Explicit $\rightarrow$ True]\\
+\domtog{{SUNF[a,\ b,\ c,\ Explicit $\Rule$ True]\\
 }}{$2 \ComplexI\;({\rm tr}(T_a \, T_c \, T_b) -
 {\rm tr}(T_a \, T_b \,T_c))$\\
 }{
-To evaluate $f_{a\, b\, c}$ use the option \mb{Explicit $\rightarrow$ True}.
-
-The input form of the trace in the output is \mb{Tr}.
+To evaluate $f_{a\, b\, c}$, use the option \mb{Explicit $\Rule$ True}.
 }
 \domtog{{SUNTrace[SUNT[a] . SUNT[b]]]\\
 }}{\ \Frac{\delta_{a\, b}}{2}\hfil\\
@@ -913,7 +906,7 @@ ${\rm tr}( f_{a\, r \,s} \, f_{b\, r\, s} )= C_{\rm A} \,  f_{a\, r\, s}
 %This takes a few seconds.
 %}
 \domtog{{SUNSimplify[SUNF[a,b,r]\ SUNF[r,c,s]\ +\ SUNF[b,c,r]\ SUNF[r,a,s]\ +\ 
-SUNF[c,a,r]\ SUNF[r,b,s],\ SUNFJacobi $\rightarrow$ True]\\
+SUNF[c,a,r]\ SUNF[r,b,s],\ SUNFJacobi $\Rule$ True]\\
 }}{\ 0\hfil\\
 }{
 The Jacobi identity:\\
@@ -954,9 +947,9 @@ Calculation of the $\psi \overline{\psi} \gamma_{\mu_3}$ Feynman rule.
 }
 \enom
 
-Notice that \mb{FeynRule} does not write out the momentum conserving $\delta(p_1+p_2+p_3)$. As we shall see later, this is anyway enforced if the vertex is used for Feynman diagram calculations.
+Notice that \mb{FeynRule} does not write out the momentum conserving $\delta(p_1+p_2+p_3)$. As we shall see later, this is anyway enforced if the vertex is used for Feynman diagram calculations with \fa.
 
-Besides calculating the functional derivative, \mb{FeynRule} does some simplification on the result and transforms to momentum space. To calculate the functional derivative \mb{FeynRule} uses a lower level function: \mb{FunctionalD}. Contrary to \mb{FeynRule} \mb{FunctionalD} does do any cleaning up on the result and therefore may be faster but return longer expressions.
+Besides calculating the functional derivative, \mb{FeynRule} does some simplification on the result and transforms to momentum space. To calculate the functional derivative \mb{FeynRule} uses a lower level function: \mb{FunctionalD}. Contrary to \mb{FeynRule} \mb{FunctionalD} does not do any cleaning up on the result and may therefore be faster but return longer expressions.
 
 By default \mb{FunctionalD} operates in position space. However, no explicit space-time symbols should be given and none will be returned. Thus, a few conventions are used: Instead of the usual $\delta \phi(x)/\delta \phi(y) = \delta^{(D)}(x-y)$ the arguments and the $\delta$ function are omitted, i.e., for simplicity $\delta \phi/\delta \phi$ is taken to be 1. Similarly, instead of the usual $\delta \partial_\mu \phi(x)/\delta \phi(y) = \partial_\mu  \delta^{(D)}(x-y)$ the arguments are omitted, and the $\partial_\mu$ operator is specified by default to be an integration by parts operator, i.e., the right-hand side will be just $-\partial_\mu$ or, more precisely (by default), $-\overrightarrow{\partial_\mu}$.
 
@@ -1006,7 +999,7 @@ See the internal representation. Notice that applying \mb{ExpandPartialD} causes
     \left(-\ComplexI g^{\alpha \mu2} {\rm p}2^\beta \delta_{\alpha {\rm i}2}\right)+
     \left(-\ComplexI g^{\alpha \mu2} {\rm p}2^\beta \delta_{\alpha {\rm i}2}\right).
     \left(-\ComplexI g^{\alpha \mu1} {\rm p}1^\beta \delta_{\alpha {\rm i}1}\right)$}{
-Calculate the corresponding Feynman rule (in momentum space).
+Calculate the 2-gluon Feynman rule (in momentum space).
 }
 \dtog{{Clear[aa];\\
 }}{}{
@@ -1072,7 +1065,7 @@ FieldStrength[x, Explicit $\Rule$ True] // DotExpand\\
      {{\partial }_{\alpha }}A_{\beta }^{a}-
     {{\partial }_{\beta }}A_{\alpha }^{a}.
      {{\partial }_{\beta }}A_{\alpha }^{a}\big)$}{
-We can write out the field strength tensors.
+We could write out the field strength tensors.
 }
 \domtog{{FeynRule[Lagrangian["QCD"], \{\\
     QuantumField[GaugeField, \{$\bm{\mu}$1\}, \{i1\}][p1], \\
@@ -1110,7 +1103,7 @@ We can write out the field strength tensors.
        \Mvariable{si3}}}\multsp 
    {f_{\Mvariable{i3}\NoBreak \Mvariable{i4}\NoBreak 
        \Mvariable{si3}}}\multsp g_{s}^{2}$}{
-Calculate the 4-gluon Feynman rule.
+But don't need to do so to calculate the 4-gluon Feynman rule.
 }
 \enom
 

@@ -23,8 +23,9 @@ algebraic calculations like tensor algebra, tensor integral decomposition and re
 yielding a polynomial in standard matrix elements,  special functions, kinematical 
 variables and scalars.
 
-\fc also provides calculator-type like features. You enter a Dirac trace 
-in a very similar notation you use by hand and get back an answer, suitable 
+\fc also provides calculator-like features. You enter a Dirac trace 
+in a very similar notation to that used when doing calculations by hand, and 
+get back an answer suitable 
 for further manipulation. These features include basic operations like contraction of
 tensors, simplification of products of Dirac matrices and trace calculation.
 
@@ -47,9 +48,9 @@ In the following we list what we consider the most important missions of the \fc
 \begin{itemize}
 
 \item{{\bf Code reuse.} In calculations as complex as quantum field theory calculations,
-the code used should be thoroughly checked and reinventing the wheel for every calculation should be avoided.}
+the code used should be thoroughly checked. Reinventing the wheel for every calculation should be avoided.}
 
-\item{{\bf Standardization.} In order to reuse code, clear standards should be formulated, thoroughly documented and followed. This should also make it easier to reach common standards with other similar or related projects (using other programming languages) for fields, lagrangians, 4-vectors, etc. in the end allowing easy comparison of calculations of the same process.}
+\item{{\bf Standardization.} In order to reuse code, clear standards should be formulated, thoroughly documented and followed. This should also make it easier to reach common standards with other similar or related projects (using other programming languages) for fields, lagrangians, Lorentz-vectors, etc. in the end allowing easy comparison of calculations of the same process.}
 
 \item{{\bf Repository of lagrangians, amplitudes and integrals.} The agreement on standards allows the creation of a database of quantum field theory results stored in a standardized electronic form. We encourage users of \fc to contribute back the results they obtain.}
 
@@ -60,19 +61,21 @@ the code used should be thoroughly checked and reinventing the wheel for every c
 \end{itemize}
 
 Notice in this connection that the standards put forth
-in this document are what we consider to be the most general but still useful standards
-for doing quantum fields theory with \mma. This means that that standards are
+in this document (and in the code) are what we consider to be the most general but
+still useful standards
+for doing quantum fields theory with \mma. This means that standards are
 to be considered as relatively fixed, but not that we are unwilling to change them
-given sufficiently good arguments.
+given sufficiently good reasons.
 
 From all of the above it should be clear that we consider interaction with users to be crucial
 for the further evolving of \fc. Therefore, suggestions and in particular
 code contributions are warmly welcomed. Smaller contributions can be emailed to
-feyncalc@feyncalc.org; larger contributions should be coordinated with the
+the mailing list address, feyncalc@feyncalc.org, or to one of the authors; 
+larger contributions should be coordinated with the
 developers who can be reached at the same email address.
 Though much testing of the code has been done, there is absolutely no claim that
 \fc is bug-free. You should be sceptical about the results, and when you are sure the
-program  returned a wrong answer, you are encouraged to send email
+program  returns a wrong answer, you are encouraged to send email
 to feyncalc@feyncalc.org.
 
 \subsection{Version History}
@@ -88,7 +91,7 @@ The basic idea was to have general functions for some of the more mechanical par
 \multsp \rightarrow \multsp {p^{\nu }}
 \multsp ,\multsp \multsp\)
 \({g^{\Mvariable{\alpha \beta }}}{g_{\Mvariable{\alpha \beta }}}
-   \multsp \rightarrow \multsp n\multsp \cdots\),}
+   \multsp \rightarrow \multsp D\multsp \cdots\),}
 
 \item{Dirac algebra.
 \({{\gamma }^{\alpha }}\multsp {{\gamma }^{\nu }}
@@ -97,7 +100,7 @@ The basic idea was to have general functions for some of the more mechanical par
 \(\overvar{v}{\_}(p,m)\multsp 
 \bps\)  \(\rightarrow \) - m \(\overvar{v}{\_}(p,m)\multsp \cdots\),}
 
-\item{Passarino-Veltman - tensor integral decomposition.
+\item{Passarino-Veltman tensor integral decomposition.
 Applications of these tools included complete 1-loop processes in the Standard Model,
 \({e^+}{e^-}\multsp \rightarrow 
 \multsp Z\multsp H\multsp \),  \(\multsp {e^+}{e^-}\multsp \rightarrow \)
@@ -112,10 +115,9 @@ In early 1990 it became clear that \mma was a much more natural (programming) en
 
 \subsubsection*{1990-1991 : The first version  of \fc in \mma}
 
-In 1990, user-friendly  packages were built with extended automatic capabilities (OneLoop, OneLoopSum), and SU(3) algebra capabilities
-were added (SU3Simplify).
+In 1990, user-friendly  packages were built with extended automatic capabilities (\mb{OneLoop}, \mb{OneLoopSum}), and SU(3) algebra capabilities were added (\mb{SU3Simplify}).
 
-In 1991 initial documentation was written and the program was made available on anonymous ftp-servers: mathsource.wolfram.com and canc.can.nl
+In 1991 initial documentation was written and the program was made available on anonymous ftp-servers: mathsource.wolfram.com and canc.can.nl.
 
 Applications from 1990 - 1996  included:
 
@@ -127,13 +129,13 @@ Model, such as:
 \({\rm gg}\multsp \rightarrow \multsp 
 {\rm t \overline{t}} \multsp , \multsp \multsp
 {{\rm e}^+}{{\rm e}^-}\multsp \rightarrow \multsp {\rm Z}\multsp {\rm H}\multsp, \multsp \multsp
-{W^+}{W^-}\multsp \)\(\rightarrow \) \({{\rm W}^+}{{\rm W}^-}\multsp, \multsp \multsp
-{\rm ZZ} \rightarrow {\rm ZZ} \)
+{{\rm W}^+}{{\rm W}^-}\multsp \)\(\rightarrow \) \({{\rm W}^+}{{\rm W}^-}\multsp, \multsp \multsp
+{\rm ZZ} \rightarrow {\rm ZZ} \),
 
 \item background field gauge calculations,
 
-\item High-energy approximation of \(\multsp{{\rm e}^+}
-{{\rm e}^-}\multsp \rightarrow \multsp {{\rm W}^+}{{\rm W}^-}\multsp \).
+\item high-energy approximation of \(\multsp{{\rm e}^+}
+{{\rm e}^-}\multsp \rightarrow \multsp {{\rm W}^+}{{\rm W}^-}\multsp \),
 
 \item  2-loop Standard Model self-energies.
 
@@ -143,15 +145,15 @@ No attempt was made to provide tools for tree-level calculations. For this purpo
 
 \subsubsection*{1992-1995 : \fc 2.0-2.2, unification and simplification.}
 
-During this period of development the SU(3) algebra was changed to SU($N$). Several tools for automatic tree-level calculation were added, for example the function \mb{SquareAmplitude}. (Unfortunately, the  documentation was not updated.) All sub-packages were put into one file \(\big(\simeq {{10}^4}\) lines). The result was FeynCalc2.2beta.m.
+During this period of development the SU(3) algebra was changed to SU($N$). Several tools for automatic tree-level calculation were added, for example the function \mb{SquareAmplitude}. (Unfortunately, the  documentation was not updated.) All sub-packages were put into one file \(\big(\simeq {{10}^4}\) lines), "FeynCalc2.2beta.m".
 
-\subsubsection*{1993-1996 : \fc 3.0, modularization, typesetting}
+\subsubsection*{1993-1996 : \fc 3.0, modularization, typesetting, OPE}
 
-Due to the rapidly increasing amount of code, \fc has been reorganized in a completely modular way. Each function in a package is a file which is loaded only on demand. For the maintenance of hundreds of packages, totalling 2.5 MegaByte, software engineering was needed.
+Due to the rapidly increasing amount of code, \fc was reorganized in a modular way. The definitions of each function are contained in a package file which is loaded only on demand. For the maintenance of hundreds of packages, totalling 2.5 megabytes, software engineering was needed.
 
 \begin{itemize}
 
-\item The new typesetting capabilities of \mma 3 (TraditionalForm) were used to substantially improve the look of the output. Typesetting rules were added for e.g., \({\overvar{\partial }{\rightarrow}}_{\mu } \multsp \).
+\item The new typesetting capabilities of \mma 3 (TraditionalForm) were used to substantially improve the look of the output. Typesetting rules were added for e.g. \({\overvar{\partial }{\rightarrow}}_{\mu } \multsp \).
 
 \item Code was written to allow new abstract datatypes, for example for noncommutative algebra and for special integrals.
 
@@ -159,20 +161,20 @@ Due to the rapidly increasing amount of code, \fc has been reorganized in a comp
 were added.
 
 \item Automatic Feynman rule derivation (with functional
-differentation) was coded, in order to get special Feynman rules
+differentation) was implemented in order to get special Feynman rules
 for twist-2 (and higher) operators.
 
 \end{itemize}
 
 \subsubsection*{1997-2000 : \fc 4.0-4.1, QCD and OPE, ChPT, tables}
 
-In these years Rolf Mertig made many improvements to the code, driven by his own work in perturbative Quantum Chromo Dynamics (QCD).
+In these years many improvements were made to the code, driven by the work of the author (Rolf Mertig) in perturbative Quantum Chromo Dynamics (QCD).
 
-One effort was to build data bases: Convolutions, integrals, tensor integral transformation formulas, Feynman rules, and Feynman parameterizations. Applications include 2-loop spin-dependent and spin-independent Altarelli-Parisi Splitting functions.
+One effort was to build data bases: Convolutions, integrals, tensor integral transformation formulae, Feynman rules, and Feynman parameterizations. Applications include 2-loop spin-dependent and spin-independent Altarelli-Parisi splitting functions.
 
 Another was the package \tarcer, which was initially an independent project, but then integrated into \fc.  \tarcer \cite{Mertig:1998vk} adds two-loop functionality for propagator-type integrals using the recurrence relations of Tarasov \cite{Tarasov:1997kx}.
 
-In 2000, maintanance of the package was taken over by Frederik Orellana. He worked in Chiral Perturbation Theory \cite{Gasser:1984gg} (ChPT) and made some changes, as well as adding code to \fc in order to support ChPT and effective theories in general, and interfacing with \fa. Also, a first implementation of the 'tHooft-Veltman formulae \cite{'tHooft:1978xw} for numerical evaluation of the one-loop integrals $B0, C0$ and $D0$ was added.
+In 2000 maintenance of the package was taken over by Frederik Orellana. He worked in Chiral Perturbation Theory \cite{Gasser:1984gg} (ChPT) and made some changes, as well as adding code to \fc in order to support ChPT and effective theories in general, and interfacing with \fa. Also, first implementations of the 'tHooft-Veltman formulae \cite{'tHooft:1978xw} for numerical evaluation of the one-loop integrals $B_0, C_0$ and $D_0$ were added.
 
 \subsection{Installation}
 
@@ -180,15 +182,17 @@ In 2000, maintanance of the package was taken over by Frederik Orellana. He work
 
 \item{Download the file "HighEnergyPhysics-4.2.tar.gz" or "HighEnergyPhysics-4.2.zip" (if you're using using Windows you'll probably want the zip file).}
 
-\item{Place the file in the directory "mathhome/AddOns/Applications", where "mathhome" is the directory containing your \mma installation. If you're on a Unix system, "mathhome" can also be "~/.Mathematica/x", where x is the version of your Mathematica installation. (if "~/.Mathematica/x/AddOns/Applications" does not exist, you can safely create it).}
+\item{If you already have an old installation and have costumized the file "FCConfig.m", back it up.}
 
-\item{Make sure there is not already a directory "HighEnergyPhysics" (and move it out of the way if there is).}
+\item{Unpack the archive in either one of the following places:
+\begin{itemize}
+\item The \mma installation "Applications" directory: Under {\sc unix}/{\sc linux} this would typically be "/usr/local/Mathematica/AddOns/Applications/". Under Windows it would typically be "C:\char`\\Program Files\char`\\Wolfram Research\char`\\Mathematica\char`\\4.1 \char`\\AddOns\char`\\Applications". Under {\sc Mac OS} it would typically be "Macintosh HD:Applications:Wolfram Research:Mathematica:4.1:AddOns:Applications".
+\item Your local "Applications" directory: Under {\sc unix}/{\sc linux} this is "~/.Mathematica/x/AddOns/Applications/", where the tilde refers to you home directory and the x to your version of \mma (e.g.~4.0 or 4.1; as of version 4.2 of \mma, "x/AddOns/" should be left out). Under other architectures there is no such directory.
+\end{itemize}}
 
-\item{Unpack the file: Under UNIX, type {\tt tar -xvzf HighEnergyPhysics-4.2.tar.gz}; under Windows and MacOS, use some utility like WinZip or StuffIt Expander.}
+\item{If you've made any customizations in the configuration file "FCConfig.m", merge them from the file you've moved away into the new file.}
 
-\item{If you've made any customizations in the configuration file FCConfig.m, merge them from the file you've moved away into the new file.}
-
-\item{Start Mathematica.}
+\item{Start \mma.}
 
 \item{Choose 'Rebuild Help Index' from the 'Help' menu.}
 
