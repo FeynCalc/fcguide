@@ -545,7 +545,7 @@ pdfkeywords = {Loops, Integrals, Feynman diagrams, Amplitudes, Scattering, Kinem
 
 % Sans serif font for chapter, section, etc.
 \allsectionsfont{\sffamily}
-\sectionfont{\huge \sffamily}
+\subsectionfont{\huge \sffamily}
 
 % Reference section definitions
 
@@ -609,7 +609,7 @@ Frederik Orellana}}
 %\clearpage
 \newpage
 
-\pagenumbering{arabic}
+\pagenumbering{roman}
 %\pagenumpos{\pnbc}
 \setcounter{page}{1}
 % Headings on each page
@@ -631,15 +631,19 @@ Frederik Orellana}}
 %\addtolength{\headheight}{12pt}
 %\addtolength{\footskip}{12pt}
 
+\input{preface}
+\pagenumbering{arabic}
+%\pagenumpos{\pnbc}
+\setcounter{page}{1}
 \input{intro}
 \include{input}
 \input{inside}
 \include{elem}
 \include{integrals}
+\input{misc}
 \include{oneloop}
 \include{qcd}
 \input{chpt}
-\input{misc}
 \include{rg}
 \input{fcbib}
 

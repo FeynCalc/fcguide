@@ -1,4 +1,6 @@
-\section{Applications in the Standard Model.}
+\chapter{Physics Applications}
+
+\section{The Standard Model.}
 
 \subsection{A Photon One-Loop Self Energy Diagram}
 \label{self}
@@ -414,14 +416,14 @@ Clear[r,\ l,\ mt,\ fv,\ feynden,\ wff2];}{}{Clean up.}
 Several options of \mb{OneLoop} have already been introduced in the previous
 section.
 Here the full list of available options is given. 
-The example  in Section \ref{eezh} shows the use of some options.
+The example in section \ref{eezh} shows the use of some options.
 
 In the automatic calculation of one-loop amplitudes it does not matter in which order the 
 arguments of \mb{FeynAmpDenominator} are given. Therefore the default setting of \mb{DenomatorOrder}
 is \mb{True}. In case you want to verify a result obtained by hand calculation, you can set this 
 option to \mb{False}, which will preserve the order of the propagators as entered.
 If you want to include the dimension $D$ explicitly in the input, as in the example
-in Section \ref{self}, you have to set \mb{Dimension\ $\Rule$\ D}.
+in section \ref{self}, you have to set \mb{Dimension\ $\Rule$\ D}.
 
 With the default setting of \mb{Dimension} you can enter four-dimensional objects to 
 \mb{OneLoop}, which are automatically extended to $D$ dimensions inside \mb{OneLoop}.
@@ -1035,7 +1037,7 @@ EEZHBOXES = 2*HoldForm[KK[173]]
 \subsection{Processing Amplitudes}
 \label{process}
 
-Calculating loop integrals will in many cases lead to very large expressions. The same goes for the application of other algorithms like Dirac tracing algorithms. The systematization and reduction of such expressions is a process which requires much more human planing, control and intervention than the process leading to the expressions. However, the computer is still of help. In this section we shall consider a few examples of how one may proceed, constructing small \mma programs taking advantage of tools provided by \fc.
+Calculating loop integrals will in many cases lead to very large expressions. The same goes for the application of other algorithms like Dirac tracing algorithms. The systematization and reduction of such expressions is a process which requires much more human planing, control and intervention than the process leading to the expressions. However, the computer is still of help. In this section shall be considered a few examples of how one may proceed, constructing small \mma programs taking advantage of tools provided by \fc.
 
 \beom
 \dtog{<< "eezhb.m"}{}{Load a stored amplitude (see section \ref{eezh}).}
@@ -1130,10 +1132,14 @@ DeleteFile["moelleramps.m"];
 \GrayCaption{Calculation of the M{\o}ller cross section.}
 \end{figure}
 
-Notice that the argument given to \mb{FermionspinSum} is a product of two amplitudes. These both contain contracted indices; therefore, in one of them, these indices have to be renamed. The functions \mb{TrickMandelstam} and \mb{PropagatorDenominatorExplicit} are described in section \ref{misc}.
+Notice that the argument given to \mb{FermionspinSum} is a product of two amplitudes. These both
+contain contracted indices; therefore, in one of them, these indices have to be renamed. The
+functions \mb{TrickMandelstam} and \mb{PropagatorDenominatorExplicit} are described in section
+\ref{misc}.
 
 \otabtwo{
-\mbs{ComplexConjugate[{\sl exp}]} & conjugates the expression {\sl exp}, operating on fermion lines \cr
+\mbs{ComplexConjugate[{\sl exp}]} & conjugates the expression {\sl exp}, operating on fermion
+lines \cr
 \mbs{FermionSpinSum[{\sl exp}]} & constructs traces out of squared amplitudes \cr
 }{Calculation of squares of fermion amplitudes.}
 

@@ -1,6 +1,6 @@
 \section{Elementary Calculations}
 
-You can use \fc for basic calculations like Lorentz algebra and Dirac and colour trace evaluations. This chapter contains simple examples of such calculations.
+You can use \fc for basic calculations like Lorentz algebra and Dirac and colour trace evaluations. This section contains simple examples of such calculations.
 
 \subsection{Lorentz Algebra
 \label{contract}}
@@ -241,7 +241,7 @@ $2 \bs\, \as\, 2\, (\ds - \cs)\, (6 \,\qs - 3 \, \ps)$.
 numerical factors out.}
 \domtog{{GA[$\mu$].(a GS[p] - b GS[q]).GS[q].GA[$\nu$]]\\
 }}{\ $\gamma^\mu\, .\, (a\;\; \gamma \cdot p\, -\, b\;\; \gamma \cdot q)\, .\, (\gamma \cdot q)\, .\, \gamma^\nu $\hfil\\
-}{Here is another product. Notice that we are using the shorthand \mb{FeynCalcExternal} form (see section \ref{int}) for input.}
+}{Here is another product. Notice that we are using the shorthand \mb{FeynCalcExternal} form (see section \ref{inside}) for input.}
 \domtog{{DotSimplify[\%,\ Expanding $\Rule$ True]\\
 }}{\ $a\, \gamma^\mu\, .\, (\gamma \cdot p)\, (\gamma \cdot q)\, .\, \gamma^\nu\, -\, b\, \gamma^\mu\, (\gamma \cdot q)\, .\, (\gamma \cdot q)\, .\, \gamma^\nu $\hfil\\
 }{With \mb{Expanding $\Rule$ True} sums are distributed over. This also causes symbols not known as being noncommutative (see  section \ref{datatypes}) to be pulled out.}
@@ -652,7 +652,7 @@ the result of ${\rm tr}(\,\gamma^{a} \, \gamma^{b} \,\gamma^{c} \,\gamma^{d}
 \mb{PairCollect}         & \mb{True} & collect \mb{Pair}s \cr
 \mb{Schouten}         & \mb{0} & maximum number of terms on which to apply the Schouten identity \cr
 \mb{TraceOfOne}         & \mb{0} & the trace of an identity matrix \cr
-\mb{FeynCalcExternal}         & \mb{0} & give output in \mb{FeynCalcExternal} form (see section \ref{int}) \cr
+\mb{FeynCalcExternal}         & \mb{0} & give output in \mb{FeynCalcExternal} form (see section \ref{inside}) \cr
 \mb{EpsContract} & \mb{False} & contract Levi-Civita \mb{Eps} \cr
 } {Options for \mb{DiracTrace}.}
 

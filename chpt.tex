@@ -1,25 +1,42 @@
-\section{Applications in Chiral Perturbation Theory}
+\section{Chiral Perturbation Theory}
 
 \subsection{Introduction}
 
-The subpackage \fphi provides utilities for computations in the Chiral Perturbation Theory (ChPT). The general idea is to allow writing up a calculation starting with a lagrangian and ending up with an amplitude, all within the framework of \fc. For this to be possible, many functions on a rather general level were implemented, as was a method of interacting seamlessly with \fa. The following sections cover the more important features of the package. A fuller description can be found in \cite{PHI}.
+The package \fphi (Phenomenology of Hadronic Interactions) provides utilities for computations in
+the Chiral Perturbation Theory (ChPT).
+The general idea is to allow writing up a calculation starting with a lagrangian and ending up
+with an amplitude, all within the framework of \fc. For this to be possible, many functions on a
+rather general level were implemented, as was a method of interacting seamlessly with \fa. The
+following sections cover the more important features of the package. A fuller description can be
+found in \cite{PHI}.
 
-The motivation for writing \fphi was a lack of software for implementing an effective model like one of the various ChPT models, which have a more complicated power counting than models which simply expand Green's functions perturbatively in a coupling constant. However, the package is general enough that other models can be defined, as has been demonstrated with the simple example of QED.
+The motivation for writing \fphi was a lack of software for implementing an effective model like 
+one of the various ChPT models, which have a more complicated power counting than models which 
+simply expand Green's functions perturbatively in a coupling constant. However, the package is 
+general enough that other models can be defined, as has been demonstrated with the simple example 
+of QED.
 % TODO: Add reference to calculations with other models
 % (HQET, soft collinear effective field theory??)
 
 The main features of \fphi are:
 \begin{itemize}
-\item A set of basic objects are provided that can be composed and manipulated to form ChPT lagrangians.
+\item A set of basic objects are provided that can be composed and manipulated to form ChPT
+lagrangians.
 \item The most common ChPT lagrangians are included and new ones can easily be defined.
-\item The lagrangians can be expanded in terms of pion (meson) fields, with SU(2) (SU(3)) flavour traces being done automatically.
+\item The lagrangians can be expanded in terms of pion (meson) fields, with SU(2) (SU(3)) flavour
+traces being done automatically.
 \item External sources can be switched off and on.
-\item \fa is used for generating Feynman diagrams and amplitudes, including counter-terms. Power counting and storing of Feynman rules is systematized.
+\item \fa is used for generating Feynman diagrams and amplitudes, including counter-terms. Power
+counting and storing of Feynman rules is systematized.
 \end{itemize}
 
 \subsection{Models and Lagrangians}
 
-\fphi comes with a number of predefined chiral models (or configurations). These define lagrangians etc. in terms of quantum fields. Which configuration and lagrangians are loaded should be defined before startup of \fc. When loading a langrangian, it is added to the database of lagrangians, \mb{Lagrangian}. In section \ref{modelDefs} is discussed how to construct such lagrangians.
+\fphi comes with a number of predefined chiral models (or configurations). These define
+lagrangians etc. in terms of quantum fields. Which configuration and lagrangians are loaded should
+be defined before startup of \fc. When loading a langrangian, it is added to the database of
+lagrangians, \mb{Lagrangian}. In section \ref{modelDefs} is discussed how to construct such
+lagrangians.
 
 \beom
 \dtog{
@@ -44,11 +61,20 @@ Get["HighEnergyPhysics`FeynCalc`"];\\}{}{Quit the kernel and reload \fc with the
 \ScriptCapitalU \SixPointedStar {{Q}_{L}}\SixPointedStar \
 {{\ScriptCapitalU }^{\dagger }}\rangle$}{Inspect the leading order lagrangian.}
 \enom
+
+\mb{\$Configuration} is a short name denoting some physics model, in the case above, ChPT
+with virtual photons in SU(2). \$Lagrangians is then a list of the lagrangians defined with
+this model, in the case above the lagrangians of leading and next-to-leading order ( 2 and 4)
+in the chiral expansion.
+
 \otabtwo{
-\mbs{\$Configuration} & string variable determining which configuration is loaded at startup\cr
-\mbs{\$Lagrangians} & string variable determining which lagrangians are loaded at startup\cr
+\mbs{\$Configuration} & string valued variable determining which configuration is loaded at
+startup\cr
+\mbs{\$Lagrangians} & string valued variable determining which lagrangians are loaded at
+ startup\cr
 }{\fphi startup settings.}
-The list of available configurations and lagrangians can be found by browsing the directory "HighEnergyPhysics/Phi/Configurations" and "HighEnergyPhysics/Phi/Lagrangians".
+The list of available configurations and lagrangians can be found by browsing the directory
+"HighEnergyPhysics/Phi/Configurations" and "HighEnergyPhysics/Phi/Lagrangians".
 Currently the list reads
 \otabtwo{
 \mbs{"ChPT2"} & ChPT with in SU(2)\cr
@@ -59,7 +85,7 @@ Currently the list reads
 \mbs{"ChPTW3"} & ChPT in SU(3) with $\Delta I$=1 weak interaction\cr
 }{\fphi Possible settings of \mb{\$Configuration}.}
 
-\subsection{Quantum Fields and their space-time Derivatives}
+\subsection{Quantum Fields and their Space-Time Derivatives}
 
 The field argument of \mb{QuantumField} can be any symbol. Notice however, that the various configurations files for \fphi each use some conventions; e.g. for a pion the symbol \mb{Particle[Pion]} is used. The Dirac bar can be applied to fermionic \mb{QuantumField}s with the function \mb{DiracBar}. Since partial derivatives and covariant derivatives may be performed on \mb{QuantumField}s as well as on polynomials of \mb{QuantumField}s, the \mb{QuantumField}s usually carry a space-time argument, e.g. $x$. For the derivatives, the functions, \mb{FieldDerivative} and \mb{CovariantFieldDerivative} are provided. As already seen, an equivalent way of calculating space-time derivatives is using ``\mb{$.$}'' and the operators of page \pageref{partialDs}. The ``\mb{$.$}'' operator is, however, also used for multiplying Dirac matrices, so to avoid confusion \mb{FieldDerivative} may be used.
 
@@ -82,7 +108,8 @@ $\ComplexI \pi^2\, \left( \overrightarrow{V_\mu} \cdot
                      \pi^2 \, +\,\\
 \ComplexI \gamma_\mu Q_{\rm\bf L}\, \pi^2\, -\, \ComplexI \gamma_\mu Q_{\rm\bf R}\, \pi^2\, +
 2\pi\, \partial_\mu\pi$
-}{The covariant derivative of the squared pion field (defined by the loaded model).}
+}{The covariant derivative of the squared pion field (defined by the loaded model),
+$D_\mu \phi_\pi^2$.}
 \enom
 
 \mb{CommutatorReduce} pulls out abelian quantities of non-abelian products (see below).
@@ -96,7 +123,12 @@ as above but with the vector and axial-vector source field  terms included. This
 defined in the chosen configuration file\cr
 }{Derivatives acting on \mb{QuantumField}s.}
 
-Many operations can be performed on expressions involving \mb{QuantumField}s. We shall see some in the examples to come. But first we turn to some of the objects that \fphi adds to the basic framework of \fc. Notice that in ChPT, a condensed notation is used and many objects like e.g.~the basic \mb{MM[x]} and \mb{SMM[x]}, actually contain \mb{QuantumField}s. Remember that an explanation of the various symbols can be obtained by using the \mb{?} operator.
+Many operations can be performed on expressions involving \mb{QuantumField}s. We shall see some in
+the examples to come. But first we turn to some of the objects that \fphi adds to the basic
+framework of \fc. Notice that in ChPT, a condensed notation is used and many objects like e.g.~the
+basic \mb{MM[x]}, which is the \fphi notation for the $U$ of ChPT, actually contain
+\mb{QuantumField}s \footnote{Remember that an explanation of the various symbols can be obtained
+by using the \mb{?} operator.}.
 
 \subsection{Vectors, Matrices and Structure Constants in SU(2) and SU(3)}
 
@@ -133,7 +165,7 @@ The SU($N$) matrices and vectors may be multiplied with each other using some ne
 \mbs{IsoDot[{\sl a}, {\sl b}]} & dot product for iso-vectors {\sl a}, {\sl b}\cr
 \mbs{IsoCross[{\sl a}, {\sl b}]} & anti-symmetric cross product for isospin vectors {\sl a}, {\sl b}\cr
 \mbs{IsoSymmetricCross} & symmetric cross product for isospin vectors {\sl a}, {\sl b}\cr
-\mbs{Dot[{\sl a}, {\sl b}]} & the usual dot product, ``\mb{.}'', is used multiplication of \mb{UVectors} with \mb{UVectors} or \mb{UMatrices}\cr
+\mbs{Dot[{\sl a}, {\sl b}]} & the usual dot product, ``\mb{.}'', is used for multiplication of \mb{UVectors} with \mb{UVectors} or \mb{UMatrices}\cr
 }{Multiplication operators for SU($N$) vectors and matrices.}
 
 \otabtwo{
@@ -245,7 +277,14 @@ ug = IsoVector[UMatrix[UGenerator[]]];}{}{A few abbreviations}
      \overvar{c}{\rightarrow }\cdot \overvar{\sigma }{\rightarrow }\rangle -
    \langle \overvar{b}{\rightarrow }\cdot \overvar{\sigma }{\rightarrow }\SixPointedStar 
       \overvar{c}{\rightarrow }\cdot \overvar{\sigma }{\rightarrow }\SixPointedStar 
-     \overvar{a}{\rightarrow }\cdot \overvar{\sigma }{\rightarrow }\rangle$}{A deceptively complicated example.}
+     \overvar{a}{\rightarrow }\cdot \overvar{\sigma }{\rightarrow }\rangle$}{A deceptively complicated example,
+$\langle \bigg(\overvar{a}{\rightarrow }\cdot \overvar{\sigma }{\rightarrow }+
+        \overvar{d}{\rightarrow }\cdot \overvar{\sigma }{\rightarrow }\bigg)
+       \overvar{b}{\rightarrow }\cdot \overvar{\sigma }{\rightarrow } 
+     \overvar{c}{\rightarrow }\cdot \overvar{\sigma }{\rightarrow }\rangle -
+   \langle \overvar{b}{\rightarrow }\cdot \overvar{\sigma }{\rightarrow } 
+      \overvar{c}{\rightarrow }\cdot \overvar{\sigma }{\rightarrow } 
+     \overvar{a}{\rightarrow }\cdot \overvar{\sigma }{\rightarrow }\rangle$}
 \domtog{\% // NMExpand // CycleUTraces}{$\langle \overvar{b}{\rightarrow }\cdot \overvar{\sigma }{\rightarrow }\SixPointedStar 
      \overvar{c}{\rightarrow }\cdot \overvar{\sigma }{\rightarrow }\SixPointedStar 
     \overvar{d}{\rightarrow }\cdot \overvar{\sigma }{\rightarrow }\rangle$}{Expanding the non-commutative products causes the trace to distribute over the sum. Cycling the trace to a unique form can often cause some cancellation.}
@@ -276,7 +315,7 @@ the result to change on each iteration.
 \mbs{HoldSums} & \mb{True} & when \mb{Explicit} is set to \mb{True},
                              only write the summation symbols, don't do the summations \cr
 \mbs{SUNN} & \mb{2} & dimension of the representation\cr
-}{Options of mb{SUNReduce}.}
+}{Options of \mb{SUNReduce}.}
 
 \beom
 \domtog{k(IsoDot[IsoCross[IsoVector[a], IsoVector[b]], 
@@ -349,7 +388,7 @@ $k\multsp a({{k}_1})\multsp
 \mbs{UndeclareUScalar[{\sl a}]} & causes the symbol {\sl a} to seize being treated as a flavour SU($N$) scalar \cr
 }{Matrices and scalars of SU(2) or SU(3).}
 
-\subsection{Model and lagrangian definitions}
+\subsection{Model and Lagrangian Definitions}
 \label{modelDefs}
 
 In ChPT one finds a number of symbols representing matrices of fields with various
@@ -374,7 +413,7 @@ specifying whether a quantity is renormalized or not.
 \mbs{Particle[{\sl p}]} & represents a particle or source
 {\sl p} should be a member of the list \mb{\$Particles}\cr
 \mbs{\$Particles} & a list of available particles and sources of the active configuration (\mb{\$Configuration})\cr
-}{Head for particle names.}
+}{Particle names.}
 
 \otabtwo{
 \mbs{RenormalizationState[{\sl i}]} & tag a quantity as unrenormalized ({\sl i}=0) or renormalized ({\sl i}=1)\cr
@@ -388,6 +427,7 @@ As always, to get information about these, use the \mb{?} operator.
 \mbs{UQuarkMass[]} & \mb{UMatrix[UQuarkMass[]]} is the quark mass matrix\cr
 \mbs{UChi[]} & \mb{UMatrix[UChi[]]} is the $\chi$ of ChPT\cr
 \mbs{MM[{\sl x}]} & the $U$ of ChPT. Notice that \fphi displays this as $\ScriptCapitalU$\cr
+\mbs{SMM[{\sl x}]} & the $u$ of ChPT ($u^2 = U$). Notice that \fphi displays this as $\ScriptU$\cr
 \mbs{QuarkCondensate[]} & the quark condensate $B_0 = \braket{ 0 | q \bar{q} | 0 }$\cr
 }{ChPT symbols available under all configurations.}
 
@@ -409,7 +449,7 @@ options {\sl opts} to matrix functions in {\sl exp}\cr
 {\sl option name} & {\sl default value} &\cr
 \hhline
 \mbs{ExpansionOrder} & \mb{4} & order of expansion in the meson field \cr
-\mbs{DropOrder} & \mb{4} & power of the meson field, higher order than which will be dropped \cr
+\mbs{DropOrder} & \mb{4} & power of the meson field, higher orders than which will be dropped \cr
 }{Controlling the expansion in the meson field.}
 
 \beom
@@ -604,10 +644,13 @@ SUNReduce // IndicesCleanup // \\
    \big(2\multsp \ImaginaryI \multsp \delta _{{{I}_1}{{I}_2}}^{(2)}-
      2\multsp \ImaginaryI \multsp \delta _{3{{I}_1}}^{(2)}\multsp 
       \delta _{3{{I}_2}}^{(2)}\big)$}
-{The terms are collected according to powers of the chiral expansion parameters. In this particular case this step is redundant.}
-\domtog{gencoup = GenericCoupling[mfa]}{$\big\{{{({{e}})}^2}\multsp {g^{{{\mu }_3}{{\mu }_4}}}\big\}$}
+{The terms are collected according to powers of the chiral expansion parameters. In this
+particular case this step is redundant.}
+\domtog{gencoup = GenericCoupling[mfa]}{$\big\{{{({{e}})}^2}\multsp {g^{{{\mu }_3}{{\mu
+}_4}}}\big\}$}
 {The generic coupling vector is generated.}
-\domtog{classcoup = ClassesCoupling[mfa] // Together; classcoup // StandardForm}{$\{\{-2\multsp \ImaginaryI \multsp (\Muserfunction{SUNDelta}[3,\Mvariable{I1}]\multsp 
+\domtog{classcoup = ClassesCoupling[mfa] // Together; classcoup // StandardForm}{$\{\{-2\multsp
+\ImaginaryI \multsp (\Muserfunction{SUNDelta}[3,\Mvariable{I1}]\multsp
         \Muserfunction{SUNDelta}[3,\Mvariable{I2}]-
        \Muserfunction{SUNDelta}[\Mvariable{I1},\Mvariable{I2}])\}\}$}
 {The classes coupling "vector" is generated.}
@@ -638,13 +681,16 @@ accessible through the function \mb{Amplitude} is enlarged with all amplitudes c
 stored as above.
 
 \beom
-\domtog{Amplitude["ChPTVirtualPhotons2P20P20V10V10o2"]}{$-2\multsp \ImaginaryI \multsp {{({{e}})}^2}\multsp {g^{{{\mu }_3}{{\mu }_4}}}\multsp 
+\domtog{Amplitude["ChPTVirtualPhotons2P20P20V10V10o2"]}{$-2\multsp \ImaginaryI \multsp
+{{({{e}})}^2}\multsp {g^{{{\mu }_3}{{\mu }_4}}}\multsp 
    ({{\delta }_{3\Mvariable{I1}}}\multsp {{\delta }_{3\Mvariable{I2}}}-
-     {{\delta }_{\Mvariable{I1}\Mvariable{I2}}})$}{We may, for example, inspect the $\gamma \gamma \pi^+ \pi^-$ coupling.}
+     {{\delta }_{\Mvariable{I1}\Mvariable{I2}}})$}{We may, for example, inspect the $\gamma \gamma
+     \pi^+ \pi^-$ coupling.}
 \enom
 
 \otabtwo{
-\mbs{MomentaCollect[{\sl l}]} & collects terms of {\sl l} according to their order in the perturbation expansion\cr
+\mbs{MomentaCollect[{\sl l}]} & collects terms of {\sl l} according to their order in the
+perturbation expansion\cr
 \mbs{GenericCoupling[{\sl m}]} & constructs the kinematical coupling vector to
 be used in a generic model file for \fa from the matrix element {\sl m}\cr
 \mbs{ClassesCoupling[{\sl l}]} & constructs the kinematical coupling "vector" to

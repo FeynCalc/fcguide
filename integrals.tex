@@ -1,12 +1,27 @@
 \section{Scalar and Tensor Integrals}
 
-In this section is described the capabilities of \fc to reduce one-loop Feynman diagrams. If is also discussed how to provide input for \fc and how to further process the output of \fc.
+In this section is described the capabilities of \fc to reduce one-loop Feynman diagrams.
+If is also discussed how to provide input for \fc and how to further process the output of \fc.
 
-The methods and conventions implemented in \fc for the evaluation of one-loop diagrams are described in \cite{ansgar} and \cite{feyncalc}. The usual Passarino-Veltman scheme for the one-loop integrals is adapted to a large extent \cite{ansgar}.  The coefficient functions of the  tensor integrals are defined  similar to \cite{ansgar}, except that the Passarino-Veltman integrals take internal masses squared  as arguments.
+The methods and conventions implemented in \fc for the evaluation of one-loop diagrams are
+described in \cite{ansgar} and \cite{feyncalc}. The usual Passarino-Veltman scheme for the
+one-loop integrals is adapted to a large extent \cite{ansgar}.  The coefficient functions of the
+tensor integrals are defined  similar to \cite{ansgar}, except that the Passarino-Veltman
+integrals take internal masses squared  as arguments.
 
-\fc can reduce all $n$-point integrals with $n\leq 4$ to scalar integrals $A_0, B_0, C_0$ and $D_0$.
+\fc can reduce all $n$-point integrals with $n\leq 4$ to scalar integrals $A_0, B_0, C_0$ and
+$D_0$.
 
-For the numerical evaluation of scalar integrals, several possibilities exist: 1) The program FormF by M. Veltman. Unfortunately this only runs in CDC and 68000 assembler and is thus not a realistic alternative. 2) The library \FF by G.J.~van Oldenborgh \cite{Ol91} written in Fortran 77. The library can be put to use with the \lpts package \cite{Hahn:1998yk} written by Thomas Hahn, which features a Fortran, c++, and \mma interface. Loading the \mma package will simply cause the functions $A_0, B_0, C_0$ and $D_0$ (and $E_0$ and $F_0$) to return numerical values when given numerical arguments. This is the recommended procedure for obtaining numerical output from \fc results. A more simple Fortran wrapper program to link FF and \fc is available from Rolf Mertig. 3) The optional subpackage \fphi provides some functions for evaluating $B_0$ and $C_0$. These are written purely in \mma but are not very well tested.
+For the numerical evaluation of scalar integrals, several possibilities exist: 1) The program
+FormF by M. Veltman. Unfortunately this only runs in CDC and 68000 assembler and is thus not a
+realistic alternative. 2) The library \FF by G.J.~van Oldenborgh \cite{Ol91} written in Fortran
+77. The library can be put to use with the \lpts package \cite{Hahn:1998yk} written by Thomas
+Hahn, which features a Fortran, c++, and \mma interface. Loading the \mma package will simply
+cause the functions $A_0, B_0, C_0$ and $D_0$ (and $E_0$ and $F_0$) to return numerical values
+when given numerical arguments. This is the recommended procedure for obtaining numerical output
+from \fc results. A more simple Fortran wrapper program to link FF and \fc is available from Rolf
+Mertig. 3) The optional subpackage \fphi provides some functions for evaluating $B_0$ and $C_0$.
+These are written purely in \mma but are not very well tested.
 
 \subsection{Passarino-Veltman Integrals and Reduction of Coefficient Functions}
 \label{passvelt}
@@ -408,8 +423,7 @@ abbreviations are not fully optimized.
 %{\it Gentran} by B.~Gates and H.~van Hulzen is 
 %available.
 
-The function \mb{Write2} is explained in Section 
-\ref{misc}.
+The function \mb{Write2} is explained in section \ref{misc}.
 
 Note that the head \mb{SmallVariable} is eliminated in the 
 Fortran output automatically.
