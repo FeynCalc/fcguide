@@ -6,9 +6,9 @@
 
 \subsubsection{Introduction}
 
-The subpackage \fphi was written by Frederik Orellana and provides utilities for computations in the Chiral Perturbation Theory (ChPT). The general idea is to allow writing up a calculation starting with a lagrangian and ending up with an amplitude, all within the framework of \fc. For this to be possible, many functions on a rather general level were implemented, as was a method of interacting seamlessly with \fa. The following sections cover the more important features of the package. A fuller description can be found in \cite{PHI}.
+The subpackage \fphi provides utilities for computations in the Chiral Perturbation Theory (ChPT). The general idea is to allow writing up a calculation starting with a lagrangian and ending up with an amplitude, all within the framework of \fc. For this to be possible, many functions on a rather general level were implemented, as was a method of interacting seamlessly with \fa. The following sections cover the more important features of the package. A fuller description can be found in \cite{PHI}.
 
-The motivation for writing \fphi was a lack of software for quickly and systematically implementing an effective model like one of the various ChPT models, which have a more complicated power counting than models which simply expand Green's functions perturbatively in a coupling constant. However, the package is general enough that other models can easily be specified as has been demonstrated with the simple example of QED. Given the many effective models that already exist and the many new ones that keep coming, it is the hope of the author that this software might be of use also outside the realm of ChPT.
+The motivation for writing \fphi was a lack of software for implementing an effective model like one of the various ChPT models, which have a more complicated power counting than models which simply expand Green's functions perturbatively in a coupling constant. However, the package is general enough that other models can be defined, as has been demonstrated with the simple example of QED. Given the many effective models that already exist and the many new ones that keep coming, it is the hope of the author that this software might be of use also outside the realm of ChPT.
 
 The main features of \fphi are:
 \begin{itemize}
@@ -153,14 +153,16 @@ contracted indices\cr
 
 UGenerator, SU2Delta, SU2F, ...
 
-\subsubsection{Constructing chiral lagrangians}
+\subsubsection{Chiral lagrangians}
 \label{chptLags}
+
+\subsubsection{Chiral divergent one-loop generating functionals}
 
 \subsubsection{Chiral power counting with \fa}
 
 The database of amplitudes has been enlarged with all amplitudes calculated and stored using \mb{CheckF}
 
-\subsubsection{Calculating chiral one-loop diagrams}
+\subsubsection{Example:\; $\pi^\pm \, \rightarrow  \, \mu^\pm \, \nu_\mu \, \gamma$}
 
 \subsection{Two-Loop Calculations}
 
