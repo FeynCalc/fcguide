@@ -1,4 +1,4 @@
-\section{QCD calculational examples}
+\section{Applications in QCD}
 There relatively few text books with explicit 1-loop QCD calculations.
 We will use \fc in the following for re-doing the 1-loop selfenergy calculation
 as presented in the Appendix of \cite{Muta}.
@@ -42,9 +42,20 @@ all 2-loop integrals to mater integrals.
 }
 
 % THIS DOES NOT WORK !!!
-%\mathGraphic{qcd2loopgluon.tex_gr1.eps}
-%\mathGraphic{qcd2loopgluon.tex_gr2.eps}
-%\mathGraphic{qcd2loopgluon.tex_gr3.eps}
+%\mathGraphic{qcd2loopgluon-tex_gr1.eps}
+%\mathGraphic{qcd2loopgluon-tex_gr2.eps}
+%\mathGraphic{qcd2loopgluon-tex_gr3.eps}
+
+\begin{figure}[ht]
+\ifthenelse{\pdf = 0 \or \isundefined{\pdfoutput}}{\setlength\abovecaptionskip{-80pt}}{}
+\begin{center}
+\scalebox{1.0}{\includegraphics{qcd2loopgluon-tex_gr1}}
+\scalebox{1.0}{\includegraphics{qcd2loopgluon-tex_gr2}}
+\scalebox{1.0}{\includegraphics{qcd2loopgluon-tex_gr3}}
+\caption{2-loop gluon self-energy diagrams.}
+\end{center}
+\end{figure}
+
 \Subsubsection*{Calculating the bare 2-loop on-shell gluon selfenergy diagrams}
 
 In the Model file all incoming momenta are specificied by p1, p2, ... and all outgoing by k1, k2, ... .\\
