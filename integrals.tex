@@ -1,4 +1,4 @@
-\section{Scalar and Tensor Integrals}
+\section{Tensor and Scalar Integrals}
 
 In this section is described the capabilities of \fc to reduce one-loop Feynman diagrams.
 If is also discussed how to provide input for \fc and how to further process the output of \fc.
@@ -436,4 +436,20 @@ are translated to integers. This causes problems when translating
 variables with rational powers and must be corrected in the Fortran 
 output by hand.
 
+\subsection{Tables of Integrals}
 
+\otabtwo{
+\mbs{CheckDB[{\sl expr}, {\sl fil}]} & saves or retrieves 
+{\sl expr} to/from a file {\sl fil} \cr
+} {Storing and retrieving results.}
+
+\otabthree{
+{\sl option name} & {\sl default value} &\cr
+\hhline
+\mbs{Directory} & \mb{"fcdb"} & directory to use \cr
+\mbs{NoSave} & \mb{False} & don't save to disk \cr
+\mbs{ForceSave} & \mb{False} & force the expression to be evaluated even if the
+file exists. The expression is also saved if \mb{NoSave} is set to \mb{False}\cr
+\mbs{Check} & \mb{False} & check if the evaluation of the expression agrees with what
+is loaded from disk and return \mb{True} or \mb{False}\cr
+}{Options of \mb{CheckDB}.}
