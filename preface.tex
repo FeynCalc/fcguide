@@ -9,7 +9,8 @@ The first part is a tutorial-like introduction with many small examples.
 It is necessarily of a rather technical character and should prepare the
 reader for doing real physics calculations.
 The second part contains a variety of example calculations from textbook
-to research level. The interested student will find here calculations calculations
+%to research level. The interested student will find here calculations calculations
+to research level. The interested student will find here calculations 
 from the literature worked through in a detail not found elsewhere.
 The researcher will find calculations that should provide a starting point
 for calculations of his or her own research.
@@ -22,8 +23,13 @@ also with many small examples.
 Over the years, the detailed course of and motivation for the development of \fc has
 changed somewhat both in scope and focus. The reasons are the different research
 interests of the two authors, the relative slowness of \mma and the rapid development of
-multi-loop calculations carried out with tools \cite{Vermaseren:2000nd, Hahn:1998yk} more suited 
-for very large scale calculations.
+multi-loop calculations carried out with FORM and programs based on FORM 
+\cite{Vermaseren:2000nd, Hahn:1998yk}, which are  more suited for very large scale calculations.
+Also \fc has tools to interact with FORM. This is particularly useful if the CPU time is
+an issue or if truly large expressions occur and a very efficient way to handle those 
+expressions is needed. FORM is very much suited for this task. 
+On the other hand, general purpose computer algebra systems like \mma have more flexibility in their user interface and one can use the already provided libraries for operations like
+integration and series expansions and more mathematical tasks.
 %3) the rapid development of the raw computing power of hardware. 
 %As a consequence the focus has moved away from providing cutting edge results of multi-loop
 %calculations in the Standard Model and in QCD. 
@@ -47,10 +53,11 @@ project strives to promote:
 
 \begin{itemize}
 
-\item{{\bf Standardization.} In order to reuse code, clear standards should be formulated,
-thoroughly documented and followed. The aim should be to reach common standards with
-other similar or related projects (using other programming languages) for fields, lagrangians,
-Lorentz-vectors, etc. in the end allowing easy comparison of calculations of the same process.}
+%
+%\item{{\bf Standardization.} In order to reuse code, clear standards should be formulated,
+%thoroughly documented and followed. The aim should be to reach common standards with
+%other similar or related projects (using other programming languages) for fields, lagrangians,
+%Lorentz-vectors, etc. in the end allowing easy comparison of calculations of the same process.}
 
 \item{{\bf Systematic knowledge build-up.} In physics calculations, errors due to typos or
 other trivial mistakes are not acceptable, therefore the code used should be as thoroughly
@@ -71,10 +78,10 @@ vice versa.}
 
 \end{itemize}
 
-Notice in this connection that the standards put forth in this document (and in the code) are what
-the authors consider to be the most general but still useful standards for doing quantum fields
-theory with \mma. This means that standards are to be considered as relatively fixed, but not that
-they cannot be changed, given good enough reasons.
+%Notice in this connection that the standards put forth in this document (and in the code) are what
+%the authors consider to be the most general but still useful standards for doing quantum fields
+%theory with \mma. This means that standards are to be considered as relatively fixed, but not that
+%they cannot be changed, given good enough reasons.
 
 From all of the above it should be clear that we consider interaction with users to be crucial
 for the further evolving of \fc. Therefore, suggestions and in particular
