@@ -78,11 +78,19 @@ there is no need of a dimension option for e.g. the function \mb{DiracTrace}.
 
 \otabtwo{
 \mbs{FourVector[{\sl p}, $\mu$]} &  four-vector  $p^{\mu}$ \cr
-\mbs{LeviCivita[$\mu$, $\nu$, $\rho$, $\sigma$]} &
-Levi-Civita tensor $\varepsilon^{\mu \nu \rho \sigma}$  \cr
+\mbs{LeviCivita[$\mu$, $\nu$, $\rho$, $\sigma$]} & Levi-Civita tensor $\varepsilon^{\mu \nu \rho \sigma}$  \cr
+\mbs{LeviCivita[$\mu$, $\nu$][{\sl p, q}]} & short form for $\varepsilon^{\mu \nu \rho \sigma} \, p_\rho q_\sigma $ \cr
 \mbs{MetricTensor[$\mu$, $\nu$]} & metric tensor $g^{\mu \nu}$ \cr
 \mbs{ScalarProduct[{\sl p},\ {\sl q}]} & $p \cdot q$ \cr
 } {Basic Lorentz tensor input functions.}
+
+\otabtwo{
+\mbs{FV[{\sl p}, $\mu$], \; FVD[{\sl p}, $\mu$]} &  4- and D-dimensionsal $p^{\mu}$ \cr
+\mbs{LC[$\mu$, $\nu$, $\rho$, $\sigma$],
+     LCD[$\mu$, $\nu$, $\rho$, $\sigma$]} & 4- and D-dimensional Levi-Civita tensor $\varepsilon^{\mu \nu \rho \sigma}$  \cr
+\mbs{MT[$\mu$, $\nu$], \; MTD[$\mu$, $\nu$]} & 4- and D-dimensional metric tensor $g^{\mu \nu}$ \cr
+\mbs{SP[{\sl p},\ {\sl q}], SPD[{\sl p},\ {\sl q}]} & 4- and D-dimensional $p \cdot q$ \cr  
+} {Short input forms for basic Lorentz tensor input functions.}
 
 \otabthree{
 {\sl option name} & {\sl default value} & \cr
@@ -102,7 +110,6 @@ First we have to load \fc.
 \domtog{ScalarProduct[p, q]}{ {\sl p}.{\sl q}
 }{
 Enter a scalar product $p\cdot q$.
-
 This is the typeset output.
 }
 \domtog{MetricTensor[$\mu$, $\nu$]}{\ $g^{\mu \nu}$\hfil\\
@@ -364,11 +371,8 @@ They can be expressed in terms of the generating matrices (see section \ref{gell
 SUNF[a, c, b, Explicit $\Rule$ True]\; //\; Expand}{\ 0\hfil\\
 }{
 Antisymmetry,
-$f_{a\,c\,b}\,= -f_{a\,b\,c}$.
-}
-\domtog{SUND[a, b, c, Explicit $\Rule$ True]\ - \ 
-SUND[a, c, b, Explicit $\Rule$ True]\; //\; Expand}{\ 0\hfil\\
-}{Symmetry,
+$f_{a\,c\,b}\,= -f_{a\,b\,c}$.  } 
+\domtog{SUND[a, b, c, Explicit $\Rule$ True]\ - \ SUND[a, c, b, Explicit $\Rule$ True]\; //\; Expand}{\ 0\hfil\\ }{Symmetry,
 $d_{a\,c\,b}\,= d_{a\,b\,c}$.}
 \enom
 
@@ -388,12 +392,23 @@ external four-vectors.
 PropagatorDenominator[{\sl q}\ +\ {\sl p},\ $\hbox{\sl m}_{1}$],\ ...]}
 &
 $1/( [ q^{2} - m_0^{2} ] [(q+p)^{2} - m_1^{2}])\, \ldots$ \cr
+\mbs{FAD[ \{{\sl q}, $\hbox{\sl m}_0 $\}, \{{\sl q-p,M}\}, \ldots ]} 
+&
+$1/( [ q^{2} - m_0^{2} ] [(q+p)^{2} - m_1^{2}])\, \ldots$ \cr
 } {Entering denominators of propagators.}
 
 \beom
 \domtog{FeynAmpDenominator[\ PropagatorDenominator[q,\ m1],\ PropagatorDenominator[q\ +\ p,\ m2]]}{\Frac{1}{( q^{2} - m_1^{2} ) ((q+p)^{2} - m_2^{2})}\hfil\\
 }{
 This is $1/( [ q^{2} - m_1^{2} ] [(q+p)^{2} - m_2^{2}])$.
+}
+\enom
+
+\beom
+\domtog{FAD[q, q-p, {k,M}]}{
+\Frac{1}{ q^2 (q-p)^{2} (k^2 - M^{2})}\hfil\\
+}{
+This is $1/( [ q^{2} ] [(q-p)^{2}] [k^2 - M^{2}])$.
 }
 \enom
 
@@ -456,6 +471,185 @@ This is the notation for the space-time derivative $\partial/\partial x^\mu$ of 
 }
 \enom
 
+<<<<<<< input.tex
+\subsection{Propagators}
+
+Several utility functions for input of propagators are available.
+
+\otabtwo{
+\mbs{GluonPropagator[{\sl p,  $\mu$,a,  $\nu$,b}]} & represents a gluon propagator $\Pi_{ab}^{\mu \nu}(p)$ \cr
+\mbs{GP[{\sl p, 1, 2}]} & is a short form for \mbox{\mbs{GluonPropagator[{\sl p, li1,ci1, li2,ci2}]}}   \cr
+\mbs{GhostPropagator[{\sl p, $\mu$,a, $\nu$,b}]} & represents a ghost propagator \cr
+\mbs{GHP[{\sl p, 1,2 }]} & is a short form for \mbox{\mbs{GhostPropagator[{\sl p, li1,ci1, li2,ci2}]}}  \cr
+\mbs{QuarkPropagator[{\sl p}]} & gives the massless quark propagator\cr
+\mbs{QuarkPropagator[{\sl p,m}]} & gives the quark propagator with mass m\cr
+\mbs{QP[{\sl p,m}]} & gives the quark propagator with mass m\cr
+}{Input functions for gluon ghost and quark propagators.}
+
+{\raggedleft 
+The options for \mbs{GluonPropagator} are:
+}
+\otabthree{
+{\sl option name} & {\sl default value} & \cr
+\hhline
+\mb{Gauge} & \mb{1} &  gauge choice (1: Feynman)\cr
+\mb{OPE} & \mb{0} &  whether to add the 2-gluon OPE Feynman rule\cr
+\mb{CounterTerm} & \mb{False} &  whether to add counter terms\cr
+\mb{CouplingConstant} & \mb{Gstrong} &  the coupling constant\cr
+\mb{Dimension} & \mb{D} &  the space-time dimension\cr
+}{Options for \mb{GluonPropagator}.}
+
+\beom
+\domtog{GluonPropagator[p,$\mu, a, \, \nu, b$ ]}{
+$-\frac{\ImaginaryI \multsp {g^{\mu \nu }}\multsp
+      {{\delta }_{a b}}}{{p^2}}
+$
+}{
+Enter a Gluon propagator.
+}
+\enom
+
+\beom
+\domtog{GP[q,1,2]}{
+$-\frac{\ImaginaryI \multsp {g^{i1 i2 }}\multsp
+      {{\delta }_{c1 c2}}}{{p^2}}
+$
+}{
+A convenient short way to enter a gluon propagator.
+}
+\enom
+
+\beom
+\domtog{GluonPropagator[p, \{$\mu$,a\}, \{$\nu$,b\}, Gauge->$\xi$]}{
+$
+\frac{\ImaginaryI \multsp \big(\frac{(1-\xi )\multsp ({{ p }^{\mu}})\multsp ({{ p }^{\nu}})}{{p^2}}-
+ {g^{\mu \nu}}\big)\multsp {{\delta }_{a b}}}{{p^2}}
+$
+}{Specifying the general covariant gauge.}
+\enom
+
+\beom
+\domtog{GluonPropagator[p, \{$\mu$,a\}, \{$\nu$,b\}, Gauge->$\{n, \alpha\}$]}{
+$
+\frac{\ImaginaryI \multsp \big(-{g^{\mu \nu}}-\frac{({{ p }^{\mu}})\multsp ({{ p }^{\nu}})
+ \multsp {n^2}-\alpha \multsp ({{ n }^{\mu}})\multsp ({{ n }^{\nu}})\multsp {p^2}}{{{n 
+ \cdot p}^2}}+\frac{({{ p }^{\mu}})\multsp ({{ n }^{\nu}})+
+ ({{ n }^{\mu}})\multsp ({{ p }^{\nu}})}{n \cdot p}\big)\multsp 
+ {{\delta }_{a b}}}{{p^2}}
+$
+}{Specifying an axial gauge.}
+\enom
+
+\beom
+\domtog{GP[q,1,2, OPE->True]}{
+$
+-\frac{1}{2}\multsp \Omega \multsp ({{(-1)}^m}+1)\multsp
+    {{\delta }_{\Mvariable{c1}\NoBreak \Mvariable{c2}}}\multsp
+    (\Mfunction{O}_{\Mvariable{i1}\VeryThinSpace \Mvariable{i2}}^
+     {\Mvariable{G2}}\Mfunction{(}p))\multsp
+    {{\bigg(\frac{1}{{p^2}}\bigg)}^2}-
+   \frac{\ImaginaryI \multsp
+      {g^{\Mvariable{i1}\NoBreak \Mvariable{i2}}}\multsp
+      {{\delta }_{\Mvariable{c1}\NoBreak \Mvariable{c2}}}}{{p^2}}
+$
+}{
+A possibility to enter a gluon propagator and an OPE insertion.
+}
+\enom
+The explicit form of the OPE-Operator can be obtained by applying the
+\mb{Explicit} function.
+
+\beom
+\domtog{QuarkPropagator[p]}{
+$-\frac{\ImaginaryI \multsp {\gamma \cdot p }}{p^2}
+$
+}{
+Enter a quark propagator.
+}
+\enom
+
+{\raggedleft The options for \mbs{QuarkPropagator} are:}
+\otabthree{
+{\sl option name}     & {\sl default value} & \cr
+\hhline
+\mb{CounterTerm}      & \mb{False}   &  whether to add counter terms\cr
+\mb{CouplingConstant} & \mb{Gstrong} &  the coupling constant\cr
+\mb{Dimension}        & \mb{D}       &  the space-time dimension\cr
+\mb{Loop}             & \mb{0}       &  the loop order of the propagator \cr
+\mb{OPE}              & \mb{False}   &  whether to add the 2-gluon OPE Feynman rule\cr
+\mb{Polarization}     & \mb{0}       &  for OPE insertions this option is taken over \cr
+}{Options for QuarkPropagator.}
+
+\beom
+\domtog{QuarkPropagator[p, Loop -> 1]}{
+$
+-\frac{\ImaginaryI \multsp {C_F} \multsp (2-\varepsilon )
+\multsp g_{s}^{2}\multsp {S_n} \multsp \gamma \cdot p\multsp
+      {{\big(-\frac{{p^2}}{{{\mu }^2}}\big)}^{\varepsilon /2}}}{\varepsilon }
+$
+}{
+The 1-loop quark propagator.
+}
+\enom
+
+\beom
+\domtog{QuarkPropagator[p, OPE -> True]}{
+$
+-\frac{\ImaginaryI \multsp {C_F} \multsp (2-\varepsilon )
+\multsp g_{s}^{2}\multsp {S_n} \multsp \gamma \cdot p\multsp
+      {{\big(-\frac{{p^2}}{{{\mu }^2}}\big)}^{\varepsilon /2}}}{\varepsilon }
+$
+}{
+The 1-loop quark propagator.
+}
+\enom
+
+
+\subsection{Vertex functions}
+
+\otabtwo{
+\mbs{GluonVertex[{\sl p, $\mu$,a, q, $\nu$,b, k, $\lambda$,c}]} & represents a gluon vertex $V_{abc}^{\mu \nu \lambda}(p,q,k)$
+ \cr
+\mbs{GV[{\sl p,1, q,2, k,3}]} & is a short form for \mbox{\mbs{GluonVertex[{\sl p, i1,c1, q,i2,c2, k,i3,c3}]}}   \cr
+}{Input functions for gluon vertex functions.}
+
+\beom
+\domtog{GluonVertex[{\sl p , $\mu$,a, q, $\nu$,b, k, $\lambda$,c}]\//\//Explicit}{
+$
+{g_s}\multsp ({p^{\lambda }}\multsp {g^{\mu \nu }}-{q^{\lambda }}\multsp {g^{\mu \nu }}-{g^{\lambda \nu }}\multsp {k^{\mu }}+
+ {g^{\lambda \nu }}\multsp {q^{\mu }}+{g^{\lambda \mu }}\multsp {k^{\nu }}-{g^{\lambda \mu }}\multsp {p^{\nu }})\multsp {f_{abc}}
+$
+}{One way how to enter a 3-gluon Vertex.}
+\enom
+
+\beom
+\domtog{GluonVertex[{\sl p , $\mu$,a, q, $\nu$,b, k, $\lambda$,c, r, $\sigma$,d}]\//\//Explicit}{
+$
+-\ImaginaryI \multsp g_{s}^{2}\multsp 
+ (({g^{\lambda \sigma }}\multsp {g^{\mu \nu }}-{g^{\lambda \mu }}\multsp {g^{\nu \sigma }})\multsp {f_{ad\Mvariable{u6}}}\multsp 
+ {f_{bc\Mvariable{u6}}}+ 
+\\ 
+(  {g^{\lambda \sigma }}\multsp {g^{\mu \nu }}-{g^{\lambda \nu }}\multsp {g^{\mu \sigma }})\multsp {f_{ac\Mvariable{u6}}}\multsp 
+ {f_{bd\Mvariable{u6}}}+({g^{\lambda \mu }}\multsp {g^{\nu \sigma }}-{g^{\lambda \nu }}\multsp {g^{\mu \sigma }})\multsp 
+ {f_{ab\Mvariable{u6}}}\multsp {f_{cd\Mvariable{u6}}})
+$
+}{One way how to enter a 4-gluon Vertex.}
+\enom
+
+\subsection{Twist 2 Operators}
+
+$
+\frac{1}{2}\multsp (1+{{(-1)}^m})\multsp g_{s}^{2}\multsp 
+ \big({f_{a\Mvariable{c3}d}}\multsp {f_{bc\Mvariable{c3}}}\multsp 
+ \big(\Mfunction{O}_{\Mvariable{la}\VeryThinSpace \nu\VeryThinSpace \mu\VeryThinSpace \Mvariable{si}}^{\Mvariable{G4}}\Mfunction{(
+ }k,q,p,s)\big)- 
+\\ {f_{ac\Mvariable{c3}}}\multsp {f_{b\Mvariable{c3}d}}\multsp 
+ \big(\Mfunction{O}_{\mu\VeryThinSpace \Mvariable{la}\VeryThinSpace \nu\VeryThinSpace \Mvariable{si}}^{\Mvariable{G4}}\Mfunction{(}p,
+ k,q,s)\big)-{f_{ab\Mvariable{c3}}}\multsp {f_{c\Mvariable{c3}d}}\multsp 
+ \big(\Mfunction{O}_{\mu\VeryThinSpace \nu\VeryThinSpace \Mvariable{la}\VeryThinSpace \Mvariable{si}}^{\Mvariable{G4}}\Mfunction{(}p,
+ q,k,s)\big)\big)
+$
+=======
 \subsection{Propagators}
 
 Several utility functions for input of propagators are available.
@@ -561,3 +755,4 @@ Enter a quark propagator.
 
 
 
+>>>>>>> 1.3
