@@ -9,9 +9,8 @@ The first part is a tutorial-like introduction with many small examples.
 It is necessarily of a rather technical character and should prepare the
 reader for doing real physics calculations.
 The second part contains a variety of example calculations from textbook
-%to research level. The interested student will find here calculations calculations
 to research level. The interested student will find here calculations 
-from the literature worked through in a detail not found elsewhere.
+from the literature worked through in a detail not usually given.
 The researcher will find calculations that should provide a starting point
 for calculations of his or her own research.
 The third part is a reference guide, listing all important functions,
@@ -25,15 +24,22 @@ changed somewhat both in scope and focus. The reasons are the different research
 interests of the two authors, the relative slowness of \mma and the rapid development of
 multi-loop calculations carried out with FORM and programs based on FORM 
 \cite{Vermaseren:2000nd, Hahn:1998yk}, which are  more suited for very large scale calculations.
-Also \fc has tools to interact with FORM. This is particularly useful if the CPU time is
-an issue or if truly large expressions occur and a very efficient way to handle those 
-expressions is needed. FORM is very much suited for this task. 
-On the other hand, general purpose computer algebra systems like \mma have more flexibility in their user interface and one can use the already provided libraries for operations like
-integration and series expansions and more mathematical tasks.
+One focus has been the development of \fc tools for interacting with FORM. These tools allow
+taking advantage of FORM's efficient handling of large expressions, which can be simply
+unmanageable with \mma, while staying within the \mma system, which as a
+%are particularly useful if CPU time is an issue and/or if truly large expressions occur.
+%and a very efficient way to handle those  expressions is needed.
+%FORM is very much suited for this task. 
+%On the other hand,
+general purpose computer algebra system, has a more intuitive
+%flexibility in their
+user interface and built-in mathematical knowledge.
+%one can use the already provided libraries for operations like
+%integration and series expansions and more mathematical tasks.
 %3) the rapid development of the raw computing power of hardware. 
 %As a consequence the focus has moved away from providing cutting edge results of multi-loop
 %calculations in the Standard Model and in QCD. 
-One focus has been to explore other types of calculations than the evaluation of Feynman
+Another focus has been to explore other types of calculations than the evaluation of Feynman
 diagrams, e.g. complex algebraic manipulations of quantum fields and lagrangians, traditionally done by hand only.
 Such calculations have become feasible because of the steep increase of the computing
 power of commodity hardware.
@@ -42,13 +48,13 @@ Despite the motivations driving development, the central vision remains largely 
 \fc was conceived as and continues to be developed as a general-purpose, relatively easy to use,
 modular toolbox for quantum field theory calculations. 
 Dirac algebra utilities, Lorentz and Color algebra manipulation capabilities, 
-functional derivation utilities, integral and other tables have been cleanly 
-separated off in distinct functions which 
-do well-defined operations.
-Such basic functions can then be used  on a higher level to build sophisticated model dependent functions.
+functional derivation utilities, integral and other tables are separated off in distinct
+functions which do well-defined operations.
+Such basic functions can then be used on a higher level to build sophisticated model dependent
+functions.
 
-In the following we list what we consider the most important general principles that the \fc
-project strives to promote:
+The most important general principles for quantum field theory calculations that the \fc project
+strives to promote are:
 %%SOFAR
 
 \begin{itemize}
@@ -68,11 +74,11 @@ stored in a standardized electronic form.}
 %\item{{\bf Algorithm optimization.} The more people using (an implementation of) an algorithm,
 %the better the chances of improving (the implementation of) it.}
 
-\item{{\bf Fast prototyping.} Quickly trying out new quantum field theory models should be made
-easier by using the building blocks provided by a clear standardization as well as a set of
-functions for the most common calculational tasks.}
+\item{{\bf Prototyping.} Electronic tools should be put to use for making it easy to
+try out new quantum field theory models. This should be achieved by providing predefined
+building blocks capturing the more general physics and the more common calculational tasks.}
 
-\item{{\bf Checks.} Calculations should, when possible, be performed by different methods.
+\item{{\bf Checking.} Calculations should, when possible, be performed by different methods.
 Thus, \fc should be used to check hand calculations or the results of other programs and
 vice versa.}
 
@@ -83,20 +89,20 @@ vice versa.}
 %theory with \mma. This means that standards are to be considered as relatively fixed, but not that
 %they cannot be changed, given good enough reasons.
 
-From all of the above it should be clear that we consider interaction with users to be crucial
+We consider interaction with users to be crucial
 for the further evolving of \fc. Therefore, suggestions and in particular
 code contributions are warmly welcomed. Smaller contributions can be contributed
 on the web site \href{http://www.feyncalc.org/}{http://www.feyncalc.org/}; 
 larger contributions should be coordinated with the developers.
 Though much testing of the code has been done, there is absolutely no claim that
-\fc is bug-free. You should be sceptical about the results, and when you are sure the
-program  returns a wrong answer, you are encouraged to report it via the web site
+\fc is bug free. Users are encouraged to be sceptical about results, and when sure that the
+program  returns a wrong answer, to report it via the web site
 \href{http://www.feyncalc.org/}{http://www.feyncalc.org/}.
 
 \subsection*{Version History}
 
 The roots of \fc go back to 1987. 
-During a stay as a graduate student in Albuquerque, New Mexico, Rolf Mertig learned to program in Macsyma \cite{Drinkard:1981dr} from the experts Stanly Steinberg and Michael Wester. Back to Germany, 
+During a stay as a graduate student in Albuquerque, New Mexico, Rolf Mertig learned to program in Macsyma \cite{Drinkard:1981dr} from the experts Stanly Steinberg and Michael Wester. Back in Germany, 
 elementary particle physicists needed automation of the calculation of Feynman diagrams of eletroweak 
 processes to one loop. The algorithms were partially developed together with 
 Ansgar Denner and Manfred B\ODoubleDot{}hm and implemented in a 
@@ -122,22 +128,29 @@ The basic idea was to have general functions for some of the more mechanical par
 
 \item{Passarino-Veltman tensor integral decomposition.
 Applications of these tools included complete 1-loop processes in the Standard Model,
-\({e^+}{e^-}\multsp \rightarrow 
-\multsp Z\multsp H\multsp \),  \(\multsp {e^+}{e^-}\multsp \rightarrow \)
-\(\multsp {W^+}{W^-}\multsp \)
+\({{\rm e}^+}{{\rm e}^-}\multsp \rightarrow 
+\multsp {\rm Z}\multsp {\rm H}\multsp \),  \(\multsp {{\rm e}^+}{{\rm e}^-}\multsp \rightarrow \)
+\(\multsp {{\rm W}^+}{{\rm W}^-}\multsp \)
 and the 2-loop photon self-energy in QED.}
 
 \end{itemize}
 
-However, at the end of 1989 several problems showed up with the Macsyma implementation. The purely functional programming style proved to be difficult to debug and, in fact, inappropriate. The rudimentary pattern matcher in Macsyma was not useful. There was no way to incorporate new functions easily into the whole Macsyma system, and no possibility of providing online documentation. Furthermore, Macsyma's memory managment ("garbage collection") was slow when handling large expressions.
+At the end of 1989 several problems showed up with the Macsyma implementation. The purely
+functional programming style proved to be difficult to debug and, in fact, inappropriate. The
+rudimentary pattern matcher in Macsyma was not adequate. There was no way to incorporate new
+functions easily into the whole Macsyma system, and no possibility of providing online
+documentation. Furthermore, Macsyma's memory management ("garbage collection") was slow when
+handling large expressions.
 
 In early 1990 it became clear that \mma was a much more natural programming environment for \fc.
 
 \subsubsection*{1990-1991 : The first version  of \fc in \mma}
 
-In 1990, user-friendly  packages were built with extended automatic capabilities (\mb{OneLoop}, \mb{OneLoopSum}), and SU(3) algebra capabilities were added (\mb{SU3Simplify}).
+In 1990 user-friendly  packages were built with extended automatic capabilities (\mb{OneLoop},
+\mb{OneLoopSum}), and SU(3) algebra capabilities were added (\mb{SU3Simplify}).
 
-In 1991 initial documentation was written and the program was made available on anonymous ftp-servers: mathsource.wolfram.com and canc.can.nl.
+In 1991 initial documentation was written and the program was made available on anonymous
+ftp-servers: mathsource.wolfram.com and canc.can.nl.
 
 Applications from 1990 - 1996  included:
 
@@ -161,25 +174,32 @@ Model, such as:
 
 \end{itemize}
 
-No real attempt was made to provide tools for tree-level calculations. 
+No real attempt was made to provide tools for tree-level calculations.
 For this purpose other programs appeared, among them another  \mma package, \hip \cite{yeh}, developed at SLAC, 
-CompHEP \cite{Pukhov:1999gg}, and of course FORM \cite{Vermaseren:2000nd}.
+CompHEP \cite{Pukhov:1999gg}, and of course, FORM \cite{Vermaseren:2000nd}.
 
 \subsubsection*{1992-1995 : \fc 2.0-2.2, unification and simplification.}
 
-During this period of development the SU(3) algebra was changed to SU($N$). Several tools for automatic tree-level calculation were added, for example the function \mb{SquareAmplitude}. (Unfortunately, the  documentation was not updated.) All sub-packages were put into one file \(\big(\simeq {{10}^4}\) lines), "FeynCalc2.2beta.m" \footnote{This file is still available upon request}.
+During this period of development the SU(3) algebra was changed to SU($N$). Several tools for
+automatic tree-level calculation were added, for example the function \mb{SquareAmplitude}.
+(Unfortunately, the  documentation was not updated.) All sub-packages were put into one file
+\(\big(\simeq {{10}^4}\) lines), "FeynCalc2.2beta.m" \footnote{This file is still available upon
+request}.
 
-\subsubsection*{1993-1996 : \fc 3.0, modularization, typesetting, Operator Product Expansion (OPE)}
+\subsubsection*{1993-1996 : \fc 3.0, modularization, typesetting, Operator Product Expansion}
 
-Due to the rapidly increasing amount of code, \fc was reorganized in a modular way. The definitions of each function are contained in a package file which is loaded only on demand. For the maintenance of hundreds of packages, totalling 2.5 megabytes, software engineering was needed.
+Due to the rapidly increasing amount of code, \fc was reorganized in a modular way. The
+definitions of each function are contained in a package file which is loaded only on demand.
+For the maintenance of hundreds of packages, totalling 2.5 megabytes, software engineering was
+needed.
 
 \begin{itemize}
 
 \item
-In these years many improvements were made to the code, driven by the work of the author (Rolf Mertig) 
-together with Willy van Neerven in perturbative Quantum Chromo Dynamics (QCD).
+In these years many improvements were made to the code, driven by the work of the author
+(Rolf Mertig) together with Willy van Neerven in perturbative QCD.
 
-One effort was to build data bases: Convolutions, integrals, tensor integral transformation
+One effort was to build databases: Convolutions, integrals, tensor integral transformation
 formulae, Feynman rules,
 and Feynman parameterizations. 
 Applications include 2-loop spin-independent and spin-dependent Altarelli-Parisi splitting
@@ -190,25 +210,25 @@ improve the look of the output.
 Typesetting rules were added for e.g. \({\overvar{\partial }{\rightarrow}}_{\mu } \multsp \).
 
 \item Code was written to allow new abstract data types, for example for noncommutative algebra
- and for special integrals.
+and for special integrals.
 
-\item QCD tools for the Operator Product Expansion  (OPE)
-were added.
+\item QCD tools for OPE were added.
 
-\item Automatic Feynman rule derivation (with functional
-differentation) was implemented in order to get special Feynman rules
+\item Automatic Feynman rule derivation (by functional
+derivation) was implemented in order to get special Feynman rules
 for twist-2 (and higher) operators.
 
 \end{itemize}
 
 \subsubsection*{1997-2000 : \fc 4.0-4.1, QCD and OPE, ChPT, tables}
 
-Another was the package \tarcer, which was initially an independent project, but then integrated
+The package \tarcer, which was initially an independent project, was integrated
 into \fc.  \tarcer \cite{Mertig:1998vk} adds two-loop functionality for propagator-type integrals
 using the recurrence relations of Tarasov \cite{Tarasov:1997kx}.
 
 In 2000 maintenance of the package was taken over by Frederik Orellana.
 He worked in Chiral Perturbation Theory \cite{Gasser:1984gg} (ChPT) and made some changes, as well
 as adding code to \fc in order to support ChPT and effective theories in general, and interfacing
-with \fa. Also, first implementations of the 'tHooft-Veltman formulae \cite{'tHooft:1978xw} for
-numerical evaluation of the one-loop integrals $B_0, C_0$ and $D_0$ were added. 
+with \fa.
+% Also, first implementations of the 'tHooft-Veltman formulae \cite{'tHooft:1978xw} for
+% numerical evaluation of the one-loop integrals $B_0, C_0$ and $D_0$ were added. 
