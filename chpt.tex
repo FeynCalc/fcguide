@@ -343,6 +343,9 @@ specifying whether a quantity is renormalized or not.
 A number of matrices and constants, commonly used in ChPT are predefined by the main
 package \fphi and listed below. Others are defined by the individual model definition files.
 As always, to get information about these, use the \mb{?} operator.
+To calculate the trace of matrices, the function \mb{Utrace} is used.
+This function distributes over sums. If the trace of a term is not known, \mb{Utrace} is
+simply replaced with \mb{Utrace1}, which displays in \mb{TraditionalForm} as $< \cdots >$.
 
 \otabtwo{
 \mbs{UQuarkMass[]} & \mb{UMatrix[UQuarkMass[]]} is the quark mass matrix\cr
@@ -350,6 +353,11 @@ As always, to get information about these, use the \mb{?} operator.
 \mbs{MM[{\sl x}]} & the $U$ of ChPT. Notice that \fphi displays this as $\ScriptCapitalU$\cr
 \mbs{QuarkCondensate[]} & the quark condensate $B_0 = \braket{ 0 | q \bar{q} | 0 }$\cr
 }{ChPT symbols available under all configurations.}
+
+\otabtwo{
+\mbs{UTrace[{\sl m}]} & calculate the flavour SU($N$) trace of the matrix {\sl m} \cr
+\mbs{UTrace1[{\sl m}]} & return value if the trace of {\sl m} is not known \cr
+}{The trace of flavour SU($N$) matrices.}
 
 The predefined matrices are typically used when building up the lagrangians corresponding to
 the model. The definition of a lagrangian should be in a file in the directory
@@ -363,14 +371,18 @@ These arguments will be supplied automatically by the function \mb{ArgumentsSupp
 \otabtwo{
 \mbs{ArgumentsSupply[{\sl exp}, {\sl x}, {\sl opts}]} & supply space-time argument {\sl x} and
 options {\sl opts} to matrix functions in {\sl exp}\cr
-}{Expansion of lagrangian definitions.}
+}{Writing out predefined lagrangians.}
 
 \otabthree{
 {\sl option name} & {\sl default value} &\cr
 \hhline
 \mbs{ExpansionOrder} & \mb{4} & order of expansion in the meson field \cr
 \mbs{DropOrder} & \mb{4} & power of the meson field, higher order than which will be dropped \cr
-}{Expansion in the meson field.}
+}{Controlling the expansion in the meson field.}
+
+\otabtwo{
+\mbs{NMExpand[{\sl exp}]} & expand any \mb{NM} products in {\sl exp} using distributivity \cr
+}{Expansion of the non-commutative product \mb{NM}.}
 
 \beom
 \domtog{UTrace[NM[UChiMatrix, Adjoint[MM]]]}{
@@ -382,31 +394,42 @@ $2\multsp \ScriptCapitalB _{0}\multsp
      \frac{\DoubleStruckCapitalI \DoubleStruckD \multsp {{(m_{\pi })}^2}}
        {2\multsp \ScriptCapitalB _{0}}+
       \overvar{{{s}}}{\rightarrow }\cdot \overvar{\sigma }{\rightarrow }+
-      \DoubleStruckCapitalI \DoubleStruckD \multsp {{{{s}}}^0}\bigg)\SixPointedStar \Bigg(
-    \\
- -\frac{\ImaginaryI \multsp \overvar{{{\pi }}}{\rightarrow }\cdot 
+      \DoubleStruckCapitalI \DoubleStruckD \multsp {{{{s}}}^0}\bigg)\SixPointedStar \\
+      \Bigg(-\frac{\ImaginaryI \multsp \overvar{{{\pi }}}{\rightarrow }\cdot 
         \overvar{\sigma }{\rightarrow }}{f_{\pi }}-
    \frac{\overvar{{{\pi }}}{\rightarrow }\cdot \overvar{\sigma }{\rightarrow }
       \SixPointedStar \overvar{{{\pi }}}{\rightarrow }\cdot 
-       \overvar{\sigma }{\rightarrow }}{2\multsp {{(f_{\pi })}^2}}+ 
-\frac{\ImaginaryI \multsp 
-      \bigg(\overvar{{{\pi }}}{\rightarrow }\cdot \overvar{\sigma }{\rightarrow }
-         \SixPointedStar \overvar{{{\pi }}}{\rightarrow }\cdot 
+       \overvar{\sigma }{\rightarrow }}{2\multsp {{(f_{\pi })}^2}}+\DoubleStruckCapitalI \DoubleStruckD \Bigg)
+    \rangle$}{If space-time arguments are supplied, the matrices are expanded.}
+\domtog{\% // NMExpand}{
+$2\multsp \ScriptCapitalB _{0}\multsp 
+\Bigg(\frac{\Bigg(
+        2-\frac{\langle \overvar{{{\pi }}}{\rightarrow }\cdot 
+              \overvar{\sigma }{\rightarrow }\SixPointedStar 
+             \overvar{{{\pi }}}{\rightarrow }\cdot \overvar{\sigma }{\rightarrow }
+             \rangle }{2\multsp {{(f_{\pi })}^2}}\Bigg)\multsp 
+       {{(m_{\pi })}^2}}{2\multsp \ScriptCapitalB _{0}}-
+    \frac{\ImaginaryI \multsp \langle \overvar{{{s}}}{\rightarrow }\cdot 
           \overvar{\sigma }{\rightarrow }\SixPointedStar 
-        \overvar{{{\pi }}}{\rightarrow }\cdot \overvar{\sigma }{\rightarrow }\bigg)}
-      {6\multsp {{(f_{\pi })}^3}}+  \\
-   \frac{\overvar{{{\pi }}}{\rightarrow }\cdot 
-           \overvar{\sigma }{\rightarrow }\SixPointedStar 
-          \overvar{{{\pi }}}{\rightarrow }\cdot \overvar{\sigma }{\rightarrow }
-          \SixPointedStar \overvar{{{\pi }}}{\rightarrow }\cdot 
-          \overvar{\sigma }{\rightarrow }\SixPointedStar 
-        \overvar{{{\pi }}}{\rightarrow }\cdot \overvar{\sigma }{\rightarrow }}{24
-        \multsp {{(f_{\pi })}^4}}+\DoubleStruckCapitalI \DoubleStruckD \Bigg)
-    \rangle$}{If space-time arguments are supplied, the matrices are automatically expanded.}
+         \overvar{{{\pi }}}{\rightarrow }\cdot \overvar{\sigma }{\rightarrow }\rangle 
+       }{f_{\pi }}-  \\
+\frac{\langle 
+      \overvar{{{s}}}{\rightarrow }\cdot \overvar{\sigma }{\rightarrow }
+        \SixPointedStar \overvar{{{\pi }}}{\rightarrow }\cdot 
+         \overvar{\sigma }{\rightarrow }\SixPointedStar 
+       \overvar{{{\pi }}}{\rightarrow }\cdot \overvar{\sigma }{\rightarrow }\rangle }
+      {2\multsp {{(f_{\pi })}^2}}-
+   \frac{\langle {{{{s}}}^0}\SixPointedStar 
+        \overvar{{{\pi }}}{\rightarrow }\cdot \overvar{\sigma }{\rightarrow }
+        \SixPointedStar \overvar{{{\pi }}}{\rightarrow }\cdot 
+        \overvar{\sigma }{\rightarrow }\rangle }{2\multsp {{(f_{\pi })}^2}}+
+2\multsp {{{{s}}}^0}\Bigg)$}
+{Expanding the non-commutative products causes the trace to distribute over the sum.
+For some terms it is known.}
 \domtog{
 \mb{CovariantFieldDerivative[IsoDot[\\
     IsoVector[QuantumField[Particle[Pion]]][x],\\
-      IsoVector[UMatrix[UGenerator[]]]], x,\\
+    IsoVector[UMatrix[UGenerator[]]]],x,\\
     LorentzIndex[$\bm{\mu}$]] // CommutatorReduce}
 }{
 $\partial_\mu\left(\overrightarrow{\pi}\right) \cdot \overrightarrow{\bm{\sigma}}\, +\\
@@ -471,12 +494,353 @@ $\frac{1}{4}\multsp
    {{\partial }_{\nu }}{{\gamma }}_{\nu }$}{The previously inspected lagrangian may be expanded in the meson field. For readability we expand only to order 0.}
 \enom
 
-
-\subsection{One-loop Divergent Generating Functionals}
-
 \subsection{Power Counting with \fa}
 
-The database of amplitudes has been enlarged with all amplitudes calculated and stored using \mb{CheckF}
+To fully automatize the calculation of amplitudes, a way of generating Feynman diagrams and
+corresponding expressions  is needed. The package \fa by H.~Eck, J.~K\"ublbeck and T.~Hahn
+is a convenient choice, since it is written in \mma
+and is general enough to allow the definition of ChPT models and any number of legs in the
+coupling vertices. \fa is documented in ref.~\citen{Hahn:2000kx}.
+
+Two features of ChPT complicates the application of \fa:
+1) The expansion is not just in a coupling constant, but in meson masses and momenta and
+typically also in a coupling constant.
+This makes the \mb{Generic} and \mb{Classes} coupling concept of \fa a complicating irrelevance.
+2) The coupling expressions can be very large. Therefore, the \fa convention of having all
+coupling definitions in one file is not practical.
+
+The strategy chosen to deal with these complications is as follows:
+\begin{itemize}
+\item The functions \mb{MomentaCollect}, \mb{GenericCoupling} and \mb{ClassesCoupling}
+are provided, to facilitate the splitting of Feynman rules generated with
+\mb{FeynRule} (see section \ref{Green}) into \mb{Generic} and \mb{Classes} coupling "vectors"
+understood by \fa.
+\item For a calculation to order $p^{2 n}$, each vertex will in general have contributions of
+order $p^2, p^4, ... p^{2 n}$. Ignoring coupling constants for the moment, the generic vector must
+then have $2 n$ entries. The classes "vector" consists of $2 n$ $2 n$-dimensional lists,
+where the $2 n$th list will have zeros for all but the $2 n$th entry, that is, the classes
+"vector" is a diagonal matrix. E.g.~for $n=2$, $\{\{a,0\},\{0,b\}\}$, where $a$ and $b$ are the
+couplings.
+\item The generic and classes "vectors" are each stored in separate files with extension
+".Gen" and ".Mod" respectively, in the directory "HighEnergyPhysics/Phi/CouplingVectors".
+A naming convention is followed for these files.
+A function, \mb{XName}, is provided for generating the correct name.
+A function, \mb{CheckF}, is provided for storing and retrieving from the directory.
+\item The \fa model files "Automatic.gen" and "Automatic.mod" load the saved coupling "vectors"
+and generate correct \fa model definitions using the information of the active \fphi model.
+\end{itemize}
+
+Loading \fphi causes the database of amplitudes to be enlarged with all amplitudes calculated and
+stored in the directory "HighEnergyPhysics/Phi/CouplingVectors".
+\beom
+\domtog{Amplitude["ChPTVirtualPhotons2P20P20V10V10o2"]}{$-2\multsp \ImaginaryI \multsp {{({{e}})}^2}\multsp {g^{{{\mu }_3}{{\mu }_4}}}\multsp 
+   ({{\delta }_{3\Mvariable{I1}}}\multsp {{\delta }_{3\Mvariable{I2}}}-
+     {{\delta }_{\Mvariable{I1}\Mvariable{I2}}})$}{We may, for example, inspect the $\gamma \gamma \pi^+ \pi^-$ coupling.}
+\enom
+
+Below, the procedure for generating and storing the corresponding \fa coupling "vectors" is
+given as a notebook excerpt.
+
+\dispSFinmath{
+\MathBegin{MathArray}{l}
+l=\Mvariable{ArgumentsSupply}[  \\
+\noalign{\vspace{0.666667ex}}
+\hspace{2.em} \Muserfunction{Lagrangian}[
+    \Muserfunction{ChPTVirtualPhotons2}[2]],  \\
+\noalign{\vspace{0.666667ex}}
+\hspace{2.em} x,\Muserfunction{RenormalizationState}[0]
+   ,  \\
+\noalign{\vspace{0.666667ex}}
+\hspace{2.em} \Mvariable{DiagonalToU}\rightarrow \Mvariable{True},
+   \Mvariable{ExpansionOrder}\rightarrow 2,  \\
+\noalign{\vspace{0.666667ex}}
+\hspace{2.em} \Mvariable{DropOrder}\rightarrow 2];\\
+   \MathEnd{MathArray}
+}
+
+\dispSFinmath{
+\MathBegin{MathArray}{l}
+\Muserfunction{DiscardTerms}[l,  \\
+\noalign{\vspace{0.666667ex}}
+\hspace{5.em} \Mvariable{Retain}
+   \rightarrow   \\
+\noalign{\vspace{0.666667ex}}
+\hspace{6.em} \{\Muserfunction{ParticleField}[\Mvariable{Pion}\multsp ,  \\
+   \noalign{\vspace{0.666667ex}}
+\hspace{9.em} \Muserfunction{RenormalizationState}[0]]\rightarrow \multsp 2,  \\
+\noalign{\vspace{
+   0.666667ex}}
+\hspace{7.em} \Muserfunction{ParticleField}[\Mvariable{Photon},  \\
+\noalign{\vspace{0.666667ex}}
+\hspace{9.em} 
+           \Muserfunction{RenormalizationState}[0]]\rightarrow 2\},  \\
+\noalign{\vspace{0.666667ex}}
+\hspace{5.em} \Mvariable{Commutator
+     Reduce}\rightarrow \Mvariable{True},  \\
+\noalign{\vspace{0.666667ex}}
+\hspace{5.em} \Mvariable{Method}\rightarrow 
+       \Mvariable{Expand}]/.\$Substitutions//  \\
+\noalign{\vspace{0.666667ex}}
+\hspace{3.em} \Mvariable{NMExpand}//
+    \Muserfunction{CycleUTraces}//\Mfunction{Expand}\\
+\MathEnd{MathArray}
+}
+
+\dispSFoutmath{
+\MathBegin{MathArray}{l}
+\frac{1}{8}\multsp {{({e^{}})}^2}\multsp 
+    \langle \overvar{{{\pi }^{}}}{\rightarrow }\cdot \overvar{\sigma }{\rightarrow }\SixPointedStar 
+        \overvar{{{\pi }^{}}}{\rightarrow }\cdot \overvar{\sigma }{\rightarrow }\SixPointedStar {{\sigma }^3}\SixPointedStar 
+      {{\sigma }^3}\rangle \multsp {{\gamma }^{}}_{\mu }^{2}-  \\
+\noalign{\vspace{1.17708ex}}
+\hspace{1.em} \frac{1}{8}\multsp 
+   {{({e^{}})}^2}\multsp \langle \overvar{{{\pi }^{}}}{\rightarrow }\cdot \overvar{\sigma }{\rightarrow }\SixPointedStar {{\sigma }^3}
+      \SixPointedStar \overvar{{{\pi }^{}}}{\rightarrow }\cdot \overvar{\sigma }{\rightarrow }\SixPointedStar {{\sigma }^3}\rangle 
+    \multsp {{\gamma }^{}}_{\mu }^{2}\\
+\MathEnd{MathArray}
+}
+
+\dispSFinmath{
+\MathBegin{MathArray}{l}
+\Muserfunction{ExpandU}[\%,\Mvariable{CommutatorReduce}\rightarrow \Mvariable{True}]//  \\
+   \noalign{\vspace{0.666667ex}}
+\hspace{1.em} \Mvariable{Simplify}\\
+\MathEnd{MathArray}
+}
+
+\dispSFoutmath{
+\frac{1}{4}\multsp {{({e^{}})}^2}\multsp \bigg(-{{\big(
+          \overvar{\DoubleStruckP (3)}{\rightarrow }\cdot \overvar{{{\pi }^{}}}{\rightarrow }\big)}^2}+
+     \overvar{\DoubleStruckP (3)}{\rightarrow }\times \overvar{{{\pi }^{}}}{\rightarrow }\cdot 
+      \overvar{\DoubleStruckP (3)}{\rightarrow }\times \overvar{{{\pi }^{}}}{\rightarrow }+
+     \overvar{{{\pi }^{}}}{\rightarrow }\cdot \overvar{{{\pi }^{}}}{\rightarrow }\bigg)\multsp {{\gamma }^{}}_{\mu }^{2}
+}
+
+\dispSFinmath{
+\Muserfunction{IsoIndicesSupply}[\%]
+}
+
+\dispSFoutmath{
+\MathBegin{MathArray}{l}
+\frac{1}{4}\multsp {{({e^{}})}^2}\multsp 
+   \big({{{{\pi }^{}}}^{\Mvariable{i73}}}\SixPointedStar {{{{\pi }^{}}}^{\Mvariable{i73}}}+
+     \big({{{{\pi }^{}}}^{\Mvariable{i70}}}\SixPointedStar {{{{\pi }^{}}}^{\Mvariable{i72}}}\big)\multsp 
+      {{\delta }_{3\NoBreak \Mvariable{i69}}}\multsp {{\delta }_{3\NoBreak \Mvariable{i71}}}\multsp   \\
+\noalign{\vspace{
+   1.01042ex}}
+\hspace{4.em} {f_{\Mvariable{i69}\NoBreak \Mvariable{i70}\NoBreak \Mvariable{i76}}}\multsp 
+      {f_{\Mvariable{i71}\NoBreak \Mvariable{i72}\NoBreak \Mvariable{i76}}}-
+     {{\delta }_{3\NoBreak \Mvariable{i74}}}\multsp {{\delta }_{3\NoBreak \Mvariable{i75}}}\multsp {{{{\pi }^{}}}^{\Mvariable{i74}}}
+      \multsp {{{{\pi }^{}}}^{\Mvariable{i75}}}\big)\multsp {{\gamma }^{}}_{\mu }^{2}\\
+\MathEnd{MathArray}
+}
+
+\dispSFinmath{
+\%//\Muserfunction{SUNReduce}
+}
+
+\dispSFoutmath{
+\MathBegin{MathArray}{l}
+\frac{1}{4}\multsp {{({e^{}})}^2}\multsp 
+    \big({{{{\pi }^{}}}^{\Mvariable{i73}}}\SixPointedStar {{{{\pi }^{}}}^{\Mvariable{i73}}}\big)\multsp {{\gamma }^{}}_{\mu }^{2}+  \\
+   \noalign{\vspace{1.19792ex}}
+\hspace{1.em} \frac{1}{4}\multsp {{({e^{}})}^2}\multsp 
+    \big({{{{\pi }^{}}}^{\Mvariable{i70}}}\SixPointedStar {{{{\pi }^{}}}^{\Mvariable{i72}}}\big)\multsp \delta _{3\Mvariable{i71}}^{(2)}
+    \multsp f_{3\Mvariable{i70}\Mvariable{i76}}^{(2)}\multsp f_{\Mvariable{i71}\Mvariable{i72}\Mvariable{i76}}^{(2)}\multsp 
+    {{\gamma }^{}}_{\mu }^{2}-  \\
+\noalign{\vspace{1.19792ex}}
+\hspace{1.em} \frac{1}{4}\multsp {{({e^{}})}^2}\multsp 
+   \delta _{3\Mvariable{i75}}^{(2)}\multsp {{{{\pi }^{}}}^3}\multsp {{{{\pi }^{}}}^{\Mvariable{i75}}}\multsp {{\gamma }^{}}_{\mu }^{2}\\
+   \MathEnd{MathArray}
+}
+
+\dispSFinmath{
+\MathBegin{MathArray}{l}
+\Mvariable{ll}=\%//\Muserfunction{IndicesCleanup}//\Muserfunction{CommutatorReduce}//  \\
+\noalign{\vspace{
+   0.666667ex}}
+\hspace{2.em} \Mvariable{Simplify}\\
+\MathEnd{MathArray}
+}
+
+\dispSFoutmath{
+\MathBegin{MathArray}{l}
+\frac{1}{4}\multsp {{({e^{}})}^2}\multsp {{{{\pi }^{}}}^{\Mvariable{k1}}}\multsp   \\
+\noalign{\vspace{
+   0.947917ex}}
+\hspace{1.em} \big(-\delta _{3\Mvariable{k1}}^{(2)}\multsp {{{{\pi }^{}}}^3}+{{{{\pi }^{}}}^{\Mvariable{k1}}}-
+     \delta _{3\Mvariable{k3}}^{(2)}\multsp f_{3\Mvariable{k1}\Mvariable{k4}}^{(2)}\multsp 
+      f_{\Mvariable{k2}\Mvariable{k3}\Mvariable{k4}}^{(2)}\multsp {{{{\pi }^{}}}^{\Mvariable{k2}}}\big)\multsp 
+   {{\gamma }^{}}_{\Mvariable{\rho 1}}^{2}\\
+\MathEnd{MathArray}
+}
+
+\dispSFinmath{
+\MathBegin{MathArray}{l}
+\Mvariable{fields}=  \\
+\noalign{\vspace{0.666667ex}}
+\hspace{1.em} \{
+   \Muserfunction{QuantumField}[\Muserfunction{Particle}[\Muserfunction{PseudoScalar}[2],  \\
+\noalign{\vspace{0.666667ex}}
+   \hspace{5.em} \Muserfunction{RenormalizationState}[0]],  \\
+\noalign{\vspace{0.666667ex}}
+\hspace{4.em} \Muserfunction{SUNIndex}[
+       \Mvariable{I1}]][\Mvariable{p1}],  \\
+\noalign{\vspace{0.666667ex}}
+\hspace{2.em} \Muserfunction{QuantumField}[
+   \Muserfunction{Particle}[\Muserfunction{PseudoScalar}[2],  \\
+\noalign{\vspace{0.666667ex}}
+\hspace{5.em} \Muserfunction{Renormalizati
+       onState}[0]],  \\
+\noalign{\vspace{0.666667ex}}
+\hspace{4.em} \Muserfunction{SUNIndex}[\Mvariable{I2}]][\Mvariable{p2}],  \\
+   \noalign{\vspace{0.666667ex}}
+\hspace{2.em} \Muserfunction{QuantumField}[\Muserfunction{Particle}[\Muserfunction{Vector}[1],  \\
+   \noalign{\vspace{0.666667ex}}
+\hspace{5.em} \Muserfunction{RenormalizationState}[0]],  \\
+\noalign{\vspace{0.666667ex}}
+   \hspace{4.em} \Muserfunction{LorentzIndex}[\Mvariable{\mu 3}]][\Mvariable{p3}],  \\
+\noalign{\vspace{0.666667ex}}
+\hspace{2.em} 
+    \Muserfunction{QuantumField}[\Muserfunction{Particle}[\Muserfunction{Vector}[1],  \\
+\noalign{\vspace{0.666667ex}}
+   \hspace{5.em} \Muserfunction{RenormalizationState}[0]],  \\
+\noalign{\vspace{0.666667ex}}
+\hspace{4.em} \Muserfunction{LorentzIndex}[
+        \Mvariable{\mu 4}]][\Mvariable{p4}]\}\\
+\MathEnd{MathArray}
+}
+
+\dispSFoutmath{
+\big\{{{{{\pi }^{}}}^{{{\imag }_1}}},{{{{\pi }^{}}}^{{{\imag }_2}}},{{{{\gamma }^{}}}_{{{\mu }_3}}},{{{{\gamma }^{}}}_{{{\mu }_4}}}\big\}
+}
+
+\dispSFinmath{
+\MathBegin{MathArray}{l}
+m=  \\
+\noalign{\vspace{0.666667ex}}
+\hspace{1.em} \Muserfunction{FeynRule}[\Mvariable{ll},\Mvariable{fields}]
+   //  \\
+\noalign{\vspace{0.666667ex}}
+\hspace{5.em} \Muserfunction{SUNReduce}[\#,\Mvariable{FullReduce}\rightarrow \Mvariable{True}]\&
+   //  \\
+\noalign{\vspace{0.666667ex}}
+\hspace{4.em} \Mvariable{IndicesCleanup}//\Muserfunction{CommutatorReduce}//  \\
+   \noalign{\vspace{0.666667ex}}
+\hspace{2.em} \Mvariable{Simplify}\\
+\MathEnd{MathArray}
+}
+
+\dispSFoutmath{
+-2\multsp \ImaginaryI \multsp {{({e^{}})}^2}\multsp {g^{{{\mu }_3}\NoBreak {{\mu }_4}}}\multsp 
+   \big(\delta _{3{{\imag }_1}}^{(2)}\multsp \delta _{3{{\imag }_2}}^{(2)}-\delta _{{{\imag }_1}{{\imag }_2}}^{(2)}\big)
+}
+
+\dispSFinmath{
+\MathBegin{MathArray}{l}
+\Mvariable{mfa}=\Muserfunction{MomentaCollect}[m//\Mfunction{Expand},  \\
+\noalign{\vspace{0.666667ex}}
+   \hspace{2.em} \Mvariable{PerturbationOrder}\rightarrow 2]\\
+\MathEnd{MathArray}
+}
+
+\dispSFoutmath{
+{{({e^{}})}^2}\multsp {g^{{{\mu }_3}\NoBreak {{\mu }_4}}}\multsp 
+   \big(2\multsp \ImaginaryI \multsp \delta _{{{\imag }_1}{{\imag }_2}}^{(2)}-
+     2\multsp \ImaginaryI \multsp \delta _{3{{\imag }_1}}^{(2)}\multsp \delta _{3{{\imag }_2}}^{(2)}\big)
+}
+
+\dispSFinmath{
+\Mvariable{gencoup}=\Muserfunction{GenericCoupling}[\Mvariable{mfa}]
+}
+
+\dispSFoutmath{
+\big\{{{({e^{}})}^2}\multsp {g^{{{\mu }_3}\NoBreak {{\mu }_4}}}\big\}
+}
+
+\dispSFinmath{
+\MathBegin{MathArray}{l}
+\Mvariable{classcoup}=\Muserfunction{ClassesCoupling}[\Mvariable{mfa}]//\Mfunction{Together};  \\
+   \noalign{\vspace{0.666667ex}}\Muserfunction{classcoup}//\Mfunction{StandardForm}\\
+\MathEnd{MathArray}
+}
+
+\dispSFoutmath{
+\MathBegin{MathArray}{l}
+\{\{-2\multsp \ImaginaryI \multsp 
+     (\Muserfunction{SUNDelta}[3,\Mvariable{I1}]\multsp \Muserfunction{SUNDelta}[3,\Mvariable{I2}]-  \\
+\noalign{\vspace{
+   0.666667ex}}
+\hspace{5.em} \Muserfunction{SUNDelta}[\Mvariable{I1},\Mvariable{I2}])\}\}\\
+\MathEnd{MathArray}
+}
+
+\dispSFinmath{
+\$VeryVerbose=2;
+}
+
+\dispSFinmath{
+\MathBegin{MathArray}{l}
+\Muserfunction{CheckF}[\Mvariable{gencoup},  \\
+\noalign{\vspace{0.666667ex}}
+\hspace{1.em} \Muserfunction{XName
+    }[\Mvariable{PhiModel}\rightarrow \Mvariable{ChPTVirtualPhotons2},  \\
+\noalign{\vspace{0.666667ex}}
+\hspace{3.em} \Mvariable{VertexF
+    ields}\rightarrow   \\
+\noalign{\vspace{0.666667ex}}
+\hspace{4.em} \{
+   \Muserfunction{PseudoScalar}[2][0],\Muserfunction{PseudoScalar}[2][0],  \\
+\noalign{\vspace{0.666667ex}}
+\hspace{5.em} \Muserfunction{
+         Vector}[1][0],\Muserfunction{Vector}[1][0]\},  \\
+\noalign{\vspace{0.666667ex}}
+\hspace{3.em} \Mvariable{MomentaOrder}
+      \rightarrow 2,\Mvariable{XFileName}\rightarrow \Mvariable{Automatic}]<>  \\
+\noalign{\vspace{0.666667ex}}
+\hspace{2.em} ".Gen"]
+   ;\\
+\MathEnd{MathArray}
+}
+
+\Print{Using file name D:\(\backslash\)Program Files\(\backslash\)Wolfram\(\backslash\)
+ 
+ Research\(\backslash\)Mathematica\(\backslash\)4.1\(\backslash\)AddOns\(\backslash\)Applications\(\backslash\)HighEnergyPhysics\(\backslash\)Phi\(\backslash\)CouplingVectors\(\backslash\)ChPTVirtualPhotons2P20P20V10V10o2.Gen}
+\Print{File exists, force evaluating}
+\Print{Saving}
+\dispSFinmath{
+\MathBegin{MathArray}{l}
+\Muserfunction{CheckF}[\Mvariable{classcoup},  \\
+\noalign{\vspace{0.666667ex}}
+\hspace{1.em} \Muserfunction{XNa
+    me}[\Mvariable{PhiModel}\rightarrow \Mvariable{ChPTVirtualPhotons2},  \\
+\noalign{\vspace{0.666667ex}}
+\hspace{3.em} \Mvariable{Verte
+    xFields}\rightarrow   \\
+\noalign{\vspace{0.666667ex}}
+\hspace{4.em} \{
+   \Muserfunction{PseudoScalar}[2][0],\Muserfunction{PseudoScalar}[2][0],  \\
+\noalign{\vspace{0.666667ex}}
+\hspace{5.em} \Muserfunction{
+         Vector}[1][0],\Muserfunction{Vector}[1][0]\},  \\
+\noalign{\vspace{0.666667ex}}
+\hspace{3.em} \Mvariable{MomentaOrder}
+      \rightarrow 2,\Mvariable{XFileName}\rightarrow \Mvariable{Automatic}]<>  \\
+\noalign{\vspace{0.666667ex}}
+\hspace{2.em} ".Mod"]
+   ;\\
+\MathEnd{MathArray}
+}
+
+\Print{Using file name D:\(\backslash\)Program Files\(\backslash\)Wolfram\(\backslash\)
+ 
+ Research\(\backslash\)Mathematica\(\backslash\)4.1\(\backslash\)AddOns\(\backslash\)Applications\(\backslash\)HighEnergyPhysics\(\backslash\)Phi\(\backslash\)CouplingVectors\(\backslash\)ChPTVirtualPhotons2P20P20V10V10o2.Mod}
+\Print{File exists, force evaluating}
+\Print{Saving}
+\dispSFinmath{
+\$VeryVerbose=0;
+}
+
 
 \subsection{Example: Radiative Pion Decay}
 
