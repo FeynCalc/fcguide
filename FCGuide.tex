@@ -193,6 +193,17 @@
 \def\PreserveBackslash#1{\let\temp=\\#1\let\\=\temp}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Bold \tt in \Subsection
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\makeatletter
+\renewcommand\Subsection{\@startsection{subsection}{2}{\z@}%
+                                     {-3.25ex\@plus -1ex \@minus -.2ex}%
+                                     {1.5ex \@plus .2ex}%
+                                     {\tt\Large\bfseries}}
+\makeatother
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % SWITCH FOR PDFLATEX or LATEX
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -545,7 +556,7 @@ pdfkeywords = {Loops, Integrals, Feynman diagrams, Amplitudes, Scattering, Kinem
 
 % Sans serif font for chapter, section, etc.
 \allsectionsfont{\sffamily}
-\subsectionfont{\huge \sffamily}
+\sectionfont{\huge \sffamily}
 
 % Reference section definitions
 
@@ -599,21 +610,21 @@ Frederik Orellana}}
 \maketitle
 }
 
-\pagenumbering{Roman}
+\pagenumbering{roman}
+%\pagenumpos{\pnbc}
+\setcounter{page}{1}
+%\phantomsection
+\addcontentsline{toc}{section}{Preface}
+\pagestyle{plain}
+\input{preface}
 
 \newpage
 %\phantomsection
 %\addcontentsline{toc}{section}{Contents}
-%\thispagestyle{empty}    % No page number on contents page
+\addtocontents{toc}{\protect\thispagestyle{empty}}
 \tableofcontents
-%\clearpage
-\newpage
-
-\pagenumbering{roman}
-%\pagenumpos{\pnbc}
-\setcounter{page}{1}
-% Headings on each page
-\pagestyle{fancy}    % Go for customized headings
+\thispagestyle{empty}    % No page number on contents page
+\clearpage
 
 \setlength{\textwidth}{\twt}
 \setlength{\textheight}{\tht}
@@ -631,10 +642,12 @@ Frederik Orellana}}
 %\addtolength{\headheight}{12pt}
 %\addtolength{\footskip}{12pt}
 
-\input{preface}
+% Headings on each page
+\pagestyle{fancy}    % Go for customized headings
 \pagenumbering{arabic}
 %\pagenumpos{\pnbc}
 \setcounter{page}{1}
+
 \input{intro}
 \include{input}
 \input{inside}
