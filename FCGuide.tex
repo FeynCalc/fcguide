@@ -51,6 +51,8 @@
 
 \def\xstrut{\raisebox{-1.9ex}{\rule{0pt}{5ex}}}
 
+\def\overscript#1#2{\mathop{#2}\limits^{{}_{\:#1}}\!{}}
+
 %% Conditionals in TeX
 \usepackage{ifthen}
 
@@ -256,7 +258,7 @@
 %\usepackage[ps2pdf]{thumbpdf}
 %% use dvips (or dvipdf or dvipdfm??) if converting on to pdf,
 %% otherwise hypertex and then remember to run dvips -z
-\usepackage[bookmarks=true,bookmarksopen=true,bookmarksopenlevel=1,backref=page,pagebackref=false,
+\usepackage[pdfstartview=FitH,pdffitwindow=true,bookmarks=true,bookmarksopen=true,bookmarksopenlevel=1,backref=page,pagebackref=false,
 hyperfigures=false,colorlinks=true,linkcolor=lightblue,anchorcolor=lightblue,
 citecolor=lightblue,filecolor=lightblue,menucolor=lightblue,pagecolor=lightblue,
 urlcolor=lightblue,dvips,plainpages=false,hypertexnames=false]{hyperref}
@@ -333,7 +335,8 @@ pdfproducer = {dvips + ps2pdf}
 %% Thumbnails in case of pdfLaTeX
 %\usepackage[pdftex]{thumbpdf}
 %% Hyper-references for pdflatex
-\usepackage[bookmarks=true,bookmarksopen=true,bookmarksopenlevel=5,backref=page,pagebackref=false,
+\usepackage[pdfstartview=FitH,pdffitwindow=true,bookmarks=true,bookmarksopen=true,
+bookmarksopenlevel=5,backref=page,pagebackref=false,
 hyperfigures=false,colorlinks=true,linkcolor=lightblue,anchorcolor=lightblue,
 citecolor=lightblue,filecolor=lightblue,menucolor=lightblue,pagecolor=lightblue,
 urlcolor=lightblue,pdftex,plainpages=false,hypertexnames=false]{hyperref}

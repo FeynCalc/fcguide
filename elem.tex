@@ -375,7 +375,7 @@ The behaviour of \mb{DiracSimplify} may be tuned with the setting of various opt
 \hhline
 \mb{DiracCanonical} & \mb{False} &  use \mb{DiracOrder} internally \cr
 \mb{DiracSigmaExplicit} & \mb{True} & substitute the explicit representation of $\sigma$ (also a function ) \cr
-\mb{DiracSimpCombine} & \mb{False} &  try merging \mb{DiracGamma}'s in \mb{DiracGamma[ .. + .. + ]}'s \cr
+\mb{DiracSimpCombine} & \mb{False} &  try merging \mb{DiracGamma}s in \mb{DiracGamma[ .. + .. + ]}'s \cr
 \mb{DiracSubstitute67} & \mb{False} &  substitute the explicit representation of $\gamma^6$ and  $\gamma^7$ \cr
 \mb{Expanding} & \mb{True} &  when set to \mb{False} only a limited set of simplification rules are used \cr
 \mb{Factoring} & \mb{False} &  factor canonically \cr
@@ -987,16 +987,18 @@ See the internal representation. Notice the symbol \mb{RightPartialD}.
 We can apply \mb{dd} to some other field $\psi$.
 }
 \domtog{{dd // StandardForm\\
-}}{-2 RightPartialD[LorentzIndex[$\bm{\beta}$]] .\\
-      RightPartialD[LorentzIndex[$\bm{\beta}$]]\\
-      Pair[LorentzIndex[$\bm{\mu}$1], LorentzIndex[$\bm{\mu}$2]]\\
-      SUNDelta[SUNIndex[i1], SUNIndex[i2]]}{
+}}{-2 SUNDelta[SUNIndex[a], SUNIndex[i2]].\\
+      SUNDelta[SUNIndex[a], SUNIndex[i1]].\\
+      QuantumField[PartialD[LorentzIndex[$\bm{\beta}$]],\\
+      PartialD[LorentzIndex[$\bm{\beta}$]], $\bm{\psi}$,\\
+      \mindent LorentzIndex[$\bm{\mu}$1],  SUNIndex[i1]] \\
+      Pair[LorentzIndex[$\bm{\mu}$1], LorentzIndex[$\bm{\mu}$2]]}{
 See the internal representation. Notice that applying \mb{ExpandPartialD} causes \mb{RightPartialD} to disappear in favour of \mb{PartialD}.
 }
 \domtog{{FunctionalD[aa, \{QuantumField[GaugeField, \{$\bm{\mu}$1\}, \{i1\}][p1], 
     QuantumField[GaugeField, \{$\bm{\mu}$2\}, \{i2\}][p2]\}]\\
 }}{$\left(-\ComplexI g^{\alpha \mu1} {\rm p}1^\beta \delta_{\alpha {\rm i}1}\right).
-    \left(-\ComplexI g^{\alpha \mu2} {\rm p}2^\beta \delta_{\alpha {\rm i}2}\right)+
+    \left(-\ComplexI g^{\alpha \mu2} {\rm p}2^\beta \delta_{\alpha {\rm i}2}\right)+\\
     \left(-\ComplexI g^{\alpha \mu2} {\rm p}2^\beta \delta_{\alpha {\rm i}2}\right).
     \left(-\ComplexI g^{\alpha \mu1} {\rm p}1^\beta \delta_{\alpha {\rm i}1}\right)$}{
 Calculate the 2-gluon Feynman rule (in momentum space).
@@ -1014,7 +1016,7 @@ Clear intermediate variables.
     2 (RightPartialD[{\sl $\mu$}] - LeftPartialD[{\sl $\mu$}])}\cr
 \mbs{LeftRightPartialD2[{\sl $\mu$}]} & denotes partial space-time differentiation $\partial/\partial x^\mu $, acting to the left and right. \mb{ExplicitPartialD[LeftRightPartialD[{\sl $\mu$}]]} gives \mb{(RightPartialD[{\sl $\mu$}] + LeftPartialD[{\sl $\mu$}])}\cr
 \mbs{ExplicitPartialD[{\sl exp}]} & inserts in {\sl exp} the definitions for  \mb{LeftRightPartialD} and \mb{LeftRightPartialD2}.\cr
-\mbs{ExpandPartialD[{\sl exp}]} & expands \mb{DOT} products of \mb{RightPartialD}'s and/or \mb{LeftPartialD}'s with \mb{QuantumField}'s in {\sl exp} using the Leibniz rule.\cr
+\mbs{ExpandPartialD[{\sl exp}]} & expands \mb{DOT} products of \mb{RightPartialD}s and/or \mb{LeftPartialD}s with \mb{QuantumField}s in {\sl exp} using the Leibniz rule.\cr
 } {Partial space-time derivatives.}
 
 As another example consider the strong QCD 4-gluon vertex. The relevant part of the QCD lagrangian is already known by \fc.

@@ -4,6 +4,104 @@
 
 \subsection{ChPT with FeynCalc}
 
+\subsubsection{Introduction}
+
+The subpackage \fphi was written by Frederik Orellana and provides utilities for computations in the Chiral Perturbation Theory (ChPT). The general idea is to allow writing up a calculation starting with a lagrangian and ending up with an amplitude, all within the framework of \fc. For this to be possible, many functions on a rather general level were implemented, as was a method of interacting seamlessly with \fa. The following sections cover the more important features of the package. A fuller description can be found in \cite{PHI}.
+
+The motivation for writing \fphi was a lack of software for quickly and systematically implementing an effective model like one of the various ChPT models, which have a more complicated power counting than models which simply expand Green's functions perturbatively in a coupling constant. However, the package is general enough that other models can easily be specified as has been demonstrated with the simple example of QED. Given the many effective models that already exist and the many new ones that keep coming, it is the hope of the author that this software might be of use also outside the realm of ChPT.
+
+The main features of \fphi are:
+\begin{itemize}
+\item A set of basic objects are provided that can be composed and manipulated to form ChPT lagrangians.
+\item The most common ChPT lagrangians are included and new ones can easily be defined.
+\item The lagrangians can be expanded in terms of pion (meson) fields, with SU(2) (SU(3)) flavour traces being done automatically.
+\item External sources can be switched off and on.
+\item \fa is used for generating Feynman diagrams and amplitudes, including counter-terms. Power counting and storing of Feynman rules is systematized.
+\end{itemize}
+
+\subsubsection{Chiral quantum fields and lagrangians}
+
+\fphi comes with a number of predefined chiral models. These define lagrangians etc. in terms of quantum fields. The convention used for a quantum field denoting the pion field is \mb{Particle[Pion]}. Since partial derivatives and covariant derivatives may be performed on \mb{QuantumField}s as well as on polynomials of \mb{QuantumField}s, the \mb{QuantumField}s usually carry a space-time argument, e.g. $x$. \mb{QuantumField}s may be grouped in SU($N$) matrices or multiplets with the functions \mb{IsoVector}, \mb{UMatrix} and \mb{UVector} as heads. When this is done, these functions carry the space-time argument. In the following this is illustrated through some simple examples.
+\beom
+\dtog{
+Quit[];\\\\
+\$LoadPhi = True;\\
+\$LoadFeynArts = True;\\
+\$Configuration = "ChPTVirtualPhotons2";\\
+\$Lagrangians = {"ChPTVirtualPhotons2"[2], \\
+\mindent "ChPTVirtualPhotons2"[4]};\\\\
+Get["HighEnergyPhysics`FeynCalc`"];\\}{}{Quit the kernel and reload \fc with the packages \fphi and \fa enabled. We may specify to load the some \fphi model and lagrangians, in this case we choose "ChPTVirtualPhotons2" and its two lagrangians.}
+\domtog{
+\mb{CovariantFieldDerivative[QuantumField[Particle[\\
+\mindent Pion]][x]\phat 2, x, LorentzIndex[$\bm{\mu}$]]//\\
+CommutatorReduce}
+}{
+$\ComplexI \pi^2\, \left( \overrightarrow{V_\mu} \cdot
+               \overrightarrow{\bm{\sigma}}\, -\,
+                     \overrightarrow{A_\mu} \cdot \overrightarrow{\bm{\sigma}}
+                     \right)\, -\, 
+\ComplexI \left( \overrightarrow{A_\mu} \cdot \overrightarrow{\bm{\sigma}}\, +\,
+                \overrightarrow{V_\mu} \cdot \overrightarrow{\bm{\sigma}}\right)
+                     \pi^2 \, +\,\\
+\ComplexI \gamma_\mu Q_{\rm\bf L}\, \pi^2\, -\, \ComplexI \gamma_\mu Q_{\rm\bf R}\, \pi^2\, +
+2\pi\, \partial_\mu\pi$
+}{Here is how to enter a covariant derivative $D_\mu(\phi_\pi(x)^2$).\\
+Notice that this model defines the covariant derivative and assigns the symbol $\pi$ to the field $\phi_\pi$}
+\domtog{
+\mb{CovariantFieldDerivative[\\
+    IsoDot[IsoVector[QuantumField[Particle[Pion]]][x],\\
+      IsoVector[UMatrix[UGenerator[]]]], x,\\
+    LorentzIndex[$\bm{\mu}$]] // CommutatorReduce}
+}{
+$\partial_\mu\left(\overrightarrow{\pi}\right) \cdot \overrightarrow{\bm{\sigma}}\, +\\
+ \ComplexI \left( \overrightarrow{\pi} \cdot
+ \overrightarrow{\bm{\sigma}}\, \SixPointedStar\, \left( \overrightarrow{V_\mu} \cdot
+               \overrightarrow{\bm{\sigma}} -
+                     \overrightarrow{A_\mu} \cdot \overrightarrow{\bm{\sigma}}
+                     \right)\right) -
+\ComplexI \left( \left( \overrightarrow{V_\mu} \cdot
+               \overrightarrow{\bm{\sigma}} +
+                     \overrightarrow{A_\mu} \cdot \overrightarrow{\bm{\sigma}}
+                     \right)\, \SixPointedStar\,  \overrightarrow{\pi} \cdot
+\overrightarrow{\bm{\sigma}} \right) \, +\\
+\ComplexI \left( \overrightarrow{\pi} \cdot
+ \overrightarrow{\bm{\sigma}}\, \SixPointedStar\, Q_{\rm\bf L}\right)\, \gamma_\mu\, -\,
+\ComplexI \left( Q_{\rm\bf R}\, \SixPointedStar\,  \overrightarrow{\pi} \cdot
+ \overrightarrow{\bm{\sigma}} \right)\, \gamma_\mu$
+}{
+Here is a more complex example, involving also \mb{IsoVector}, \mb{UMatrix}. Notice that
+\mb{IsoVector} takes over the $x$-dependence.
+}
+\domtog{
+\mb{UVector[QuantumField[DiracBar[Particle[\\
+   \mindent Nucleon]]]][x].\\
+    DiracGamma[LorentzIndex[$\bm{\mu}$]].\\
+    NM[UMatrix[SMM][x], \\
+      \mindent FieldDerivative[Adjoint[UMatrix[SMM][x]], \\
+      \mindent \mindent x, LorentzIndex[$\bm{\mu}$]]].\\
+    UVector[QuantumField[Particle[Nucleon]]][x]}
+}{$\vec{\overline{\rm N}}\, .\, \gamma^\mu\, .\, u\, \SixPointedStar\, \partial_\mu(u^\dagger)\, .\, \vec{{\rm N}}$}{Although this model does not use nucleons, we may still use e.g. the SU($N$) construction $\overrightarrow{\bar{\psi}_{\rm N}}\, \gamma^\mu\, u \partial_\mu\, u^\dag\, \overrightarrow{\psi_{\rm N}}$, where $u$ is a $N \times N$ field matrix containing the meson fields (see e.g. \cite{Ecker:1992jh}).}
+\enom
+The \mma \mb{Dot} is used for multiplication of Dirac matrices and the multiplication of SU($N$) matrices with SU($N$) vectors, whereas \mb{NM} (``\mb{$\SixPointedStar$}'' in \mb{OutputForm}) is used for multiplication of SU($N$) matrices and \mb{IsoDot} (``\mb{$\cdot$}'' in \mb{OutputForm}) is used for multiplication of SU($N$) iso-vectors.
+
+\otabtwo{
+\mbs{IsoVector[{\sl v}]} & represents an SU(2) or SU(3) multiplet with number of
+entries corresponding to the number of generators \cr
+\mbs{UVector[{\sl v}]} & represents an SU(2) or SU(3) multiplet with number of entries
+corresponding to the dimension of the representation \cr
+\mbs{UMatrix[{\sl m}]} & is recognized as an SU(2) or SU(3) matrix\cr
+}{SU($N$) vectors and matrices.}
+
+Many operations can be performed on expressions like the ones above. We shall see some in the ChPT examples to come. But first we turn to some of the objects that \fphi adds to the basic framework of \fc. Of the many utilities, we shall focus on SU(2) and SU(3) functions and the interaction with \fa. Notice that in ChPT, a condensed notation is used and objects like \mb{MM[x]} and \mb{SMM[x]} actually contain \mb{QuantumField}s. Remember that an explanation of the various symbols can be obtained by using the \mb{?} operator.
+
+\subsubsection{Matrices and structure constants of SU(2) and SU(3)}
+
+WriteOutUMatrices
+
+\subsubsection{Chiral power counting with \fa}
+
+\subsubsection{Calculating one-loop diagrams}
+
 \subsection{Two-Loop Calculations}
 
 \subsection{Amplitude and Integral Tables}
