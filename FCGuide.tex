@@ -110,12 +110,12 @@
     \fi\fi%
     \def\Mvariable##1{\mathrm{##1}}%
     \mathversion{monobold}\fixttmath\ttfamily\bfseries$\displaystyle
-    \lefthyphenmin=100
-    \righthyphenmin=100
+    %\lefthyphenmin=100
+    %\righthyphenmin=100
     \parbox[t]{\tmrwidth}{#2}$%
     \ifprompt\else\ifshowprompts\global\prompttrue\fi\fi%
     \global\inpromptfalse\global\promptbreakfalse}%
-    \if #1p\relax\else\copy\Minbox\fi%
+    %\if #1p\relax\else\copy\Minbox\fi%
     {\ifmatharray\advance\belowinskip 3pt\global\matharrayfalse\fi%
     \vskip\belowinskip}}
 
