@@ -108,7 +108,7 @@ Setting \mb{\$BreitMaison} to \mb{True} changes the commutation behaviour\footno
 %\mb{DiracTrace}, \mb{DiracSimplify}, \mb{DiracReduce} and \mb{DiracTrick}
 In fact, how \fc treats $\gamma^5$ depends on the setting of the variables \mb{\$BreitMaison}, \mb{\$Larin} and \mb{\$West}. They are all boolean variables; the first two specify the $\gamma^5$ scheme. None of them have been neither thoroughly implemented nor tested. If \mb{\$West} is set to True (which is the default), traces involving more than 4 Dirac matrices and a $\gamma^5$ are calculated recursively according to formula (A.5) from \cite{west}, which is based on the Breitenlohner Maison -scheme.
 } of $\gamma^{5}$: It anti-commutes with Dirac matrices in four dimensions, 
-but commutes with the (D-4)-dimensional part.
+but commutes with the $(D-4)$-dimensional part.
 The basic features of the Breitenlohner-Maison scheme are implemented in 
 \fc, but they have not been tested  very thoroughly (some simple 
 calculations are given in  section \ref{diracalg}). 

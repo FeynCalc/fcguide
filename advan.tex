@@ -21,7 +21,7 @@ The main features of \fphi are:
 
 \subsubsection{Chiral quantum fields and lagrangians}
 
-\fphi comes with a number of predefined chiral models. These define lagrangians etc. in terms of quantum fields. The convention used for a quantum field denoting the pion field is \mb{Particle[Pion]}. Since partial derivatives and covariant derivatives may be performed on \mb{QuantumField}s as well as on polynomials of \mb{QuantumField}s, the \mb{QuantumField}s usually carry a space-time argument, e.g. $x$. \mb{QuantumField}s may be grouped in SU($N$) matrices or multiplets with the functions \mb{IsoVector}, \mb{UMatrix} and \mb{UVector} as heads. When this is done, these functions carry the space-time argument. In the following this is illustrated through some simple examples.
+\fphi comes with a number of predefined chiral models (or configurations). These define lagrangians etc. in terms of quantum fields. Which configuration and lagrangians are loaded should be defined before startup of \fc. The list of available configurations and lagrangians can be found by browsing the directory "HighEnergyPhysics/Phi/Configurations" and "HighEnergyPhysics/Phi/Lagrangians".
 \beom
 \dtog{
 Quit[];\\\\
@@ -31,6 +31,14 @@ Quit[];\\\\
 \$Lagrangians = {"ChPTVirtualPhotons2"[2], \\
 \mindent "ChPTVirtualPhotons2"[4]};\\\\
 Get["HighEnergyPhysics`FeynCalc`"];\\}{}{Quit the kernel and reload \fc with the packages \fphi and \fa enabled. We may specify to load the some \fphi model and lagrangians, in this case we choose "ChPTVirtualPhotons2" and its two lagrangians.}
+\domtog{}{}{The database of lagrangians has been enlarged with lagrangians specified. We may inspect one of them. In section \ref{chptLags} we shall discuss how to construct such lagrangians.}
+\enom
+\otabtwo{
+\mbs{\$Configuration} & string variable determining which configuration is loaded at startup\cr
+\mbs{\$Lagrangians} & string variable determining which lagrangians are loaded at startup\cr
+}{\fphi startup settings.}
+The field argument of \mb{QuantumField} can be any symbol. Notice however, that the various configurations files for \fphi each use some conventions; e.g. for a pion the symbol \mb{Particle[Pion]} is used. The Dirac bar can be applied to fermionic \mb{QuantumField}s with the function \mb{DiracBar}. Since partial derivatives and covariant derivatives may be performed on \mb{QuantumField}s as well as on polynomials of \mb{QuantumField}s, the \mb{QuantumField}s usually carry a space-time argument, e.g. $x$. \mb{QuantumField}s may be grouped in SU($N$) matrices or vectors\footnote{in the rest of this section, with  SU($N$) we shall understand  SU($N$), where $N=2 or 3$.} with the functions \mb{IsoVector}, \mb{UMatrix} and \mb{UVector} as heads\footnote{When this is done, these functions take over the space-time argument.}. These things are illustrated through the following initial simple examples.
+\beom
 \domtog{
 \mb{CovariantFieldDerivative[QuantumField[Particle[\\
 \mindent Pion]][x]\phat 2, x, LorentzIndex[$\bm{\mu}$]]//\\
@@ -46,10 +54,10 @@ $\ComplexI \pi^2\, \left( \overrightarrow{V_\mu} \cdot
 \ComplexI \gamma_\mu Q_{\rm\bf L}\, \pi^2\, -\, \ComplexI \gamma_\mu Q_{\rm\bf R}\, \pi^2\, +
 2\pi\, \partial_\mu\pi$
 }{Here is how to enter a covariant derivative $D_\mu(\phi_\pi(x)^2$).\\
-Notice that this model defines the covariant derivative and assigns the symbol $\pi$ to the field $\phi_\pi$}
+Notice that this model defines the covariant derivative and assigns the symbol $\pi$ to the field $\phi_\pi$.}
 \domtog{
-\mb{CovariantFieldDerivative[\\
-    IsoDot[IsoVector[QuantumField[Particle[Pion]]][x],\\
+\mb{CovariantFieldDerivative[IsoDot[\\
+    IsoVector[QuantumField[Particle[Pion]]][x],\\
       IsoVector[UMatrix[UGenerator[]]]], x,\\
     LorentzIndex[$\bm{\mu}$]] // CommutatorReduce}
 }{
@@ -73,34 +81,86 @@ Here is a more complex example, involving also \mb{IsoVector}, \mb{UMatrix}. Not
 \mb{IsoVector} takes over the $x$-dependence.
 }
 \domtog{
-\mb{UVector[QuantumField[DiracBar[Particle[\\
+\mb{UVector[DiracBar[QuantumField[Particle[\\
    \mindent Nucleon]]]][x].\\
     DiracGamma[LorentzIndex[$\bm{\mu}$]].\\
     NM[UMatrix[SMM][x], \\
       \mindent FieldDerivative[Adjoint[UMatrix[SMM][x]], \\
       \mindent \mindent x, LorentzIndex[$\bm{\mu}$]]].\\
     UVector[QuantumField[Particle[Nucleon]]][x]}
-}{$\vec{\overline{\rm N}}\, .\, \gamma^\mu\, .\, u\, \SixPointedStar\, \partial_\mu(u^\dagger)\, .\, \vec{{\rm N}}$}{Although this model does not use nucleons, we may still use e.g. the SU($N$) construction $\overrightarrow{\bar{\psi}_{\rm N}}\, \gamma^\mu\, u \partial_\mu\, u^\dag\, \overrightarrow{\psi_{\rm N}}$, where $u$ is a $N \times N$ field matrix containing the meson fields (see e.g. \cite{Ecker:1992jh}).}
+}{$\vec{\overline{\rm N}}\, .\, \gamma^\mu\, .\, u\, \SixPointedStar\, \partial_\mu(u^\dagger)\, .\, \vec{{\rm N}}$}{Although the model "ChPTVirtualPhotons2" does not use nucleons, we may still use e.g. the SU($N$) construction $\overrightarrow{\bar{\psi}_{\rm N}}\, \gamma^\mu\, u \partial_\mu\, u^\dag\, \overrightarrow{\psi_{\rm N}}$, where $u$ is a $N \times N$ field matrix containing the meson fields (see e.g. \cite{Ecker:1992jh}).}
 \enom
-The \mma \mb{Dot} is used for multiplication of Dirac matrices and the multiplication of SU($N$) matrices with SU($N$) vectors, whereas \mb{NM} (``\mb{$\SixPointedStar$}'' in \mb{OutputForm}) is used for multiplication of SU($N$) matrices and \mb{IsoDot} (``\mb{$\cdot$}'' in \mb{OutputForm}) is used for multiplication of SU($N$) iso-vectors.
+\mb{FieldDerivative} and \mb{CovariantFieldDerivative} are derivatives acting on the \mb{QuantumField}s\footnote{A different but equivalent way of calculating derivatives
+is using ``\mb{$.$}'' and the operators of page \pageref{partialDs}. The ``\mb{$.$}'' operator is, however, also used for multiplying Dirac matrices, so to avoid confusion \mb{FieldDerivative} may be used.}.
+The \mma \mb{Dot} is used for multiplication of Dirac matrices and the multiplication of SU($N$) matrices with SU($N$) vectors, \mb{NM} (``\mb{$\SixPointedStar$}'' in \mb{OutputForm}) is used for multiplication of SU($N$) matrices, \mb{IsoDot} (``\mb{$\cdot$}'' in \mb{OutputForm}) is used for multiplication of SU($N$) iso-vectors, \mb{UGenerator} denotes generators of SU($N$), \mb{CommutatorReduce} pulls out abelian quantities of non-abelian products. These functions are introduced more systematically in the following section.
+
+\otabtwo{
+\mbs{\mb{FieldDerivative[g[x], x, \{l1, l2, ...\}]}} & calculates
+$\frac{\partial}{\partial x_{l1}}\frac{\partial}{\partial x_{l2}}\ldots$ on the
+expression \mb{g[x]}\cr
+\mbs{\mb{CovariantFieldField Derivative[g[x], x, \{l1, l2, ...\}]}} &
+as above but with the vector and axial-vector source field  terms included. This is
+defined in the chosen configuration file\cr
+}{Derivatives acting on \mb{QuantumField}s.}
+
+Many operations can be performed on expressions like the ones above. We shall see some in the ChPT examples to come. But first we turn to some of the objects that \fphi adds to the basic framework of \fc. Of the many utilities, we shall focus on SU($N$) functions and the interaction with \fa. Notice that in ChPT, a condensed notation is used and objects like \mb{MM[x]} and \mb{SMM[x]} actually contain \mb{QuantumField}s. Remember that an explanation of the various symbols can be obtained by using the \mb{?} operator.
+
+\subsubsection{Chiral vectors, matrices and structure constants in SU(2) and SU(3)}
 
 \otabtwo{
 \mbs{IsoVector[{\sl v}]} & represents an SU(2) or SU(3) multiplet with number of
-entries corresponding to the number of generators \cr
-\mbs{UVector[{\sl v}]} & represents an SU(2) or SU(3) multiplet with number of entries
-corresponding to the dimension of the representation \cr
-\mbs{UMatrix[{\sl m}]} & is recognized as an SU(2) or SU(3) matrix\cr
+entries corresponding to the number of generators (3 or 8)\cr
+\mbs{UVector[{\sl v}]} & represents an SU(2) or SU(3) vector with number of entries
+corresponding to the dimension of the representation (2 or 3)\cr
+\mbs{UMatrix[{\sl m}]} & is recognized as a square matrix of dimension 2 or 3\cr
 }{SU($N$) vectors and matrices.}
 
-Many operations can be performed on expressions like the ones above. We shall see some in the ChPT examples to come. But first we turn to some of the objects that \fphi adds to the basic framework of \fc. Of the many utilities, we shall focus on SU(2) and SU(3) functions and the interaction with \fa. Notice that in ChPT, a condensed notation is used and objects like \mb{MM[x]} and \mb{SMM[x]} actually contain \mb{QuantumField}s. Remember that an explanation of the various symbols can be obtained by using the \mb{?} operator.
+\otabthree{
+{\sl option name} & {\sl default value} &\cr
+\hhline
+\mbs{SUNN[{\sl v}]} & number of quark flavours. Either 2 or 3 & \mb{2} \cr
+\mbs{UDimension[{\sl v}]} & dimension of the representation & \mb{Automatic}\cr
+}{Options determining the dimension of SU($N$) vectors and matrices.}
 
-\subsubsection{Matrices and structure constants of SU(2) and SU(3)}
+Several way are provided to work with SU($N$) vectors and matrices. One can work directly with the vectors and matrices using the multiplications listed below.
 
-WriteOutUMatrices
+\otabtwo{
+\mbs{NM[{\sl a}, {\sl b}, \ldots]} & non-commutative multiplication for matrices and/or fields {\sl a}, {\sl b}, \ldots \cr
+\mbs{IsoDot[{\sl a}, {\sl b}]} & dot product for iso-vectors {\sl a}, {\sl b}\cr
+\mbs{IsoCross[{\sl a}, {\sl b}]} & anti-symmetric cross product for isospin vectors {\sl a}, {\sl b}\cr
+\mbs{IsoSymmetricCross} & symmetric cross product for isospin vectors {\sl a}, {\sl b}\cr
+}{Multiplication operators for SU($N$) vectors and matrices.}
+
+Another possibility  is to write out the components explicitly, using the functions listed below.
+
+\otabtwo{
+\mbs{WriteOutUMatrices[{\sl exp}]} & write out SU($N$) vectors in {\sl exp}\cr
+\mbs{WriteOutIsoVectors[{\sl exp}]} & write out SU($N$) matrices in {\sl exp}\cr
+}{Writing out explicit components of SU($N$) vectors and matrices.}
+
+A third possibility is to work with the components using symbolic indices.
+
+\otabtwo{
+\mbs{IsoIndicesSupply[{\sl exp}]} & replaces dot and cross products of SU($N$) vectors with
+contracted indices\cr
+\mbs{IndicesCleanup[{\sl exp}]} & renames Lorentz and SU($N$) indices in a systematic way\cr
+\mbs{SUNReduce[{\sl exp}]} & does some reduction on expressions involving SU($N$) indices\cr
+}{Writing out components of SU($N$) vectors and matrices using symbolic indices and cleaning up afterwards.}
+
+\otabtwo{
+\mbs{CommutatorReduce[{\sl exp}]} & does some reduction on expressions containing non-abelian  SU($N$) products in {\sl exp}\cr
+}{Reducing non-abelian  SU($N$) products.}
+
+UGenerator, SU2Delta, SU2F, ...
+
+\subsubsection{Constructing chiral lagrangians}
+\label{chptLags}
 
 \subsubsection{Chiral power counting with \fa}
 
-\subsubsection{Calculating one-loop diagrams}
+The database of amplitudes has been enlarged with all amplitudes calculated and stored using \mb{CheckF}
+
+\subsubsection{Calculating chiral one-loop diagrams}
 
 \subsection{Two-Loop Calculations}
 

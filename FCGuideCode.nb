@@ -40,9 +40,9 @@ Wolfram Research.
 
 (*NotebookFileLineBreakTest
 NotebookFileLineBreakTest*)
-(*NotebookOptionsPosition[    385837,      13355]*)
-(*NotebookOutlinePosition[    388105,      13423]*)
-(*  CellTagsIndexPosition[    387733,      13410]*)
+(*NotebookOptionsPosition[    511380,      16708]*)
+(*NotebookOutlinePosition[    513648,      16776]*)
+(*  CellTagsIndexPosition[    513276,      16763]*)
 (*WindowFrame->Normal*)
 
 
@@ -12434,6 +12434,3359 @@ Cell[BoxData[
 Cell[BoxData[""], "Input"]
 }, Closed]],
 
+Cell["Advanced Calculations", "Section"],
+
+Cell[BoxData[
+    \(\(Quit[];\)\)], "Input"],
+
+Cell[BoxData[{
+    \(\($LoadPhi = True;\)\), "\[IndentingNewLine]", 
+    \(\($LoadFeynArts = True;\)\), "\[IndentingNewLine]", 
+    \(\($Configuration = "\<ChPTVirtualPhotons2\>";\)\), "\n", 
+    \(\($Lagrangians = {"\<ChPTVirtualPhotons2\>"[
+            2], \ "\<ChPTVirtualPhotons2\>"[4]};\)\)}], "Input"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+    \(\(Get["\<HighEnergyPhysics`FeynCalc`\>"];\)\)], "Input"],
+
+Cell[TextData[{
+  StyleBox["FeynCalc",
+    FontWeight->"Bold"],
+  " ",
+  "4.2.0",
+  "\nFor help, type ?FeynCalc,\nuse the built-in ",
+  ButtonBox["help system",
+    ButtonFunction:>(FrontEndExecute[ 
+        FrontEnd`HelpBrowserLookup[ "AddOns", #]]&),
+    ButtonData:>{"Short Overview", "intro"},
+    ButtonStyle->"AddOnsLink",
+    ButtonNote->"Open the help browser"],
+  "\nor visit ",
+  ButtonBox["www.feyncalc.org",
+    ButtonData:>{
+      URL[ "http://www.feyncalc.org"], None},
+    ButtonStyle->"Hyperlink",
+    ButtonNote->"http://www.feyncalc.org"]
+}], "Text",
+  GeneratedCell->True,
+  CellAutoOverwrite->True],
+
+Cell["Loading PHI ", "Text",
+  GeneratedCell->True,
+  CellAutoOverwrite->True],
+
+Cell["Loading FeynArts ", "Text",
+  GeneratedCell->True,
+  CellAutoOverwrite->True],
+
+Cell[BoxData[
+    \(TraditionalForm\`\*"\<\"\"\>"\)], "Print"],
+
+Cell[BoxData[
+    \(TraditionalForm\`"FeynArts 3.1"\)], "Print"],
+
+Cell[BoxData[
+    \(TraditionalForm\`"by Hagen Eck, Sepp Kueblbeck, and Thomas Hahn"\)], \
+"Print"],
+
+Cell[BoxData[
+    \(TraditionalForm\`"last revised 12 Feb 03"\)], "Print"],
+
+Cell[BoxData[
+    \(TraditionalForm\`"patched for use with FeynCalc by Frederik \
+Orellana"\)], "Print"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+    \(Lagrangian["\<ChPTVirtualPhotons2\>"[2]]\)], "Input"],
+
+Cell[BoxData[
+    FormBox[
+      RowBox[{\(HighEnergyPhysics`Phi`Objects`Private`Lagrangian::"noload"\), \
+\(\(:\)\(\ \)\), "\<\"The lagrangian \
+\\!\\(TraditionalForm\\`\\(\\\"ChPTVirtualPhotons2\\\"[2]\\)\\) is not \
+loaded. Try LoadLagrangian[\\!\\(TraditionalForm\\`\\(\\\"ChPTVirtualPhotons2\
+\\\"[2]\\)\\)].\"\>"}], TraditionalForm]], "Message"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+    \(Lagrangian[ChPTVirtualPhotons2[2]]\)], "Input"],
+
+Cell[BoxData[
+    FormBox[
+      RowBox[{
+        RowBox[{\(1\/4\), " ", 
+          RowBox[{"(", 
+            RowBox[{
+              RowBox[{"\[LeftAngleBracket]", 
+                RowBox[{
+                  TagBox[
+                    StyleBox["\<\"\[Chi]\"\>",
+                      FontWeight->"Bold",
+                      FontSlant->"Italic"],
+                    (
+                    StyleForm[ #, FontSlant -> "Italic", FontWeight -> 
+                      "Bold"]&)], "\[SixPointedStar]", 
+                  SuperscriptBox[
+                    TagBox[
+                      FormBox[
+                        TagBox[
+                          StyleBox["\<\"\[ScriptCapitalU]\"\>",
+                            FontWeight->"Bold",
+                            FontSlant->"Italic"],
+                          (
+                          StyleForm[ #, FontSlant -> "Italic", FontWeight -> 
+                            "Bold"]&)],
+                        "TraditionalForm"],
+                      TraditionalForm,
+                      Editable->True], "\[Dagger]"]}], 
+                "\[RightAngleBracket]"}], "+", 
+              RowBox[{"\[LeftAngleBracket]", 
+                RowBox[{
+                  SuperscriptBox[
+                    TagBox[
+                      FormBox[
+                        TagBox[
+                          StyleBox["\<\"\[Chi]\"\>",
+                            FontWeight->"Bold",
+                            FontSlant->"Italic"],
+                          (
+                          StyleForm[ #, FontSlant -> "Italic", FontWeight -> 
+                            "Bold"]&)],
+                        "TraditionalForm"],
+                      TraditionalForm,
+                      Editable->True], "\[Dagger]"], "\[SixPointedStar]", 
+                  TagBox[
+                    StyleBox["\<\"\[ScriptCapitalU]\"\>",
+                      FontWeight->"Bold",
+                      FontSlant->"Italic"],
+                    (
+                    StyleForm[ #, FontSlant -> "Italic", FontWeight -> 
+                      "Bold"]&)]}], "\[RightAngleBracket]"}], "+", 
+              RowBox[{"\[LeftAngleBracket]", 
+                RowBox[{
+                  RowBox[{
+                    SubscriptBox[
+                      TagBox[
+                        StyleBox["\<\"\[ScriptCapitalD]\"\>",
+                          FontSlant->"Italic"],
+                        (StyleForm[ #, FontSlant -> "Italic"]&)], 
+                      TagBox[
+                        FormBox["\[Mu]",
+                          "TraditionalForm"],
+                        TraditionalForm,
+                        Editable->True]], "(", 
+                    TagBox[
+                      FormBox[
+                        TagBox[
+                          StyleBox["\<\"\[ScriptCapitalU]\"\>",
+                            FontWeight->"Bold",
+                            FontSlant->"Italic"],
+                          (
+                          StyleForm[ #, FontSlant -> "Italic", FontWeight -> 
+                            "Bold"]&)],
+                        "TraditionalForm"],
+                      TraditionalForm,
+                      Editable->True], ")"}], "\[SixPointedStar]", 
+                  SuperscriptBox[
+                    TagBox[
+                      FormBox[
+                        RowBox[{
+                          SubscriptBox[
+                            TagBox[
+                              StyleBox["\<\"\[ScriptCapitalD]\"\>",
+                                FontSlant->"Italic"],
+                              (StyleForm[ #, FontSlant -> "Italic"]&)], 
+                            TagBox[
+                              FormBox["\[Mu]",
+                                "TraditionalForm"],
+                              TraditionalForm,
+                              Editable->True]], "(", 
+                          TagBox[
+                            FormBox[
+                              TagBox[
+                                StyleBox["\<\"\[ScriptCapitalU]\"\>",
+                                  FontWeight->"Bold",
+                                  FontSlant->"Italic"],
+                                (
+                                StyleForm[ #, FontSlant -> "Italic", 
+                                  FontWeight -> "Bold"]&)],
+                              "TraditionalForm"],
+                            TraditionalForm,
+                            Editable->True], ")"}],
+                        "TraditionalForm"],
+                      TraditionalForm,
+                      Editable->True], "\[Dagger]"]}], 
+                "\[RightAngleBracket]"}]}], ")"}], " ", 
+          SuperscriptBox[
+            RowBox[{"(", 
+              SubsuperscriptBox[
+                TagBox[
+                  StyleBox["\<\"f\"\>",
+                    FontSlant->"Italic"],
+                  (StyleForm[ #, FontSlant -> "Italic"]&)], 
+                TagBox[
+                  FormBox[
+                    TagBox[
+                      StyleBox["\<\"\[Pi]\"\>",
+                        FontSlant->"Italic"],
+                      (StyleForm[ #, FontSlant -> "Italic"]&)],
+                    "TraditionalForm"],
+                  TraditionalForm,
+                  Editable->True], 
+                RowBox[{"\[Null]", 
+                  TagBox[
+                    FormBox["",
+                      "TraditionalForm"],
+                    TraditionalForm,
+                    Editable->True], 
+                  TagBox[
+                    FormBox["",
+                      "TraditionalForm"],
+                    TraditionalForm,
+                    Editable->True], 
+                  TagBox[
+                    FormBox["",
+                      "TraditionalForm"],
+                    TraditionalForm,
+                    Editable->True]}]], ")"}], "2"]}], "-", 
+        RowBox[{\(1\/2\), " ", 
+          TagBox[
+            StyleBox["\<\"\[Lambda]\"\>",
+              FontSlant->"Italic"],
+            (StyleForm[ #, FontSlant -> "Italic"]&)], " ", 
+          RowBox[{
+            SubscriptBox[
+              TagBox[
+                StyleBox["\<\"\[PartialD]\"\>",
+                  FontSlant->"Italic"],
+                (StyleForm[ #, FontSlant -> "Italic"]&)], 
+              TagBox[
+                FormBox["\[Mu]",
+                  "TraditionalForm"],
+                TraditionalForm,
+                Editable->True]], "(", 
+            TagBox[
+              FormBox[
+                SubscriptBox[
+                  FormBox[
+                    SuperscriptBox[
+                      TagBox["\<\"\[Gamma]\"\>",
+                        StyleForm], 
+                      RowBox[{
+                        TagBox[
+                          FormBox["",
+                            "TraditionalForm"],
+                          TraditionalForm,
+                          Editable->True], 
+                        TagBox[
+                          FormBox["",
+                            "TraditionalForm"],
+                          TraditionalForm,
+                          Editable->True]}]],
+                    "TraditionalForm"], "\[Mu]"],
+                "TraditionalForm"],
+              TraditionalForm,
+              Editable->True], ")"}], " ", 
+          RowBox[{
+            SubscriptBox[
+              TagBox[
+                StyleBox["\<\"\[PartialD]\"\>",
+                  FontSlant->"Italic"],
+                (StyleForm[ #, FontSlant -> "Italic"]&)], 
+              TagBox[
+                FormBox["\[Nu]",
+                  "TraditionalForm"],
+                TraditionalForm,
+                Editable->True]], "(", 
+            TagBox[
+              FormBox[
+                SubscriptBox[
+                  FormBox[
+                    SuperscriptBox[
+                      TagBox["\<\"\[Gamma]\"\>",
+                        StyleForm], 
+                      RowBox[{
+                        TagBox[
+                          FormBox["",
+                            "TraditionalForm"],
+                          TraditionalForm,
+                          Editable->True], 
+                        TagBox[
+                          FormBox["",
+                            "TraditionalForm"],
+                          TraditionalForm,
+                          Editable->True]}]],
+                    "TraditionalForm"], "\[Nu]"],
+                "TraditionalForm"],
+              TraditionalForm,
+              Editable->True], ")"}]}], "-", 
+        RowBox[{\(1\/4\), " ", 
+          RowBox[{"(", 
+            RowBox[{
+              SubscriptBox[
+                TagBox[
+                  FormBox[
+                    FormBox[
+                      SuperscriptBox[
+                        TagBox["\<\"\[Gamma]\"\>",
+                          StyleForm], 
+                        RowBox[{
+                          TagBox[
+                            FormBox["",
+                              "TraditionalForm"],
+                            TraditionalForm,
+                            Editable->True], 
+                          TagBox[
+                            FormBox["",
+                              "TraditionalForm"],
+                            TraditionalForm,
+                            Editable->True]}]],
+                      "TraditionalForm"],
+                    "TraditionalForm"],
+                  TraditionalForm,
+                  Editable->True], 
+                RowBox[{
+                  TagBox[
+                    FormBox[
+                      FormBox["\[Mu]",
+                        "TraditionalForm"],
+                      "TraditionalForm"],
+                    TraditionalForm,
+                    Editable->True], 
+                  TagBox[
+                    FormBox[
+                      FormBox["\[Nu]",
+                        "TraditionalForm"],
+                      "TraditionalForm"],
+                    TraditionalForm,
+                    Editable->True]}]], "\[SixPointedStar]", 
+              SubscriptBox[
+                TagBox[
+                  FormBox[
+                    FormBox[
+                      SuperscriptBox[
+                        TagBox["\<\"\[Gamma]\"\>",
+                          StyleForm], 
+                        RowBox[{
+                          TagBox[
+                            FormBox["",
+                              "TraditionalForm"],
+                            TraditionalForm,
+                            Editable->True], 
+                          TagBox[
+                            FormBox["",
+                              "TraditionalForm"],
+                            TraditionalForm,
+                            Editable->True]}]],
+                      "TraditionalForm"],
+                    "TraditionalForm"],
+                  TraditionalForm,
+                  Editable->True], 
+                RowBox[{
+                  TagBox[
+                    FormBox[
+                      FormBox["\[Mu]",
+                        "TraditionalForm"],
+                      "TraditionalForm"],
+                    TraditionalForm,
+                    Editable->True], 
+                  TagBox[
+                    FormBox[
+                      FormBox["\[Nu]",
+                        "TraditionalForm"],
+                      "TraditionalForm"],
+                    TraditionalForm,
+                    Editable->True]}]]}], ")"}]}], "+", 
+        RowBox[{
+          SuperscriptBox[
+            StyleBox["\<\"C\"\>",
+              FontSlant->"Italic"], 
+            RowBox[{
+              TagBox[
+                FormBox["",
+                  "TraditionalForm"],
+                TraditionalForm,
+                Editable->True], 
+              TagBox[
+                FormBox["",
+                  "TraditionalForm"],
+                TraditionalForm,
+                Editable->True], 
+              TagBox[
+                FormBox["",
+                  "TraditionalForm"],
+                TraditionalForm,
+                Editable->True]}]], " ", 
+          RowBox[{"\[LeftAngleBracket]", 
+            RowBox[{
+              RowBox[{
+                RowBox[{
+                  SubscriptBox[
+                    TagBox[
+                      StyleBox["\<\"Q\"\>",
+                        FontWeight->"Bold",
+                        FontSlant->"Italic"],
+                      (
+                      StyleForm[ #, FontSlant -> "Italic", FontWeight -> 
+                        "Bold"]&)], 
+                    TagBox[
+                      StyleBox["\<\"R\"\>",
+                        FontSlant->"Plain"],
+                      (StyleForm[ #, FontSlant -> "Plain"]&)]], 
+                  "\[SixPointedStar]", 
+                  TagBox[
+                    StyleBox["\<\"\[ScriptCapitalU]\"\>",
+                      FontWeight->"Bold",
+                      FontSlant->"Italic"],
+                    (
+                    StyleForm[ #, FontSlant -> "Italic", FontWeight -> 
+                      "Bold"]&)]}], "\[SixPointedStar]", 
+                SubscriptBox[
+                  TagBox[
+                    StyleBox["\<\"Q\"\>",
+                      FontWeight->"Bold",
+                      FontSlant->"Italic"],
+                    (
+                    StyleForm[ #, FontSlant -> "Italic", FontWeight -> 
+                      "Bold"]&)], 
+                  TagBox[
+                    StyleBox["\<\"L\"\>",
+                      FontSlant->"Plain"],
+                    (StyleForm[ #, FontSlant -> "Plain"]&)]]}], 
+              "\[SixPointedStar]", 
+              SuperscriptBox[
+                TagBox[
+                  FormBox[
+                    TagBox[
+                      StyleBox["\<\"\[ScriptCapitalU]\"\>",
+                        FontWeight->"Bold",
+                        FontSlant->"Italic"],
+                      (
+                      StyleForm[ #, FontSlant -> "Italic", FontWeight -> 
+                        "Bold"]&)],
+                    "TraditionalForm"],
+                  TraditionalForm,
+                  Editable->True], "\[Dagger]"]}], 
+            "\[RightAngleBracket]"}]}]}], TraditionalForm]], "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+    \(CovariantFieldDerivative[\(QuantumField[Particle[Pion]]\)[x]^2, x, 
+        LorentzIndex[\[Mu]]] // CommutatorReduce\)], "Input"],
+
+Cell[BoxData[
+    FormBox[
+      RowBox[{
+        RowBox[{"\[ImaginaryI]", " ", 
+          RowBox[{"(", 
+            RowBox[{
+              RowBox[{
+                OverscriptBox[
+                  TagBox[
+                    FormBox[
+                      SubscriptBox[
+                        FormBox[
+                          SuperscriptBox[
+                            TagBox[
+                              StyleBox["\<\"V\"\>",
+                                FontSlant->"Italic"],
+                              (StyleForm[ #, FontSlant -> "Italic"]&)], 
+                            RowBox[{
+                              TagBox[
+                                FormBox["",
+                                  "TraditionalForm"],
+                                TraditionalForm,
+                                Editable->True], 
+                              TagBox[
+                                FormBox["",
+                                  "TraditionalForm"],
+                                TraditionalForm,
+                                Editable->True]}]],
+                          "TraditionalForm"], "\[Mu]"],
+                      "TraditionalForm"],
+                    TraditionalForm,
+                    Editable->True], 
+                  TagBox["\<\"\[Rule]\"\>",
+                    StyleForm]], "\[CenterDot]", 
+                OverscriptBox[
+                  TagBox[
+                    FormBox[
+                      StyleBox[
+                        TagBox[
+                          StyleBox["\<\"\[Sigma]\"\>",
+                            FontSlant->"Italic"],
+                          (StyleForm[ #, FontSlant -> "Italic"]&)],
+                        FontWeight->"Bold"],
+                      "TraditionalForm"],
+                    TraditionalForm,
+                    Editable->True], 
+                  TagBox["\<\"\[Rule]\"\>",
+                    StyleForm]]}], "-", 
+              RowBox[{
+                OverscriptBox[
+                  TagBox[
+                    FormBox[
+                      SubscriptBox[
+                        FormBox[
+                          SuperscriptBox[
+                            TagBox[
+                              StyleBox["\<\"A\"\>",
+                                FontSlant->"Italic"],
+                              (StyleForm[ #, FontSlant -> "Italic"]&)], 
+                            RowBox[{
+                              TagBox[
+                                FormBox["",
+                                  "TraditionalForm"],
+                                TraditionalForm,
+                                Editable->True], 
+                              TagBox[
+                                FormBox["",
+                                  "TraditionalForm"],
+                                TraditionalForm,
+                                Editable->True]}]],
+                          "TraditionalForm"], "\[Mu]"],
+                      "TraditionalForm"],
+                    TraditionalForm,
+                    Editable->True], 
+                  TagBox["\<\"\[Rule]\"\>",
+                    StyleForm]], "\[CenterDot]", 
+                OverscriptBox[
+                  TagBox[
+                    FormBox[
+                      StyleBox[
+                        TagBox[
+                          StyleBox["\<\"\[Sigma]\"\>",
+                            FontSlant->"Italic"],
+                          (StyleForm[ #, FontSlant -> "Italic"]&)],
+                        FontWeight->"Bold"],
+                      "TraditionalForm"],
+                    TraditionalForm,
+                    Editable->True], 
+                  TagBox["\<\"\[Rule]\"\>",
+                    StyleForm]]}]}], ")"}], " ", 
+          SuperscriptBox[
+            FormBox[
+              SuperscriptBox[
+                TagBox[
+                  StyleBox["\<\"\[Pi]\"\>",
+                    FontSlant->"Italic"],
+                  (StyleForm[ #, FontSlant -> "Italic"]&)], 
+                RowBox[{
+                  TagBox[
+                    FormBox["",
+                      "TraditionalForm"],
+                    TraditionalForm,
+                    Editable->True], 
+                  TagBox[
+                    FormBox["",
+                      "TraditionalForm"],
+                    TraditionalForm,
+                    Editable->True]}]],
+              "TraditionalForm"], "2"]}], "-", 
+        RowBox[{"\[ImaginaryI]", " ", 
+          RowBox[{"(", 
+            RowBox[{
+              RowBox[{
+                OverscriptBox[
+                  TagBox[
+                    FormBox[
+                      SubscriptBox[
+                        FormBox[
+                          SuperscriptBox[
+                            TagBox[
+                              StyleBox["\<\"A\"\>",
+                                FontSlant->"Italic"],
+                              (StyleForm[ #, FontSlant -> "Italic"]&)], 
+                            RowBox[{
+                              TagBox[
+                                FormBox["",
+                                  "TraditionalForm"],
+                                TraditionalForm,
+                                Editable->True], 
+                              TagBox[
+                                FormBox["",
+                                  "TraditionalForm"],
+                                TraditionalForm,
+                                Editable->True]}]],
+                          "TraditionalForm"], "\[Mu]"],
+                      "TraditionalForm"],
+                    TraditionalForm,
+                    Editable->True], 
+                  TagBox["\<\"\[Rule]\"\>",
+                    StyleForm]], "\[CenterDot]", 
+                OverscriptBox[
+                  TagBox[
+                    FormBox[
+                      StyleBox[
+                        TagBox[
+                          StyleBox["\<\"\[Sigma]\"\>",
+                            FontSlant->"Italic"],
+                          (StyleForm[ #, FontSlant -> "Italic"]&)],
+                        FontWeight->"Bold"],
+                      "TraditionalForm"],
+                    TraditionalForm,
+                    Editable->True], 
+                  TagBox["\<\"\[Rule]\"\>",
+                    StyleForm]]}], "+", 
+              RowBox[{
+                OverscriptBox[
+                  TagBox[
+                    FormBox[
+                      SubscriptBox[
+                        FormBox[
+                          SuperscriptBox[
+                            TagBox[
+                              StyleBox["\<\"V\"\>",
+                                FontSlant->"Italic"],
+                              (StyleForm[ #, FontSlant -> "Italic"]&)], 
+                            RowBox[{
+                              TagBox[
+                                FormBox["",
+                                  "TraditionalForm"],
+                                TraditionalForm,
+                                Editable->True], 
+                              TagBox[
+                                FormBox["",
+                                  "TraditionalForm"],
+                                TraditionalForm,
+                                Editable->True]}]],
+                          "TraditionalForm"], "\[Mu]"],
+                      "TraditionalForm"],
+                    TraditionalForm,
+                    Editable->True], 
+                  TagBox["\<\"\[Rule]\"\>",
+                    StyleForm]], "\[CenterDot]", 
+                OverscriptBox[
+                  TagBox[
+                    FormBox[
+                      StyleBox[
+                        TagBox[
+                          StyleBox["\<\"\[Sigma]\"\>",
+                            FontSlant->"Italic"],
+                          (StyleForm[ #, FontSlant -> "Italic"]&)],
+                        FontWeight->"Bold"],
+                      "TraditionalForm"],
+                    TraditionalForm,
+                    Editable->True], 
+                  TagBox["\<\"\[Rule]\"\>",
+                    StyleForm]]}]}], ")"}], " ", 
+          SuperscriptBox[
+            FormBox[
+              SuperscriptBox[
+                TagBox[
+                  StyleBox["\<\"\[Pi]\"\>",
+                    FontSlant->"Italic"],
+                  (StyleForm[ #, FontSlant -> "Italic"]&)], 
+                RowBox[{
+                  TagBox[
+                    FormBox["",
+                      "TraditionalForm"],
+                    TraditionalForm,
+                    Editable->True], 
+                  TagBox[
+                    FormBox["",
+                      "TraditionalForm"],
+                    TraditionalForm,
+                    Editable->True]}]],
+              "TraditionalForm"], "2"]}], "+", 
+        RowBox[{"\[ImaginaryI]", " ", 
+          SubscriptBox[
+            FormBox[
+              SuperscriptBox[
+                TagBox["\<\"\[Gamma]\"\>",
+                  StyleForm], 
+                RowBox[{
+                  TagBox[
+                    FormBox["",
+                      "TraditionalForm"],
+                    TraditionalForm,
+                    Editable->True], 
+                  TagBox[
+                    FormBox["",
+                      "TraditionalForm"],
+                    TraditionalForm,
+                    Editable->True]}]],
+              "TraditionalForm"], "\[Mu]"], " ", 
+          TagBox[
+            FormBox[
+              TagBox[
+                StyleBox[
+                  SubscriptBox[
+                    TagBox[
+                      StyleBox["\<\"Q\"\>",
+                        FontSlant->"Italic"],
+                      (StyleForm[ #, FontSlant -> "Italic"]&)], 
+                    TagBox[
+                      StyleBox["\<\"L\"\>",
+                        FontSlant->"Plain"],
+                      (StyleForm[ #, FontSlant -> "Plain"]&)]],
+                  FontWeight->"Bold"],
+                (StyleForm[ #, FontWeight -> "Bold"]&)],
+              "TraditionalForm"],
+            TraditionalForm,
+            Editable->True], " ", 
+          SuperscriptBox[
+            FormBox[
+              SuperscriptBox[
+                TagBox[
+                  StyleBox["\<\"\[Pi]\"\>",
+                    FontSlant->"Italic"],
+                  (StyleForm[ #, FontSlant -> "Italic"]&)], 
+                RowBox[{
+                  TagBox[
+                    FormBox["",
+                      "TraditionalForm"],
+                    TraditionalForm,
+                    Editable->True], 
+                  TagBox[
+                    FormBox["",
+                      "TraditionalForm"],
+                    TraditionalForm,
+                    Editable->True]}]],
+              "TraditionalForm"], "2"]}], "-", 
+        RowBox[{"\[ImaginaryI]", " ", 
+          SubscriptBox[
+            FormBox[
+              SuperscriptBox[
+                TagBox["\<\"\[Gamma]\"\>",
+                  StyleForm], 
+                RowBox[{
+                  TagBox[
+                    FormBox["",
+                      "TraditionalForm"],
+                    TraditionalForm,
+                    Editable->True], 
+                  TagBox[
+                    FormBox["",
+                      "TraditionalForm"],
+                    TraditionalForm,
+                    Editable->True]}]],
+              "TraditionalForm"], "\[Mu]"], " ", 
+          TagBox[
+            FormBox[
+              TagBox[
+                StyleBox[
+                  SubscriptBox[
+                    TagBox[
+                      StyleBox["\<\"Q\"\>",
+                        FontSlant->"Italic"],
+                      (StyleForm[ #, FontSlant -> "Italic"]&)], 
+                    TagBox[
+                      StyleBox["\<\"R\"\>",
+                        FontSlant->"Plain"],
+                      (StyleForm[ #, FontSlant -> "Plain"]&)]],
+                  FontWeight->"Bold"],
+                (StyleForm[ #, FontWeight -> "Bold"]&)],
+              "TraditionalForm"],
+            TraditionalForm,
+            Editable->True], " ", 
+          SuperscriptBox[
+            FormBox[
+              SuperscriptBox[
+                TagBox[
+                  StyleBox["\<\"\[Pi]\"\>",
+                    FontSlant->"Italic"],
+                  (StyleForm[ #, FontSlant -> "Italic"]&)], 
+                RowBox[{
+                  TagBox[
+                    FormBox["",
+                      "TraditionalForm"],
+                    TraditionalForm,
+                    Editable->True], 
+                  TagBox[
+                    FormBox["",
+                      "TraditionalForm"],
+                    TraditionalForm,
+                    Editable->True]}]],
+              "TraditionalForm"], "2"]}], "+", 
+        RowBox[{"2", " ", 
+          RowBox[{
+            SubscriptBox["\[PartialD]", 
+              FormBox[
+                FormBox["\[Mu]",
+                  "TraditionalForm"],
+                "TraditionalForm"]], 
+            SubsuperscriptBox[
+              FormBox[
+                SuperscriptBox[
+                  TagBox[
+                    StyleBox["\<\"\[Pi]\"\>",
+                      FontSlant->"Italic"],
+                    (StyleForm[ #, FontSlant -> "Italic"]&)], 
+                  RowBox[{
+                    TagBox[
+                      FormBox["",
+                        "TraditionalForm"],
+                      TraditionalForm,
+                      Editable->True], 
+                    TagBox[
+                      FormBox["",
+                        "TraditionalForm"],
+                      TraditionalForm,
+                      Editable->True]}]],
+                "TraditionalForm"], "\[Null]", "\[Null]"]}], " ", 
+          FormBox[
+            SuperscriptBox[
+              TagBox[
+                StyleBox["\<\"\[Pi]\"\>",
+                  FontSlant->"Italic"],
+                (StyleForm[ #, FontSlant -> "Italic"]&)], 
+              RowBox[{
+                TagBox[
+                  FormBox["",
+                    "TraditionalForm"],
+                  TraditionalForm,
+                  Editable->True], 
+                TagBox[
+                  FormBox["",
+                    "TraditionalForm"],
+                  TraditionalForm,
+                  Editable->True]}]],
+            "TraditionalForm"]}]}], TraditionalForm]], "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+    \(CovariantFieldDerivative[
+        IsoDot[\(IsoVector[QuantumField[Particle[Pion]]]\)[x], 
+          IsoVector[UMatrix[UGenerator[]]]], x, LorentzIndex[\[Mu]]] // 
+      CommutatorReduce\)], "Input"],
+
+Cell[BoxData[
+    FormBox[
+      RowBox[{
+        RowBox[{
+          RowBox[{
+            TagBox[
+              FormBox[
+                SubscriptBox["\[PartialD]", 
+                  FormBox[
+                    FormBox["\[Mu]",
+                      "TraditionalForm"],
+                    "TraditionalForm"]],
+                "TraditionalForm"],
+              TraditionalForm,
+              Editable->True], "(", 
+            OverscriptBox[
+              TagBox[
+                FormBox[
+                  FormBox[
+                    SuperscriptBox[
+                      TagBox[
+                        StyleBox["\<\"\[Pi]\"\>",
+                          FontSlant->"Italic"],
+                        (StyleForm[ #, FontSlant -> "Italic"]&)], 
+                      RowBox[{
+                        TagBox[
+                          FormBox["",
+                            "TraditionalForm"],
+                          TraditionalForm,
+                          Editable->True], 
+                        TagBox[
+                          FormBox["",
+                            "TraditionalForm"],
+                          TraditionalForm,
+                          Editable->True]}]],
+                    "TraditionalForm"],
+                  "TraditionalForm"],
+                TraditionalForm,
+                Editable->True], 
+              TagBox["\<\"\[Rule]\"\>",
+                StyleForm]], ")"}], "\[CenterDot]", 
+          OverscriptBox[
+            TagBox[
+              FormBox[
+                StyleBox[
+                  TagBox[
+                    StyleBox["\<\"\[Sigma]\"\>",
+                      FontSlant->"Italic"],
+                    (StyleForm[ #, FontSlant -> "Italic"]&)],
+                  FontWeight->"Bold"],
+                "TraditionalForm"],
+              TraditionalForm,
+              Editable->True], 
+            TagBox["\<\"\[Rule]\"\>",
+              StyleForm]]}], "+", 
+        RowBox[{"\[ImaginaryI]", " ", 
+          RowBox[{"(", 
+            RowBox[{
+              RowBox[{
+                OverscriptBox[
+                  TagBox[
+                    FormBox[
+                      FormBox[
+                        SuperscriptBox[
+                          TagBox[
+                            StyleBox["\<\"\[Pi]\"\>",
+                              FontSlant->"Italic"],
+                            (StyleForm[ #, FontSlant -> "Italic"]&)], 
+                          RowBox[{
+                            TagBox[
+                              FormBox["",
+                                "TraditionalForm"],
+                              TraditionalForm,
+                              Editable->True], 
+                            TagBox[
+                              FormBox["",
+                                "TraditionalForm"],
+                              TraditionalForm,
+                              Editable->True]}]],
+                        "TraditionalForm"],
+                      "TraditionalForm"],
+                    TraditionalForm,
+                    Editable->True], 
+                  TagBox["\<\"\[Rule]\"\>",
+                    StyleForm]], "\[CenterDot]", 
+                OverscriptBox[
+                  TagBox[
+                    FormBox[
+                      StyleBox[
+                        TagBox[
+                          StyleBox["\<\"\[Sigma]\"\>",
+                            FontSlant->"Italic"],
+                          (StyleForm[ #, FontSlant -> "Italic"]&)],
+                        FontWeight->"Bold"],
+                      "TraditionalForm"],
+                    TraditionalForm,
+                    Editable->True], 
+                  TagBox["\<\"\[Rule]\"\>",
+                    StyleForm]]}], "\[SixPointedStar]", "(", 
+              RowBox[{
+                RowBox[{
+                  OverscriptBox[
+                    TagBox[
+                      FormBox[
+                        SubscriptBox[
+                          FormBox[
+                            SuperscriptBox[
+                              TagBox[
+                                StyleBox["\<\"V\"\>",
+                                  FontSlant->"Italic"],
+                                (StyleForm[ #, FontSlant -> "Italic"]&)], 
+                              RowBox[{
+                                TagBox[
+                                  FormBox["",
+                                    "TraditionalForm"],
+                                  TraditionalForm,
+                                  Editable->True], 
+                                TagBox[
+                                  FormBox["",
+                                    "TraditionalForm"],
+                                  TraditionalForm,
+                                  Editable->True]}]],
+                            "TraditionalForm"], "\[Mu]"],
+                        "TraditionalForm"],
+                      TraditionalForm,
+                      Editable->True], 
+                    TagBox["\<\"\[Rule]\"\>",
+                      StyleForm]], "\[CenterDot]", 
+                  OverscriptBox[
+                    TagBox[
+                      FormBox[
+                        StyleBox[
+                          TagBox[
+                            StyleBox["\<\"\[Sigma]\"\>",
+                              FontSlant->"Italic"],
+                            (StyleForm[ #, FontSlant -> "Italic"]&)],
+                          FontWeight->"Bold"],
+                        "TraditionalForm"],
+                      TraditionalForm,
+                      Editable->True], 
+                    TagBox["\<\"\[Rule]\"\>",
+                      StyleForm]]}], "-", 
+                RowBox[{
+                  OverscriptBox[
+                    TagBox[
+                      FormBox[
+                        SubscriptBox[
+                          FormBox[
+                            SuperscriptBox[
+                              TagBox[
+                                StyleBox["\<\"A\"\>",
+                                  FontSlant->"Italic"],
+                                (StyleForm[ #, FontSlant -> "Italic"]&)], 
+                              RowBox[{
+                                TagBox[
+                                  FormBox["",
+                                    "TraditionalForm"],
+                                  TraditionalForm,
+                                  Editable->True], 
+                                TagBox[
+                                  FormBox["",
+                                    "TraditionalForm"],
+                                  TraditionalForm,
+                                  Editable->True]}]],
+                            "TraditionalForm"], "\[Mu]"],
+                        "TraditionalForm"],
+                      TraditionalForm,
+                      Editable->True], 
+                    TagBox["\<\"\[Rule]\"\>",
+                      StyleForm]], "\[CenterDot]", 
+                  OverscriptBox[
+                    TagBox[
+                      FormBox[
+                        StyleBox[
+                          TagBox[
+                            StyleBox["\<\"\[Sigma]\"\>",
+                              FontSlant->"Italic"],
+                            (StyleForm[ #, FontSlant -> "Italic"]&)],
+                          FontWeight->"Bold"],
+                        "TraditionalForm"],
+                      TraditionalForm,
+                      Editable->True], 
+                    TagBox["\<\"\[Rule]\"\>",
+                      StyleForm]]}]}], ")"}], ")"}]}], "-", 
+        RowBox[{"\[ImaginaryI]", " ", 
+          RowBox[{"(", 
+            RowBox[{
+              RowBox[{"(", 
+                RowBox[{
+                  RowBox[{
+                    OverscriptBox[
+                      TagBox[
+                        FormBox[
+                          SubscriptBox[
+                            FormBox[
+                              SuperscriptBox[
+                                TagBox[
+                                  StyleBox["\<\"A\"\>",
+                                    FontSlant->"Italic"],
+                                  (StyleForm[ #, FontSlant -> "Italic"]&)], 
+                                RowBox[{
+                                  TagBox[
+                                    FormBox["",
+                                      "TraditionalForm"],
+                                    TraditionalForm,
+                                    Editable->True], 
+                                  TagBox[
+                                    FormBox["",
+                                      "TraditionalForm"],
+                                    TraditionalForm,
+                                    Editable->True]}]],
+                              "TraditionalForm"], "\[Mu]"],
+                          "TraditionalForm"],
+                        TraditionalForm,
+                        Editable->True], 
+                      TagBox["\<\"\[Rule]\"\>",
+                        StyleForm]], "\[CenterDot]", 
+                    OverscriptBox[
+                      TagBox[
+                        FormBox[
+                          StyleBox[
+                            TagBox[
+                              StyleBox["\<\"\[Sigma]\"\>",
+                                FontSlant->"Italic"],
+                              (StyleForm[ #, FontSlant -> "Italic"]&)],
+                            FontWeight->"Bold"],
+                          "TraditionalForm"],
+                        TraditionalForm,
+                        Editable->True], 
+                      TagBox["\<\"\[Rule]\"\>",
+                        StyleForm]]}], "+", 
+                  RowBox[{
+                    OverscriptBox[
+                      TagBox[
+                        FormBox[
+                          SubscriptBox[
+                            FormBox[
+                              SuperscriptBox[
+                                TagBox[
+                                  StyleBox["\<\"V\"\>",
+                                    FontSlant->"Italic"],
+                                  (StyleForm[ #, FontSlant -> "Italic"]&)], 
+                                RowBox[{
+                                  TagBox[
+                                    FormBox["",
+                                      "TraditionalForm"],
+                                    TraditionalForm,
+                                    Editable->True], 
+                                  TagBox[
+                                    FormBox["",
+                                      "TraditionalForm"],
+                                    TraditionalForm,
+                                    Editable->True]}]],
+                              "TraditionalForm"], "\[Mu]"],
+                          "TraditionalForm"],
+                        TraditionalForm,
+                        Editable->True], 
+                      TagBox["\<\"\[Rule]\"\>",
+                        StyleForm]], "\[CenterDot]", 
+                    OverscriptBox[
+                      TagBox[
+                        FormBox[
+                          StyleBox[
+                            TagBox[
+                              StyleBox["\<\"\[Sigma]\"\>",
+                                FontSlant->"Italic"],
+                              (StyleForm[ #, FontSlant -> "Italic"]&)],
+                            FontWeight->"Bold"],
+                          "TraditionalForm"],
+                        TraditionalForm,
+                        Editable->True], 
+                      TagBox["\<\"\[Rule]\"\>",
+                        StyleForm]]}]}], ")"}], "\[SixPointedStar]", 
+              RowBox[{
+                OverscriptBox[
+                  TagBox[
+                    FormBox[
+                      FormBox[
+                        SuperscriptBox[
+                          TagBox[
+                            StyleBox["\<\"\[Pi]\"\>",
+                              FontSlant->"Italic"],
+                            (StyleForm[ #, FontSlant -> "Italic"]&)], 
+                          RowBox[{
+                            TagBox[
+                              FormBox["",
+                                "TraditionalForm"],
+                              TraditionalForm,
+                              Editable->True], 
+                            TagBox[
+                              FormBox["",
+                                "TraditionalForm"],
+                              TraditionalForm,
+                              Editable->True]}]],
+                        "TraditionalForm"],
+                      "TraditionalForm"],
+                    TraditionalForm,
+                    Editable->True], 
+                  TagBox["\<\"\[Rule]\"\>",
+                    StyleForm]], "\[CenterDot]", 
+                OverscriptBox[
+                  TagBox[
+                    FormBox[
+                      StyleBox[
+                        TagBox[
+                          StyleBox["\<\"\[Sigma]\"\>",
+                            FontSlant->"Italic"],
+                          (StyleForm[ #, FontSlant -> "Italic"]&)],
+                        FontWeight->"Bold"],
+                      "TraditionalForm"],
+                    TraditionalForm,
+                    Editable->True], 
+                  TagBox["\<\"\[Rule]\"\>",
+                    StyleForm]]}]}], ")"}]}], "+", 
+        RowBox[{"\[ImaginaryI]", " ", 
+          RowBox[{"(", 
+            RowBox[{
+              RowBox[{
+                OverscriptBox[
+                  TagBox[
+                    FormBox[
+                      FormBox[
+                        SuperscriptBox[
+                          TagBox[
+                            StyleBox["\<\"\[Pi]\"\>",
+                              FontSlant->"Italic"],
+                            (StyleForm[ #, FontSlant -> "Italic"]&)], 
+                          RowBox[{
+                            TagBox[
+                              FormBox["",
+                                "TraditionalForm"],
+                              TraditionalForm,
+                              Editable->True], 
+                            TagBox[
+                              FormBox["",
+                                "TraditionalForm"],
+                              TraditionalForm,
+                              Editable->True]}]],
+                        "TraditionalForm"],
+                      "TraditionalForm"],
+                    TraditionalForm,
+                    Editable->True], 
+                  TagBox["\<\"\[Rule]\"\>",
+                    StyleForm]], "\[CenterDot]", 
+                OverscriptBox[
+                  TagBox[
+                    FormBox[
+                      StyleBox[
+                        TagBox[
+                          StyleBox["\<\"\[Sigma]\"\>",
+                            FontSlant->"Italic"],
+                          (StyleForm[ #, FontSlant -> "Italic"]&)],
+                        FontWeight->"Bold"],
+                      "TraditionalForm"],
+                    TraditionalForm,
+                    Editable->True], 
+                  TagBox["\<\"\[Rule]\"\>",
+                    StyleForm]]}], "\[SixPointedStar]", 
+              TagBox[
+                FormBox[
+                  TagBox[
+                    StyleBox[
+                      SubscriptBox[
+                        TagBox[
+                          StyleBox["\<\"Q\"\>",
+                            FontSlant->"Italic"],
+                          (StyleForm[ #, FontSlant -> "Italic"]&)], 
+                        TagBox[
+                          StyleBox["\<\"L\"\>",
+                            FontSlant->"Plain"],
+                          (StyleForm[ #, FontSlant -> "Plain"]&)]],
+                      FontWeight->"Bold"],
+                    (StyleForm[ #, FontWeight -> "Bold"]&)],
+                  "TraditionalForm"],
+                TraditionalForm,
+                Editable->True]}], ")"}], " ", 
+          SubscriptBox[
+            FormBox[
+              SuperscriptBox[
+                TagBox["\<\"\[Gamma]\"\>",
+                  StyleForm], 
+                RowBox[{
+                  TagBox[
+                    FormBox["",
+                      "TraditionalForm"],
+                    TraditionalForm,
+                    Editable->True], 
+                  TagBox[
+                    FormBox["",
+                      "TraditionalForm"],
+                    TraditionalForm,
+                    Editable->True]}]],
+              "TraditionalForm"], "\[Mu]"]}], "-", 
+        RowBox[{"\[ImaginaryI]", " ", 
+          RowBox[{"(", 
+            RowBox[{
+              TagBox[
+                FormBox[
+                  TagBox[
+                    StyleBox[
+                      SubscriptBox[
+                        TagBox[
+                          StyleBox["\<\"Q\"\>",
+                            FontSlant->"Italic"],
+                          (StyleForm[ #, FontSlant -> "Italic"]&)], 
+                        TagBox[
+                          StyleBox["\<\"R\"\>",
+                            FontSlant->"Plain"],
+                          (StyleForm[ #, FontSlant -> "Plain"]&)]],
+                      FontWeight->"Bold"],
+                    (StyleForm[ #, FontWeight -> "Bold"]&)],
+                  "TraditionalForm"],
+                TraditionalForm,
+                Editable->True], "\[SixPointedStar]", 
+              RowBox[{
+                OverscriptBox[
+                  TagBox[
+                    FormBox[
+                      FormBox[
+                        SuperscriptBox[
+                          TagBox[
+                            StyleBox["\<\"\[Pi]\"\>",
+                              FontSlant->"Italic"],
+                            (StyleForm[ #, FontSlant -> "Italic"]&)], 
+                          RowBox[{
+                            TagBox[
+                              FormBox["",
+                                "TraditionalForm"],
+                              TraditionalForm,
+                              Editable->True], 
+                            TagBox[
+                              FormBox["",
+                                "TraditionalForm"],
+                              TraditionalForm,
+                              Editable->True]}]],
+                        "TraditionalForm"],
+                      "TraditionalForm"],
+                    TraditionalForm,
+                    Editable->True], 
+                  TagBox["\<\"\[Rule]\"\>",
+                    StyleForm]], "\[CenterDot]", 
+                OverscriptBox[
+                  TagBox[
+                    FormBox[
+                      StyleBox[
+                        TagBox[
+                          StyleBox["\<\"\[Sigma]\"\>",
+                            FontSlant->"Italic"],
+                          (StyleForm[ #, FontSlant -> "Italic"]&)],
+                        FontWeight->"Bold"],
+                      "TraditionalForm"],
+                    TraditionalForm,
+                    Editable->True], 
+                  TagBox["\<\"\[Rule]\"\>",
+                    StyleForm]]}]}], ")"}], " ", 
+          SubscriptBox[
+            FormBox[
+              SuperscriptBox[
+                TagBox["\<\"\[Gamma]\"\>",
+                  StyleForm], 
+                RowBox[{
+                  TagBox[
+                    FormBox["",
+                      "TraditionalForm"],
+                    TraditionalForm,
+                    Editable->True], 
+                  TagBox[
+                    FormBox["",
+                      "TraditionalForm"],
+                    TraditionalForm,
+                    Editable->True]}]],
+              "TraditionalForm"], "\[Mu]"]}]}], TraditionalForm]], "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+    \(\(UVector[DiracBar[QuantumField[Particle[Nucleon]]]]\)[x] . 
+      DiracGamma[LorentzIndex[\[Mu]]] . 
+      NM[\(UMatrix[SMM]\)[x], 
+        FieldDerivative[Adjoint[\(UMatrix[SMM]\)[x]], x, 
+          LorentzIndex[\[Mu]]]] . \n\(UVector[
+          QuantumField[Particle[Nucleon]]]\)[x]\)], "Input"],
+
+Cell[BoxData[
+    FormBox[
+      RowBox[{
+        OverscriptBox[
+          TagBox[
+            FormBox[
+              FormBox[
+                OverscriptBox[
+                  TagBox[
+                    FormBox[
+                      SuperscriptBox[
+                        TagBox["\<\"N\"\>",
+                          StyleForm], 
+                        RowBox[{
+                          TagBox[
+                            FormBox["",
+                              "TraditionalForm"],
+                            TraditionalForm,
+                            Editable->True], 
+                          TagBox[
+                            FormBox["",
+                              "TraditionalForm"],
+                            TraditionalForm,
+                            Editable->True]}]],
+                      "TraditionalForm"],
+                    TraditionalForm,
+                    Editable->True], "_"],
+                "TraditionalForm"],
+              "TraditionalForm"],
+            TraditionalForm,
+            Editable->True], 
+          TagBox["\<\"\[RightVector]\"\>",
+            StyleForm]], ".", 
+        SuperscriptBox["\[Gamma]", 
+          FormBox[
+            FormBox["\[Mu]",
+              "TraditionalForm"],
+            "TraditionalForm"]], ".", 
+        RowBox[{"(", 
+          RowBox[{
+            TagBox[
+              FormBox[
+                TagBox[
+                  StyleBox[
+                    TagBox[
+                      StyleBox["\<\"\[ScriptU]\"\>",
+                        FontWeight->"Bold",
+                        FontSlant->"Italic"],
+                      (
+                      StyleForm[ #, FontSlant -> "Italic", FontWeight -> 
+                        "Bold"]&)],
+                    FontWeight->"Bold"],
+                  (StyleForm[ #, FontWeight -> "Bold"]&)],
+                "TraditionalForm"],
+              TraditionalForm,
+              Editable->True], "\[SixPointedStar]", 
+            SuperscriptBox[
+              TagBox[
+                FormBox[
+                  RowBox[{
+                    SubscriptBox[
+                      TagBox[
+                        StyleBox["\<\"\[PartialD]\"\>",
+                          FontSlant->"Italic"],
+                        (StyleForm[ #, FontSlant -> "Italic"]&)], 
+                      TagBox[
+                        FormBox[
+                          FormBox["\[Mu]",
+                            "TraditionalForm"],
+                          "TraditionalForm"],
+                        TraditionalForm,
+                        Editable->True]], "(", 
+                    TagBox[
+                      FormBox[
+                        TagBox[
+                          FormBox[
+                            TagBox[
+                              StyleBox[
+                                TagBox[
+                                  StyleBox["\<\"\[ScriptU]\"\>",
+                                    FontWeight->"Bold",
+                                    FontSlant->"Italic"],
+                                  (
+                                  StyleForm[ #, FontSlant -> "Italic", 
+                                    FontWeight -> "Bold"]&)],
+                                FontWeight->"Bold"],
+                              (StyleForm[ #, FontWeight -> "Bold"]&)],
+                            "TraditionalForm"],
+                          TraditionalForm,
+                          Editable->True],
+                        "TraditionalForm"],
+                      TraditionalForm,
+                      Editable->True], ")"}],
+                  "TraditionalForm"],
+                TraditionalForm,
+                Editable->True], "\[Dagger]"]}], ")"}], ".", 
+        OverscriptBox[
+          TagBox[
+            FormBox[
+              FormBox[
+                SuperscriptBox[
+                  TagBox["\<\"N\"\>",
+                    StyleForm], 
+                  RowBox[{
+                    TagBox[
+                      FormBox["",
+                        "TraditionalForm"],
+                      TraditionalForm,
+                      Editable->True], 
+                    TagBox[
+                      FormBox["",
+                        "TraditionalForm"],
+                      TraditionalForm,
+                      Editable->True]}]],
+                "TraditionalForm"],
+              "TraditionalForm"],
+            TraditionalForm,
+            Editable->True], 
+          TagBox["\<\"\[RightVector]\"\>",
+            StyleForm]]}], TraditionalForm]], "Output"]
+}, Open  ]],
+
+Cell[BoxData[
+    \(\(l = 
+        ArgumentsSupply[Lagrangian[ChPTVirtualPhotons2[2]], x, 
+          RenormalizationState[0], DiagonalToU \[Rule] True, 
+          ExpansionOrder \[Rule] 2, DropOrder \[Rule] 2];\)\)], "Input"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+    \(\(\(DiscardTerms[l, 
+              Retain \[Rule] {ParticleField[Pion\ , 
+                      RenormalizationState[0]] \[Rule] \ 2, 
+                  ParticleField[Photon, RenormalizationState[0]] \[Rule] 2}, 
+              CommutatorReduce \[Rule] True, 
+              Method \[Rule] Expand] /. $Substitutions // NMExpand\) // 
+        CycleUTraces\) // Expand\)], "Input"],
+
+Cell[BoxData[
+    FormBox[
+      RowBox[{
+        RowBox[{\(1\/8\), " ", 
+          SuperscriptBox[
+            RowBox[{"(", 
+              SuperscriptBox[
+                TagBox[
+                  StyleBox["\<\"e\"\>",
+                    FontSlant->"Italic"],
+                  (StyleForm[ #, FontSlant -> "Italic"]&)], 
+                RowBox[{
+                  TagBox[
+                    FormBox["",
+                      "TraditionalForm"],
+                    TraditionalForm,
+                    Editable->True], 
+                  TagBox[
+                    FormBox["",
+                      "TraditionalForm"],
+                    TraditionalForm,
+                    Editable->True], 
+                  TagBox[
+                    FormBox["",
+                      "TraditionalForm"],
+                    TraditionalForm,
+                    Editable->True]}]], ")"}], "2"], " ", 
+          RowBox[{"\[LeftAngleBracket]", 
+            RowBox[{
+              RowBox[{
+                RowBox[{
+                  RowBox[{
+                    OverscriptBox[
+                      TagBox[
+                        FormBox[
+                          FormBox[
+                            SuperscriptBox[
+                              TagBox[
+                                StyleBox["\<\"\[Pi]\"\>",
+                                  FontSlant->"Italic"],
+                                (StyleForm[ #, FontSlant -> "Italic"]&)], 
+                              RowBox[{
+                                TagBox[
+                                  FormBox["",
+                                    "TraditionalForm"],
+                                  TraditionalForm,
+                                  Editable->True], 
+                                TagBox[
+                                  FormBox["",
+                                    "TraditionalForm"],
+                                  TraditionalForm,
+                                  Editable->True]}]],
+                            "TraditionalForm"],
+                          "TraditionalForm"],
+                        TraditionalForm,
+                        Editable->True], 
+                      TagBox["\<\"\[Rule]\"\>",
+                        StyleForm]], "\[CenterDot]", 
+                    OverscriptBox[
+                      TagBox[
+                        FormBox[
+                          StyleBox[
+                            TagBox[
+                              StyleBox["\<\"\[Sigma]\"\>",
+                                FontSlant->"Italic"],
+                              (StyleForm[ #, FontSlant -> "Italic"]&)],
+                            FontWeight->"Bold"],
+                          "TraditionalForm"],
+                        TraditionalForm,
+                        Editable->True], 
+                      TagBox["\<\"\[Rule]\"\>",
+                        StyleForm]]}], "\[SixPointedStar]", 
+                  RowBox[{
+                    OverscriptBox[
+                      TagBox[
+                        FormBox[
+                          FormBox[
+                            SuperscriptBox[
+                              TagBox[
+                                StyleBox["\<\"\[Pi]\"\>",
+                                  FontSlant->"Italic"],
+                                (StyleForm[ #, FontSlant -> "Italic"]&)], 
+                              RowBox[{
+                                TagBox[
+                                  FormBox["",
+                                    "TraditionalForm"],
+                                  TraditionalForm,
+                                  Editable->True], 
+                                TagBox[
+                                  FormBox["",
+                                    "TraditionalForm"],
+                                  TraditionalForm,
+                                  Editable->True]}]],
+                            "TraditionalForm"],
+                          "TraditionalForm"],
+                        TraditionalForm,
+                        Editable->True], 
+                      TagBox["\<\"\[Rule]\"\>",
+                        StyleForm]], "\[CenterDot]", 
+                    OverscriptBox[
+                      TagBox[
+                        FormBox[
+                          StyleBox[
+                            TagBox[
+                              StyleBox["\<\"\[Sigma]\"\>",
+                                FontSlant->"Italic"],
+                              (StyleForm[ #, FontSlant -> "Italic"]&)],
+                            FontWeight->"Bold"],
+                          "TraditionalForm"],
+                        TraditionalForm,
+                        Editable->True], 
+                      TagBox["\<\"\[Rule]\"\>",
+                        StyleForm]]}]}], "\[SixPointedStar]", 
+                SuperscriptBox[
+                  StyleBox[
+                    TagBox[
+                      StyleBox["\<\"\[Sigma]\"\>",
+                        FontSlant->"Italic"],
+                      (StyleForm[ #, FontSlant -> "Italic"]&)],
+                    FontWeight->"Bold"], 
+                  TagBox[
+                    FormBox["3",
+                      "TraditionalForm"],
+                    TraditionalForm,
+                    Editable->True]]}], "\[SixPointedStar]", 
+              SuperscriptBox[
+                StyleBox[
+                  TagBox[
+                    StyleBox["\<\"\[Sigma]\"\>",
+                      FontSlant->"Italic"],
+                    (StyleForm[ #, FontSlant -> "Italic"]&)],
+                  FontWeight->"Bold"], 
+                TagBox[
+                  FormBox["3",
+                    "TraditionalForm"],
+                  TraditionalForm,
+                  Editable->True]]}], "\[RightAngleBracket]"}], " ", 
+          SubsuperscriptBox[
+            FormBox[
+              SuperscriptBox[
+                TagBox["\<\"\[Gamma]\"\>",
+                  StyleForm], 
+                RowBox[{
+                  TagBox[
+                    FormBox["",
+                      "TraditionalForm"],
+                    TraditionalForm,
+                    Editable->True], 
+                  TagBox[
+                    FormBox["",
+                      "TraditionalForm"],
+                    TraditionalForm,
+                    Editable->True]}]],
+              "TraditionalForm"], "\[Mu]", "2"]}], "-", 
+        RowBox[{\(1\/8\), " ", 
+          SuperscriptBox[
+            RowBox[{"(", 
+              SuperscriptBox[
+                TagBox[
+                  StyleBox["\<\"e\"\>",
+                    FontSlant->"Italic"],
+                  (StyleForm[ #, FontSlant -> "Italic"]&)], 
+                RowBox[{
+                  TagBox[
+                    FormBox["",
+                      "TraditionalForm"],
+                    TraditionalForm,
+                    Editable->True], 
+                  TagBox[
+                    FormBox["",
+                      "TraditionalForm"],
+                    TraditionalForm,
+                    Editable->True], 
+                  TagBox[
+                    FormBox["",
+                      "TraditionalForm"],
+                    TraditionalForm,
+                    Editable->True]}]], ")"}], "2"], " ", 
+          RowBox[{"\[LeftAngleBracket]", 
+            RowBox[{
+              RowBox[{
+                RowBox[{
+                  RowBox[{
+                    OverscriptBox[
+                      TagBox[
+                        FormBox[
+                          FormBox[
+                            SuperscriptBox[
+                              TagBox[
+                                StyleBox["\<\"\[Pi]\"\>",
+                                  FontSlant->"Italic"],
+                                (StyleForm[ #, FontSlant -> "Italic"]&)], 
+                              RowBox[{
+                                TagBox[
+                                  FormBox["",
+                                    "TraditionalForm"],
+                                  TraditionalForm,
+                                  Editable->True], 
+                                TagBox[
+                                  FormBox["",
+                                    "TraditionalForm"],
+                                  TraditionalForm,
+                                  Editable->True]}]],
+                            "TraditionalForm"],
+                          "TraditionalForm"],
+                        TraditionalForm,
+                        Editable->True], 
+                      TagBox["\<\"\[Rule]\"\>",
+                        StyleForm]], "\[CenterDot]", 
+                    OverscriptBox[
+                      TagBox[
+                        FormBox[
+                          StyleBox[
+                            TagBox[
+                              StyleBox["\<\"\[Sigma]\"\>",
+                                FontSlant->"Italic"],
+                              (StyleForm[ #, FontSlant -> "Italic"]&)],
+                            FontWeight->"Bold"],
+                          "TraditionalForm"],
+                        TraditionalForm,
+                        Editable->True], 
+                      TagBox["\<\"\[Rule]\"\>",
+                        StyleForm]]}], "\[SixPointedStar]", 
+                  SuperscriptBox[
+                    StyleBox[
+                      TagBox[
+                        StyleBox["\<\"\[Sigma]\"\>",
+                          FontSlant->"Italic"],
+                        (StyleForm[ #, FontSlant -> "Italic"]&)],
+                      FontWeight->"Bold"], 
+                    TagBox[
+                      FormBox["3",
+                        "TraditionalForm"],
+                      TraditionalForm,
+                      Editable->True]]}], "\[SixPointedStar]", 
+                RowBox[{
+                  OverscriptBox[
+                    TagBox[
+                      FormBox[
+                        FormBox[
+                          SuperscriptBox[
+                            TagBox[
+                              StyleBox["\<\"\[Pi]\"\>",
+                                FontSlant->"Italic"],
+                              (StyleForm[ #, FontSlant -> "Italic"]&)], 
+                            RowBox[{
+                              TagBox[
+                                FormBox["",
+                                  "TraditionalForm"],
+                                TraditionalForm,
+                                Editable->True], 
+                              TagBox[
+                                FormBox["",
+                                  "TraditionalForm"],
+                                TraditionalForm,
+                                Editable->True]}]],
+                          "TraditionalForm"],
+                        "TraditionalForm"],
+                      TraditionalForm,
+                      Editable->True], 
+                    TagBox["\<\"\[Rule]\"\>",
+                      StyleForm]], "\[CenterDot]", 
+                  OverscriptBox[
+                    TagBox[
+                      FormBox[
+                        StyleBox[
+                          TagBox[
+                            StyleBox["\<\"\[Sigma]\"\>",
+                              FontSlant->"Italic"],
+                            (StyleForm[ #, FontSlant -> "Italic"]&)],
+                          FontWeight->"Bold"],
+                        "TraditionalForm"],
+                      TraditionalForm,
+                      Editable->True], 
+                    TagBox["\<\"\[Rule]\"\>",
+                      StyleForm]]}]}], "\[SixPointedStar]", 
+              SuperscriptBox[
+                StyleBox[
+                  TagBox[
+                    StyleBox["\<\"\[Sigma]\"\>",
+                      FontSlant->"Italic"],
+                    (StyleForm[ #, FontSlant -> "Italic"]&)],
+                  FontWeight->"Bold"], 
+                TagBox[
+                  FormBox["3",
+                    "TraditionalForm"],
+                  TraditionalForm,
+                  Editable->True]]}], "\[RightAngleBracket]"}], " ", 
+          SubsuperscriptBox[
+            FormBox[
+              SuperscriptBox[
+                TagBox["\<\"\[Gamma]\"\>",
+                  StyleForm], 
+                RowBox[{
+                  TagBox[
+                    FormBox["",
+                      "TraditionalForm"],
+                    TraditionalForm,
+                    Editable->True], 
+                  TagBox[
+                    FormBox["",
+                      "TraditionalForm"],
+                    TraditionalForm,
+                    Editable->True]}]],
+              "TraditionalForm"], "\[Mu]", "2"]}]}], 
+      TraditionalForm]], "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+    \(ExpandU[%, CommutatorReduce \[Rule] True] // Simplify\)], "Input"],
+
+Cell[BoxData[
+    FormBox[
+      RowBox[{\(1\/4\), " ", 
+        SuperscriptBox[
+          RowBox[{"(", 
+            SuperscriptBox[
+              TagBox[
+                StyleBox["\<\"e\"\>",
+                  FontSlant->"Italic"],
+                (StyleForm[ #, FontSlant -> "Italic"]&)], 
+              RowBox[{
+                TagBox[
+                  FormBox["",
+                    "TraditionalForm"],
+                  TraditionalForm,
+                  Editable->True], 
+                TagBox[
+                  FormBox["",
+                    "TraditionalForm"],
+                  TraditionalForm,
+                  Editable->True], 
+                TagBox[
+                  FormBox["",
+                    "TraditionalForm"],
+                  TraditionalForm,
+                  Editable->True]}]], ")"}], "2"], " ", 
+        RowBox[{"(", 
+          RowBox[{
+            RowBox[{"-", 
+              SuperscriptBox[
+                RowBox[{"(", 
+                  RowBox[{
+                    OverscriptBox[
+                      TagBox[
+                        FormBox[
+                          RowBox[{
+                            TagBox["\<\"\[DoubleStruckP]\"\>",
+                              StyleForm], "(", 
+                            TagBox[
+                              FormBox["3",
+                                "TraditionalForm"],
+                              TraditionalForm,
+                              Editable->True], ")"}],
+                          "TraditionalForm"],
+                        TraditionalForm,
+                        Editable->True], 
+                      TagBox["\<\"\[Rule]\"\>",
+                        StyleForm]], "\[CenterDot]", 
+                    OverscriptBox[
+                      TagBox[
+                        FormBox[
+                          FormBox[
+                            SuperscriptBox[
+                              TagBox[
+                                StyleBox["\<\"\[Pi]\"\>",
+                                  FontSlant->"Italic"],
+                                (StyleForm[ #, FontSlant -> "Italic"]&)], 
+                              RowBox[{
+                                TagBox[
+                                  FormBox["",
+                                    "TraditionalForm"],
+                                  TraditionalForm,
+                                  Editable->True], 
+                                TagBox[
+                                  FormBox["",
+                                    "TraditionalForm"],
+                                  TraditionalForm,
+                                  Editable->True]}]],
+                            "TraditionalForm"],
+                          "TraditionalForm"],
+                        TraditionalForm,
+                        Editable->True], 
+                      TagBox["\<\"\[Rule]\"\>",
+                        StyleForm]]}], ")"}], "2"]}], "+", 
+            RowBox[{
+              RowBox[{
+                OverscriptBox[
+                  TagBox[
+                    FormBox[
+                      RowBox[{
+                        TagBox["\<\"\[DoubleStruckP]\"\>",
+                          StyleForm], "(", 
+                        TagBox[
+                          FormBox["3",
+                            "TraditionalForm"],
+                          TraditionalForm,
+                          Editable->True], ")"}],
+                      "TraditionalForm"],
+                    TraditionalForm,
+                    Editable->True], 
+                  TagBox["\<\"\[Rule]\"\>",
+                    StyleForm]], "\[Times]", 
+                OverscriptBox[
+                  TagBox[
+                    FormBox[
+                      FormBox[
+                        SuperscriptBox[
+                          TagBox[
+                            StyleBox["\<\"\[Pi]\"\>",
+                              FontSlant->"Italic"],
+                            (StyleForm[ #, FontSlant -> "Italic"]&)], 
+                          RowBox[{
+                            TagBox[
+                              FormBox["",
+                                "TraditionalForm"],
+                              TraditionalForm,
+                              Editable->True], 
+                            TagBox[
+                              FormBox["",
+                                "TraditionalForm"],
+                              TraditionalForm,
+                              Editable->True]}]],
+                        "TraditionalForm"],
+                      "TraditionalForm"],
+                    TraditionalForm,
+                    Editable->True], 
+                  TagBox["\<\"\[Rule]\"\>",
+                    StyleForm]]}], "\[CenterDot]", 
+              RowBox[{
+                OverscriptBox[
+                  TagBox[
+                    FormBox[
+                      RowBox[{
+                        TagBox["\<\"\[DoubleStruckP]\"\>",
+                          StyleForm], "(", 
+                        TagBox[
+                          FormBox["3",
+                            "TraditionalForm"],
+                          TraditionalForm,
+                          Editable->True], ")"}],
+                      "TraditionalForm"],
+                    TraditionalForm,
+                    Editable->True], 
+                  TagBox["\<\"\[Rule]\"\>",
+                    StyleForm]], "\[Times]", 
+                OverscriptBox[
+                  TagBox[
+                    FormBox[
+                      FormBox[
+                        SuperscriptBox[
+                          TagBox[
+                            StyleBox["\<\"\[Pi]\"\>",
+                              FontSlant->"Italic"],
+                            (StyleForm[ #, FontSlant -> "Italic"]&)], 
+                          RowBox[{
+                            TagBox[
+                              FormBox["",
+                                "TraditionalForm"],
+                              TraditionalForm,
+                              Editable->True], 
+                            TagBox[
+                              FormBox["",
+                                "TraditionalForm"],
+                              TraditionalForm,
+                              Editable->True]}]],
+                        "TraditionalForm"],
+                      "TraditionalForm"],
+                    TraditionalForm,
+                    Editable->True], 
+                  TagBox["\<\"\[Rule]\"\>",
+                    StyleForm]]}]}], "+", 
+            RowBox[{
+              OverscriptBox[
+                TagBox[
+                  FormBox[
+                    FormBox[
+                      SuperscriptBox[
+                        TagBox[
+                          StyleBox["\<\"\[Pi]\"\>",
+                            FontSlant->"Italic"],
+                          (StyleForm[ #, FontSlant -> "Italic"]&)], 
+                        RowBox[{
+                          TagBox[
+                            FormBox["",
+                              "TraditionalForm"],
+                            TraditionalForm,
+                            Editable->True], 
+                          TagBox[
+                            FormBox["",
+                              "TraditionalForm"],
+                            TraditionalForm,
+                            Editable->True]}]],
+                      "TraditionalForm"],
+                    "TraditionalForm"],
+                  TraditionalForm,
+                  Editable->True], 
+                TagBox["\<\"\[Rule]\"\>",
+                  StyleForm]], "\[CenterDot]", 
+              OverscriptBox[
+                TagBox[
+                  FormBox[
+                    FormBox[
+                      SuperscriptBox[
+                        TagBox[
+                          StyleBox["\<\"\[Pi]\"\>",
+                            FontSlant->"Italic"],
+                          (StyleForm[ #, FontSlant -> "Italic"]&)], 
+                        RowBox[{
+                          TagBox[
+                            FormBox["",
+                              "TraditionalForm"],
+                            TraditionalForm,
+                            Editable->True], 
+                          TagBox[
+                            FormBox["",
+                              "TraditionalForm"],
+                            TraditionalForm,
+                            Editable->True]}]],
+                      "TraditionalForm"],
+                    "TraditionalForm"],
+                  TraditionalForm,
+                  Editable->True], 
+                TagBox["\<\"\[Rule]\"\>",
+                  StyleForm]]}]}], ")"}], " ", 
+        SubsuperscriptBox[
+          FormBox[
+            SuperscriptBox[
+              TagBox["\<\"\[Gamma]\"\>",
+                StyleForm], 
+              RowBox[{
+                TagBox[
+                  FormBox["",
+                    "TraditionalForm"],
+                  TraditionalForm,
+                  Editable->True], 
+                TagBox[
+                  FormBox["",
+                    "TraditionalForm"],
+                  TraditionalForm,
+                  Editable->True]}]],
+            "TraditionalForm"], "\[Mu]", "2"]}], TraditionalForm]], "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+    \(IsoIndicesSupply[%]\)], "Input"],
+
+Cell[BoxData[
+    FormBox[
+      RowBox[{\(1\/4\), " ", 
+        SuperscriptBox[
+          RowBox[{"(", 
+            SuperscriptBox[
+              TagBox[
+                StyleBox["\<\"e\"\>",
+                  FontSlant->"Italic"],
+                (StyleForm[ #, FontSlant -> "Italic"]&)], 
+              RowBox[{
+                TagBox[
+                  FormBox["",
+                    "TraditionalForm"],
+                  TraditionalForm,
+                  Editable->True], 
+                TagBox[
+                  FormBox["",
+                    "TraditionalForm"],
+                  TraditionalForm,
+                  Editable->True], 
+                TagBox[
+                  FormBox["",
+                    "TraditionalForm"],
+                  TraditionalForm,
+                  Editable->True]}]], ")"}], "2"], " ", 
+        RowBox[{"(", 
+          RowBox[{
+            RowBox[{
+              SuperscriptBox[
+                FormBox[
+                  SuperscriptBox[
+                    TagBox[
+                      StyleBox["\<\"\[Pi]\"\>",
+                        FontSlant->"Italic"],
+                      (StyleForm[ #, FontSlant -> "Italic"]&)], 
+                    RowBox[{
+                      TagBox[
+                        FormBox["",
+                          "TraditionalForm"],
+                        TraditionalForm,
+                        Editable->True], 
+                      TagBox[
+                        FormBox["",
+                          "TraditionalForm"],
+                        TraditionalForm,
+                        Editable->True]}]],
+                  "TraditionalForm"], 
+                FormBox[
+                  FormBox["i73",
+                    "TraditionalForm"],
+                  "TraditionalForm"]], "\[SixPointedStar]", 
+              SuperscriptBox[
+                FormBox[
+                  SuperscriptBox[
+                    TagBox[
+                      StyleBox["\<\"\[Pi]\"\>",
+                        FontSlant->"Italic"],
+                      (StyleForm[ #, FontSlant -> "Italic"]&)], 
+                    RowBox[{
+                      TagBox[
+                        FormBox["",
+                          "TraditionalForm"],
+                        TraditionalForm,
+                        Editable->True], 
+                      TagBox[
+                        FormBox["",
+                          "TraditionalForm"],
+                        TraditionalForm,
+                        Editable->True]}]],
+                  "TraditionalForm"], 
+                FormBox[
+                  FormBox["i73",
+                    "TraditionalForm"],
+                  "TraditionalForm"]]}], "+", 
+            RowBox[{
+              RowBox[{"(", 
+                RowBox[{
+                  SuperscriptBox[
+                    FormBox[
+                      SuperscriptBox[
+                        TagBox[
+                          StyleBox["\<\"\[Pi]\"\>",
+                            FontSlant->"Italic"],
+                          (StyleForm[ #, FontSlant -> "Italic"]&)], 
+                        RowBox[{
+                          TagBox[
+                            FormBox["",
+                              "TraditionalForm"],
+                            TraditionalForm,
+                            Editable->True], 
+                          TagBox[
+                            FormBox["",
+                              "TraditionalForm"],
+                            TraditionalForm,
+                            Editable->True]}]],
+                      "TraditionalForm"], 
+                    FormBox[
+                      FormBox["i70",
+                        "TraditionalForm"],
+                      "TraditionalForm"]], "\[SixPointedStar]", 
+                  SuperscriptBox[
+                    FormBox[
+                      SuperscriptBox[
+                        TagBox[
+                          StyleBox["\<\"\[Pi]\"\>",
+                            FontSlant->"Italic"],
+                          (StyleForm[ #, FontSlant -> "Italic"]&)], 
+                        RowBox[{
+                          TagBox[
+                            FormBox["",
+                              "TraditionalForm"],
+                            TraditionalForm,
+                            Editable->True], 
+                          TagBox[
+                            FormBox["",
+                              "TraditionalForm"],
+                            TraditionalForm,
+                            Editable->True]}]],
+                      "TraditionalForm"], 
+                    FormBox[
+                      FormBox["i72",
+                        "TraditionalForm"],
+                      "TraditionalForm"]]}], ")"}], " ", 
+              SubscriptBox["\[Delta]", 
+                RowBox[{
+                  FormBox["3",
+                    "TraditionalForm"], "\[NoBreak]", 
+                  FormBox[
+                    FormBox["i69",
+                      "TraditionalForm"],
+                    "TraditionalForm"]}]], " ", 
+              SubscriptBox["\[Delta]", 
+                RowBox[{
+                  FormBox["3",
+                    "TraditionalForm"], "\[NoBreak]", 
+                  FormBox[
+                    FormBox["i71",
+                      "TraditionalForm"],
+                    "TraditionalForm"]}]], " ", 
+              SubscriptBox["f", 
+                RowBox[{
+                  FormBox[
+                    FormBox["i69",
+                      "TraditionalForm"],
+                    "TraditionalForm"], "\[NoBreak]", 
+                  FormBox[
+                    FormBox["i70",
+                      "TraditionalForm"],
+                    "TraditionalForm"], "\[NoBreak]", 
+                  FormBox[
+                    FormBox["i76",
+                      "TraditionalForm"],
+                    "TraditionalForm"]}]], " ", 
+              SubscriptBox["f", 
+                RowBox[{
+                  FormBox[
+                    FormBox["i71",
+                      "TraditionalForm"],
+                    "TraditionalForm"], "\[NoBreak]", 
+                  FormBox[
+                    FormBox["i72",
+                      "TraditionalForm"],
+                    "TraditionalForm"], "\[NoBreak]", 
+                  FormBox[
+                    FormBox["i76",
+                      "TraditionalForm"],
+                    "TraditionalForm"]}]]}], "-", 
+            RowBox[{
+              SubscriptBox["\[Delta]", 
+                RowBox[{
+                  FormBox["3",
+                    "TraditionalForm"], "\[NoBreak]", 
+                  FormBox[
+                    FormBox["i74",
+                      "TraditionalForm"],
+                    "TraditionalForm"]}]], " ", 
+              SubscriptBox["\[Delta]", 
+                RowBox[{
+                  FormBox["3",
+                    "TraditionalForm"], "\[NoBreak]", 
+                  FormBox[
+                    FormBox["i75",
+                      "TraditionalForm"],
+                    "TraditionalForm"]}]], " ", 
+              SuperscriptBox[
+                FormBox[
+                  SuperscriptBox[
+                    TagBox[
+                      StyleBox["\<\"\[Pi]\"\>",
+                        FontSlant->"Italic"],
+                      (StyleForm[ #, FontSlant -> "Italic"]&)], 
+                    RowBox[{
+                      TagBox[
+                        FormBox["",
+                          "TraditionalForm"],
+                        TraditionalForm,
+                        Editable->True], 
+                      TagBox[
+                        FormBox["",
+                          "TraditionalForm"],
+                        TraditionalForm,
+                        Editable->True]}]],
+                  "TraditionalForm"], 
+                FormBox[
+                  FormBox["i74",
+                    "TraditionalForm"],
+                  "TraditionalForm"]], " ", 
+              SuperscriptBox[
+                FormBox[
+                  SuperscriptBox[
+                    TagBox[
+                      StyleBox["\<\"\[Pi]\"\>",
+                        FontSlant->"Italic"],
+                      (StyleForm[ #, FontSlant -> "Italic"]&)], 
+                    RowBox[{
+                      TagBox[
+                        FormBox["",
+                          "TraditionalForm"],
+                        TraditionalForm,
+                        Editable->True], 
+                      TagBox[
+                        FormBox["",
+                          "TraditionalForm"],
+                        TraditionalForm,
+                        Editable->True]}]],
+                  "TraditionalForm"], 
+                FormBox[
+                  FormBox["i75",
+                    "TraditionalForm"],
+                  "TraditionalForm"]]}]}], ")"}], " ", 
+        SubsuperscriptBox[
+          FormBox[
+            SuperscriptBox[
+              TagBox["\<\"\[Gamma]\"\>",
+                StyleForm], 
+              RowBox[{
+                TagBox[
+                  FormBox["",
+                    "TraditionalForm"],
+                  TraditionalForm,
+                  Editable->True], 
+                TagBox[
+                  FormBox["",
+                    "TraditionalForm"],
+                  TraditionalForm,
+                  Editable->True]}]],
+            "TraditionalForm"], "\[Mu]", "2"]}], TraditionalForm]], "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+    \(% // SUNReduce\)], "Input"],
+
+Cell[BoxData[
+    FormBox[
+      RowBox[{
+        RowBox[{\(1\/4\), " ", 
+          SuperscriptBox[
+            RowBox[{"(", 
+              SuperscriptBox[
+                TagBox[
+                  StyleBox["\<\"e\"\>",
+                    FontSlant->"Italic"],
+                  (StyleForm[ #, FontSlant -> "Italic"]&)], 
+                RowBox[{
+                  TagBox[
+                    FormBox["",
+                      "TraditionalForm"],
+                    TraditionalForm,
+                    Editable->True], 
+                  TagBox[
+                    FormBox["",
+                      "TraditionalForm"],
+                    TraditionalForm,
+                    Editable->True], 
+                  TagBox[
+                    FormBox["",
+                      "TraditionalForm"],
+                    TraditionalForm,
+                    Editable->True]}]], ")"}], "2"], " ", 
+          RowBox[{"(", 
+            RowBox[{
+              SuperscriptBox[
+                FormBox[
+                  SuperscriptBox[
+                    TagBox[
+                      StyleBox["\<\"\[Pi]\"\>",
+                        FontSlant->"Italic"],
+                      (StyleForm[ #, FontSlant -> "Italic"]&)], 
+                    RowBox[{
+                      TagBox[
+                        FormBox["",
+                          "TraditionalForm"],
+                        TraditionalForm,
+                        Editable->True], 
+                      TagBox[
+                        FormBox["",
+                          "TraditionalForm"],
+                        TraditionalForm,
+                        Editable->True]}]],
+                  "TraditionalForm"], 
+                FormBox[
+                  FormBox["i73",
+                    "TraditionalForm"],
+                  "TraditionalForm"]], "\[SixPointedStar]", 
+              SuperscriptBox[
+                FormBox[
+                  SuperscriptBox[
+                    TagBox[
+                      StyleBox["\<\"\[Pi]\"\>",
+                        FontSlant->"Italic"],
+                      (StyleForm[ #, FontSlant -> "Italic"]&)], 
+                    RowBox[{
+                      TagBox[
+                        FormBox["",
+                          "TraditionalForm"],
+                        TraditionalForm,
+                        Editable->True], 
+                      TagBox[
+                        FormBox["",
+                          "TraditionalForm"],
+                        TraditionalForm,
+                        Editable->True]}]],
+                  "TraditionalForm"], 
+                FormBox[
+                  FormBox["i73",
+                    "TraditionalForm"],
+                  "TraditionalForm"]]}], ")"}], " ", 
+          SubsuperscriptBox[
+            FormBox[
+              SuperscriptBox[
+                TagBox["\<\"\[Gamma]\"\>",
+                  StyleForm], 
+                RowBox[{
+                  TagBox[
+                    FormBox["",
+                      "TraditionalForm"],
+                    TraditionalForm,
+                    Editable->True], 
+                  TagBox[
+                    FormBox["",
+                      "TraditionalForm"],
+                    TraditionalForm,
+                    Editable->True]}]],
+              "TraditionalForm"], "\[Mu]", "2"]}], "+", 
+        RowBox[{\(1\/4\), " ", 
+          SuperscriptBox[
+            RowBox[{"(", 
+              SuperscriptBox[
+                TagBox[
+                  StyleBox["\<\"e\"\>",
+                    FontSlant->"Italic"],
+                  (StyleForm[ #, FontSlant -> "Italic"]&)], 
+                RowBox[{
+                  TagBox[
+                    FormBox["",
+                      "TraditionalForm"],
+                    TraditionalForm,
+                    Editable->True], 
+                  TagBox[
+                    FormBox["",
+                      "TraditionalForm"],
+                    TraditionalForm,
+                    Editable->True], 
+                  TagBox[
+                    FormBox["",
+                      "TraditionalForm"],
+                    TraditionalForm,
+                    Editable->True]}]], ")"}], "2"], " ", 
+          RowBox[{"(", 
+            RowBox[{
+              SuperscriptBox[
+                FormBox[
+                  SuperscriptBox[
+                    TagBox[
+                      StyleBox["\<\"\[Pi]\"\>",
+                        FontSlant->"Italic"],
+                      (StyleForm[ #, FontSlant -> "Italic"]&)], 
+                    RowBox[{
+                      TagBox[
+                        FormBox["",
+                          "TraditionalForm"],
+                        TraditionalForm,
+                        Editable->True], 
+                      TagBox[
+                        FormBox["",
+                          "TraditionalForm"],
+                        TraditionalForm,
+                        Editable->True]}]],
+                  "TraditionalForm"], 
+                FormBox[
+                  FormBox["i70",
+                    "TraditionalForm"],
+                  "TraditionalForm"]], "\[SixPointedStar]", 
+              SuperscriptBox[
+                FormBox[
+                  SuperscriptBox[
+                    TagBox[
+                      StyleBox["\<\"\[Pi]\"\>",
+                        FontSlant->"Italic"],
+                      (StyleForm[ #, FontSlant -> "Italic"]&)], 
+                    RowBox[{
+                      TagBox[
+                        FormBox["",
+                          "TraditionalForm"],
+                        TraditionalForm,
+                        Editable->True], 
+                      TagBox[
+                        FormBox["",
+                          "TraditionalForm"],
+                        TraditionalForm,
+                        Editable->True]}]],
+                  "TraditionalForm"], 
+                FormBox[
+                  FormBox["i72",
+                    "TraditionalForm"],
+                  "TraditionalForm"]]}], ")"}], " ", 
+          SubsuperscriptBox[
+            TagBox["\<\"\[Delta]\"\>",
+              StyleForm], 
+            RowBox[{
+              TagBox[
+                FormBox["3",
+                  "TraditionalForm"],
+                TraditionalForm,
+                Editable->True], 
+              TagBox[
+                FormBox[
+                  FormBox["i71",
+                    "TraditionalForm"],
+                  "TraditionalForm"],
+                TraditionalForm,
+                Editable->True]}], \((2)\)], " ", 
+          SubsuperscriptBox[
+            TagBox["\<\"f\"\>",
+              StyleForm], 
+            RowBox[{
+              TagBox[
+                FormBox["3",
+                  "TraditionalForm"],
+                TraditionalForm,
+                Editable->True], 
+              TagBox[
+                FormBox[
+                  FormBox["i70",
+                    "TraditionalForm"],
+                  "TraditionalForm"],
+                TraditionalForm,
+                Editable->True], 
+              TagBox[
+                FormBox[
+                  FormBox["i76",
+                    "TraditionalForm"],
+                  "TraditionalForm"],
+                TraditionalForm,
+                Editable->True]}], \((2)\)], " ", 
+          SubsuperscriptBox[
+            TagBox["\<\"f\"\>",
+              StyleForm], 
+            RowBox[{
+              TagBox[
+                FormBox[
+                  FormBox["i71",
+                    "TraditionalForm"],
+                  "TraditionalForm"],
+                TraditionalForm,
+                Editable->True], 
+              TagBox[
+                FormBox[
+                  FormBox["i72",
+                    "TraditionalForm"],
+                  "TraditionalForm"],
+                TraditionalForm,
+                Editable->True], 
+              TagBox[
+                FormBox[
+                  FormBox["i76",
+                    "TraditionalForm"],
+                  "TraditionalForm"],
+                TraditionalForm,
+                Editable->True]}], \((2)\)], " ", 
+          SubsuperscriptBox[
+            FormBox[
+              SuperscriptBox[
+                TagBox["\<\"\[Gamma]\"\>",
+                  StyleForm], 
+                RowBox[{
+                  TagBox[
+                    FormBox["",
+                      "TraditionalForm"],
+                    TraditionalForm,
+                    Editable->True], 
+                  TagBox[
+                    FormBox["",
+                      "TraditionalForm"],
+                    TraditionalForm,
+                    Editable->True]}]],
+              "TraditionalForm"], "\[Mu]", "2"]}], "-", 
+        RowBox[{\(1\/4\), " ", 
+          SuperscriptBox[
+            RowBox[{"(", 
+              SuperscriptBox[
+                TagBox[
+                  StyleBox["\<\"e\"\>",
+                    FontSlant->"Italic"],
+                  (StyleForm[ #, FontSlant -> "Italic"]&)], 
+                RowBox[{
+                  TagBox[
+                    FormBox["",
+                      "TraditionalForm"],
+                    TraditionalForm,
+                    Editable->True], 
+                  TagBox[
+                    FormBox["",
+                      "TraditionalForm"],
+                    TraditionalForm,
+                    Editable->True], 
+                  TagBox[
+                    FormBox["",
+                      "TraditionalForm"],
+                    TraditionalForm,
+                    Editable->True]}]], ")"}], "2"], " ", 
+          SubsuperscriptBox[
+            TagBox["\<\"\[Delta]\"\>",
+              StyleForm], 
+            RowBox[{
+              TagBox[
+                FormBox["3",
+                  "TraditionalForm"],
+                TraditionalForm,
+                Editable->True], 
+              TagBox[
+                FormBox[
+                  FormBox["i75",
+                    "TraditionalForm"],
+                  "TraditionalForm"],
+                TraditionalForm,
+                Editable->True]}], \((2)\)], " ", 
+          SuperscriptBox[
+            FormBox[
+              SuperscriptBox[
+                TagBox[
+                  StyleBox["\<\"\[Pi]\"\>",
+                    FontSlant->"Italic"],
+                  (StyleForm[ #, FontSlant -> "Italic"]&)], 
+                RowBox[{
+                  TagBox[
+                    FormBox["",
+                      "TraditionalForm"],
+                    TraditionalForm,
+                    Editable->True], 
+                  TagBox[
+                    FormBox["",
+                      "TraditionalForm"],
+                    TraditionalForm,
+                    Editable->True]}]],
+              "TraditionalForm"], 
+            FormBox["3",
+              "TraditionalForm"]], " ", 
+          SuperscriptBox[
+            FormBox[
+              SuperscriptBox[
+                TagBox[
+                  StyleBox["\<\"\[Pi]\"\>",
+                    FontSlant->"Italic"],
+                  (StyleForm[ #, FontSlant -> "Italic"]&)], 
+                RowBox[{
+                  TagBox[
+                    FormBox["",
+                      "TraditionalForm"],
+                    TraditionalForm,
+                    Editable->True], 
+                  TagBox[
+                    FormBox["",
+                      "TraditionalForm"],
+                    TraditionalForm,
+                    Editable->True]}]],
+              "TraditionalForm"], 
+            FormBox[
+              FormBox["i75",
+                "TraditionalForm"],
+              "TraditionalForm"]], " ", 
+          SubsuperscriptBox[
+            FormBox[
+              SuperscriptBox[
+                TagBox["\<\"\[Gamma]\"\>",
+                  StyleForm], 
+                RowBox[{
+                  TagBox[
+                    FormBox["",
+                      "TraditionalForm"],
+                    TraditionalForm,
+                    Editable->True], 
+                  TagBox[
+                    FormBox["",
+                      "TraditionalForm"],
+                    TraditionalForm,
+                    Editable->True]}]],
+              "TraditionalForm"], "\[Mu]", "2"]}]}], 
+      TraditionalForm]], "Output"],
+
+Cell[BoxData[
+    \(ll = \(\(% // IndicesCleanup\) // CommutatorReduce\) // 
+        Simplify\)], "Input"],
+
+Cell[BoxData[
+    FormBox[
+      RowBox[{\(1\/4\), " ", 
+        SuperscriptBox[
+          RowBox[{"(", 
+            SuperscriptBox[
+              TagBox[
+                StyleBox["\<\"e\"\>",
+                  FontSlant->"Italic"],
+                (StyleForm[ #, FontSlant -> "Italic"]&)], 
+              RowBox[{
+                TagBox[
+                  FormBox["",
+                    "TraditionalForm"],
+                  TraditionalForm,
+                  Editable->True], 
+                TagBox[
+                  FormBox["",
+                    "TraditionalForm"],
+                  TraditionalForm,
+                  Editable->True], 
+                TagBox[
+                  FormBox["",
+                    "TraditionalForm"],
+                  TraditionalForm,
+                  Editable->True]}]], ")"}], "2"], " ", 
+        SuperscriptBox[
+          FormBox[
+            SuperscriptBox[
+              TagBox[
+                StyleBox["\<\"\[Pi]\"\>",
+                  FontSlant->"Italic"],
+                (StyleForm[ #, FontSlant -> "Italic"]&)], 
+              RowBox[{
+                TagBox[
+                  FormBox["",
+                    "TraditionalForm"],
+                  TraditionalForm,
+                  Editable->True], 
+                TagBox[
+                  FormBox["",
+                    "TraditionalForm"],
+                  TraditionalForm,
+                  Editable->True]}]],
+            "TraditionalForm"], 
+          FormBox[
+            FormBox["k1",
+              "TraditionalForm"],
+            "TraditionalForm"]], " ", 
+        RowBox[{"(", 
+          RowBox[{
+            RowBox[{
+              RowBox[{"-", 
+                SubsuperscriptBox[
+                  TagBox["\<\"\[Delta]\"\>",
+                    StyleForm], 
+                  RowBox[{
+                    TagBox[
+                      FormBox["3",
+                        "TraditionalForm"],
+                      TraditionalForm,
+                      Editable->True], 
+                    TagBox[
+                      FormBox[
+                        FormBox["k1",
+                          "TraditionalForm"],
+                        "TraditionalForm"],
+                      TraditionalForm,
+                      Editable->True]}], \((2)\)]}], " ", 
+              SuperscriptBox[
+                FormBox[
+                  SuperscriptBox[
+                    TagBox[
+                      StyleBox["\<\"\[Pi]\"\>",
+                        FontSlant->"Italic"],
+                      (StyleForm[ #, FontSlant -> "Italic"]&)], 
+                    RowBox[{
+                      TagBox[
+                        FormBox["",
+                          "TraditionalForm"],
+                        TraditionalForm,
+                        Editable->True], 
+                      TagBox[
+                        FormBox["",
+                          "TraditionalForm"],
+                        TraditionalForm,
+                        Editable->True]}]],
+                  "TraditionalForm"], 
+                FormBox["3",
+                  "TraditionalForm"]]}], "+", 
+            SuperscriptBox[
+              FormBox[
+                SuperscriptBox[
+                  TagBox[
+                    StyleBox["\<\"\[Pi]\"\>",
+                      FontSlant->"Italic"],
+                    (StyleForm[ #, FontSlant -> "Italic"]&)], 
+                  RowBox[{
+                    TagBox[
+                      FormBox["",
+                        "TraditionalForm"],
+                      TraditionalForm,
+                      Editable->True], 
+                    TagBox[
+                      FormBox["",
+                        "TraditionalForm"],
+                      TraditionalForm,
+                      Editable->True]}]],
+                "TraditionalForm"], 
+              FormBox[
+                FormBox["k1",
+                  "TraditionalForm"],
+                "TraditionalForm"]], "-", 
+            RowBox[{
+              SubsuperscriptBox[
+                TagBox["\<\"\[Delta]\"\>",
+                  StyleForm], 
+                RowBox[{
+                  TagBox[
+                    FormBox["3",
+                      "TraditionalForm"],
+                    TraditionalForm,
+                    Editable->True], 
+                  TagBox[
+                    FormBox[
+                      FormBox["k3",
+                        "TraditionalForm"],
+                      "TraditionalForm"],
+                    TraditionalForm,
+                    Editable->True]}], \((2)\)], " ", 
+              SubsuperscriptBox[
+                TagBox["\<\"f\"\>",
+                  StyleForm], 
+                RowBox[{
+                  TagBox[
+                    FormBox["3",
+                      "TraditionalForm"],
+                    TraditionalForm,
+                    Editable->True], 
+                  TagBox[
+                    FormBox[
+                      FormBox["k1",
+                        "TraditionalForm"],
+                      "TraditionalForm"],
+                    TraditionalForm,
+                    Editable->True], 
+                  TagBox[
+                    FormBox[
+                      FormBox["k4",
+                        "TraditionalForm"],
+                      "TraditionalForm"],
+                    TraditionalForm,
+                    Editable->True]}], \((2)\)], " ", 
+              SubsuperscriptBox[
+                TagBox["\<\"f\"\>",
+                  StyleForm], 
+                RowBox[{
+                  TagBox[
+                    FormBox[
+                      FormBox["k2",
+                        "TraditionalForm"],
+                      "TraditionalForm"],
+                    TraditionalForm,
+                    Editable->True], 
+                  TagBox[
+                    FormBox[
+                      FormBox["k3",
+                        "TraditionalForm"],
+                      "TraditionalForm"],
+                    TraditionalForm,
+                    Editable->True], 
+                  TagBox[
+                    FormBox[
+                      FormBox["k4",
+                        "TraditionalForm"],
+                      "TraditionalForm"],
+                    TraditionalForm,
+                    Editable->True]}], \((2)\)], " ", 
+              SuperscriptBox[
+                FormBox[
+                  SuperscriptBox[
+                    TagBox[
+                      StyleBox["\<\"\[Pi]\"\>",
+                        FontSlant->"Italic"],
+                      (StyleForm[ #, FontSlant -> "Italic"]&)], 
+                    RowBox[{
+                      TagBox[
+                        FormBox["",
+                          "TraditionalForm"],
+                        TraditionalForm,
+                        Editable->True], 
+                      TagBox[
+                        FormBox["",
+                          "TraditionalForm"],
+                        TraditionalForm,
+                        Editable->True]}]],
+                  "TraditionalForm"], 
+                FormBox[
+                  FormBox["k2",
+                    "TraditionalForm"],
+                  "TraditionalForm"]]}]}], ")"}], " ", 
+        SubsuperscriptBox[
+          FormBox[
+            SuperscriptBox[
+              TagBox["\<\"\[Gamma]\"\>",
+                StyleForm], 
+              RowBox[{
+                TagBox[
+                  FormBox["",
+                    "TraditionalForm"],
+                  TraditionalForm,
+                  Editable->True], 
+                TagBox[
+                  FormBox["",
+                    "TraditionalForm"],
+                  TraditionalForm,
+                  Editable->True]}]],
+            "TraditionalForm"], "\[Rho]1", "2"]}], TraditionalForm]], "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+    \(fields = {\(QuantumField[
+            Particle[PseudoScalar[2], RenormalizationState[0]], 
+            SUNIndex[I1]]\)[
+          p1], \(QuantumField[
+            Particle[PseudoScalar[2], RenormalizationState[0]], 
+            SUNIndex[I2]]\)[
+          p2], \(QuantumField[Particle[Vector[1], RenormalizationState[0]], 
+            LorentzIndex[\[Mu]3]]\)[
+          p3], \(QuantumField[Particle[Vector[1], RenormalizationState[0]], 
+            LorentzIndex[\[Mu]4]]\)[p4]}\)], "Input"],
+
+Cell[BoxData[
+    FormBox[
+      RowBox[{"{", 
+        RowBox[{
+          SuperscriptBox[
+            FormBox[
+              SuperscriptBox[
+                TagBox[
+                  StyleBox["\<\"\[Pi]\"\>",
+                    FontSlant->"Italic"],
+                  (StyleForm[ #, FontSlant -> "Italic"]&)], 
+                RowBox[{
+                  TagBox[
+                    FormBox["",
+                      "TraditionalForm"],
+                    TraditionalForm,
+                    Editable->True], 
+                  TagBox[
+                    FormBox["",
+                      "TraditionalForm"],
+                    TraditionalForm,
+                    Editable->True]}]],
+              "TraditionalForm"], 
+            FormBox[
+              FormBox[
+                SubscriptBox[
+                  TagBox[
+                    StyleBox["\<\"I\"\>",
+                      FontSlant->"Italic"],
+                    (StyleForm[ #, FontSlant -> "Italic"]&)], "1"],
+                "TraditionalForm"],
+              "TraditionalForm"]], ",", 
+          SuperscriptBox[
+            FormBox[
+              SuperscriptBox[
+                TagBox[
+                  StyleBox["\<\"\[Pi]\"\>",
+                    FontSlant->"Italic"],
+                  (StyleForm[ #, FontSlant -> "Italic"]&)], 
+                RowBox[{
+                  TagBox[
+                    FormBox["",
+                      "TraditionalForm"],
+                    TraditionalForm,
+                    Editable->True], 
+                  TagBox[
+                    FormBox["",
+                      "TraditionalForm"],
+                    TraditionalForm,
+                    Editable->True]}]],
+              "TraditionalForm"], 
+            FormBox[
+              FormBox[
+                SubscriptBox[
+                  TagBox[
+                    StyleBox["\<\"I\"\>",
+                      FontSlant->"Italic"],
+                    (StyleForm[ #, FontSlant -> "Italic"]&)], "2"],
+                "TraditionalForm"],
+              "TraditionalForm"]], ",", 
+          SubscriptBox[
+            FormBox[
+              SuperscriptBox[
+                TagBox["\<\"\[Gamma]\"\>",
+                  StyleForm], 
+                RowBox[{
+                  TagBox[
+                    FormBox["",
+                      "TraditionalForm"],
+                    TraditionalForm,
+                    Editable->True], 
+                  TagBox[
+                    FormBox["",
+                      "TraditionalForm"],
+                    TraditionalForm,
+                    Editable->True]}]],
+              "TraditionalForm"], 
+            FormBox[
+              SubscriptBox[
+                TagBox[
+                  StyleBox["\<\"\[Mu]\"\>",
+                    FontSlant->"Italic"],
+                  (StyleForm[ #, FontSlant -> "Italic"]&)], "3"],
+              "TraditionalForm"]], ",", 
+          SubscriptBox[
+            FormBox[
+              SuperscriptBox[
+                TagBox["\<\"\[Gamma]\"\>",
+                  StyleForm], 
+                RowBox[{
+                  TagBox[
+                    FormBox["",
+                      "TraditionalForm"],
+                    TraditionalForm,
+                    Editable->True], 
+                  TagBox[
+                    FormBox["",
+                      "TraditionalForm"],
+                    TraditionalForm,
+                    Editable->True]}]],
+              "TraditionalForm"], 
+            FormBox[
+              SubscriptBox[
+                TagBox[
+                  StyleBox["\<\"\[Mu]\"\>",
+                    FontSlant->"Italic"],
+                  (StyleForm[ #, FontSlant -> "Italic"]&)], "4"],
+              "TraditionalForm"]]}], "}"}], TraditionalForm]], "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+    \(m = \(\(\(FeynRule[ll, fields] // 
+              SUNReduce[#, FullReduce \[Rule] True] &\) // IndicesCleanup\) // 
+          CommutatorReduce\) // Simplify\)], "Input"],
+
+Cell[BoxData[
+    FormBox[
+      RowBox[{\(-2\), " ", "\[ImaginaryI]", " ", 
+        SuperscriptBox[
+          RowBox[{"(", 
+            SuperscriptBox[
+              TagBox[
+                StyleBox["\<\"e\"\>",
+                  FontSlant->"Italic"],
+                (StyleForm[ #, FontSlant -> "Italic"]&)], 
+              RowBox[{
+                TagBox[
+                  FormBox["",
+                    "TraditionalForm"],
+                  TraditionalForm,
+                  Editable->True], 
+                TagBox[
+                  FormBox["",
+                    "TraditionalForm"],
+                  TraditionalForm,
+                  Editable->True], 
+                TagBox[
+                  FormBox["",
+                    "TraditionalForm"],
+                  TraditionalForm,
+                  Editable->True]}]], ")"}], "2"], " ", 
+        SuperscriptBox["g", 
+          RowBox[{
+            FormBox[
+              SubscriptBox[
+                TagBox[
+                  StyleBox["\<\"\[Mu]\"\>",
+                    FontSlant->"Italic"],
+                  (StyleForm[ #, FontSlant -> "Italic"]&)], "3"],
+              "TraditionalForm"], "\[NoBreak]", 
+            FormBox[
+              SubscriptBox[
+                TagBox[
+                  StyleBox["\<\"\[Mu]\"\>",
+                    FontSlant->"Italic"],
+                  (StyleForm[ #, FontSlant -> "Italic"]&)], "4"],
+              "TraditionalForm"]}]], " ", 
+        RowBox[{"(", 
+          RowBox[{
+            RowBox[{
+              SubsuperscriptBox[
+                TagBox["\<\"\[Delta]\"\>",
+                  StyleForm], 
+                RowBox[{
+                  TagBox[
+                    FormBox["3",
+                      "TraditionalForm"],
+                    TraditionalForm,
+                    Editable->True], 
+                  TagBox[
+                    FormBox[
+                      FormBox[
+                        SubscriptBox[
+                          TagBox[
+                            StyleBox["\<\"I\"\>",
+                              FontSlant->"Italic"],
+                            (StyleForm[ #, FontSlant -> "Italic"]&)], "1"],
+                        "TraditionalForm"],
+                      "TraditionalForm"],
+                    TraditionalForm,
+                    Editable->True]}], \((2)\)], " ", 
+              SubsuperscriptBox[
+                TagBox["\<\"\[Delta]\"\>",
+                  StyleForm], 
+                RowBox[{
+                  TagBox[
+                    FormBox["3",
+                      "TraditionalForm"],
+                    TraditionalForm,
+                    Editable->True], 
+                  TagBox[
+                    FormBox[
+                      FormBox[
+                        SubscriptBox[
+                          TagBox[
+                            StyleBox["\<\"I\"\>",
+                              FontSlant->"Italic"],
+                            (StyleForm[ #, FontSlant -> "Italic"]&)], "2"],
+                        "TraditionalForm"],
+                      "TraditionalForm"],
+                    TraditionalForm,
+                    Editable->True]}], \((2)\)]}], "-", 
+            SubsuperscriptBox[
+              TagBox["\<\"\[Delta]\"\>",
+                StyleForm], 
+              RowBox[{
+                TagBox[
+                  FormBox[
+                    FormBox[
+                      SubscriptBox[
+                        TagBox[
+                          StyleBox["\<\"I\"\>",
+                            FontSlant->"Italic"],
+                          (StyleForm[ #, FontSlant -> "Italic"]&)], "1"],
+                      "TraditionalForm"],
+                    "TraditionalForm"],
+                  TraditionalForm,
+                  Editable->True], 
+                TagBox[
+                  FormBox[
+                    FormBox[
+                      SubscriptBox[
+                        TagBox[
+                          StyleBox["\<\"I\"\>",
+                            FontSlant->"Italic"],
+                          (StyleForm[ #, FontSlant -> "Italic"]&)], "2"],
+                      "TraditionalForm"],
+                    "TraditionalForm"],
+                  TraditionalForm,
+                  Editable->True]}], \((2)\)]}], ")"}]}], 
+      TraditionalForm]], "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+    \(mfa = 
+      MomentaCollect[m // Expand, PerturbationOrder \[Rule] 2]\)], "Input"],
+
+Cell[BoxData[
+    FormBox[
+      RowBox[{
+        SuperscriptBox[
+          RowBox[{"(", 
+            SuperscriptBox[
+              TagBox[
+                StyleBox["\<\"e\"\>",
+                  FontSlant->"Italic"],
+                (StyleForm[ #, FontSlant -> "Italic"]&)], 
+              RowBox[{
+                TagBox[
+                  FormBox["",
+                    "TraditionalForm"],
+                  TraditionalForm,
+                  Editable->True], 
+                TagBox[
+                  FormBox["",
+                    "TraditionalForm"],
+                  TraditionalForm,
+                  Editable->True], 
+                TagBox[
+                  FormBox["",
+                    "TraditionalForm"],
+                  TraditionalForm,
+                  Editable->True]}]], ")"}], "2"], " ", 
+        SuperscriptBox["g", 
+          RowBox[{
+            FormBox[
+              SubscriptBox[
+                TagBox[
+                  StyleBox["\<\"\[Mu]\"\>",
+                    FontSlant->"Italic"],
+                  (StyleForm[ #, FontSlant -> "Italic"]&)], "3"],
+              "TraditionalForm"], "\[NoBreak]", 
+            FormBox[
+              SubscriptBox[
+                TagBox[
+                  StyleBox["\<\"\[Mu]\"\>",
+                    FontSlant->"Italic"],
+                  (StyleForm[ #, FontSlant -> "Italic"]&)], "4"],
+              "TraditionalForm"]}]], " ", 
+        RowBox[{"(", 
+          RowBox[{
+            RowBox[{"2", " ", "\[ImaginaryI]", " ", 
+              SubsuperscriptBox[
+                TagBox["\<\"\[Delta]\"\>",
+                  StyleForm], 
+                RowBox[{
+                  TagBox[
+                    FormBox[
+                      FormBox[
+                        SubscriptBox[
+                          TagBox[
+                            StyleBox["\<\"I\"\>",
+                              FontSlant->"Italic"],
+                            (StyleForm[ #, FontSlant -> "Italic"]&)], "1"],
+                        "TraditionalForm"],
+                      "TraditionalForm"],
+                    TraditionalForm,
+                    Editable->True], 
+                  TagBox[
+                    FormBox[
+                      FormBox[
+                        SubscriptBox[
+                          TagBox[
+                            StyleBox["\<\"I\"\>",
+                              FontSlant->"Italic"],
+                            (StyleForm[ #, FontSlant -> "Italic"]&)], "2"],
+                        "TraditionalForm"],
+                      "TraditionalForm"],
+                    TraditionalForm,
+                    Editable->True]}], \((2)\)]}], "-", 
+            RowBox[{"2", " ", "\[ImaginaryI]", " ", 
+              SubsuperscriptBox[
+                TagBox["\<\"\[Delta]\"\>",
+                  StyleForm], 
+                RowBox[{
+                  TagBox[
+                    FormBox["3",
+                      "TraditionalForm"],
+                    TraditionalForm,
+                    Editable->True], 
+                  TagBox[
+                    FormBox[
+                      FormBox[
+                        SubscriptBox[
+                          TagBox[
+                            StyleBox["\<\"I\"\>",
+                              FontSlant->"Italic"],
+                            (StyleForm[ #, FontSlant -> "Italic"]&)], "1"],
+                        "TraditionalForm"],
+                      "TraditionalForm"],
+                    TraditionalForm,
+                    Editable->True]}], \((2)\)], " ", 
+              SubsuperscriptBox[
+                TagBox["\<\"\[Delta]\"\>",
+                  StyleForm], 
+                RowBox[{
+                  TagBox[
+                    FormBox["3",
+                      "TraditionalForm"],
+                    TraditionalForm,
+                    Editable->True], 
+                  TagBox[
+                    FormBox[
+                      FormBox[
+                        SubscriptBox[
+                          TagBox[
+                            StyleBox["\<\"I\"\>",
+                              FontSlant->"Italic"],
+                            (StyleForm[ #, FontSlant -> "Italic"]&)], "2"],
+                        "TraditionalForm"],
+                      "TraditionalForm"],
+                    TraditionalForm,
+                    Editable->True]}], \((2)\)]}]}], ")"}]}], 
+      TraditionalForm]], "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+    \(gencoup = GenericCoupling[mfa]\)], "Input"],
+
+Cell[BoxData[
+    FormBox[
+      RowBox[{"{", 
+        RowBox[{
+          SuperscriptBox[
+            RowBox[{"(", 
+              SuperscriptBox[
+                TagBox[
+                  StyleBox["\<\"e\"\>",
+                    FontSlant->"Italic"],
+                  (StyleForm[ #, FontSlant -> "Italic"]&)], 
+                RowBox[{
+                  TagBox[
+                    FormBox["",
+                      "TraditionalForm"],
+                    TraditionalForm,
+                    Editable->True], 
+                  TagBox[
+                    FormBox["",
+                      "TraditionalForm"],
+                    TraditionalForm,
+                    Editable->True], 
+                  TagBox[
+                    FormBox["",
+                      "TraditionalForm"],
+                    TraditionalForm,
+                    Editable->True]}]], ")"}], "2"], " ", 
+          SuperscriptBox["g", 
+            RowBox[{
+              FormBox[
+                SubscriptBox[
+                  TagBox[
+                    StyleBox["\<\"\[Mu]\"\>",
+                      FontSlant->"Italic"],
+                    (StyleForm[ #, FontSlant -> "Italic"]&)], "3"],
+                "TraditionalForm"], "\[NoBreak]", 
+              FormBox[
+                SubscriptBox[
+                  TagBox[
+                    StyleBox["\<\"\[Mu]\"\>",
+                      FontSlant->"Italic"],
+                    (StyleForm[ #, FontSlant -> "Italic"]&)], "4"],
+                "TraditionalForm"]}]]}], "}"}], TraditionalForm]], "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+    \(classcoup = ClassesCoupling[mfa] // Together; 
+    classcoup // StandardForm\)], "Input"],
+
+Cell[BoxData[
+    \({{\(-2\)\ \[ImaginaryI]\ \((SUNDelta[3, I1]\ SUNDelta[3, I2] - 
+              SUNDelta[I1, I2])\)}}\)], "Output"]
+}, Open  ]],
+
+Cell[BoxData[
+    \(\($VeryVerbose = 2;\)\)], "Input"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+    \(\(CheckF[gencoup, 
+        XName[PhiModel \[Rule] ChPTVirtualPhotons2, 
+            VertexFields \[Rule] {\(PseudoScalar[2]\)[0], \(PseudoScalar[2]\)[
+                  0], \(Vector[1]\)[0], \(Vector[1]\)[0]}, 
+            MomentaOrder \[Rule] 2, 
+            XFileName \[Rule] Automatic] <> "\<.Gen\>"];\)\)], "Input"],
+
+Cell[BoxData[
+    \(TraditionalForm\`"Using file name D:\\Program Files\\Wolfram \
+Research\\Mathematica\\4.1\\AddOns\\Applications\\HighEnergyPhysics\\Phi\\\
+CouplingVectors\\ChPTVirtualPhotons2P20P20V10V10o2.Gen"\)], "Print"],
+
+Cell[BoxData[
+    \(TraditionalForm\`"File exists, force evaluating"\)], "Print"],
+
+Cell[BoxData[
+    \(TraditionalForm\`"Saving"\)], "Print"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+    \(\(CheckF[classcoup, 
+        XName[PhiModel \[Rule] ChPTVirtualPhotons2, 
+            VertexFields \[Rule] {\(PseudoScalar[2]\)[0], \(PseudoScalar[2]\)[
+                  0], \(Vector[1]\)[0], \(Vector[1]\)[0]}, 
+            MomentaOrder \[Rule] 2, 
+            XFileName \[Rule] Automatic] <> "\<.Mod\>"];\)\)], "Input"],
+
+Cell[BoxData[
+    \(TraditionalForm\`"Using file name D:\\Program Files\\Wolfram \
+Research\\Mathematica\\4.1\\AddOns\\Applications\\HighEnergyPhysics\\Phi\\\
+CouplingVectors\\ChPTVirtualPhotons2P20P20V10V10o2.Mod"\)], "Print"],
+
+Cell[BoxData[
+    \(TraditionalForm\`"File exists, force evaluating"\)], "Print"],
+
+Cell[BoxData[
+    \(TraditionalForm\`"Saving"\)], "Print"]
+}, Open  ]],
+
+Cell[BoxData[
+    \(\($VeryVerbose = 0;\)\)], "Input"],
+
+Cell[BoxData[
+    \(\(mesonstop = 
+        CreateTopologies[1, 1 \[Rule] 1, 
+          Adjacencies \[Rule] {3, 4}];\)\)], "Input",
+  AspectRatioFixed->True],
+
+Cell[BoxData[
+    \(\(mesontreeinsert = 
+        InsertFields[mesonstop, {Pion[0, {i1}]} \[Rule] {Pion[0, {i2}]}, 
+          Model \[Rule] "\<Automatic\>", 
+          GenericModel \[Rule] "\<Automatic\>", 
+          InsertionLevel \[Rule] Classes];\)\)], "Input",
+  AspectRatioFixed->True],
+
+Cell[BoxData[
+    \(\(mesontreegraph = 
+        Paint[mesontreeinsert, PaintLevel \[Rule] {Classes}, 
+          AutoEdit \[Rule] False, SheetHeader \[Rule] False, 
+          Numbering \[Rule] False, ColumnsXRows \[Rule] {2, 1}];\)\)], "Input",\
+
+  AspectRatioFixed->True],
+
+Cell[BoxData[
+    \(\($ConstantIsoIndices = 
+        Union[$ConstantIsoIndices, {i1, i2, I1}];\)\)], "Input"],
+
+Cell[BoxData[
+    \(amplFC = \(CreateFCAmp[mesontreeinsert, AmplitudeLevel \[Rule] Classes, 
+              EqualMasses \[Rule] False] /. i2 \[Rule] i1 // SUNReduce\) // 
+        Simplify\)], "Input",
+  AspectRatioFixed->True],
+
+Cell[BoxData[
+    \(\(ampreduced = \(OneLoop[q1, #, Sum \[Rule] Explicit] &\) /@ 
+          amplFC;\)\)], "Input"],
+
+Cell[BoxData[
+    \(ampsimple = \(ampreduced // IsoToChargedMasses\) // Simplify\)], "Input"],
+
 Cell[CellGroupData[{
 
 Cell["Miscellaneous Functions", "Section"],
@@ -13357,7 +16710,7 @@ FrontEndVersion->"4.1 for Microsoft Windows",
 ScreenRectangle->{{0, 1024}, {0, 723}},
 CellGrouping->Manual,
 WindowSize->{584, 527},
-WindowMargins->{{Automatic, 28}, {Automatic, 25}},
+WindowMargins->{{Automatic, 13}, {81, Automatic}},
 ShowSelection->True
 ]
 
@@ -13388,35 +16741,35 @@ CellTagsIndex->{
     Cell[47348, 1784, 73, 2, 44, "Input",
       CellTags->"DiracReduce"]},
   "Info3261305656-9425648"->{
-    Cell[381841, 13213, 323, 9, 25, "Print",
+    Cell[507384, 16566, 323, 9, 25, "Print",
       CellTags->"Info3261305656-9425648"]},
   "Info3261239670-7607205"->{
-    Cell[382256, 13230, 316, 5, 82, "Print",
+    Cell[507799, 16583, 316, 5, 82, "Print",
       CellTags->"Info3261239670-7607205"]},
   "DiracSigma"->{
-    Cell[382609, 13240, 103, 2, 30, "Input",
+    Cell[508152, 16593, 103, 2, 30, "Input",
       CellTags->"DiracSigma"],
-    Cell[383109, 13260, 80, 2, 30, "Input",
+    Cell[508652, 16613, 80, 2, 30, "Input",
       CellTags->"DiracSigma"]},
   "Info3252001556-5623365"->{
-    Cell[384486, 13311, 198, 3, 44, "Print",
+    Cell[510029, 16664, 198, 3, 44, "Print",
       CellTags->"Info3252001556-5623365"]},
   "Info3251980709-4983263"->{
-    Cell[385063, 13334, 510, 7, 158, "Print",
+    Cell[510606, 16687, 510, 7, 158, "Print",
       CellTags->"Info3251980709-4983263"]}
   }
 *)
 
 (*CellTagsIndex
 CellTagsIndex->{
-  {"Info3261301836-8080725", 386488, 13372},
-  {"DotSimplify", 386593, 13375},
-  {"DiracReduce", 386762, 13380},
-  {"Info3261305656-9425648", 387091, 13389},
-  {"Info3261239670-7607205", 387210, 13392},
-  {"DiracSigma", 387317, 13395},
-  {"Info3252001556-5623365", 387499, 13400},
-  {"Info3251980709-4983263", 387618, 13403}
+  {"Info3261301836-8080725", 512031, 16725},
+  {"DotSimplify", 512136, 16728},
+  {"DiracReduce", 512305, 16733},
+  {"Info3261305656-9425648", 512634, 16742},
+  {"Info3261239670-7607205", 512753, 16745},
+  {"DiracSigma", 512860, 16748},
+  {"Info3252001556-5623365", 513042, 16753},
+  {"Info3251980709-4983263", 513161, 16756}
   }
 *)
 
@@ -14468,243 +17821,354 @@ Cell[359447, 12426, 321, 4, 52, "Output"]
 }, Open  ]],
 Cell[359783, 12433, 26, 0, 30, "Input"]
 }, Closed]],
+Cell[359824, 12436, 40, 0, 39, "Section"],
+Cell[359867, 12438, 44, 1, 30, "Input"],
+Cell[359914, 12441, 307, 5, 104, "Input"],
 
 Cell[CellGroupData[{
-Cell[359846, 12438, 42, 0, 39, "Section"],
-
-Cell[CellGroupData[{
-Cell[359913, 12442, 104, 2, 44, "Input"],
-Cell[360020, 12446, 117, 2, 43, "Output"]
+Cell[360246, 12450, 76, 1, 44, "Input"],
+Cell[360325, 12453, 618, 20, 90, "Text"],
+Cell[360946, 12475, 78, 2, 33, "Text"],
+Cell[361027, 12479, 83, 2, 33, "Text"],
+Cell[361113, 12483, 62, 1, 25, "Print"],
+Cell[361178, 12486, 64, 1, 25, "Print"],
+Cell[361245, 12489, 99, 2, 25, "Print"],
+Cell[361347, 12493, 74, 1, 25, "Print"],
+Cell[361424, 12496, 104, 2, 25, "Print"]
 }, Open  ]],
 
 Cell[CellGroupData[{
-Cell[360174, 12453, 72, 1, 44, "Input"],
-Cell[360249, 12456, 89, 1, 59, "Output"]
+Cell[361565, 12503, 73, 1, 44, "Input"],
+Cell[361641, 12506, 351, 6, 42, "Message"]
 }, Open  ]],
 
 Cell[CellGroupData[{
-Cell[360375, 12462, 71, 1, 44, "Input"],
-Cell[360449, 12465, 82, 1, 43, "Output"]
+Cell[362029, 12517, 67, 1, 44, "Input"],
+Cell[362099, 12520, 14017, 356, 96, "Output"]
 }, Open  ]],
 
 Cell[CellGroupData[{
-Cell[360568, 12471, 50, 1, 44, "Input"],
-Cell[360621, 12474, 82, 1, 43, "Output"]
+Cell[376153, 12881, 149, 2, 64, "Input"],
+Cell[376305, 12885, 14207, 368, 59, "Output"]
 }, Open  ]],
 
 Cell[CellGroupData[{
-Cell[360740, 12480, 51, 1, 44, "Input"],
-Cell[360794, 12483, 82, 1, 43, "Output"]
+Cell[390549, 13258, 218, 4, 104, "Input"],
+Cell[390770, 13264, 19571, 471, 97, "Output"]
 }, Open  ]],
 
 Cell[CellGroupData[{
-Cell[360913, 12489, 45, 1, 44, "Input"],
-Cell[360961, 12492, 75, 1, 43, "Output"]
+Cell[410378, 13740, 318, 6, 124, "Input"],
+Cell[410699, 13748, 4493, 119, 56, "Output"]
+}, Open  ]],
+Cell[415207, 13870, 225, 4, 70, "Input"],
+
+Cell[CellGroupData[{
+Cell[415457, 13878, 397, 7, 110, "Input"],
+Cell[415857, 13887, 12589, 305, 45, "Output"]
 }, Open  ]],
 
 Cell[CellGroupData[{
-Cell[361073, 12498, 46, 1, 44, "Input"],
-Cell[361122, 12501, 75, 1, 43, "Output"]
+Cell[428483, 14197, 86, 1, 30, "Input"],
+Cell[428572, 14200, 9185, 230, 46, "Output"]
 }, Open  ]],
 
 Cell[CellGroupData[{
-Cell[361234, 12507, 47, 1, 44, "Input"],
-Cell[361284, 12510, 98, 3, 43, "Output"]
+Cell[437794, 14435, 52, 1, 30, "Input"],
+Cell[437849, 14438, 9352, 247, 45, "Output"]
 }, Open  ]],
 
 Cell[CellGroupData[{
-Cell[361419, 12518, 87, 1, 44, "Input"],
-Cell[361509, 12521, 248, 8, 43, "Output"]
+Cell[447238, 14690, 47, 1, 30, "Input"],
+Cell[447288, 14693, 12123, 346, 82, "Output"],
+Cell[459414, 15041, 106, 2, 30, "Input"],
+Cell[459523, 15045, 7701, 217, 45, "Output"]
 }, Open  ]],
 
 Cell[CellGroupData[{
-Cell[361794, 12534, 47, 1, 44, "Input"],
-Cell[361844, 12537, 293, 8, 43, "Output"]
+Cell[467261, 15267, 509, 10, 190, "Input"],
+Cell[467773, 15279, 3731, 107, 47, "Output"]
 }, Open  ]],
 
 Cell[CellGroupData[{
-Cell[362174, 12550, 65, 1, 44, "Input"],
-Cell[362242, 12553, 393, 11, 43, "Output"]
+Cell[471541, 15391, 188, 3, 84, "Input"],
+Cell[471732, 15396, 4276, 115, 49, "Output"]
 }, Open  ]],
 
 Cell[CellGroupData[{
-Cell[362672, 12569, 130, 2, 44, "Input"],
-Cell[362805, 12573, 246, 8, 43, "Output"]
+Cell[476045, 15516, 102, 2, 44, "Input"],
+Cell[476150, 15520, 4384, 116, 49, "Output"]
 }, Open  ]],
 
 Cell[CellGroupData[{
-Cell[363088, 12586, 267, 5, 104, "Input"],
-Cell[363358, 12593, 246, 8, 43, "Output"]
+Cell[480571, 15641, 63, 1, 44, "Input"],
+Cell[480637, 15644, 1537, 42, 45, "Output"]
 }, Open  ]],
 
 Cell[CellGroupData[{
-Cell[363641, 12606, 47, 1, 44, "Input"],
-Cell[363691, 12609, 299, 8, 43, "Output"]
+Cell[482211, 15691, 109, 2, 64, "Input"],
+Cell[482323, 15695, 133, 2, 43, "Output"]
+}, Open  ]],
+Cell[482471, 15700, 54, 1, 30, "Input"],
+
+Cell[CellGroupData[{
+Cell[482550, 15705, 339, 6, 110, "Input"],
+Cell[482892, 15713, 227, 3, 44, "Print"],
+Cell[483122, 15718, 81, 1, 25, "Print"],
+Cell[483206, 15721, 58, 1, 25, "Print"]
 }, Open  ]],
 
 Cell[CellGroupData[{
-Cell[364027, 12622, 115, 2, 44, "Input"],
-Cell[364145, 12626, 97, 3, 43, "Output"]
+Cell[483301, 15727, 341, 6, 110, "Input"],
+Cell[483645, 15735, 227, 3, 44, "Print"],
+Cell[483875, 15740, 81, 1, 25, "Print"],
+Cell[483959, 15743, 58, 1, 25, "Print"]
+}, Open  ]],
+Cell[484032, 15747, 54, 1, 30, "Input"],
+Cell[484089, 15750, 156, 4, 30, "Input"],
+Cell[484248, 15756, 289, 6, 70, "Input"],
+Cell[484540, 15764, 271, 6, 70, "Input"],
+Cell[484814, 15772, 109, 2, 30, "Input"],
+Cell[484926, 15776, 225, 4, 70, "Input"],
+Cell[485154, 15782, 114, 2, 30, "Input"],
+Cell[485271, 15786, 93, 1, 30, "Input"],
+
+Cell[CellGroupData[{
+Cell[485389, 15791, 42, 0, 59, "Section"],
+
+Cell[CellGroupData[{
+Cell[485456, 15795, 104, 2, 44, "Input"],
+Cell[485563, 15799, 117, 2, 43, "Output"]
 }, Open  ]],
 
 Cell[CellGroupData[{
-Cell[364279, 12634, 45, 1, 44, "Input"],
-Cell[364327, 12637, 232, 7, 43, "Output"]
-}, Open  ]],
-Cell[364574, 12647, 49, 1, 44, "Input"],
-
-Cell[CellGroupData[{
-Cell[364648, 12652, 75, 1, 44, "Input"],
-Cell[364726, 12655, 56, 1, 43, "Output"]
+Cell[485717, 15806, 72, 1, 44, "Input"],
+Cell[485792, 15809, 89, 1, 59, "Output"]
 }, Open  ]],
 
 Cell[CellGroupData[{
-Cell[364819, 12661, 60, 1, 44, "Input"],
-Cell[364882, 12664, 59, 1, 43, "Output"]
+Cell[485918, 15815, 71, 1, 44, "Input"],
+Cell[485992, 15818, 82, 1, 43, "Output"]
 }, Open  ]],
 
 Cell[CellGroupData[{
-Cell[364978, 12670, 65, 1, 44, "Input"],
-Cell[365046, 12673, 64, 1, 43, "Output"]
+Cell[486111, 15824, 50, 1, 44, "Input"],
+Cell[486164, 15827, 82, 1, 43, "Output"]
 }, Open  ]],
 
 Cell[CellGroupData[{
-Cell[365147, 12679, 64, 1, 44, "Input"],
-Cell[365214, 12682, 79, 1, 45, "Output"]
+Cell[486283, 15833, 51, 1, 44, "Input"],
+Cell[486337, 15836, 82, 1, 43, "Output"]
 }, Open  ]],
 
 Cell[CellGroupData[{
-Cell[365330, 12688, 93, 1, 44, "Input"],
-Cell[365426, 12691, 129, 4, 43, "Output"]
-}, Open  ]],
-Cell[365570, 12698, 71, 1, 44, "Input"],
-
-Cell[CellGroupData[{
-Cell[365666, 12703, 46, 1, 44, "Input"],
-Cell[365715, 12706, 127, 6, 93, "Print"]
-}, Open  ]],
-Cell[365857, 12715, 114, 2, 44, "Input"],
-
-Cell[CellGroupData[{
-Cell[365996, 12721, 48, 1, 44, "Input"],
-Cell[366047, 12724, 126, 5, 76, "Print"]
-}, Open  ]],
-Cell[366188, 12732, 82, 1, 44, "Input"],
-
-Cell[CellGroupData[{
-Cell[366295, 12737, 159, 3, 64, "Input"],
-Cell[366457, 12742, 560, 17, 43, "Output"]
+Cell[486456, 15842, 45, 1, 44, "Input"],
+Cell[486504, 15845, 75, 1, 43, "Output"]
 }, Open  ]],
 
 Cell[CellGroupData[{
-Cell[367054, 12764, 47, 1, 44, "Input"],
-Cell[367104, 12767, 1140, 34, 43, "Output"]
+Cell[486616, 15851, 46, 1, 44, "Input"],
+Cell[486665, 15854, 75, 1, 43, "Output"]
 }, Open  ]],
 
 Cell[CellGroupData[{
-Cell[368281, 12806, 141, 3, 44, "Input"],
-Cell[368425, 12811, 2358, 64, 44, "Output"]
+Cell[486777, 15860, 47, 1, 44, "Input"],
+Cell[486827, 15863, 98, 3, 43, "Output"]
 }, Open  ]],
 
 Cell[CellGroupData[{
-Cell[370820, 12880, 91, 1, 44, "Input"],
-Cell[370914, 12883, 132, 2, 62, "Output"]
+Cell[486962, 15871, 87, 1, 44, "Input"],
+Cell[487052, 15874, 248, 8, 43, "Output"]
 }, Open  ]],
 
 Cell[CellGroupData[{
-Cell[371083, 12890, 85, 1, 44, "Input"],
-Cell[371171, 12893, 121, 2, 43, "Output"]
+Cell[487337, 15887, 47, 1, 44, "Input"],
+Cell[487387, 15890, 293, 8, 43, "Output"]
 }, Open  ]],
 
 Cell[CellGroupData[{
-Cell[371329, 12900, 138, 2, 64, "Input"],
-Cell[371470, 12904, 70, 1, 43, "Output"]
+Cell[487717, 15903, 65, 1, 44, "Input"],
+Cell[487785, 15906, 393, 11, 43, "Output"]
 }, Open  ]],
 
 Cell[CellGroupData[{
-Cell[371577, 12910, 156, 3, 64, "Input"],
-Cell[371736, 12915, 74, 1, 45, "Output"]
+Cell[488215, 15922, 130, 2, 44, "Input"],
+Cell[488348, 15926, 246, 8, 43, "Output"]
 }, Open  ]],
 
 Cell[CellGroupData[{
-Cell[371847, 12921, 65, 1, 44, "Input"],
-Cell[371915, 12924, 706, 22, 59, "Output"]
+Cell[488631, 15939, 267, 5, 104, "Input"],
+Cell[488901, 15946, 246, 8, 43, "Output"]
 }, Open  ]],
 
 Cell[CellGroupData[{
-Cell[372658, 12951, 74, 1, 44, "Input"],
-Cell[372735, 12954, 5746, 167, 108, "Output"]
+Cell[489184, 15959, 47, 1, 44, "Input"],
+Cell[489234, 15962, 299, 8, 43, "Output"]
 }, Open  ]],
 
 Cell[CellGroupData[{
-Cell[378518, 13126, 137, 2, 64, "Input"],
-Cell[378658, 13130, 691, 14, 43, "Output"]
+Cell[489570, 15975, 115, 2, 44, "Input"],
+Cell[489688, 15979, 97, 3, 43, "Output"]
 }, Open  ]],
 
 Cell[CellGroupData[{
-Cell[379386, 13149, 123, 2, 64, "Input"],
-Cell[379512, 13153, 593, 10, 43, "Output"]
+Cell[489822, 15987, 45, 1, 44, "Input"],
+Cell[489870, 15990, 232, 7, 43, "Output"]
+}, Open  ]],
+Cell[490117, 16000, 49, 1, 44, "Input"],
+
+Cell[CellGroupData[{
+Cell[490191, 16005, 75, 1, 44, "Input"],
+Cell[490269, 16008, 56, 1, 43, "Output"]
 }, Open  ]],
 
 Cell[CellGroupData[{
-Cell[380142, 13168, 218, 4, 84, "Input"],
-Cell[380363, 13174, 1307, 25, 43, "Output"]
+Cell[490362, 16014, 60, 1, 44, "Input"],
+Cell[490425, 16017, 59, 1, 43, "Output"]
 }, Open  ]],
-Cell[381685, 13202, 26, 0, 30, "Input"]
+
+Cell[CellGroupData[{
+Cell[490521, 16023, 65, 1, 44, "Input"],
+Cell[490589, 16026, 64, 1, 43, "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+Cell[490690, 16032, 64, 1, 44, "Input"],
+Cell[490757, 16035, 79, 1, 45, "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+Cell[490873, 16041, 93, 1, 44, "Input"],
+Cell[490969, 16044, 129, 4, 43, "Output"]
+}, Open  ]],
+Cell[491113, 16051, 71, 1, 44, "Input"],
+
+Cell[CellGroupData[{
+Cell[491209, 16056, 46, 1, 44, "Input"],
+Cell[491258, 16059, 127, 6, 93, "Print"]
+}, Open  ]],
+Cell[491400, 16068, 114, 2, 44, "Input"],
+
+Cell[CellGroupData[{
+Cell[491539, 16074, 48, 1, 44, "Input"],
+Cell[491590, 16077, 126, 5, 76, "Print"]
+}, Open  ]],
+Cell[491731, 16085, 82, 1, 44, "Input"],
+
+Cell[CellGroupData[{
+Cell[491838, 16090, 159, 3, 64, "Input"],
+Cell[492000, 16095, 560, 17, 43, "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+Cell[492597, 16117, 47, 1, 44, "Input"],
+Cell[492647, 16120, 1140, 34, 43, "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+Cell[493824, 16159, 141, 3, 44, "Input"],
+Cell[493968, 16164, 2358, 64, 44, "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+Cell[496363, 16233, 91, 1, 44, "Input"],
+Cell[496457, 16236, 132, 2, 62, "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+Cell[496626, 16243, 85, 1, 44, "Input"],
+Cell[496714, 16246, 121, 2, 43, "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+Cell[496872, 16253, 138, 2, 64, "Input"],
+Cell[497013, 16257, 70, 1, 43, "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+Cell[497120, 16263, 156, 3, 64, "Input"],
+Cell[497279, 16268, 74, 1, 45, "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+Cell[497390, 16274, 65, 1, 44, "Input"],
+Cell[497458, 16277, 706, 22, 59, "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+Cell[498201, 16304, 74, 1, 44, "Input"],
+Cell[498278, 16307, 5746, 167, 108, "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+Cell[504061, 16479, 137, 2, 64, "Input"],
+Cell[504201, 16483, 691, 14, 43, "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+Cell[504929, 16502, 123, 2, 64, "Input"],
+Cell[505055, 16506, 593, 10, 43, "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+Cell[505685, 16521, 218, 4, 84, "Input"],
+Cell[505906, 16527, 1307, 25, 43, "Output"]
+}, Open  ]],
+Cell[507228, 16555, 26, 0, 30, "Input"]
 }, Closed]],
-Cell[381726, 13205, 26, 0, 27, "Input"]
+Cell[507269, 16558, 26, 0, 27, "Input"]
 }, Open  ]],
 
 Cell[CellGroupData[{
-Cell[381789, 13210, 49, 1, 44, "Input"],
-Cell[381841, 13213, 323, 9, 25, "Print",
+Cell[507332, 16563, 49, 1, 30, "Input"],
+Cell[507384, 16566, 323, 9, 25, "Print",
   CellTags->"Info3261305656-9425648"]
 }, Open  ]],
 
 Cell[CellGroupData[{
-Cell[382201, 13227, 52, 1, 30, "Input"],
-Cell[382256, 13230, 316, 5, 82, "Print",
+Cell[507744, 16580, 52, 1, 30, "Input"],
+Cell[507799, 16583, 316, 5, 82, "Print",
   CellTags->"Info3261239670-7607205"]
 }, Open  ]],
 
 Cell[CellGroupData[{
-Cell[382609, 13240, 103, 2, 30, "Input",
+Cell[508152, 16593, 103, 2, 30, "Input",
   CellTags->"DiracSigma"],
-Cell[382715, 13244, 357, 11, 29, "Output"]
+Cell[508258, 16597, 357, 11, 29, "Output"]
 }, Open  ]],
 
 Cell[CellGroupData[{
-Cell[383109, 13260, 80, 2, 30, "Input",
+Cell[508652, 16613, 80, 2, 30, "Input",
   CellTags->"DiracSigma"],
-Cell[383192, 13264, 964, 27, 45, "Output"]
+Cell[508735, 16617, 964, 27, 45, "Output"]
 }, Open  ]],
 
 Cell[CellGroupData[{
-Cell[384193, 13296, 50, 1, 30, "Input"],
-Cell[384246, 13299, 122, 2, 29, "Output"]
+Cell[509736, 16649, 50, 1, 30, "Input"],
+Cell[509789, 16652, 122, 2, 29, "Output"]
 }, Open  ]],
-Cell[384383, 13304, 26, 0, 30, "Input"],
+Cell[509926, 16657, 26, 0, 30, "Input"],
 
 Cell[CellGroupData[{
-Cell[384434, 13308, 49, 1, 30, "Input"],
-Cell[384486, 13311, 198, 3, 44, "Print",
+Cell[509977, 16661, 49, 1, 30, "Input"],
+Cell[510029, 16664, 198, 3, 44, "Print",
   CellTags->"Info3252001556-5623365"]
 }, Open  ]],
 
 Cell[CellGroupData[{
-Cell[384721, 13319, 45, 1, 30, "Input"],
-Cell[384769, 13322, 206, 4, 24, "Message"]
+Cell[510264, 16672, 45, 1, 30, "Input"],
+Cell[510312, 16675, 206, 4, 24, "Message"]
 }, Open  ]],
 
 Cell[CellGroupData[{
-Cell[385012, 13331, 48, 1, 30, "Input"],
-Cell[385063, 13334, 510, 7, 158, "Print",
+Cell[510555, 16684, 48, 1, 30, "Input"],
+Cell[510606, 16687, 510, 7, 158, "Print",
   CellTags->"Info3251980709-4983263"]
 }, Open  ]],
 
 Cell[CellGroupData[{
-Cell[385610, 13346, 156, 3, 70, "Input"],
-Cell[385769, 13351, 52, 1, 29, "Output"]
+Cell[511153, 16699, 156, 3, 70, "Input"],
+Cell[511312, 16704, 52, 1, 29, "Output"]
 }, Open  ]]
 }
 ]
