@@ -1,0 +1,553 @@
+\section{Miscellaneous Functions}
+\label{misc}
+
+\subsection{Low Level Dirac Algebra Functions}
+\label{diracLow}
+
+There are a number of lower level functions for doing Dirac algebra accessible
+(defined in contexts belongint to \mb{\$Path}). Some are used by the functions described in
+section \ref{diracalg}, some may be useful to perform more controlled
+calculations. They are described here also for completeness:
+\mb{DiracGammaCombine}
+\mb{DiracGammaExpand}
+\mb{DiracGammaT}
+\mb{DiracSigma}
+\mb{DiracSigmaExplicit}
+\mb{DiracSpinor}
+\mb{EpsChisholm}
+\mb{ChisholmSpinor}
+
+\subsection{Functions for Polynomial Manipulations}
+
+Unfortunately the built-in \mma 2.0 functions \mb{Factor}, \mb{Collect}
+and \mb{Together} are either not general enough for the purposes needed in 
+\fc or consume too much CPU time for certain polynomials
+with rational coefficients. The \fc extensions \mb{Factor2}, \mb{Collect2} 
+and \mb{Combine} should be used instead when manipulating the rational 
+polynomials emerging from \mb{OneLoop} or \mb{PaVeReduce}. 
+
+\otabtwo{
+\mbs{Collect2[{\sl expr}, {\sl x}]} & group together powers of terms containing $x$\cr
+\mbs{Collect2[{\sl expr}, \{$\hbox{\sl x}_{1}$, $\hbox{\sl x}_{2}$, ...\}]} & group together powers of 
+terms containing $x_1, x_2,  ...$ \cr
+\mbs{Combine[{\sl expr}]} & put terms in a sum over a common denominator \cr
+\mbs{Factor2[{\sl expr}]} &  factor a polynomial in a canonical way
+} {Modifications of \mb{Collect}, \mb{Together} and \mb{Factor}.}
+
+\beom
+\domtog{{Collect2[ (b - 2) d f[x] + f[x] + c p[y] + p[y], \{f, y\}]\\
+}}{ (1 + (-2 + b) d) f[x] + (1 + c) p[y]\hfil\\
+}{
+This collects \mb{f[x]} and \mb{p[y]}.
+The default setting is not to expand terms like $(b-2) d$.
+}
+\domtog{{Collect2[3\ B0[pp,m1,m2]\ (m\phat 2 + s) + B0[pp,m1,m2]\ s, \\
+\ \ \ \ \ \ \ \ \ B0,\ ProductExpand $\rightarrow$ True]\\
+}}{(3\ \superscript{m}{2} +\ 4\ s)\ B0[pp,\ m1,\ m2]\hfil\\
+}{
+With the setting \\ \mb{ProductExpand $\rightarrow$ True} the product $3 (s + m^2)$
+gets expanded.
+}
+\domtog{{Combine[(a - b) (c - d)/e\ +\ g]\\
+}}{\Frac{(a\ -\ b)\ (c\ -\ d)\ +\ e\ g}{e}\hfil\\
+}{
+This puts terms over a common denominator without expanding the numerator.
+}
+\domtog{{test\ =\ (a - b) x\ +\ (b - a) y\\
+}}{ (a - b) x\ +\ (-a + b) y\hfil\\
+}{
+Consider a generic polynomial. 
+}
+\domtog{{Map[Factor, test]\\
+}}{ (a - b) x\ +\ (-a + b) y\hfil\\
+}{
+Mapping \mb{Factor} on the summands shows that no canonical factorization 
+of integers in sums takes place.
+}
+\domtog{{Map[Factor2, test]\\
+}}{ (a - b) x\ -\ (a - b) y\hfil\\
+}{
+If a canonical factorization is desired, 
+you may use \mb{Factor2} instead.
+}
+\domtog{{Factor[test]\\
+}}{ (-a + b) (-x + y)\hfil\\
+}{
+This is the overall factorization of \mb{Factor}.
+}
+\domtog{{Factor2[test]\\
+}}{ (a - b) (x - y)\hfil\\
+}{
+Here the convention used by \\
+\mb{Factor2} becomes clear:
+the first term in a subsum gets a positive prefactor.
+}
+\enom
+
+\otabthree{
+{\sl option name} & {\sl default value} \cr
+\hhline
+\mb{ProductExpand} & \mb{False} & expand products 
+} {An expansion controlling  option for \mb{Collect2} and \mb{Combine}.}
+
+\subsection{An Isolating Function for Automatically Introducing Abbreviations}
+\label{isolate}
+
+\otabtwo{
+\mbs{Isolate[{\sl expr}]} & if \mb{Length[{\sl expr}] > 0, substitute an abbreviation \mb{K[{\sl i}]} for $expr$} \cr
+\mbs{Isolate[{\sl expr},\ \{$\hbox{\sl x}_{1}$,\ $\hbox{\sl x}_{2}$,\ ...\}]} & substitute abbreviations for subsums 
+free of $x_1, x_2, ...$ \cr
+} {A function for isolating variables by introducing abbreviations for common
+subexpressions.}
+
+\otabthree{
+{\sl option name} & {\sl default value}\cr
+\hhline
+\mb{IsolateHead} & \mb{K} &  the head of the abbreviations \cr
+\mb{IsolateSplit} & \mb{442} & a limit beyond which \mb{Isolate} splits 
+the expression into two sums
+} {Options for \mb{Isolate} and \mb{Collect2}.}
+
+\beom
+\domtog{{Isolate[a + b] \\
+}}{ K[1]\hfil\\
+}{
+\mb{Isolate} with one argument introduces a single \mb{K[{\sl i}]} as abbreviation.
+}
+\domtog{{test = Isolate[(a + b) f + (c + d) f + e, f]\\
+}}{ e + f K[1] + f K[2]\hfil\\
+}{
+Here $f$ gets isolated with \mb{K[1]}  and \mb{K[2]} 
+replacing the bracketed subsums.
+}
+\domtog{{FullForm[test]\\
+}}{{ Out[\the\promptcount]//FullForm=} \\
+Plus[e, Times[f, HoldForm[K[1]]], Times[f, HoldForm[K[2]]]]\hfil\\
+}{
+Looking at the \mb{FullForm} reveals that the \mb{K[{\sl i}]} are 
+given in \mb{HoldForm}.
+}
+\domtog{{\{ K[1], test, ReleaseHold[test] \}\\
+}}{ \{a + b, e + f K[1] + f K[2], \\
+\\
+e + (a + b) f + (c + d) f\}\hfil\\
+}{ 
+Asking for \mb{K[1]} returns its value, but in \mb{test} 
+\mb{K[1]} is held.
+} 
+\domtog{{Isolate[a[z]\ (b + c (y + z)) + d[z] (y + z), \{a, d\}, \\
+\ \ \ \ \ \ \ \ IsolateHead $\rightarrow$ F] \\
+}}{ d[z] F[1] + a[z] F[2]\hfil\\
+}{
+For the term \\
+\mb{(b + c (y + z))}\\
+a single abbreviation \mb{F[2]} is 
+returned.
+}
+\domtog{{( und[x\_\_]\ :=\ Isolate[Plus[x], IsolateHead $\rightarrow$ H]/;\\
+\ \ \ \ \ \ \ \ \ \ \ \ \ \ FreeQ2[\{x\}, \{a, d\}];\\
+ (a[z] (b + c (y + z)) + d[z] (y + z))/.\\
+ Plus $\rightarrow$ und /. und $\rightarrow$ Plus \\
+)\\
+}}{ d[z] H[1] + a[z] H[2]\hfil\\
+}{
+With the help of an additional \\
+function it is easy to introduce identical abbreviations for each 
+subsum.
+
+This trick of selectively substituting functions for 
+sums is also quite useful in special reordering 
+of polynomials.
+}
+\domtog{{ReleaseHold[\%]\\
+}}{ (y + z) d[z] + a[z] (b + c H[1])\hfil\\
+}{
+Here it is clear that \mb{H[1]} = (y + z) is part of
+\mb{H[2]}.
+}
+\domtog{{Isolate[ a - b - c - d - e, IsolateHead $\rightarrow$ L, IsolateSplit $\rightarrow$ 15 ]\\
+}}{ L[2]\hfil\\
+}{
+Decreasing the option \\
+\mb{IsolateSplit} significantly 
+forces \mb{Isolate} to 
+use more than one \mb{L} for \mb{a - b - c - d - e}.
+}
+\domtog{{\{L[2], L[1]\}\\
+}}{ \{-c - d - e + L[1], a - b\}\hfil\\
+}{
+This shows the values of the \mb{L}.
+}
+\enom
+
+The importance of \mb{Isolate} is significant, since it gives you a means
+to handle very big expressions. The use of \mb{Isolate} on
+big polynomials before writing them to a file is especially recommended.
+
+A subtle issue of the option \mb{IsolateSplit}, whose setting  refers 
+to the \\
+\mb{Length[Characters[ToString[FortranForm[{\sl expr}]]]]}, 
+is that it inhibits too many continuation lines in the Fortran file when writing out 
+expressions involving \mb{K[i]} with \mb{Write2}. See Section \ref{write2} for the
+usage of \mb{Write2}.
+
+You may want to change \mb{IsolateSplit} when working with big rational polynomials
+in order to optimize the successive (\mb{FixedPoint}) application of 
+functions like \mb{Combine[ReleaseHold[\#]]\&}.
+
+\subsection{An Extension of FreeQ and Two Other Useful Functions}
+\otabtwo{
+\mbs{FreeQ2[{\sl expr}, \{$\hbox{\sl f}_{1}$, $\hbox{\sl f}_{2}$, ...\}]} & 
+yields \mb{True} if $expr$ does not contain any occurrence of
+$f_1$, $f_2$, \ldots \cr
+\mbs{NumericalFactor[{\sl expr}]} &  gives the numerical factor of $expr$ \cr
+\mbs{PartitHead[{\sl expr}, {\sl h}]} & returns a list \mb{\{{\sl a}, {\sl h}[b]\}} with $a$ 
+free of expressions with head $h$, and $h[b]$ having head $h$
+} {Three useful functions.}
+
+\beom
+\domtog{{FreeQ2[M\phat 2 + m\phat 2 B0[pp, m1, m2], \{M, B0\}] \\
+}}{ False\hfil\\
+}{
+\mb{FreeQ2} is an extension of \\
+\mb{FreeQ}, allowing a list as second argument.
+}
+\domtog{{NumericalFactor[-137\ x]\\
+}}{ -137\hfil\\
+}{
+This gives the numerical factor of the expression.
+}
+\domtog{{PartitHead[f[m]\ (s - u), f]\\
+}}{ \{s - u, f[m]\}\hfil\\
+}{
+The action of \mb{PartitHead} on a product is to split the product apart.
+}
+\domtog{{PartitHead[s\phat 2 + M\phat 2 - f[m], f]\\
+}}{\{\superscript{M}{2}  + \superscript{s}{2}, -f[m]\}\hfil\\
+}{
+A sum gets separated into \\
+subsums.
+}
+\enom
+
+\subsection{Writing Out to Mathematica, Fortran, Macsyma and Maple}
+\label{write2}
+
+The \mma functions \mb{Write} and \mb{Save} may on rare occasions create files 
+that cannot  be read in again correctly. What sometimes happens is that, for 
+example, a division operator is written out as the first character of a line.
+When the file is loaded again, \mma may simply ignore that part  of the file
+before this character.
+You can easily work around this bug 
+by editing the file and wrapping  
+the expressions with brackets ``( )''. Since this is a cumbersome
+procedure for lots of expressions, it has been automatized in 
+\mb{Write2} for writing out expressions. 
+If you want to use \mb{Save}, you have to check 
+the output file for correctness.
+
+An option can be given to \mb{Write2} allowing the 
+output to be written in \mb{FortranForm}, \mb{MacsymaForm} or 
+\mb{MapleForm}. These facilities are elementary and mostly limited to the 
+type of polynomials usually encountered in \fc. 
+
+The \mb{FortranForm} option should not be used if the expression to be 
+written out contains a term $(-x)^n$, where $n$ is a symbol, (which is never
+produced by \fc, unless you enter it).
+The \mma \mb{FortranForm} is also incapable of recognizing some elementary 
+functions like \mb{Exp[x]}. 
+Therefore if you want to generate more elaborate Fortran code  you may want 
+to use {\it Maple}, which provides an optimization option when 
+translating {\it Maple} code to Fortran, or 
+the most sophisticated package for Fortran code generation from 
+computer algebra systems: {\it Gentran} (by B.~Gates and H.~van Hulzen),
+which is available in some {\it Macsyma} versions. To this end the \mb{Write2} option \mb{FormatType} may be set to \mb{MacsymaForm} or \mb{MapleForm}.
+You may achieve a rudimentary optimization by applying \mb{Isolate} on 
+the expression to be written out. With the option setting \mb{FortranForm} 
+and \mb{InputForm} the function \mb{Write2} recognizes variables in 
+\mb{HoldForm} and writes these out with their definitions first.
+
+\otabtwo{
+\mbs{Write2[{\sl fi}, {\sl x} = {\sl y}]} &
+write the setting $x = y$ into a file \mb{{\sl fi}}\cr
+\mbs{Write2[{\sl fi}, {\sl x} = {\sl y}, {\sl a} = {\sl b}, ...]} &
+write the setting $x = y$ into a file \mb{{\sl fi}} \cr
+} {A modification of \mb{Write}.}
+
+\otabthree{
+{\sl option name} & {\sl default value} \cr
+\hhline
+\mb{FormatType} & \mb{InputForm} & language in which to write the output \cr
+\mb{D0Convention} & 0 & which convention to use for the scalar integrals 
+} {Options for \mb{Write2}.} 
+
+With the default setting $0$ of \mb{D0Convention} the arguments of the 
+scalar integrals are not changed when written into a Fortran program.
+Another possible setting is $1$, which  interchanges the fifth and sixth arguments
+of \mb{D0} and writes the mass arguments of \mb{A0}, \mb{B0}, \mb{C0} and 
+\mb{D0} without squares.
+
+\otabtwo{
+\mb{InputForm} & write out in \mma form \cr
+\mb{FortranForm} & write out in Fortran form \cr
+\mb{MacsymaForm} & write out in {\it Macsyma} form \cr
+\mb{MapleForm}  & write out in {\it Maple} form
+} {The four possible settings of the option \mb{FormatType} for \mb{Write2}.}
+
+The output possibilities for the two other computer algebra systems 
+{\it Macsyma} and {\it Maple} are very limited: square brackets in 
+\mma are changed to round brackets,  additional replacements are for
+\mb{MacsymaForm} \mb{\{ Pi $\rightarrow$ \%pi, I $\rightarrow$ \%i, = $\rightarrow$ : \}} and for 
+\mb{MapleForm} \mb{\{ = $\rightarrow$ := \}}.
+
+The reasons to include these interface abilities are to utilize the 
+Fortran optimization possibility of {\it Maple}
+and the excellent package Gentran for Fortran code generation.
+
+
+\beom
+\domtog{{tpol = z + Isolate[Isolate[2 Pi I + f[x] (a - b), f]]\\
+}}{ z + K[2]\hfil\\
+}{
+Create a test polynomial.
+}
+\dtog{{Write2["test.m", test = tpol];\\
+}}{}{
+The default writes out in \mma \mb{InputForm}.
+}
+\domtog{{!!test.m\\
+}}{\ K[1] = a - b\\
+K[2] = 2*I*Pi + f[x]*HoldForm[K[1]]\\
+\hfil\\
+test = z + HoldForm[K[2]]\hfil\\
+}{
+Show the content of the file.
+}
+\dtog{{Write2["test.for", test = tpol, \\
+\ \ \ \ \ \ \ FormatType\ $\rightarrow$\ FortranForm];\\
+}}{}{
+This writes a file in Fortran format.
+}
+\domtog{{!!test.for\\
+}}{ K(1) = a - b\\
+\ \ \ \ \ \ K(2)\ = (0,2)*Pi + f(x)*K(1)\\
+\ \ \ \ \ \ test = z + K(2)\\
+\hfil\\
+}{
+Show the content of the Fortran file.
+}
+\dtog{{Write2["test.mac", test = tpol, \\
+\ \ \ \ \ \ \ FormatType $\rightarrow$ MacsymaForm];\\
+}}{}{
+This writes a file in {\it Macysma} format.
+}
+\domtog{{!!test.mac\\
+}}{ test : ( 2*\%i*\%pi + z + (a - b)*f(x) )\$\hfil\\
+}{
+Here the {\it Macsyma} format can be seen.
+}
+\dtog{{Write2["test.map", test = tpol, \\
+\ \ \ \ \ \ \ FormatType $\rightarrow$ MapleForm];\\
+}}{}{
+Here we get a file with {\it Maple} conventions.
+}
+\domtog{{!!test.map\\
+}}{ test := ( 2*I*Pi + z + (a - b)*f(x) );\hfil\\
+}{
+The {\it Maple} conventions are only slightly different.
+}
+\enom
+
+\subsection{More on Levi-Civita Tensors}
+
+\otabtwo{
+\mbs{EpsEvaluate[{\sl expr}]} & evaluate Levi-Civita \mb{Eps}
+} {A function for total antisymmetry and linearity with respect to 
+\mb{Momentum} \hspace{0.1mm}.}
+
+\beom
+\domtog{{Contract[LeviCivita[m, n, r, s] FourVector[p + q, s]]\\
+}}{ eps[m, n, r, p + q]\hfil\\
+}{
+This is $\varepsilon^{\mu\, \nu\, \rho\, \sigma} (p+q)_{\sigma} =
+          \varepsilon^{\mu\, \nu\, \rho\, (p+q)}$.  
+}
+\domtog{{EpsEvaluate[\%]\\
+}}{ eps[m, n, r, p] + eps[m, n, r, q]\hfil\\
+}{
+In this way linearity is enforced:
+$\varepsilon^{\mu \, \nu\,  \rho\,  (p+q)} = 
+ \varepsilon^{\mu \, \nu\,  \rho\,  p} + \varepsilon^{\mu\, \nu\, \rho\, q}$.
+}
+\domtog{{LeviCivita[a, b, c, d] /. d $\rightarrow$ c\\
+}}{ eps[a, b, c, c]\hfil\\
+}{
+This does not evaluate directly to 0.
+}
+\domtog{{EpsEvaluate[\%]\\
+}}{ 0\hfil\\
+}{
+Like this you can always evaluate $\varepsilon$'s.
+}
+\enom
+
+\otabtwo{
+\mbs{EpsChisholm[{\sl expr}]} &  utilize  $\gamma _{\mu} \varepsilon ^{ \mu \nu \rho \sigma } =
+ + i \,( \gamma ^{ \nu} \gamma ^{ \rho } \gamma ^{ \sigma }
+ - g^{ \nu \rho }  \gamma ^{ \sigma } -  g^{ \rho \sigma } \gamma ^{\nu}
+ +  g^{ \nu  \sigma } \gamma ^{ \rho })  \gamma ^{5}$
+} {A function for the  Chisholm identity.}
+
+\otabthree{
+{\sl option name} & {\sl default value} \cr
+\hhline
+\mb{LeviCivitaSign} & -1 & sign convention for the $\varepsilon$-tensor
+}{An option for \mb{EpsChisholm}.}
+
+\beom
+\domtog{EpsChisholm[LeviCivita[a, b, c, d] DiracMatrix[mu, a] ]\\
+}{ +I\ (-(g[c, d]\ ga[mu]\ ga[b]\ ga[5])\ +\ \\
+\ \ \ \ g[b,\ d]\ ga[mu]\ ga[c]\ ga[5]\ -\ \\
+\ \ \ \ g[b,\ c]\ ga[mu]\ ga[d]\ ga[5]\ +\ \\
+\ \ \ \ ga[mu]\ ga[b]\ ga[c]\ ga[d]\ ga[5])\hfil\\
+}{ 
+Use the Chisholm identity for\\
+$\varepsilon^{a \, b \, c\, d} \, \gamma^{\mu} \, \gamma^{a}$.
+}
+\enom
+
+\otabtwo{
+\mbs{ Eps[{\sl a},\ {\sl b},\ {\sl c},\ {\sl d}]} & internal representation of Levi-Civita tensors, where the arguments must have head \mb{LorentzIndex} or \mb{Momentum}
+} {
+The internal function for Levi-Civita tensors, see also section \ref{int}.
+}
+\beom
+\dtog{{\$PrePrint=.\\
+}}{}{
+This clears \mb{\$PrePrint}.
+}
+\domtog{{LeviCivita[m, n, r, s]\\
+}}{ Eps[LorentzIndex[m], LorentzIndex[n],\\
+LorentzIndex[r], LorentzIndex[s]]\hfil\\
+}{
+This shows the internal structure.
+}
+\domtog{{Contract[\%\ FourVector[p, s]]\\
+}}{ Eps[LorentzIndex[m], LorentzIndex[n],\\
+LorentzIndex[r], Momentum[p]]\hfil\\
+}{
+Contracting $\varepsilon^{\mu\,\nu\,\rho\,\sigma} \, p^{\sigma}$ 
+yields $\varepsilon^{\mu\,\nu\,\rho\,p}$.
+
+In the internal representation the $p$ has the head \mb{Momentum} wrapped 
+around it.
+}
+\enom
+
+\subsection{Simplifications of Expressions with Mandelstam Variables}
+\label{trick}
+
+\otabtwo{
+\mbs{TrickMandelstam[{\sl expr}, \{{\sl s}, {\sl t}, {\sl u}, {\sl m1}\phat 2 + {\sl m2}\phat 2 + {\sl m3}\phat 2 + {\sl m4}\phat 2\}]}&
+simplifies $expr$ to the shortest form removing $s, t$ or $u$ in
+each sum using $s+t+u=m_1^{2} + m_2^{2} + m_3^{2} + m_4^{2}$
+} {For tricky Mandelstam variable substitution.}
+
+\beom
+\domtog{{TrickMandelstam[(s + t - u) (2\ mw2 - t - u),
+\{s, t, u, 2\ mw2\}]\\
+}}{2\ s\ (mw2 - u)\hfil\\
+}{
+This is an easy example \\
+of simplifications done by \mb{TrickMandelstam}.
+}
+\domtog{{TrickMandelstam[M\phat 2\ s - s\phat 2 + M\phat 2 t - s t + M\phat 2 u - s u,
+\{s,\ t,\ u,\ 2\ M\phat 2\}]\\
+}}{ 2\ \superscript{M}{2} (\superscript{M}{2} -\ s)\hfil\\
+}{
+The result is always given in a factorized form.
+}
+\enom
+
+\subsection{Manipulation of Propagators}
+
+\otabtwo{
+\mbs{FeynAmpDenominatorCombine[{\sl expr}]} & {\ \\ expands {\sl expr} w.r.t. to \mb{FeynAmpDenominator} and  combines products of \mb{FeynAmpDenominator} into one \mb{FeynAmpDenominator}} \cr
+\mbs{FeynAmpDenominatorSimplify[{\sl expr}]} & {\ \\ simplifies each  PropagatorDenominator in a canonical way} \cr
+\mbs{FeynAmpDenominatorSimplify[{\sl expr}, {sl q}]} & {\ \\ includes some translation of momenta} \cr
+\mbs{FeynAmpDenominatorSimplify[{\sl expr}, {sl q1}, {sl q2}]} & {\ \\ additionally removes 2-loop integrals with no mass scale} \cr
+\mbs{FeynAmpDenominatorSplit[{\sl expr}]} & {\ \\ splits every \mb{FeynAmpDenominator[a,b, ...]} into \mb{FeynAmpDenominator[a]*FeynAmpDenominator[b] ...}} \cr
+\mbs{FeynAmpDenominatorSplit[{\sl expr}, {sl q}]} & {\ \\ splits every \mb{FeynAmpDenominator[a,b, ...]} into a product of two, one with {sl q} and other momenta, the other without {sl q}} \cr
+\mbs{PropagatorDenominatorExplicit[{\sl expr}]} & {\ \\ writes out \mb{FeynAmpDenominator[a,b, ...]} explicitly as a fraction} \cr
+}{Functions for manipulating propagators.}
+
+\subsection{Polarization Sums}
+
+\otabtwo{
+\mbs{PolarizationSum[{\sl mu}, {\sl nu}]} & $-g^{\mu \nu}$ \cr
+\mbs{PolarizationSum[{\sl mu}, {\sl nu}, {\sl k}]} & $-g^{\mu \nu} + k^{\mu}\,k^{\nu}/k^2$ \cr
+\mbs{PolarizationSum[{\sl mu}, {\sl nu}, {\sl k}, {\sl n}]} & 
+$-g^{\mu \nu} -   
+k_{\mu} k_{\nu} n^{2}/(k\cdot n)^{2}
++ (n_{\mu}  k_{\nu} +  n_{\nu}  k_{\mu})/(k \cdot n)$ 
+}{Polarization sums.}
+
+\beom
+\domtog{{PolarizationSum[mu, nu, k]\\
+}}{\ -g[mu, nu]\ +\ \Frac{k[mu]\ k[nu]}{k.k}\hfil\\
+}{
+This is the polarization sum for massive bosons:
+$\Sigma \varepsilon_{\mu} \varepsilon^{*}_{\nu} = -g^{\mu \nu} +
+k^{\mu} \, k^{\nu}/k^2
+$.
+}
+\domtog{{PolarizationSum[mu, nu, k, p1 - p2]\\
+}}{\renewcommand{\clineskip}{36pt} -g[mu,\ nu]\ -\ \Frac{(p1.p1 - 2 p1.p2 + p2.p2) k[mu] k[nu]}{\Superscript{(k.p1\ -\ k.p2)}{2}}\ +\ 
+\Frac{k[nu]\ (p1\ -\ p2)[mu]\ +\ k[mu]\ (p1\ -\ p2)[nu]}{k.p1\ -\ k.p2}\hfil\\
+\renewcommand{\clineskip}{20pt}}{
+Here the polarization sum for gluons is given; 
+with external momentum $n=p_1 -p_2$.
+}
+\enom
+
+\subsection{Permuting the Arguments of the Four-Point Function}
+
+The arguments of the Passarino-Veltman four-point function \mb{D0}
+are permuted by \fc into an alphabetical order. If you want a specific  
+permutation of the 24 possible ones, you can use the 
+function \mb{PaVeOrder}.
+
+\otabtwo{
+\mbs{PaVeOrder[{\sl expr}]}&
+order the arguments of \mb{C0} and \mb{D0} in $expr$ 
+canonically.
+}{An ordering function for $C_0$ and  $D_0$.}
+
+\otabthree{
+{\sl option name} & {\sl default value} \cr
+\hhline
+\mb{PaVeOrderList} & \mb{\{\}} & order $D_0$ according to \mbs{\{..., {\sl a}, {\sl b}, ... \}}
+} {An ordering option for \mb{PaVeOrder}.}
+With the default setting of \mb{PaVeOrder} a canonical ordering is chosen.
+
+\beom
+\domtog{{PaVeOrder[D0[me2, me2, mw2, mw2, t, s, me2, 0, me2, 0],\\
+\ \ \ \ \ \ \ \ \ \ PaVeOrderList\ $\rightarrow$\ \{me2, me2, 0, 0\}]\\
+}}{D0[me2, s, mw2, t, mw2, me2, me2, 0, 0, me2]\hfil\\
+}{
+It is sufficient to supply a subset of the arguments.
+}
+\domtog{{PaVeOrder[D0[a, b, c, d, e, f, m12, m22, m32, m42],\\
+\ \ \ \ \ \ \ \ \ \ PaVeOrderList\ $\rightarrow$\ \{f, e\}]\\
+}}{D0[a, d, c, b, f, e, m22, m12, m42, m32]\hfil\\
+}{
+This interchanges the $f$ and $e$. 
+}
+\domtog{{PaVeOrder[D0[a, b, c, d, e, f, m12, m22, m32, m42]\ + \ D0[me2, me2, mw2, mw2, t, s, me2, 0, me2, 0],\ PaVeOrderList\ $\rightarrow$\ \{ \{me2, me2, 0, 0\}, \{f, e\}\}]\\
+}}{D0[a, d, c, b, f, e, m22, m12, m42, m32] + 
+D0[me2, s, mw2, t, mw2, me2, me2, 0, 0, me2]\hfil\\
+}{
+This shows how to permute several $D_0$.
+}
+\enom
+

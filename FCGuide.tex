@@ -1,0 +1,623 @@
+\documentclass[11pt,a4paper]{report}
+%\documentclass[12pt,a4paper]{article}
+
+\usepackage{bm}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+
+\usepackage{notebook2e}
+\usepackage{wrisym}
+
+\usepackage{amsmath}
+
+%\usepackage{epsfig}
+%\usepackage{german}
+%%For list of figures and list of tables in table of contents to work
+\usepackage[nottoc]{tocbibind}
+\usepackage{wp2latex}
+\usepackage{InputPS}
+\usepackage{graphics}
+\usepackage{latexsym}
+\usepackage{braket}
+\usepackage{tabls}
+\usepackage[mathscr]{eucal}
+%\usepackage{pst-fill}
+%\usepackage{pstcol} 
+\usepackage{color}
+\usepackage{here}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{caption2}
+\usepackage{eqnarray}
+\usepackage{sectsty}
+\usepackage{fancyhdr}
+\usepackage{fancybox}
+%\usepackage{colortbl}
+%\usepackage{colortab}
+%\usepackage{a4wide}
+\usepackage{framed}
+% Postscript fonts
+%\usepackage{courier}
+%\usepackage[T1]{fontenc}
+%\usepackage{textcomp}
+\usepackage{cite}
+\usepackage{feynarts}
+
+\definecolor{gray}{gray}{.5}
+\definecolor{lightgray}{gray}{.85}
+\definecolor{steelblue}{rgb}{0.153, 0.102, 0.255}
+\definecolor{lightblue}{rgb}{0,0.2,0.5}
+
+\def\xstrut{\raisebox{-1.9ex}{\rule{0pt}{5ex}}}
+
+%% Conditionals in TeX
+\usepackage{ifthen}
+
+% Text width and height
+\newcommand{\twt}{490pt}
+\newcommand{\tht}{540pt}
+% Text margins
+\newcommand{\lmargn}{-12pt}
+\newcommand{\rmargn}{0pt}
+% Two-column widths
+\newcommand{\tmlwidth}{122pt}
+\newcommand{\tmrwidth}{220pt}
+\newcommand{\dbskip}{-73pt}
+
+\setlength{\textwidth}{\twt}
+%\setlength{\textheight}{\tht}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Mathematica boxes in two column environment
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\makeatletter
+\long\def\dispSFinM{\@ifnextchar[{\dodispSFinM}{\dodispSFinM[n]}}
+\makeatother
+
+\long\def\dodispSFinM[#1]#2{%%
+    %\vskip-\lastskip 
+    %\if #1p
+    %    \vskip \aboveinskip %
+    %\else
+    %    \vskip\aboveinskip\global\matharrayfalse
+    %    \global\setbox\Minbox=\vbox
+    %\fi
+    {\parindent 0pt\mathfontsize%
+    \if #1p
+        \def\@writabarray{\@ifnextchar[{\@wriarray}{\@wriarray[p]}}
+    \else
+        \def\@writabarray{\@ifnextchar[{\@wriarray}{\@wriarray[t]}}
+        \def\@tabarray{\@ifnextchar[{\@array}{\@array[t]}}
+    \fi
+    \def\MathBegin##1{\global\matharraytrue%
+        \kern -\arraycolsep\def\tempa{\csname ##1\endcsname}\tempa}
+    \ifinprompt\global\advance\promptcount by 1%
+            \leavevmode\kern\mathindent\In{\INPROMPT\ \relax}%
+    \else\ifprompt%
+            \global\advance\promptcount by 1%
+            \leavevmode%
+            \ifpromptbreak%
+                    \kern\mathindent\In{In[\the\promptcount]:= }\break
+                    \bgroup\mbox{}\kern\mathindent\kern 12pt
+            \else\kern\mathindent\In{In[\the\promptcount]:= }%
+            \fi%
+        \else%
+            \leavevmode\mbox{}\kern\mathindent%
+    \fi\fi%
+    \def\Mvariable##1{\mathrm{##1}}%
+    \mathversion{monobold}\fixttmath\ttfamily\bfseries$\displaystyle
+    \lefthyphenmin=100
+    \righthyphenmin=100
+    \parbox[t]{\tmrwidth}{#2}$%
+    \ifprompt\else\ifshowprompts\global\prompttrue\fi\fi%
+    \global\inpromptfalse\global\promptbreakfalse}%
+    \if #1p\relax\else\copy\Minbox\fi%
+    {\ifmatharray\advance\belowinskip 3pt\global\matharrayfalse\fi%
+    \vskip\belowinskip}}
+
+\makeatletter
+\long\def\dispSFoutM{\@ifnextchar[{\dodispSFoutM}{\dodispSFoutM[n]}}
+\makeatother
+
+\long\def\dodispSFoutM[#1]#2{%%
+    \vskip-\lastskip\vskip\aboveoutskip%
+    \global\setbox\Moutbox=\vbox
+    {\parindent 0pt\mathfontsize%
+    \if #1p
+        \def\@writabarray{\@ifnextchar[{\@wriarray}{\@wriarray[p]}}
+    \else
+        \def\@writabarray{\@ifnextchar[{\@wriarray}{\@wriarray[t]}}
+        \def\@tabarray{\@ifnextchar[{\@array}{\@array[t]}}
+    \fi
+    \def\MathBegin##1{\global\matharraytrue%
+        \kern -\arraycolsep\def\tempa{\csname ##1\endcsname}\tempa}
+    \ifoutprompt%
+            \leavevmode\kern\mathindent\Out{\OUTPROMPT\ \relax}%
+    \else\ifprompt%
+            \leavevmode%
+            \ifpromptbreak%
+                    \kern\mathindent\Out{Out[\the\promptcount]= \relax}\break
+                    \bgroup\mbox{}\kern\mathindent\kern 12pt
+            \else\kern\mathindent\Out{Out[\the\promptcount]= \relax}%
+            \fi%
+        \else%
+            \leavevmode\mbox{}\kern\mathindent%
+    \fi\fi%
+    \def\Mvariable##1{\mathrm{##1}}%
+    \mathversion{mono}\fixttmath\ttfamily$
+    \displaystyle \parbox[t]{\tmrwidth}{\hspace*{-4pt}#2}$%
+    \ifprompt\else\ifshowprompts\global\prompttrue\fi\fi%
+    \global\outpromptfalse\global\promptbreakfalse}%
+    \if #1p\relax\else\copy\Moutbox\fi%
+    {\ifmatharray\advance\belowoutskip 3pt\global\matharrayfalse\fi%
+    \vskip\belowoutskip}}
+
+\makeatletter
+\long\def\dispTFoutM{\@ifnextchar[{\dodispTFoutM}{\dodispTFoutM[n]}}
+\makeatother
+
+\long\def\dodispTFoutM[#1]#2{%%
+    \vskip-\lastskip\vskip\aboveoutskip%
+    \global\setbox\Moutbox=\vbox
+    {\parindent 0pt\mathfontsize%
+    \if #1p
+        \def\@writabarray{\@ifnextchar[{\@wriarray}{\@wriarray[p]}}
+    \else
+        \def\@writabarray{\@ifnextchar[{\@wriarray}{\@wriarray[t]}}
+        \def\@tabarray{\@ifnextchar[{\@array}{\@array[t]}}
+    \fi
+    \def\MathBegin##1{\global\matharraytrue%
+        \kern -\arraycolsep\def\tempa{\csname ##1\endcsname}\tempa}
+    \ifoutprompt%
+            \leavevmode\kern\mathindent\Out{\OUTPROMPT\ \relax}%
+    \else\ifprompt%
+            \leavevmode%
+            \ifpromptbreak%
+                    \kern\mathindent\Out{Out[\the\promptcount]= \relax}\break
+                    \bgroup\mbox{}\kern\mathindent\kern 12pt
+            \else\kern\mathindent\Out{Out[\the\promptcount]= \relax}%
+            \fi%
+        \else%
+            \leavevmode\mbox{}\kern\mathindent%
+    \fi\fi%
+    \def\Mvariable##1{\mathrm{##1}}%
+    $\displaystyle \parbox[t]{\tmrwidth}{#2}$%
+    \ifprompt\else\ifshowprompts\global\prompttrue\fi\fi%
+    \global\outpromptfalse\global\promptbreakfalse}%
+    \if #1p\relax\else\copy\Moutbox\fi\vskip\belowoutskip}
+
+\def\PreserveBackslash#1{\let\temp=\\#1\let\\=\temp}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% SWITCH FOR PDFLATEX or LATEX
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\ifx\pdfoutput\undefined
+\def\pdf{0}
+\else
+\def\pdf{1}
+\fi
+\ifx\pdfoutput\relax
+\def\pdf{0}
+\else
+\def\pdf{1}
+\fi
+%\ifthenelse{\pdf = 0}{
+\ifthenelse{\pdf = 0 \or \isundefined{\pdfoutput}}{
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% LATEX %%%
+%%%
+%%
+%% Small caps for postscript
+\usepackage{smallcap}
+%% Provides \textsc
+\usepackage{esscit}
+
+%% Use these fonts if not converting to pdf (with ps2pdf)
+%\newcommand{\mma}{{\scfamily\slshape Mathematica}\xspace}
+%\newcommand{\fc}{{\scfamily\slshape FeynCalc}\xspace}
+%\newcommand{\fa}{{\scfamily\slshape FeynArts}\xspace}
+%\newcommand{\fctables}{{\scfamily\slshape fctables}\xspace}
+%\newcommand{\fcloops}{{\scfamily\slshape fcloops}\xspace}
+%\newcommand{\fctools}{{\scfamily\slshape fctools}\xspace}
+%\newcommand{\general}{{\scfamily\slshape general}\xspace}
+%\newcommand{\qcd}{{\scfamily\slshape qcd}\xspace}
+%\newcommand{\fcdevel}{{\scfamily\slshape fcdevel}\xspace}
+%\newcommand{\fphi}{{\scfamily\slshape PHI}\xspace}
+%\newcommand{\tarcer}{{\scfamily\slshape TARCER}\xspace}
+%\newcommand{\hip}{{\scfamily\slshape HIP}\xspace}
+%\newcommand{\lpts}{{\scfamily\slshape LoopTools}\xspace}
+%\newcommand{\defsc}{{\scfamily\slshape Italic small caps}\xspace}
+
+%% When converting to pdf, the fancy fonts above get bitmapped; thus drop them
+\newcommand{\mma}{Mathematica\xspace}
+\newcommand{\fc}{FeynCalc\xspace}
+\newcommand{\fa}{FeynArts\xspace}
+\newcommand{\fctables}{fctables\xspace}
+\newcommand{\fcloops}{fcloops\xspace}
+\newcommand{\fctools}{fctools\xspace}
+\newcommand{\general}{general\xspace}
+\newcommand{\qcd}{qcd\xspace}
+\newcommand{\fcdevel}{fcdevel\xspace}
+\newcommand{\fphi}{PHI\xspace}
+\newcommand{\tarcer}{TARCER\xspace}
+\newcommand{\hip}{HIP\xspace}
+\newcommand{\lpts}{LoopTools\xspace}
+\newcommand{\defsc}{Italic small caps\xspace}
+
+\usepackage[dvips]{graphicx}       %%% graphics for dvips
+\DeclareGraphicsExtensions{.eps}   %%% standard extension for included graphics
+%% Thumbnails in case of ps2pdf
+%\usepackage[ps2pdf]{thumbpdf}
+%% use dvips (or dvipdf or dvipdfm??) if converting on to pdf,
+%% otherwise hypertex and then remember to run dvips -z
+\usepackage[bookmarks=true,bookmarksopen=true,bookmarksopenlevel=1,backref=page,pagebackref=false,
+hyperfigures=false,colorlinks=true,linkcolor=lightblue,anchorcolor=lightblue,
+citecolor=lightblue,filecolor=lightblue,menucolor=lightblue,pagecolor=lightblue,
+urlcolor=lightblue,dvips,plainpages=false,hypertexnames=false]{hyperref}
+%\usepackage[ps2pdf,                %%% hyper-references for ps2pdf
+%bookmarks=true,%                   %%% generate bookmarks ...
+%bookmarksnumbered=true,%           %%% ... with numbers
+%hypertexnames=false,%              %%% needed for correct links to figures !!!
+%breaklinks=true,%                  %%% breaks lines, but links are very small
+%linkbordercolor={0 0 1},%          %%% blue frames around links
+%pdfborder={0 0 112.0}]{hyperref}%  %%% border-width of frames 
+%                                      will be multiplied with 0.009 by ps2pdf
+%
+\hypersetup{
+pdfauthor = {Rolf Mertig and Frederik Orellana},
+pdftitle = {Guide to FeynCalc},
+pdfsubject = {Computational Particle Physics},
+pdfkeywords = {Loops, Integrals, Feynman diagrams, Amplitudes, Scattering, Kinematics},
+pdfcreator  = {LaTeX with hyperref package},
+pdfproducer = {dvips + ps2pdf}
+}
+
+%% Caption for gray boxes
+\def\GrayCaption#1{\setbox0=\hbox{\footnotesize\sffamily #1}%
+     \vspace{-15pt}
+     \begin{flushleft}\leavevmode%
+     \vbox{\hsize=\hsize\footnotesize\sffamily #1\par}\end{flushleft}
+  }
+}{
+%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% PDFLATEX %%%
+%%%
+%% Graphics for pdfLaTeX
+\usepackage[pdftex]{graphicx}
+
+%\setlength{\fboxrule}{0.0138889in}
+%\setlength{\fboxsep}{0.8pt}
+
+%% Thin frame around shaded boxes
+%\makeatletter
+%\renewenvironment{shaded}{%
+%  \def\FrameCommand{
+%  %\setlength{\fboxsep}{8pt}
+%  \fcolorbox{gray}{shadecolor}}
+%  \fram@d {}}
+% {\endfram@d}
+%\makeatother
+
+\renewcommand{\graybox}[3]{
+\definecolor{shadecolor}{gray}{#3}
+%\fcolorbox{gray}{lightgray}{\parbox{\textwidth}{
+\begin{shaded}
+#1
+\end{shaded}
+}
+
+%% Standard extension for included graphics
+\DeclareGraphicsExtensions{.pdf}
+\newcommand{\mma}{\fontfamily{pmnx}\selectfont\textit{Mathematica}\fontfamily{ptm}\selectfont\xspace}
+\newcommand{\fc}{\fontfamily{pmnx}\selectfont\textit{FeynCalc}\fontfamily{ptm}\selectfont\xspace}
+\newcommand{\fa}{\fontfamily{pmnx}\selectfont\textit{FeynArts}\fontfamily{ptm}\selectfont\xspace}
+\newcommand{\fctables}{\fontfamily{pmnx}\selectfont\textit{fctables}\fontfamily{ptm}\selectfont\xspace}
+\newcommand{\fcloops}{\fontfamily{pmnx}\selectfont\textit{fcloops}\fontfamily{ptm}\selectfont\xspace}
+\newcommand{\fctools}{\fontfamily{pmnx}\selectfont\textit{fctools}\fontfamily{ptm}\selectfont\xspace}
+\newcommand{\general}{\fontfamily{pmnx}\selectfont\textit{general}\fontfamily{ptm}\selectfont\xspace}
+\newcommand{\qcd}{\fontfamily{pmnx}\selectfont\textit{qcd}\fontfamily{ptm}\selectfont\xspace}
+\newcommand{\fcdevel}{\fontfamily{pmnx}\selectfont\textit{fcdevel}\fontfamily{ptm}\selectfont\xspace}
+\newcommand{\fphi}{\fontfamily{pmnx}\selectfont\textit{PHI}\fontfamily{ptm}\selectfont\xspace}
+\newcommand{\tarcer}{\fontfamily{pmnx}\selectfont\textit{TARCER}\fontfamily{ptm}\selectfont\xspace}
+\newcommand{\hip}{\fontfamily{pmnx}\selectfont\textit{HIP}\fontfamily{ptm}\selectfont\xspace}
+\newcommand{\lpts}{\fontfamily{pmnx}\selectfont\textit{LoopTools}\fontfamily{ptm}\selectfont\xspace}
+\newcommand{\defsc}{\fontfamily{pmnx}\selectfont\textit{Italic small caps}\fontfamily{ptm}\selectfont\xspace}
+%% Thumbnails in case of pdfLaTeX
+%\usepackage[pdftex]{thumbpdf}
+%% Hyper-references for pdflatex
+\usepackage[bookmarks=true,bookmarksopen=true,bookmarksopenlevel=5,backref=page,pagebackref=false,
+hyperfigures=false,colorlinks=true,linkcolor=lightblue,anchorcolor=lightblue,
+citecolor=lightblue,filecolor=lightblue,menucolor=lightblue,pagecolor=lightblue,
+urlcolor=lightblue,pdftex,plainpages=false,hypertexnames=false]{hyperref}
+%\usepackage[pdftex,
+%bookmarks=true,%                   %%% generate bookmarks ...
+%bookmarksnumbered=true,%           %%% ... with numbers
+%hypertexnames=false,%              %%% needed for correct links to figures !!!
+%breaklinks=true,%                  %%% break links if exceeding a single line
+%linkbordercolor={0 0 1}]{hyperref} %%% blue frames around links
+%                                  %%% pdfborder={0 0 1} is the default
+%% Graphics for pdfLaTeX
+\hypersetup{
+pdfauthor = {Rolf Mertig and Frederik Orellana},
+pdftitle = {Guide to FeynCalc},
+pdfsubject = {Computational Particle Physics},
+pdfkeywords = {Loops, Integrals, Feynman diagrams, Amplitudes, Scattering, Kinematics},
+%pdfcreator = {LaTeX with hyperref package},
+%pdfproducer = {dvips + ps2pdf}
+%pdfproducer = {pdflatex}
+}
+%                                  %%% pdfcreator, pdfproducer, 
+%                                      and CreatioDate are automatically set
+%                                      by pdflatex !!!
+%% Force LaTeX-like character spacing
+\pdfadjustspacing=1
+%
+%% Caption for gray boxes
+\def\GrayCaption#1{\setbox0=\hbox{\footnotesize\sffamily #1}%
+     \vspace{-5pt}
+     \begin{flushleft}\leavevmode%
+     \vbox{\hsize=\hsize\footnotesize\sffamily #1\par}\end{flushleft}
+  }
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% END OF CONDITION %%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Abbreviations
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand{\tr}{{\rm Tr}}
+\newcommand{\intd}{{\rm d}}
+\def\re{{\rm Re}}
+\def\im{{\rm Im}}
+
+%% Directory with images
+\newcommand{\FigDir}{Figures}
+\newcommand{\mindent}{\hspace*{12pt}}
+\newcommand{\mb}[1]{{\small\tt \textbf{#1}}}
+
+\newcommand{\disp}{\displaystyle}
+\newcommand{\es}{\varepsilon \hspace{-0.5em}/\hspace{0.1em}}                   
+\newcommand{\ra}{ $\, \rightarrow \,$ }
+\newcommand{\as}{ a \hspace{-1.5mm} /}
+\newcommand{\bs}{ b \hspace{-1.5mm} /}
+\newcommand{\cs}{ c \hspace{-1.5mm} /}
+\newcommand{\ds}{ d \hspace{-1.5mm} /}
+\newcommand{\ks}{ k \hspace{-1.5mm} /}
+\newcommand{\ps}{ p \hspace{-1.3mm} /}
+\newcommand{\bps}{ p \hspace{-1.5mm} /}
+\newcommand{\qs}{ q \hspace{-1.2mm} /}
+\newcommand{\bqs}{ q \hspace{-1.6mm} /}
+
+\newcommand{\op}[1]{{\it #1}}
+\newcommand{\phat}{\^\,\hspace{-2pt}}
+%% Normal font size in sub- and superscripts
+\newcommand{\blineskip}{12pt}
+\newcommand{\clineskip}{20pt}
+\newcommand{\subscript}[2]{\setlength{\baselineskip}{\clineskip}${\displaystyle #1}_{\hspace*{2pt}\substack{\vspace*{4pt}\\ \displaystyle #2}}$}
+\newcommand{\superscript}[2]{\setlength{\baselineskip}{\clineskip}${\displaystyle #1}^{\hspace*{0pt}\substack{\displaystyle #2\\ \vspace*{0pt}}}$}
+\newcommand{\Superscript}[2]{\setlength{\baselineskip}{\clineskip}#1^{\displaystyle #2}}
+\newcommand{\Subscript}[2]{\setlength{\baselineskip}{\clineskip}#1_{\displaystyle #2}}
+%% Normal font size in fractions
+\newcommand{\Frac}[2]{\setlength{\baselineskip}{\clineskip}$\frac{\substack{\displaystyle #1\\ \hspace*{2pt}}}{\substack{\hspace*{4pt}\\ \displaystyle #2}}$}
+\newcommand{\frc}[2]{\setlength{\baselineskip}{\clineskip}\frac{\displaystyle #1}{\displaystyle #2}}
+
+\newcommand\bksl{\char '134 }   % A backslash character for \tt font
+%\newcommand{\lb}{\char '173 } % A left brace character for \tt font
+%\newcommand{\rb}{\char '175 } % A right brace character for \tt font
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Layout definitions
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%% Control the paragraph indentation
+\setlength{\parindent}{0pt}
+%% Add space between paragraphs
+\setlength{\parskip}{3pt}
+
+\setcounter{tocdepth}{2}
+%% Add space between lines in equation arrays
+\setlength{\extrarowheight}{0pt}
+\renewcommand{\arraystretch}{1.4}
+%\setlength\tablinesep{10pt}
+%\setlength\arraylinesep{10pt}
+%\setlength\extrarulesep{10pt}
+
+\setlength{\arrayrulewidth}{0.1pt}
+\newcommand{\hhline}{\hline \\}
+
+%% Definition boxes
+
+\newcommand{\otabtwo}[2]{
+\begin{table}[H]
+\graybox{
+\begin{longtable}{p{0.32\textwidth ~~~~~~~} >{\flushleft\vspace*{-13.2pt}}p{0.55\textwidth ~~~~~~~}}
+#1
+\end{longtable}
+}{.3}{.95}
+\GrayCaption{#2}
+\end{table}\setlength{\baselineskip}{\blineskip}
+}
+
+\newcommand{\otabthree}[2]{\renewcommand{\arraystretch}{1.0}
+\begin{table}[H]
+\graybox{
+\begin{longtable}{p{0.25\textwidth} p{0.2\textwidth} p{0.45\textwidth}}
+#1
+\end{longtable}
+}{.3}{.95}
+\GrayCaption{#2}
+\end{table}\renewcommand{\arraystretch}{1.4}\setlength{\baselineskip}{\blineskip}
+}
+
+\newcommand{\mbs}[1]{\raggedleft{\mb{#1}}}
+
+%\newcommand{\beom}{\begin{longtable}{rl@{~-~}p{\textwidth}}}
+\newcommand{\beom}{\begin{longtable}{p{\tmlwidth} p{\tmrwidth}}}
+%\newcommand{\beom}{\begin{longtable}{l@{\extracolsep{\fill}} l@{\extracolsep{\fill}}}}
+
+\newcommand{\enom}{\end{longtable}}
+
+\newcommand{\domtog}[3]{
+\setlength{\leftskip}{\dbskip}
+\setlength{\rightskip}{0pt}
+\begin{parbox}[t]{\tmlwidth}{\PreserveBackslash\raggedright
+\footnotesize\noindent \hspace{-6pt} #3
+}
+
+\end{parbox} &
+\begin{parbox}[t]{\tmrwidth}{
+\setlength{\leftskip}{-53pt}
+\footnotesize
+\begin{CellGroup}
+\dispSFinM{#1}
+\vspace*{4pt}
+\dispTFoutM{#2}
+\end{CellGroup}}
+\end{parbox}\\
+}
+
+\newcommand{\dtog}[3]{
+\setlength{\leftskip}{\dbskip}
+\setlength{\rightskip}{0pt}
+\begin{parbox}[t]{\tmlwidth}{\PreserveBackslash\raggedright
+\footnotesize\noindent \hspace{-6pt} #3}
+\end{parbox} &
+\begin{parbox}[t]{\tmrwidth}{
+\setlength{\leftskip}{-53pt}
+\footnotesize
+\begin{CellGroup}
+\dispSFinM{#1}
+\end{CellGroup}}
+\end{parbox}\\
+}
+
+\newcommand{\domptog}[4]{
+\setlength{\leftskip}{\dbskip}
+\setlength{\rightskip}{0pt}
+\begin{parbox}[t]{\tmlwidth}{\PreserveBackslash\raggedright
+\footnotesize\noindent \hspace{-6pt} #3}
+\end{parbox} &
+\begin{parbox}[t]{\tmrwidth}{
+\setlength{\leftskip}{-53pt}
+\footnotesize
+\begin{CellGroup}
+\dispSFinM{#1}
+\texttt{#4}
+\vspace*{4pt}
+\dispTFoutM{#2}
+\end{CellGroup}}
+\end{parbox}\\
+}
+
+%% Mathematica code
+\newcommand{\len}{0pt}
+\newcommand{\ind}{\leftskip \len}
+\newcommand{\mcode}[1]{
+\parbox{0.8\textwidth}{
+\setlength{\leftskip}{\len}
+\mb{\textbf{ \\ #1 \\ }}
+}
+}
+
+\renewcommand{\thesection}{\arabic{section}}
+\renewcommand{\thechapter}{\arabic{chapter}}
+
+% Sans serif font for chapter, section, etc.
+\allsectionsfont{\sffamily}
+\sectionfont{\huge \sffamily}
+
+% Reference section definitions
+
+\newcommand{\fname}[1]{
+  $\blacksquare$ \ \ {\large\mb{#1}}
+  \begin{quote}
+}
+\newcommand{\fheading}[1]{
+\setlength{\leftskip}{4pt}
+}
+\newcommand{\fusage}[1]{#1\vspace*{10pt}\newline}
+\newcommand{\fnotes}[1]{
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0pt}
+#1}
+\newcommand{\ftabtwo}[1]{
+\begin{longtable}[H]{p{0.3\textwidth} p{0.54\textwidth
+}}
+#1
+\end{longtable}
+}
+\newcommand{\ftabthree}[1]{
+%\begin{longtable}[H]{p{0.2\textwidth} p{0.24\textwidth} p{0.4\textwidth}}
+%\renewcommand{\leftsk}{\leftskip}
+\renewcommand{\arraystretch}{0.8}
+\renewcommand{\arraycolsep}{0}
+\begin{longtable}[H]{p{0.23\textwidth} p{0.1\textwidth} p{0.5\textwidth}}
+#1
+\end{longtable}
+%\setlength{\leftskip}{\leftsk}
+}
+\newcommand{\seepage}{}
+\newcommand{\ffinish}{\end{quote}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Document
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\title{\raggedright \hspace*{1pt} Guide to FeynCalc 4.2}
+\author{\parbox{\textwidth}{\raggedright Rolf Mertig \\
+and \\
+Frederik Orellana}}
+\date{\hspace*{4pt} \parbox{\textwidth}{\raggedright CERN\\ March 1st, 2002}}
+{\sffamily
+\maketitle
+}
+
+\pagenumbering{Roman}
+
+\newpage
+%\phantomsection
+%\addcontentsline{toc}{section}{Contents}
+%\thispagestyle{empty}    % No page number on contents page
+\tableofcontents
+%\clearpage
+\newpage
+
+\pagenumbering{arabic}
+%\pagenumpos{\pnbc}
+\setcounter{page}{1}
+% Headings on each page
+\pagestyle{fancy}    % Go for customized headings
+
+\setlength{\textwidth}{\twt}
+\setlength{\textheight}{\tht}
+\oddsidemargin \lmargn
+\evensidemargin \rmargn
+
+\setcaptionwidth{\textwidth}
+
+\lhead{\nouppercase{\it \rightmark}}
+\chead{}
+\rhead{\thepage}
+\fancyfoot[C]{}
+
+%% Deal with overfull vbox warnings
+%\addtolength{\headheight}{12pt}
+%\addtolength{\footskip}{12pt}
+
+\input{intro}
+\include{input}
+\input{inside}
+\include{elem}
+\include{fa}
+\include{oneloop}
+\input{advan}
+\input{misc}
+\include{rg}
+\input{fcbib}
+
+\end{document} 

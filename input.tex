@@ -1,0 +1,458 @@
+\section{Input Functions}
+
+The \fc syntax for metric tensors, four-vectors, Dirac matrices, etc.,
+is such that the positioning of the arguments automatically defines the nature of the variables. %You can only enter algebraic objects; there
+%is no possibility of working with explicit components of vectors
+%or with specific Dirac matrices like $\gamma_0$ or $\gamma_2$.
+No declaration of Lorentz indices or four-vectors has
+to be made.
+Covariant and contravariant Lorentz indices are treated on an equal basis,
+assuming summation over (twice) repeated indices, where each pair of
+indices are assumed to be co- and contravariant respectively.
+Since explicit components of Lorentz tensors are not used, this
+convention causes no problems.
+The ambiguity in the sign of the Levi-Civita tensor can be
+fixed by an option of the function \mb{DiracTrace} and
+\mb{EpsChisholm}, see page \pageref{input}.
+
+The input functions are macros that are immediately translated into
+the internal representation of \fc. But these sometimes lengthy
+internal representations are difficult to recognize when working
+interactively. Therefore, some effort has been put into making the output
+of \fc look as much as possible like typeset formulas.
+The typesetting of \fc depends on the input/output interface in use.
+
+\begin{itemize}
+\item{\bf Terminal interface.} Per default \fc sets the global \mma variable
+\mb{\$PrePrint} to \mb{FeynCalcForm},
+forcing the display to be in a more readable manner.
+It is important to realize that the display given by \mb{FeynCalcForm} is
+different from the input syntax. Thus, you may not give as input,
+for example, a scalar product in the result of a trace calculation
+by copying the form you see on the screen. To have the output be the
+internal representation, set \mb{\$PrePrint=.}. To return to formatted output,
+set \mb{\$PrePrint = FeynCalcForm}.
+\item{\bf Notebook interface.} \fc per default automatically sets the
+\mma default output format type to \mb{TraditionalForm}. Because \fc defines
+the \mb{TraditionalForm}-look of its objects, the output looks very much like
+typeset formulas. Again, the screen output cannot be copied and used
+as input. If the \mma default output format type
+\footnote{The \mma default output format type is set using the
+menu "Cell" $\rightarrow$ "Default Output Format Type".}
+is set to
+%\mb{OutputForm},
+\mb{InputForm} or \mb{StandardForm}, the
+screen output is the internal representation of \fc and can be copied
+and used as input. To obtain the same output as with a terminal interface,
+set the \mma default output format type to \mb{OutputForm} and set
+\mb{\$PrePrint = FeynCalcForm}. To return to formatted output, set
+the \mma default output format type to \mb{TraditionalForm}.
+\end{itemize}
+
+In the rest of this guide, the examples given will use the notebook interface.
+
+The internal structure of \fc
+is explained briefly in section \ref{inside} and in the
+reference section \ref{rg}. Usually it is not necessary to know it.
+Notice simply that there are three layers of \fc: The input functions,
+an output representation of those and the internal structure.
+
+In order to do calculations in the framework of $D$-dimensional
+regularization, \fc can be used for  calculations
+in 4, $D$
+%or $D-4$
+dimensions.
+The dimension of  metric tensors, Dirac matrices and  four-vectors
+is specified by setting the option \mb{Dimension} of the corresponding
+input functions.
+The default is four. If \fc is  used for interactive
+$D$-dimensional calculations, you should change the option of the
+input functions. 
+Note that Lorentz indices, momenta and
+Dirac matrices carry their dimension
+locally, i.e., for calculating a Dirac trace in $D$ dimensions the
+dimension of the Dirac matrices has to be set accordingly, thus
+there is no need of a dimension option for e.g. the function \mb{DiracTrace}.
+
+\subsection{Lorentz Tensors and Scalar Products}
+
+\otabtwo{
+\mbs{FourVector[{\sl p}, $\mu$]} &  four-vector  $p^{\mu}$ \cr
+\mbs{LeviCivita[$\mu$, $\nu$, $\rho$, $\sigma$]} &
+Levi-Civita tensor $\varepsilon^{\mu \nu \rho \sigma}$  \cr
+\mbs{MetricTensor[$\mu$, $\nu$]} & metric tensor $g^{\mu \nu}$ \cr
+\mbs{ScalarProduct[{\sl p},\ {\sl q}]} & $p \cdot q$ \cr
+} {Basic Lorentz tensor input functions.}
+
+\otabthree{
+{\sl option name} & {\sl default value} & \cr
+\hhline
+\mb{Dimension} & \mb{4} &  number of space-time dimensions \cr
+} {Option for \mb{FourVector}, \mb{MetricTensor}, \mb{LeviCivita} and  \mb{ScalarProduct}.}
+
+Internally, the input given with \mb{FourVector}, \mb{MetricTensor}, \mb{LeviCivita} and
+\mb{ScalarProduct} is represented in terms of the lower level functions \mb{Pair}, \mb{Momentum} and \mb{LorentzIndex} (this is elaborated in section \ref{int}).
+
+The following examples show the input syntax and the typesetting of \fc.
+
+\beom
+\dtog{<<HighEnergyPhysics`FeynCalc`}{}{
+First we have to load \fc.
+}
+\domtog{ScalarProduct[p, q]}{ {\sl p}.{\sl q}
+}{
+Enter a scalar product $p\cdot q$.
+
+This is the typeset output.
+}
+\domtog{MetricTensor[$\mu$, $\nu$]}{\ $g^{\mu \nu}$\hfil\\
+}{
+This is the input for $g^{\mu \nu}$.
+}
+\domtog{MetricTensor[$\mu$, $\nu$, Dimension $\rightarrow$ D]}{\ $g^{\mu \nu}$\hfil\\
+}{
+A metric tensor $g^{\mu \nu}$ in \mb{D} dimensions
+is entered in this way.
+The number of dimensions is suppressed in the screen
+output
+(for notebook output. For terminal output,
+the number of dimensions is displayed as an index,
+\mb{\subscript{\rm g}{\rm D}[mu, nu]}).}
+\domtog{FourVector[p,\ $\mu$]}{\ $p_{\mu}$\hfil\\
+}{
+A four-dimensional $p_{\mu}$.
+}
+\domtog{FourVector[p\ -\ 2\ q,\ $\mu$]}{\ $(p - 2\, q)_{\mu}$\hfil\\
+}{
+You may also enter a linear combination of
+four-vectors: $(p - 2\, q)_{\mu}$.
+}
+\domtog{FourVector[q,\ $\mu$,\ Dimension\ $\rightarrow$\ D]}{\ $q_\mu$\hfil\\
+}{
+This is a $D$-dimensional $q_{\mu}$.
+}
+\domtog{PolarizationVector[k,\ $\mu$]}{\ $\varepsilon_{\mu}(k)$\hfil\\
+}{
+A polarization vector $\varepsilon_{\mu}(k)$ is a special four-vector.
+}
+\domtog{Conjugate[PolarizationVector[k,\ $\mu$]]}{\ $\varepsilon_{\mu}^{*}(k)$\hfil\\
+}{
+This is how to enter a $\varepsilon_{\mu}^{*}(k)$.
+}
+\enom
+
+Polarization vectors are represented in a special way (see page \pageref{input}).
+The transversality condition $\varepsilon(k) \cdot k=0$ is automatically
+fulfilled (see page \pageref{polcon}).
+%Levi-Civita tensors and
+Polarization vectors are defined
+in \fc in four dimensions only. For \mb{FourVector}, \mb{MetricTensor}, \mb{LeviCivita},
+and  \mb{ScalarProduct} other dimensions may be specified with the
+option \mb{Dimension}.
+
+\otabtwo{
+\mbs{PolarizationVector[{\sl k},\ {\sl mu}]} & $\varepsilon_{\mu}(k)$\cr
+\mbs{Conjugate[ PolarizationVector[{\sl k},\ {\sl mu}]]} & $\varepsilon^{*}_{\mu}(k)$\cr
+}{The input for a polarization vector and polarization.}
+
+\subsection{Dirac Matrices}
+
+\otabtwo{
+\mbs{DiracMatrix[{\sl mu},\ {\sl nu},\ ...]} & Dirac matrices
+$\;\gamma^{\mu}\;\gamma^{\nu}\ldots$ \cr
+\mbs{DiracSlash[p,\ q,\ ...]} & Feynman slashes $ \; \bps \, \bqs\ldots$ \cr
+\mbs{DiracMatrix[5]} & $\gamma^{5}$ \cr
+\mbs{ChiralityProjector[+1]} & $\omega_{+} = (1+\gamma^{5})/2$\cr
+\mbs{DiracMatrix[6]} & $\gamma^{6} = (1+\gamma^{5})/2$\cr
+\mbs{ChiralityProjector[-1]} & $\omega_{-} = (1-\gamma^{5})/2$ \cr
+\mbs{DiracMatrix[7]} & $\gamma^{7} = (1-\gamma^{5})/2$ \cr
+}{Various input functions for Dirac matrices.}
+
+A Dirac matrix $\gamma^{\mu}$ is represented by \mb{DiracMatrix[mu]}.
+For  $\bps = p_{\mu} \, \gamma^{\mu}$ you may use
+\mb{DiracSlash[p]}. Products of Dirac matrices or slashes can
+either be entered by adding subsequent arguments, i.e.,
+\mb{DiracMatrix[{\sl mu},\ {\sl nu},\ ...]} and
+\mb{DiracSlash[p,\ q,\ ...]}, or by multiplying the
+\mb{DiracMatrix} and \mb{DiracSlash} with the \mma \mb{Dot}, ``.''.
+
+The \mma \mb{Dot}, ``.'', is used in the input as noncommutative
+%associative
+multiplication operator for the objects \mb{DiracMatrix},
+\mb{DiracSlash}, \mb{Spinor}, \mb{LeptonSpinor}, \mb{QuarkSpinor}
+and \mb{GellMannMatrix}.
+The ``.'' may also be used as a delimiter instead of the ``,''
+within the functions \mb{DiracMatrix}, \mb{DiracSlash} and
+\mb{GellMannMatrix}.
+
+In the output with \mb{FeynCalcForm} the ``.''
+as noncommutative multiplication operator
+is suppressed.
+
+\beom
+\domtog{(DiracSlash[p\ +\ q]\ +\ m)\ .\  DiracMatrix[$\mu$] }{\ $( m\ +\ \gamma\  \cdot \ (p\ +\ q) )\ \gamma^\mu$ \hfil\\
+}{
+This is how you enter $ ( \bps +\bqs + m )\, \gamma^{\mu}$.
+}
+\domtog{DiracMatrix[$\mu,\ 5,\ \nu,\ 6,\ \rho,\ 7$]}{\ $\gamma^{\mu}\,\gamma^{5}\,\gamma^{\nu}\,\gamma^{6}\,\gamma^{\rho}\,
+\gamma^{7}$\hfil\\
+}{
+Here is $\gamma^{\mu}\,\gamma^{5}\,\gamma^{\nu}\,\gamma^{6}\,\gamma^{\rho}\,
+\gamma^{7}$\,.
+}
+%\domtog{{DiracMatrix[$\mu\ .\ 5\ .\ \nu\ .\ 6\ .\ \rho\ .\ 7$]\\
+%}}{\ $\gamma^{\mu}\,\gamma^{5}\,\gamma^{\nu}\,\gamma^{6}\,\gamma^{\rho}\,
+%\gamma^{7}$\hfil\\
+%}{
+%This is an alternative input variety.
+%Note that the spaces around the ``.'' are
+%essential when $ \gamma^{5}, \gamma^{6}$ or $\gamma^{7}$
+%are involved.
+%}
+\domtog{DiracSlash[2b, a, 2(d - c), 6q - 3p] }{\ $2 \gamma\cdot b\;\; \gamma\cdot a\;\; 2\, ( \gamma\cdot d -  \gamma\cdot c)\;\; (6 \, \gamma\cdot q - 3 \;\;  \gamma\cdot p)$]\hfil\\
+}{
+This is a four-dimensional product:\\
+$2 \bs\, \as\, 2\, (\ds - \cs)\, (6 \,\qs - 3 \, \ps)$.
+}
+%\domtog{{DiracSlash[(2\ b)\ .\ a\ .\ (2\ (d\ -\ c))\ . \  (6\ q\ -\ 3\ p)] \\
+%}}{\ 12\ gs[b]\ gs[a]\ gs[c\ -\ d]\ gs[p\ -\ 2\ q]\hfil\\
+%}{
+%Here is an alternative input with \mb{Dot}.
+%Commutative products have to be grouped
+%with parentheses here.
+%}
+\domtog{DiracSlash[Polarization[k]]}{\ $\gamma\cdot \varepsilon(k)$\hfil\\
+}{
+Slashed polarization vectors $\es(k)$ are entered in this
+way.
+}
+\enom
+
+\otabthree{
+{\sl option name} & {\sl default value} &\cr
+\hhline
+\mb{Dimension} & \mb{4} &  space-time dimension \cr
+} {Option for \mb{DiracMatrix} and  \mb{DiracSlash}.}
+
+As setting for \mb{Dimension}, a \mma \mb{Symbol}
+{\sl dim}, or {\sl dim}-4 are possible.
+
+\beom
+\domtog{DiracMatrix[$\mu$,\ Dimension\ $\rightarrow$\ D]}{\ $\gamma^{\mu}$\hfil\\
+}{
+Entering of a D-dimensional  $\gamma^{\mu}$.
+The number of dimensions is suppressed in the screen
+output (for notebook output).
+}
+\domtog{DiracMatrix[mu,\ mu,\ Dimension\ $\rightarrow$\ D\ -\ 4]}{\ $\gamma^{\mu} \gamma^{\mu}$\hfil\\
+}{
+This is  $\gamma^{\mu} \,  \gamma^{\mu}$ in $D-4$ dimensions.
+}
+\enom
+
+\subsection{Spinors}
+
+In \fc spinors are entered with the four functions \mb{SpinorU}, \mb{SpinorUBar}, \mb{SpinorV}, \mb{SpinorVBar}. Products of spinors with spinors or Dirac matrices (Fermion chains) are built with the \mma \mb{Dot}, ``.''.
+%The only difference between \mb{QuarkSpinor} and \mb{LeptonSpinor}
+%is that Gell-Mann matrices (see section \ref{sun}) do not commute with quark spinors.
+
+\otabtwo{
+\mbs{SpinorU[{\sl p},\ {\sl m}]} & $u(p,m)$ \cr
+\mbs{SpinorUBar[{\sl p},{\sl m}]} & $\overline{u}(p,m)$ \cr
+\mbs{SpinorV[{\sl p},\ {\sl m}]} & $v(p,m)$\cr
+\mbs{SpinorVBar[{\sl p},{\sl m}]} & $\overline{v}(p,m)$ \cr
+} {The input functions for fermionic spinors.}
+
+\beom
+\domtog{SpinorUBar[p,\ m]\ .\ DiracSlash[p]}{\ $\overline{u}(p, m) \;\; \gamma\cdot p$\hfil\\
+}{
+This is $\overline{u}(p, m) \, \bps$.
+}
+\domtog{DiracSlash[p]\ .\ SpinorU[p,\ m]}{\ $\gamma\cdot p \;\; u(p,m)$\hfil\\
+}{
+On the right of $\bps$ the spinor,
+$u(p,m)$ is used.
+}
+\domtog{SpinorVBar[p,\ m]\ .\ DiracSlash[q,\ p]}{\ $\overline{v}(p,m) \;\; \gamma\cdot q \,\, \gamma\cdot p$\hfil\\
+}{
+This is $\overline{v}(p,m) \, \qs \, \bps$.
+}
+\domtog{DiracSlash[p]\ .\ SpinorV[p,\ m]}{\ $\gamma\cdot p \;\; v(p,m)$\hfil\\
+}{
+Here we have $\gamma\cdot p \, v(p,m)$.
+}
+\domtog{SpinorU[p,\ 0]}{\ $u(p)$\hfil\\
+}{
+Enter a spinor obeying the massless Dirac equation.
+The \mb{FeynCalcForm} suppresses the 0.
+}
+\domtog{SpinorU[p]}{\ $u(p)$\hfil\\
+}{
+You may also omit the second argument for
+a massless spinor.
+}
+\enom
+
+%If you want to calculate polarized amplitudes at tree level, a third
+%argument must be given to \mb{Spinor}.
+%
+%%
+%\otabtwo{
+%\mbs{Spinor[{\sl p},\ {\sl m},\ LeftHanded]} & a left-handed spinor \cr
+%\mbs{Spinor[{\sl p},\ {\sl m},\ RightHanded]} & a right-handed spinor \cr
+%\mbs{Spinor[{\sl p},\ {\sl m},\ {\sl n}]} & spinor with external $n$
+%($n \cdot p = 0$)
+%\cr} {Polarized spinors.}
+%
+%See the section on tree-level calculations
+%for the different effects of the above specifications.
+
+\subsection{SU$(N$) Matrices and Structure Constants}\label{sun}
+
+%\fc is not a package especially designed for QCD calculations. But
+%some basic features for Gell-Mann matrices are included.
+
+\fc provides functions for the input of SU$(N$) matrices and the corresponding structure constants. More specialized input functions in SU(2) and SU(3) (Gell-Mann and Pauli matrices) are provided by the subpackage \fphi. These are described in the \fphi user's guide ???.
+
+\otabtwo{
+\mb{SUNT[a]} & the a'th generator, $T_a$, of SU($N$) in the fundamental representation \cr
+} {Input of SU($N$) matrices.}
+
+For noncommutative multiplication of SU($N$) matrices, use the \mma \mb{Dot}, ``.''.
+
+\beom
+\domtog{SUNT[a]\ .\ SUNT[b]\ .\ SUNT[c]}{\ $T_a\, T_b\, T_c$\hfil\\
+}{
+This is $T_a\, T_b\, T_c$.
+}
+\domtog{SUNT[a,\ b,\ c] }{\ $T_a \, T_b \, T_c$\hfil\\
+}{
+The above can also be entered like this.
+}
+\domtog{SUNT[a,\ b,\ c]\ SUNDelta[c,\ d]}{\ $T_a \, T_b \, T_c \; \delta_{c\, d}$\hfil\\
+}{
+This is how you enter $T_a \, T_b \, T_c \; \delta_{c\, d}$.
+}
+\enom
+
+\otabtwo{
+\mbs{SUNDelta[i,j]} & Kronecker delta function in SU($N$) \cr
+\mbs{SUNF[i,j,k]} & antisymmetric structure constants of SU($N$) \cr
+\mbs{SUND[i,j,k]} & symmetric structure constants of SU($N$) \cr
+} {Input of SU($N$) structure constants.}
+
+\otabthree{
+{\sl option name} & {\sl default value} &\cr
+\hhline
+\mb{Explicit} & \mb{True} & replace \mb{SUNF} or \mb{SUND} by traces \cr
+} {An option for the structure constants \mb{SUNF} and \mb{SUND}.}
+
+\beom
+\domtog{SUNF[a,\ b,\ c]}{\ $f_{a\,b\,c}$\hfil\\
+}{
+This is how you enter $f_{a\,b\,c}$.
+}
+\domtog{SUND[a,\ b,\ c]}{\ $d_{a\,b\,c}$\hfil\\
+}{
+This is how you enter $d_{a\,b\,c}$.
+}
+\domtog{SUNF[a,\ b,\ c,\ Explicit\ $\rightarrow$\ True]}{\ $2\ \ComplexI\; (\,{\rm tr}(T_a\, T_c\, T_b)\, -\, {\rm tr}(T_a\, T_b\, T_c)\,)$\hfil\\
+}{
+They can be expressed in terms of the generating matrices (see section \ref{gelltrace} for a discussion of the trace).
+}
+\domtog{SUNF[a, b, c, Explicit $\rightarrow$ True]\ + \ 
+SUNF[a, c, b, Explicit $\rightarrow$ True]\; //\; Expand}{\ 0\hfil\\
+}{
+Antisymmetry,
+$f_{a\,c\,b}\,= -f_{a\,b\,c}$.
+}
+\domtog{SUND[a, b, c, Explicit $\rightarrow$ True]\ - \ 
+SUND[a, c, b, Explicit $\rightarrow$ True]\; //\; Expand}{\ 0\hfil\\
+}{Symmetry,
+$d_{a\,c\,b}\,= d_{a\,b\,c}$.}
+\enom
+
+\subsection{Denominators of Propagators}
+The denominators of propagators are entered in a special way.
+Each one-loop Feynman amplitude has factors of the form
+$$
+df = \frac {1}{[q^{2}-m_{0}^{2}]\, [(q+p_{1})^{2}-m_{1}^{2}] \,
+             [(q+p_{2})^{2}-m_{2}^{2}] \; \ldots
+                     }
+$$
+with $q$ as loop momentum and the $p_{i}$ denoting linear combinations of the
+external four-vectors.
+
+\otabtwo{
+\mbs{FeynAmpDenominator[\\ PropagatorDenominator[{\sl q},\ $\hbox{\sl m}_{0}$], \\
+PropagatorDenominator[{\sl q}\ +\ {\sl p},\ $\hbox{\sl m}_{1}$],\ ...]}
+&
+$1/( [ q^{2} - m_0^{2} ] [(q+p)^{2} - m_1^{2}])\, \ldots$ \cr
+} {Entering denominators of propagators.}
+
+\beom
+\domtog{FeynAmpDenominator[\ PropagatorDenominator[q,\ m1],\ PropagatorDenominator[q\ +\ p,\ m2]]}{\Frac{1}{( q^{2} - m_1^{2} ) ((q+p)^{2} - m_2^{2})}\hfil\\
+}{
+This is $1/( [ q^{2} - m_1^{2} ] [(q+p)^{2} - m_2^{2}])$.
+}
+\enom
+
+\subsection{Small Variables}
+
+For radiative corrections in the standard model, fermionic masses
+often can be neglected with respect to the gauge boson masses.
+Since, however, some of the Passarino-Veltman integrals may be infrared divergent,
+the fermionic (and photonic) small masses must remain as
+arguments of them and cannot be set to 0.
+In order to achieve this behavior, these small masses have to be
+entered with  head \mb{Small}.
+The idea is that every variable with head \mb{Small} evaluates
+to $0$, unless it is an argument of a scalar integral.
+
+You can avoid to explicitly wrap the head \mb{Small} around a mass by
+using the option \mb{SmallVariables} of the function \mb{OneLoop}
+(the function \mb{OneLoop} is described in section \ref{passvelt}).
+
+\otabtwo{
+\mbs{Small[{\sl m}]} & head of a small mass $m$, $m \ll M$
+}{A head for small variables.}
+
+%\beom
+%\domtog{USpinor[p,\ Small[m]]}{\ u[p]\hfil\\
+%}{
+%In spinors, a mass with head \mb{Small} is replaced by 0.
+%}
+%\enom
+
+\subsection{Quantum Fields}
+\label{quantumFields}
+
+\fc is meant to be a general framework for calculations in quantum field theory. Thus, \fc
+defines notation not only for working with what comes out of a Feynman amplitude calculation, namely loop integrals, momenta, Dirac and SU($N$) structures, propagators, etc., but also for
+the quantities needed to work out the input to such calculations, namely quantum fields and
+lagrangians.
+
+\otabtwo{
+\mbs{QuantumField[{\sl par1}, {\sl par2}, ... , {\sl ftype}, \{{\sl lorind}\}, \{{\sl sunind}\}]} & denotes a quantum field of type {\sl ftype} with possible Lorentz indices {\sl lorind} and SU($N$) indices {\sl sunind}. The optional first arguments {\sl par1}, {\sl par2}, $\cdots$, are partial derivatives acting on the field \cr
+\mbs{PartialD[{\sl $\mu$}]} & denotes a space-time derivative when given as first argument to \mb{QuantumField}
+}{Input of quantum fields.}
+
+\beom
+\domtog{QuantumField[$\psi$]}{\ $\psi$\hfil\\
+}{
+Some field $\psi$.
+}
+\domtog{QuantumField[$\psi$, \{i\}]}{\ $\psi_i$\hfil\\
+}{
+If the field is considered as part of an SU($N$) multiplet and the SU($N$) index is $i$, this is the notation.
+}
+\domtog{QuantumField[$g$, \{$\nu$\}, \{i\}]}{\ $g_\mu^i$\hfil\\
+}{
+Some field $g$ with an SU($N$) index $i$ and a Lorentz index $\nu$.
+}
+\domtog{QuantumField[PartialD[$\mu$],$g$, \{$\nu$\}, \{i\}]}{\ $\partial_\mu g_\nu^i$\hfil\\
+}{
+This is the notation for the space-time derivative $\partial/\partial x^\mu$ of the same field.
+}
+\enom
+

@@ -1,0 +1,1988 @@
+\chaptermark{Reference Guide for FeynCalc}
+\section{Reference Guide for FeynCalc}
+\label{rg}
+
+\fname{A0}
+\fheading{\mb{A0[{\sl m}\phat 2]}}
+\fusage{
+\mb{A0[{\sl m}\phat 2]} is the scalar Passarino-Veltman one-point
+function.
+}
+\fnotes{
+{\tiny $\blacksquare$}\  \mb{A0[{\sl m}\phat 2]} is an abbreviation for 
+$A_{0}(m^2) = -i \pi^{-2} \int d^{D} q\,(2\mu\pi)^{4-D}
+                       \,[q^{2}-m^{2}]^{-1}$.
+{\tiny $\blacksquare$}\  
+\mb{A0[0]} and  \mb{A0[Small[{\sl mass}\phat 2]]} give 0.
+{\tiny $\blacksquare$}\  
+The following option can be given:
+\ftabthree
+{
+A0ToB0 & True & replace $A_0(m^2)$ by $m^2 (1+B_0(0,m^2,m^2))$
+}
+
+\seepage
+}
+
+\ffinish
+
+\fname{A0ToB0}
+\fheading{\mb{A0ToB0}}
+\fusage{
+\mb{A0ToB0} is an option for \mb{A0}. If set to \mb{True}, $A_0(m^2)$ 
+is replaced by $m^2 (1 + B_0(0,m^2,m^2))$.
+}
+\fnotes{
+\seepage
+}
+
+\ffinish
+
+\fname{B0}
+\fheading{\mb{B0[{\sl pp},$\hbox{\sl m}_{1}$\phat 2,$\hbox{\sl m}_{2}$\phat 2]}}
+\fusage{
+\mb{B0[{\sl pp},$\hbox{\sl m}_{1}$\phat 2,$\hbox{\sl m}_{2}$\phat 2]} is the scalar  Passarino-Veltman two-point 
+function.
+}
+\fnotes{
+{\tiny $\blacksquare$}\  \mb{B0[{\sl pp},$\hbox{\sl m}_{1}$\phat 2,$\hbox{\sl m}_{2}$\phat 2]} is an abbreviation for
+$B_{0}(p^{2},m_{1}^2,m_{2}^2)= -i \pi^{-2} \int
+                           d^{D} q\,(2\mu\pi)^{4-D} \,
+               ([q^{2}-m_{1}^{2}] [(q+p)^{2}-m_{2}^{2}])^{-1}$. {\tiny $\blacksquare$}\  \mb{B0} is symmetric in its second and third argument. {\tiny $\blacksquare$}\  The following options can be given:
+\ftabthree
+{
+\mb{BReduce} & \mb{False} & reduce \mb{B0} in special cases 
+to \mb{A0} \cr
+\mb{B0Unique} & \mb{False} & replace $B_0(a,0,a)$ by 
+$(2+B_0(0,a,a))$ and $B_0(0,0,a)$ by $(1+B_0(0,a,a))$.
+}
+
+\seepage
+}
+
+\ffinish
+
+
+\fname{B00}
+\fheading{\mb{B00[{\sl pp},$\hbox{\sl m}_{1}$\phat 2,$\hbox{\sl m}_{2}$\phat 2]}}
+\fusage{
+\mb{B00[{\sl pp},$\hbox{\sl m}_{1}$\phat 2,$\hbox{\sl m}_{2}$\phat 2]} is the coefficient of  $g^{\mu \nu}$ of the 
+tensor integral decomposition  of $B^{\mu \nu}$.
+}
+\fnotes{
+{\tiny $\blacksquare$}\  The following option can be given:
+\ftabthree
+{
+\mb{BReduce} & \mb{True} & reduce \mb{B00}  to \mb{B1} and \mb{A0}
+} {\tiny $\blacksquare$}\  If \mb{BReduce} is set to \mb{True} the following simplification holds:
+
+$B_{00}(a,b,c) = 1/6 (A_0(b) + (B_1(a,b,c) (a-c+b) + a/3 B_0(a,b,c) +
+1/6 (a + b - c/3) ))$.
+
+\seepage
+}
+
+\ffinish
+
+\fname{B0Unique}
+\fheading{\mb{B0Unique}}
+\fusage{
+\mb{B0Unique} is an option for \mb{B0}. 
+}
+\fnotes{
+{\tiny $\blacksquare$}\  Sometimes it is useful to set this option to \mb{True},  since  only then 
+all simplifications between different $B_0$ occur.
+
+\seepage
+}
+
+\ffinish
+
+
+
+\fname{B1}
+\fheading{\mb{B1[pp,$\hbox{\sl m}_{1}$\phat 2,$\hbox{\sl m}_{2}$\phat 2]}}
+\fusage{
+\mb{B1[{\sl pp},$\hbox{\sl m}_{1}$\phat 2,$\hbox{\sl m}_{2}$\phat 2]} is the coefficient of  $p^{\mu}$ of the
+tensor integral decomposition  of $B^{\mu}$.
+       }
+\fnotes{
+{\tiny $\blacksquare$}\  The following option can be given:
+\ftabthree
+{
+\mb{BReduce} & \mb{True} & reduce \mb{B1}  to \mb{B0} and \mb{A0}
+} {\tiny $\blacksquare$}\  If a variable of $B_1$ has head \mb{Small} and at least one other 
+variable does not (and is different from 0), the variable with head \mb{Small}
+is set to 0. {\tiny $\blacksquare$}\  If the option \mb{BReduce} is set to \mb{True}, \mb{B1} simplifies in 
+the following way, where $a,b,c$ are $m^2$ with no head \mb{Small}.
+The same simplifications are performed if instead of 0 a 
+\mb{Small} variable is supplied as an argument.
+
+$B_1(a,b,c)=1/2 ( A_0(b) - A_0(b) - (a-c+b) B_0(a,b,c))$.
+
+$B_1(a,b,b)=-1/2 B_0(a,b,b)$.
+
+$B_1(a,a,0) = - 1/2 B_0(a,a,0) - 1/2$.
+
+$B_1(a,0,a) = 1/2 - 1/2 B_0(a,0,m)$.
+ 
+$B_1(0,0,a) = - 1/2 B_0(0,0,a) + 1/4$.
+
+$B_1(0,a,0) = - 1/2 B_0(0,a,0) - 1/4$.
+
+\seepage
+}
+
+\ffinish
+
+\fname{B11}
+\fheading{\mb{B11[{\sl pp},$\hbox{\sl m}_{1}$\phat 2,$\hbox{\sl m}_{2}$\phat 2]}}
+\fusage{
+\mb{B11[{\sl pp},$\hbox{\sl m}_{1}$\phat 2,$\hbox{\sl m}_{2}$\phat 2]} is the coefficient of  $p^{\mu}\,p^{\nu}$ of the
+tensor integral decomposition  of $B^{\mu \nu}$.
+}
+\fnotes{
+{\tiny $\blacksquare$}\  The following option can be given:
+\ftabthree{
+\mb{BReduce} & \mb{True} & reduce \mb{B11}  to \mb{B1} and \mb{A0}
+}
+ {\tiny $\blacksquare$}\  If the option \mb{BReduce} is set to \mb{True}, \mb{B11} simplifies in
+the following way, where $a,b,c$ are $m^2$ with no head \mb{Small}.
+
+$B_{11}(a,b,c) = 1/(3 a) (A_0(b) - 2 (a - c + b) B_1(a,b,c) -
+a B_0(a,b,c) - 1/2(a + b - c/3) )$.
+
+$B_{11}(0,a,a) = 1/3 B_0(0,a,a)$.
+
+\seepage
+}
+
+\ffinish
+
+\fname{BReduce}
+\fheading{\mb{BReduce}}
+\fusage{
+\mb{BReduce} is an option for \mb{B0}, \mb{B00}, \mb{B1} and \mb{B11}, 
+determining whether reductions to lower-order \mb{A} and \mb{B} are done.
+       }
+\fnotes{
+{\tiny $\blacksquare$}\  The default setting of \mb{BReduce} is \mb{True}.
+
+\seepage
+}
+\ffinish
+
+
+\fname{CancelQ2}
+\fheading{\mb{CancelQ2}}
+\fusage{\mb{CancelQ2}  is an option for \mb{OneLoop}.
+If set to \mb{True}, cancellation
+of all $q^2$ with the first propagator via
+$q^{2} \rightarrow ( (q^{2}-m^{2}) + m^{2} )$ is performed, where 
+$q$ denotes the integration momentum.
+}
+\fnotes{
+{\tiny $\blacksquare$}\  With the default \mb{True} the translation of the integration momentum 
+in the lower order Passarino Veltman functions is done such that
+the third mass argument of the 4-point integral is put at position 1.
+
+\seepage
+}
+
+\ffinish
+
+
+\fname{CancelQP}
+\fheading{\mb{CancelQP}}
+\fusage{\mb{CancelQP}  is an option for \mb{OneLoop}.
+If set to \mb{True}, cancellation
+of $q \cdot p$ with propagators 
+is performed, where $q$ denotes the integration momentum.
+}
+\fnotes{
+\seepage
+}
+
+\ffinish
+
+\fname{ChiralityProjector}
+\fheading{\mb{ChiralityProjector[+1]}}
+\fusage{\mb{ChiralityProjector[+1]} is an alternative input for
+$\omega_{+} = \frac{1}{2} (1 + \gamma^{5})$.
+\mb{ChiralityProjector[-1]} denotes 
+$\omega_{-} = \frac{1}{2} (1 - \gamma^{5})$. 
+}
+\fnotes{
+{\tiny $\blacksquare$}\  \mb{ChiralityProjector[1]} is identical to \mb{DiracMatrix[6]}.
+\mb{ChiralityProjector[-1]} is identical to \mb{DiracMatrix[7]}.
+The internal representation is \mb{DiracGamma[6]} and 
+\mb{DiracGamma[7]}.
+
+\seepage
+ {\tiny $\blacksquare$}\  See also: \mb{DiracMatrix}, \mb{DiracGamma}.
+}
+\ffinish
+ 
+\fname{C0}
+\fheading{\mb{C0}}
+\fusage{
+\mb{C0[$\hbox{\sl p}_{10}$,$\hbox{\sl p}_{12}$,$\hbox{\sl p}_{20}$,$\hbox{\sl m}_{1}$\phat 2,$\hbox{\sl m}_{2}$\phat 2,$\hbox{\sl m}_{3}$\phat 2]} is the scalar  
+Passarino-Veltman three-point function.
+The first three arguments of \mb{C0} are the scalar products
+$p_{10} = p_{1}^{2}$, $p_{12} = (p_{1}-p_{2})^{2}$, $p_{20} = p_{2}^{2}$.
+       }
+\fnotes{
+{\tiny $\blacksquare$}\  \mb{C0[$\hbox{\sl p}_{10}$,$\hbox{\sl p}_{12}$,$\hbox{\sl p}_{20}$,$\hbox{\sl m}_{1}$\phat 2,$\hbox{\sl m}_{2}$\phat 2,$\hbox{\sl m}_{3}$\phat 2]} is an abbreviation for 
+$C_0= -i \pi^{-2} \int
+d^{D} q\,(2\mu\pi)^{4-D} \,
+([q^{2}-m_{1}^{2}] [(q+p_1)^{2}-m_{2}^{2}]
+ [(q+p_2)^{2}-m_{3}^{2}])^{-1}
+$. {\tiny $\blacksquare$}\  A standard representative of the six equivalent argument permutations is 
+chosen.
+
+\seepage
+ {\tiny $\blacksquare$}\  See also: \mb{PaVeOrder}.
+}
+
+\ffinish
+
+\fname{Collect2}
+\fheading{\mb{Collect2[{\sl expr},\ {\sl x}]}}
+\fusage{\mb{Collect2[{\sl expr},\ {\sl x}]} collects together terms 
+which are not free of any occurrence of $x$.
+
+\mb{Collect2[{\sl expr},\ \{$\hbox{\sl x}_{1}$,\ $\hbox{\sl x}_{2}$,\ ...\}]} collects together terms 
+which are not free of $x_1$, $x_2$, \ldots. 
+}
+\fnotes{
+{\tiny $\blacksquare$}\  The following option can be given.
+\ftabthree
+{
+\mb{ProductExpand} & \mb{False} & expand products in $expr$ 
+free of $x$ ($x_1, x_2$, ...)\cr
+\mb{IsolateHead} & \mb{False} & 
+isolate with respect to \mb{\{$\hbox{\sl x}_{1}$,\ $\hbox{\sl x}_{2}$,\ ...\}}\cr
+\mb{IsolateSplit} & \mb{442} & the limit before \mb{Isolate} splits 
+}
+
+\seepage {\tiny $\blacksquare$}\  See also: \mb{Isolate}.
+}
+
+\ffinish
+
+\fname{Combine}
+\fheading{\mb{Combine[{\sl expr}]}}
+\fusage{\mb{Combine[{\sl expr}]} puts terms in a sum over a common denominator.
+\mb{Combine} is similar to \mb{Together}, but works better on certain
+polynomials with rational coefficients.} 
+\fnotes{
+{\tiny $\blacksquare$}\  The following option can be given:
+\ftabthree{
+\mb{ProductExpand} & \mb{False} & expand products
+}
+
+\seepage
+}
+
+\ffinish
+
+\fname{CombineGraphs}
+\fheading{\mb{CombineGraphs}}
+\fusage{\mb{CombineGraphs}  is an option for \mb{OneLoopSum}.
+}
+\fnotes{
+{\tiny $\blacksquare$}\  The utilization of this option may speed up \fc.
+But depending on the available memory there is a turning point where 
+\fc~ becomes quite inefficient when forced to calculate too may complicated
+diagrams at once.
+
+\seepage
+}
+
+\ffinish
+
+\fname{Contract}
+\fheading{\mb{Contract}}
+\fusage{
+\mb{Contract[{\sl expr}]} contracts pairs of Lorentz indices in \mb{expr}.
+       }
+
+\fnotes{
+{\tiny $\blacksquare$}\  For the contraction of two Dirac matrices \mb{DiracSimplify} has to be used. {\tiny $\blacksquare$}\  The result of \mb{Contract} is not fully expanded.  {\tiny $\blacksquare$}\  The following options can be given:
+\ftabthree
+{
+\mb{EpsContract}   & \mb{False}  & contract products of 
+                  Levi-Civita (Eps) tensors via the determinant 
+                  formula\cr
+\mb{Expanding} & \mb{True} & expand all sums containing Lorentz indices \cr
+\mb{Factoring}     & \mb{False} & factor the result canonically
+}
+
+{\tiny $\blacksquare$}\  Examples:
+
+
+%\mb{Contract[\ MetricTensor[al,\ al]\ ]} \ra 4.
+%
+%\mb{Contract[\ MetricTensor[al,\ al,\ Dimension$\rightarrow$D\ ]} \ra $D$.
+%
+%\mb{Contract[\ MetricTensor[al,\ be]\ MetricTensor[al,\ si]\ ]} \ra \mb{g[be,\ si]}.
+%
+%\mb{Contract[\ MetricTensor[al,\ be]\ FourVector[p,\ al]\ ]} \ra \mb{p[be]}.
+%\mb{Contract[\ DiracMatrix[mu]\ MetricTensor[mu,\ al]\ ]} \ra \mb{ga[al]}. 
+%
+%\mb{Contract[\ DiracMatrix[mu]\ FourVector[p,\ mu]\ ]} \ra \mb{gs[p]}.
+%\mb{Contract[\ FourVector[p\ +\ q,\ mu]\ MetricTensor[mu,\ nu]\ ]} \ra 
+%\mb{(p\ +\ q)[nu]}.
+\mb{Contract[\ FourVector[p,\ mu]\phat 2\ ]} \ra \mb{p.p}. 
+
+\mb{Contract[\ FourVector[p\ +\ q,\ mu]\ FourVector[p'\ +\ q',\ mu]\ ]// \\
+ExpandScalarProduct} \ra \mb{p.p'\ +\ p.q'\ +\ q.p'\ +\ q.q'}.
+
+\mb{Contract[\ LeviCivita[m,\ n,\ r,\ a]\ LeviCivita[m,\ n,\ r,\ b],\ EpsContract\ $\rightarrow$\ True\ ]} \ra - \mb{6\ g[a,\ b]}.
+
+\mb{Contract[\ Pair[\ LorentzIndex[mu,\ Dim],\ LorentzIndex[mu,\ Dim]\ ]\ ]} \ra 
+\mb{Dim}.
+
+\mb{Contract[\ Pair[\ LorentzIndex[mu,\ D\ -\ 4],\ LorentzIndex[mu]\ ]\ ]} \ra \mb{4}.
+
+\mb{Contract[\ Pair[\ LorentzIndex[mu,\ D\ -\ 4],\ LorentzIndex[mu]\ ]\ ]} \ra \mb{0}.
+
+\mb{Contract[\ Pair[\ LorentzIndex[mu,\ D\ -\ 4],\ LorentzIndex[mu,\ D\ -\ 4]\ ]\ ]} \ra 
+\mb{-4\ +\ D}.
+
+%Clear \mb{\$PrePrint} for the next examples (\mb{\$PrePrint=.}).
+\mb{Contract[\ f[\ \_\_\_,\ LorentzIndex[mu],\ \_\_\_\ ]\ MetricTensor[mu,\ al]\ ]}
+\ra \mb{\ f[\ \_\_\_,\ LorentzIndex[al],\ \_\_\_\ ]}.
+
+\mb{Contract[\ f[\ \_\_\_,\ LorentzIndex[mu],\ \_\_\_\ ]\ FourVector[p,\ mu]\ ]}
+\ra \mb{\ f[\ \_\_\_,\ FourVector[p],\ \_\_\_\ ]}.
+
+\mb{Contract[\ DiracMatrix[mu,\ Dimension\ $\rightarrow$\ D]\ MetricTensor[mu,\ al]\ ]} \ra \\
+\mb{DiracGamma[LorentzIndex[nu]]}.
+
+\mb{Contract[\ DiracGamma[LorentzIndex[mu,\ D-4],\ D-4]\ MetricTensor[mu,\ al]\ ]} \ra
+\mb{0}.
+
+{\tiny $\blacksquare$}\  If big expressions are contracted and substitutions for the
+resulting scalar products are made, it is best not to do these
+replacements after contraction, but to set the values of the relevant 
+scalar products {\it before} invoking \mb{Contract}; in this way the 
+intermediate expression swell is minimized.
+
+\seepage
+
+{\tiny $\blacksquare$}\  See also: \mb{ExpandScalarProduct}.  
+}
+
+\ffinish
+
+\fname{D0}
+\fheading{\mb{D0}}
+\fusage{
+\mb{D0[$\hbox{\sl p}_{10}$,\ $\hbox{\sl p}_{12}$,\ $\hbox{\sl p}_{23}$,\ $\hbox{\sl p}_{30}$,\ $\hbox{\sl p}_{20}$,\ $\hbox{\sl p}_{13}$,\ $\hbox{\sl m}_{1}$\phat 2,\ $\hbox{\sl m}_{2}$\phat 2,\ $\hbox{\sl m}_{3}$\phat 2,\ $\hbox{\sl m}_{4}$\phat 2]}  is the scalar Passarino-Veltman four-point function. 
+The first six arguments of \mb{D0} are the scalar products
+$ p_{10} = p_{1}^{2},\;p_{12} = (p_{1}-p_{2})^{2},\; 
+p_{23} = (p_{2}-p_{3})^{2},\; p_{30} = p_{3}^{2},\;
+p_{20} = p_{2}^{2},\;
+p_{13} = (p_{1}-p_{3})^{2}.$
+}
+\fnotes{
+{\tiny $\blacksquare$}\  \mb{D0[$\hbox{\sl p}_{10}$,\ $\hbox{\sl p}_{12}$,\ $\hbox{\sl p}_{23}$,\ $\hbox{\sl p}_{30}$,\ $\hbox{\sl p}_{20}$,\ $\hbox{\sl p}_{13}$,\ $\hbox{\sl m}_{1}$\phat 2,\ $\hbox{\sl m}_{2}$\phat 2,\ $\hbox{\sl m}_{3}$\phat 2,\ $\hbox{\sl m}_{4}$\phat 2]} is an abbreviation for 
+$D_0= -i \pi^{-2} \int
+d^{4} q\,
+([q^{2}-m_{1}^{2}] [(q+p_1)^{2}-m_{2}^{2}]
+ [(q+p_2)^{2}-m_{3}^{2}] [(q+p_{3})^{2}-m_{4}^{2}])^{-1}
+ $.
+
+\seepage {\tiny $\blacksquare$}\  See also: \mb{PaVe}, \mb{PaVeOrder}.
+}
+
+\ffinish
+
+\fname{D0Convention}
+\fheading{\mb{D0Convention}}
+\fusage{
+\mb{D0Convention} is an option for \mb{Write2}.
+Possible settings are $0$ or $1$. With the last setting the fifth and sixth arguments
+of \mb{D0} are interchanged and all (internal) mass arguments of the scalar
+Passarino Veltman integrals are given square free.
+}
+\fnotes{
+\seepage
+{\tiny $\blacksquare$}\  See also: \mb{Write2}, \mb{D0}.
+}
+
+\ffinish
+
+\fname{DB0}
+\fheading{\mb{DB0}}
+\fusage{
+\mb{DB0[$\hbox{\sl p}_{10}$,\ $\hbox{\sl m}_{0}$\phat 2,\ $\hbox{\sl m}_{1}$\phat 2]} is the derivative 
+$\partial B_0(p^2, m_0^2, m_1^2) / \partial p^2$ of the two-point function
+$B_0$.
+}
+\fnotes{
+\seepage
+{\tiny $\blacksquare$}\  See also: \mb{B0}.
+}
+
+\ffinish
+
+\fname{DenominatorOrder}
+\fheading{\mb{DenominatorOrder}}
+\fusage{
+\mb{DenominatorOrder} is an option for \mb{OneLoop}, if set to
+\mb{True} the \mb{PropagatorDenominator} in 
+\mb{FeynAmpDenominator} will be ordered in a standard way.
+}
+\fnotes{
+{\tiny $\blacksquare$}\  You may want to set this option to \mb{False} when checking hand calculations.
+
+\seepage
+       }
+
+\ffinish
+
+\fname{Dimension}
+\fheading{\mb{Dimension}}
+\fusage{
+\mb{Dimension} is an option for  
+\mb{DiracMatrix}, \mb{DiracSlash}, \mb{FourVector}, 
+\mb{MetricTensor}, \mb{OneLoop} and \mb{ScalarProduct}.
+       }
+\fnotes{
+{\tiny $\blacksquare$}\  The setting of \mb{Dimension} may be \mb{4}, \mb{dim} or \mb{dim-4}, 
+where \mb{dim} must be a \mma \mb{Symbol}\hspace{0.2mm}.
+
+\seepage
+}
+
+\ffinish
+
+
+\fname{DiracGamma}
+\fheading{\mb{DiracGamma[{\sl x},\ {\sl optdim}]}}
+\fusage{
+\mb{DiracGamma[{\sl x},\ {\sl optdim}]} is the head of all Dirac matrices and
+Feynman slashes $\bps$ ($=\gamma _{\mu} p^{\mu}$) in the internal 
+representation. 
+
+A four-dimensional Dirac  matrix 
+$\gamma _{\mu}$  is \mb{DiracGamma[\ LorentzIndex[{\sl mu}]\ ]}, 
+a four-dimensional Feynman slash is  \mb{DiracGamma[\ Momentum[{\sl p}]\ ]}.
+
+$\gamma _{5}$ is represented as {\tt DiracGamma[5]},  the helicity projectors
+$\gamma _{6}  = (1+\gamma _{5})/2 $ and $\gamma _{7}  = (1-\gamma _{5})/2 $ 
+as \mb{DiracGamma[6]} and \mb{DiracGamma[7]} respectively.
+
+For other than four dimensions an additional argument is necessary:
+\mb{DiracGamma[\ LorentzIndex[{\sl mu},\ {\sl Dim}],\ {\sl Dim}\ ]} and  
+\mb{DiracGamma[\ Momentum[{\sl q},\ {\sl Dim}],\ {\sl Dim}\ ]}.
+}
+\fnotes{
+{\tiny $\blacksquare$}\  For standard input \mb{DiracMatrix} and \mb{DiracSlash} are more convenient. {\tiny $\blacksquare$}\  Note that \mb{DiracGamma[{\sl exp},\ {\sl Dim}]} projects out the smaller
+dimension of the objects \mb{exp} and \mb{Dim}.
+There are special relationships if \mb{Dim} takes the form
+\mb{D-4}, e.g., \mb{DiracGamma[\ LorentzIndex[{\sl mu},\ {\sl D}-4],{\sl 4}\ ]} 
+\ra \mb{0}.
+
+\seepage
+}
+
+\ffinish
+
+\fname{DiracMatrix}
+\fheading{\mb{DiracMatrix[{\sl mu}]}} 
+\fusage{
+\mb{DiracMatrix[{\sl mu}]} is an input function for a Dirac matrix. 
+A product of Dirac matrices $\gamma^{\mu} \gamma^{\nu} \gamma^{\rho} \, 
+\ldots$ is entered as \mb{DiracMatrix[\ mu,\ nu,\ ro,\ ...\ ]} or equivalently as 
+\mb{DiracMatrix[mu]\ .\ DiracMatrix[nu]\ .\ DiracMatrix[ro]\ .\ ...} 
+
+$\gamma ^{5} $ may be entered as \mb{DiracMatrix[5]}, 
+$\gamma ^{6}=(1+\gamma ^{5})/2$ as \mb{DiracMatrix[6]} 
+and $\gamma ^{7}=(1-\gamma ^{5})/2$ as \mb{DiracMatrix[7]}
+}
+\fnotes{
+{\tiny $\blacksquare$}\  The following option can be given:
+\ftabthree
+{
+\mb{Dimension} & 4 & space-time dimension
+}
+{\tiny $\blacksquare$}\  $\gamma ^{5}$, $\gamma ^{6}$ and $\gamma ^{7}$ are defined purely in four dimensions.
+\seepage
+{\tiny $\blacksquare$}\  See also: \mb{DiracGamma}, \mb{DiracSlash}, \mb{ChiralityProjector}, \mb{\$BreitMaison}.
+}
+
+\ffinish
+
+
+\fname{DiracOrder}
+\fheading{\mb{DiracOrder[{\sl expr},\ {\sl orderlist}]}}
+\fusage{
+\mb{DiracOrder[{\sl expr},\ {\sl orderlist}]}  orders the Dirac matrices in 
+\mb{expr} according to $orderlist$.
+
+\mb{DiracOrder[{\sl expr}]}  orders the Dirac matrices in
+\mb{expr} alphabetically.
+}
+\fnotes{{\tiny $\blacksquare$}\  $\gamma_{5}, \gamma_{6}$ and  $\gamma_{7}$ are not ordered;
+use {\tt DiracSimplify} to push them all to the right. {\tiny $\blacksquare$}\  Example: \mb{DiracOrder[\ DiracSlash[a,\ q,\ a,\ p]\ ]} \ra
+      \mb{-2\ a.a\ p.q\ +\ 2\ a.q\ gs[a]\ .\ gs[p]\ +\ a.a\ gs[p]\ .\ gs[q]}.
+
+\mb{DiracOrder[\ DiracSlash[p],\ DiracSlash[q],\ \{q,p\}\ ]} \ra 
+\mb{2\ p.q\ -\ gs[q]\ .\ gs[p]}. {\tiny $\blacksquare$}\  This function is just the
+implementation of the anticommutator relation for Dirac  matrices.
+
+\seepage
+
+See also: \mb{DiracSimplify}.
+}
+
+\ffinish
+
+
+\fname{DiracSimplify}
+\fheading{\mb{DiracSimplify[{\sl expr}]}}
+\fusage{\mb{DiracSimplify[{\sl expr}]}  simplifies products of Dirac matrices 
+in \mb{expr}. Double Lorentz indices and four vectors are contracted.
+The Dirac equation is applied.
+All \mb{DiracMatrix[5]}, \mb{DiracMatrix[6]} and \mb{DiracMatrix[7]} are 
+moved to the right. 
+The order of the Dirac matrices is not changed.
+}
+\fnotes{
+{\tiny $\blacksquare$}\  $(\ps - m)\, u(p) = 0$, $\;(\ps + m)\, v(p) = 0\,\;$
+and  $\, \; \overline{u}(p)(\ps-m)=0$, $\;\overline{v}(p)(\ps+m)=0\,$ are 
+represented by:
+\mb{DiracSimplify[\ (DiracSlash[p]\ -\ m)\ .\ Spinor[p,\ m]\ ]} \ra 0,
+\mb{DiracSimplify[\ (DiracSlash[p]\ +\ m)\ .\ Spinor[-p,m]\ ]} \ra 0,
+\mb{DiracSimplify[\ Spinor[p,\ m]\ .\ (DiracSlash[p]\ -\ m\ )\ ]} \ra 0,
+\mb{DiracSimplify[\ Spinor[-p,m]\ .\ (DiracSlash[p]\ +\ m\ )\ ]} \ra 0
+
+{\tiny $\blacksquare$}\  Examples:
+
+\mb{DiracSimplify[\ DiracMatrix[mu,\ mu]\ ]} \ra 4.
+
+  \mb{DiracSimplify[\ DiracSlash[p,\ p]\ ]} \ra \mb{p.p}.
+  
+  \mb{DiracSimplify[\ DiracMatrix[al,\ be,\ al]\ ]} \ra \mb{-2\ ga[be]}.
+
+  \mb{DiracSimplify[\ DiracMatrix[al,\ be,\ al,\ Dimension$\rightarrow$D]\ ]//Factor} \ra 
+  \mb{(2-D)\ ga[be]}.
+
+  \mb{DiracSimplify[\ DiracSlash[p],\ (DiracSlash[-q]+m),\ DiracSlash[p]\ ]} \ra 
+  \mb{gs[q]\ p.p\ -\ 2\ gs[p]\ p.q\ +\ p.p\ m}.
+
+  \mb{DiracSimplify[\ DiracMatrix[5,\ mu]\ ]} \ra \mb{-ga[mu]\ .\ ga[5]}.
+
+  \mb{DiracSimplify[\ DiracMatrix[6,\ mu]\ ]} \ra \mb{ga[mu]\ .\ ga[7]}.
+
+\seepage {\tiny $\blacksquare$}\  See also: \mb{DiracOrder}.
+}
+
+\ffinish
+
+\fname{DiracSlash}
+\fheading{\mb{DiracSlash}}
+\fusage{\mb{DiracSlash[{\sl p}]} is an input function for a Feynman slash
+$\bps= \gamma^{\mu} p_{\mu}$. A product of slashes may be entered by 
+\mb{DiracSlash[p,\ q,\ ...]} or 
+\mb{DiracSlash[p],\ DiracSlash[q],\ ...} .
+}
+\fnotes{
+{\tiny $\blacksquare$}\  The following option can be given:
+\ftabthree
+{
+Dimension & 4 & space-time dimension 
+} {\tiny $\blacksquare$}\  The internal representation of a four-dimensional \mb{DiracSlash[p]} is
+\mb{DiracGamma[\ Momemtum[{\sl p}]\ ]},  a \mb{D}-dimensional
+\mb{DiracSlash[\ {\sl p},\ {\sl Dimension}\ $\rightarrow$\ D\ ]} is transformed into
+\mb{DiracGamma[\ Momemtum[p,\ D],\ D]}.
+
+\seepage {\tiny $\blacksquare$}\  See also: \mb{DiracGamma}, \mb{DiracMatrix}.
+}
+
+\ffinish
+
+\fname{DiracTrace}
+\fheading{\mb{DiracTrace}}
+\fusage{\mb{DiracTrace[{\sl expr}]}  is the head of a  Dirac trace. 
+Whether the trace is  evaluated depends on the option
+\mb{DiracTraceEvaluate}.  
+The argument \mb{expr} may be a product of Dirac matrices or slashes
+separated by ``.''.
+}
+\fnotes{
+{\tiny $\blacksquare$}\  The following options can be given:
+\ftabthree
+{
+\mb{DiracTraceEvaluate}  &  \mb{False}  & evaluating the trace \cr
+\mb{LeviCivitaSign}      &  \mb{-1}     & sign convention for the 
+$\varepsilon$-tensor \cr
+\mb{Factoring}           &  \mb{False}  & factor the result \cr
+\mb{Mandelstam}          &  \mb{\{\}}          & 
+if set to \mb{\{{\sl s},\ {\sl t},\ {\sl u},\ $\hbox{\sl m}_{1}$\phat 2\ +\ $\hbox{\sl m}_{2}$\phat 2\ +\ $\hbox{\sl m}_{3}$\phat 2\ +\ $\hbox{\sl m}_{4}$\phat 2\}}, 
+\mb{TrickMandelstam} will be used \cr
+\mb{PairCollect}         &  \mb{True}   & collect the results 
+with respect to products of \mb{Pair}
+}
+
+{\tiny $\blacksquare$}\  Examples:
+
+\mb{DiracTrace[\ DiracMatrix[al,\ be]\ ]} \ra \mb{4\ g[al,\ be]}.
+
+\mb{DiracTrace[\ DiracSlash[p,\ q]\ ]} \ra \mb{4\ p.q}.
+
+\mb{DiracTrace[\ DiracMatrix[mu,\ al,\ be,\ mu,\ Dimension$\rightarrow$D]\ ]} \ra 
+\mb{4\ D\ g[al,\ be]}.
+
+\mb{DiracTrace[\ DiracMatrix[a,\ b,\ c,\ d,\ 5]\ ]} \ra \mb{-4\ I\ Eps[a,\ b,\ c,\ d]}.
+
+\mb{DiracTrace[\ MetricTensor[al,\ be]\ DiracMatrix[si,\ al,\ ro,\ si]\ ]} \ra 
+\mb{16\ g[be,\ ro]}.
+
+\mb{DiracTrace[\ DiracSlash[p\ -\ q]\ .\ (DiracSlash[q]\ +\ m)\ +\ DiracSlash[k,\ 2\ p]\ ]}
+\ra \mb{8\ k.p\ +\ 4\ p.q\ -\ 4\ q.q}. 
+
+With
+\mb{PP=DiracSlash[p']}; \mb{P=DiracSlash[p]}; \mb{MU=DiracMatrix[mu]}; 
+\mb{K=DiracSlash[k]}; \mb{NU=DiracMatrix[nu]}:
+\mb{DiracTrace[\ (PP+m).MU.(P+K+m).NU.(P+m).NU.(P+K+m).MU/16\ ]/.m\phat 2$\rightarrow$m2/.m\phat 4$\rightarrow$m4}
+\ra \mb{4\ m4\ +\ k.p\ (4\ m2\ +\ 2\ k.p')\ +\ k.p'\ (-4\ m2\ +\ 2\ p.p)\ +\ k.k\ (4\ m2\ -\ p.p')\ -\ 3\ m2\ p.p'\ +\ p.p\ p.p'}.
+
+{\tiny $\blacksquare$}\   To  replace scalar products two possibilities exist:
+ either set the corresponding \mb{ScalarProduct} 
+ {\sl before} calculating the trace:
+ \mb{ScalarProduct[p,\ q]\ =\ t/2;} (\mb{DiracTrace[p\ .\ q]}) \ra 
+\mb{2\ t}, which is preferable, or substitute afterwards:  
+(\mb{DiracTrace[\ DiracSlash[a,\ b]\ ]/.ScalarProduct[a,\ b]$\rightarrow$s/2}) \ra \mb{2\ s}.
+
+\seepage {\tiny $\blacksquare$}\  See also: \mb{DiracMatrix}, \mb{DiracSlash}, 
+\mb{ScalarProduct}, \mb{TrickMandelstam}.
+ }
+
+ \ffinish
+
+\fname{DiracTraceEvaluate}
+\fheading{\mb{DiracTraceEvaluate}}
+\fusage{\mb{DiracTraceEvaluate}  is an option for \mb{DiracTrace}.
+If set to \mb{False},\mb{DiracTrace} remains unevaluated.
+}
+\fnotes{
+{\tiny $\blacksquare$}\  The resaon for this option is that \mb{OneLoop} needs traces in unevaluated
+form.
+
+\seepage
+}
+ 
+\ffinish
+
+
+\fname{Eps}
+\fheading{\mb{Eps[{\sl a},\ {\sl b},\ {\sl c},\ {\sl d}]}}
+\fusage{\mb{Eps[{\sl a},\ {\sl b},\ {\sl c},\ {\sl d}]} is the head of the totally antisymmetric 
+four-dimensional epsilon (Levi-Civita) tensor. 
+The \mb{{\sl a},\ {\sl b},\ {\sl c},\ {\sl d}} {\it must} have head \mb{LorentzIndex} or \mb{Momentum}.
+}
+\fnotes{
+{\tiny $\blacksquare$}\  All entries are transformed to four dimensions. {\tiny $\blacksquare$}\  For user-friendly input of an \mb{Eps} just with \mb{LorentzIndex}'
+use \mb{LeviCivita}. {\tiny $\blacksquare$}\  For $\varepsilon ^{ \mu \nu \rho \sigma } q_{ \sigma }$ the
+compact notation $\varepsilon ^{ \mu \nu \rho q}$ is used, i.e.:
+\mb{Eps[LorentzIndex[mu],\ LorentzIndex[nu],\ LorentzIndex[ro],\ Momentum[q]]}. {\tiny $\blacksquare$}\  \mb{Eps} is just a head not having any functional
+properties. In order to exploit linearity ($\varepsilon ^{ \mu \nu \rho
+(p+q)} \rightarrow \varepsilon ^{ \mu \nu \rho p} +
+\varepsilon ^{ \mu \nu \rho q}$)  and the total antisymmetric property
+ of the Levi-Civita tensor use \mb{EpsEvaluate}.
+
+\seepage
+}
+
+
+\ffinish
+
+\fname{EpsChisholm}
+\fheading{\mb{EpsChisholm[{\sl expr}]}}
+\fusage{\mb{EpsChisholm[{\sl expr}]} substitutes for a gamma matrix contracted 
+with a Levi Civita tensor (\mb{Eps}) the Chisholm identity:
+ $\gamma _{\mu} \varepsilon ^{ \mu \nu \rho \sigma } =
+ + i \,( \gamma ^{ \nu} \gamma ^{ \rho } \gamma ^{ \sigma }
+ - g^{ \nu \rho }  \gamma ^{ \sigma } -  g^{ \rho \sigma } \gamma ^{\nu}
+ +  g^{ \nu  \sigma } \gamma ^{ \rho })  \gamma ^{5}$.
+}
+\fnotes{
+{\tiny $\blacksquare$}\  With the option \mb{LeviCivitaSign} the sign of the right hand side of
+the equation above can be altered. {\tiny $\blacksquare$}\  The following option can be given:
+\ftabthree
+{
+\mb{LeviCivitaSign} & -1& sign convention 
+}
+
+\seepage
+}
+
+\ffinish
+
+\fname{EpsContract}
+\fheading{\mb{EpsContract}}
+\fusage{\mb{EpsContract} is an option for \mb{Contract} specifying whether 
+Levi-Civita tensors \mb{Eps} will be contracted, i.e., products 
+of two  \mb{Eps} are replaced via the determinant formula.
+}
+\fnotes{
+\seepage
+}
+
+\ffinish
+
+\fname{EpsEvaluate}
+\fheading{\mb{EpsEvaluate[{\sl expr}]}}
+\fusage{\mb{EpsEvaluate[{\sl expr}]} applies total antisymmetry and
+linearity (with respect to \mb{Momentum}) to all Levi-Civita tensors
+(\mb{Eps}) in $expr$.
+}
+\fnotes{
+\seepage
+}
+ 
+\ffinish
+
+\fname{EvaluateDiracTrace}
+\fheading{\mb{EvaluateDiracTrace[{\sl expr}]}}
+\fusage{\mb{EvaluateDiracTrace[{\sl expr}]} evaluates \mb{DiracTrace} in 
+$expr$.}
+\fnotes{
+\seepage
+}
+
+\ffinish
+
+\fname{Expanding} 
+\fheading{\mb{Expanding}}
+\fusage{\mb{Expanding} 
+is an option for \mb{Contract} specifying whether expansion
+will be done in \mb{Contract}. If set to \mb{False}, not all 
+Lorentz indices might get contracted.
+}
+\fnotes{
+\seepage
+}
+
+\ffinish
+
+\fname{ExpandScalarProduct}
+\fheading{\mb{ExpandScalarProduct[{\sl expr}]}}
+\fusage{\mb{ExpandScalarProduct[{\sl expr}]} 
+expands scalar products in {\it expr}.
+}
+\fnotes{
+{\tiny $\blacksquare$}\  Example: 
+
+\mb{ExpandScalarProduct[\ ScalarProduct[\ p-q,r+2\ s\ ]\ ]} \ra
+\mb{p.r\ +\ 2\ p.s\ -\ q.r\ -\ 2\ q.s}.
+
+{\tiny $\blacksquare$}\ At the interal level \mb{ExpandScalarProduct}  expands actually 
+everything with head \mb{Pair}. {\tiny $\blacksquare$}\  Since a four-vector has head \mb{Pair} internally also, 
+\mb{ExpandScalarProduct[\ FourVector[p\ -\ 2\ q,\ mu]\ ]} \ra \mb{p[mu]\ -\ 2\ q[mu]}.
+
+\seepage
+}
+
+\ffinish
+
+\fname{Factor2}
+\fheading{\mb{Factor2[{\sl expr}]}}
+\fusage{\mb{Factor2[{\sl expr}]} factors a polynomial in a standard way.
+\mb{Factor2} works better than \mb{Factor} on polynomials involving 
+rationals with sums in the denominator.
+}
+\fnotes{
+{\tiny $\blacksquare$}\  In general it is better to use \mb{Factor2} in \mma~ 2.0.
+
+\seepage
+}
+
+\ffinish
+
+\fname{Factoring}
+\fheading{\mb{Factoring}}
+\fusage{\mb{Factoring} is an option for 
+\mb{Contract}, \mb{DiracTrace}, \mb{DiracSimplify} and \mb{OneLoop}.
+If set to \mb{True} the result will be factored, using \mb{Factor2}.
+}
+\fnotes{
+\seepage
+}
+
+\ffinish
+
+\fname{FeynAmp}
+\fheading{\mb{FeynAmp[{\sl name},\ {\sl amp},\ {\sl q}]}}
+\fusage{\mb{FeynAmp[{\sl name},\ {\sl amp},\ {\sl q}]} is the head of the Feynman amplitude 
+given by \fa. The first argument \mb{name} is for bookkeeping, \mb{amp} is 
+the analytical expression for the amplitude, and \mb{q} is the integration 
+variable. In order to calculate the amplitute replace \mb{FeynAmp} by  
+\mb{OneLoop}. In the output of \fa\ $name$ has the head \mb{GraphName}.
+}
+\fnotes{
+\seepage
+{\tiny $\blacksquare$}\  See also: \mb{GraphName}, Guide to \fa.
+}
+
+\ffinish
+
+\fname{FeynAmpDenominator}
+\fheading{\mb{FeynAmpDenominator[PropagatorDenominator[...],\ PropagatorDenominator[...],\ ...]}}
+\fusage{\mb{FeynAmpDenominator[\ PropagatorDenominator[...],\ PropagatorDenominator[...],\ ...]} is the head of the denominators of the propagators, 
+i.e., \mb{FeynAmpDenominator[x]} is the representation of $1/x$.
+}
+\fnotes{
+{\tiny $\blacksquare$}\  Example:
+
+$1/([q^{2}-m_{1}^{2}] [(q+p_{1})^{2}-m_{2}^{2}])$
+is represented as \mb{FeynAmpDenominator[\ PropagatorDenominator[{\sl q},{\sl m1}],\ \\
+PropagatorDenominator[{\sl q}+p1,{\sl m2}]\ ]}. 
+
+\seepage {\tiny $\blacksquare$}\  See also: \mb{PropagatorDenominator}.
+}
+
+\ffinish
+
+\fname{FeynAmpList} 
+\fheading{\mb{FeynAmpList[{\sl info}\ ...\ ][{\sl FeynAmp}[\ ...\ ],\ {\sl FeynAmp}[\ ...\ ],\ \ ...]}} 
+\fusage{\mb{FeynAmpList[{\sl info}\ ...\ ]{\sl FeynAmp}[\ ...\ ],\ {\sl FeynAmp}[\ ...\ ],\ \ ...]} 
+is the head of a list of \mb{FeynAmp} in the result of \fa. 
+}
+\fnotes{
+\seepage
+{\tiny $\blacksquare$}\  See also: Guide to \fa.
+}
+ 
+\ffinish
+
+%\fname{FeynCalc}
+%\fheading{\mb{FeynCalc[\\\ ]}}
+%\fusage{\mb{?FeynCalc} gives on-line help.}
+%
+%\ffinish
+
+\fname{FeynCalcForm}
+\fheading{\mb{FeynCalcForm[{\sl expr}]}}
+\fusage{\mb{FeynCalcForm[{\sl expr}]} changes the printed output 
+of {\it expr} to an easy to read form.
+The default setting of \mb{\$PreRead} is \mb{\$PreRead\ =\ FeynCalcForm}, which 
+forces to display everything after applying \mb{FeynCalcForm}.
+}
+\fnotes{
+{\tiny $\blacksquare$}\  \mb{Small}, \mb{Momentum} and \mb{LorentzIndex} are set to \mb{Identity}
+by \mb{FeynCalcForm}. {\tiny $\blacksquare$}\  \mb{PaVe} are abbreviated. {\tiny $\blacksquare$}\  The action of \mb{FeynCalcForm} is:  
+\mb{DiracMatrix[al]} \ra \mb{ga[al]}.
+
+\mb{DiracSlash[p]} \ra \mb{gs[p]}.
+
+\mb{FeynAmpDenominator[\ PropagatorDenominator[q,m1],\ PropagatorDenominator[q+p,m2]\ ]} \ra \mb{1/(q\phat 2\ \ -\ m1\phat 2)\ ((p\ +\ q)\phat 2\ -\ \ m2\phat 2)}.
+
+\mb{FourVector[p,\ mu]} \ra \mb{p[mu]}.
+
+\mb{FourVector[p-q,\ mu]} \ra \mb{(p\ -\ q)[mu]}.
+
+\mb{GellMannMatrix[a]} \ra \mb{la[a]}.
+
+\mb{GellMannTrace[x]} \ra \mb{tr[x]}.
+
+\mb{DiracTrace[x]} \ra \mb{tr[x]}.
+
+\mb{LeviCivita[a,\ b,\ c,\ d]} \ra \mb{eps[a,\ b,\ c,\ d]}.
+
+\mb{MetricTensor[mu,\ nu]} \ra \mb{g[mu\ nu]}.
+
+\mb{Momentum[\ Polarization[p]\ ]} \ra \mb{ep[p]}.
+
+\mb{Conjugate[PolarizationVector[k,\ mu]]} \ra \mb{ep(*)[k,\ mu]}.
+
+\mb{PolarizationVector[p,\ mu]} \ra \mb{ep[p][mu]}.
+
+\mb{ScalarProduct[p,\ q]} \ra \mb{p.q}.
+ 
+\mb{Spinor[p,\ m]} \ra \mb{u[p,\ m]}.
+
+\mb{Spinor[-p,\ m]} \ra \mb{v[p,\ m]}.
+
+\mb{QuarkSpinor[p,\ m]} \ra \mb{u[p,\ m]}.
+
+\mb{QuarkSpinor[-p,\ m]} \ra \mb{v[p,\ m]}.
+
+\mb{SU3F[i,\ j,\ k]} \ra \mb{f[i,\ j,\ k]}.
+
+\seepage
+}
+
+\ffinish
+
+\fname{FinalSubstitutions}
+\fheading{\mb{FinalSubstitutions}}
+\fusage{\mb{FinalSubstitutions} is an option for 
+\mb{OneLoop} and \mb{OneLoopSum}. 
+All substitutions given to this opton will be performed at 
+the end of the calculation.
+}
+\fnotes{
+{\tiny $\blacksquare$}\  Example: \mb{FinalSubstitutions} \ra \mb{\{mw\phat 2\ $\rightarrow$\ mw2,\ B0\ $\rightarrow$\ B0R\}}.
+
+\seepage
+}
+
+\ffinish
+
+\fname{FourVector}
+\fheading{\mb{FourVector[{\sl p},\ {\sl mu}]}}
+\fusage{\mb{FourVector[{\sl p},\ {\sl mu}]}  is the input for a four
+vector $p_{\mu}$. 
+}
+\fnotes{
+{\tiny $\blacksquare$}\  \mb{FourVector[{\sl p},\ {\sl mu}]} is directly transformed to the internal
+representation: \mb{Pair[Momentum[{\sl p}],\ LorentzIndex[{\sl mu}]]}. {\tiny $\blacksquare$}\  The following option can be given:
+\ftabthree
+{
+\mb{Dimension} & 4 & space-time dimension
+}
+
+\seepage {\tiny $\blacksquare$}\  See also: \mb{LorentzIndex}, \mb{Momentum}, \mb{Pair}.
+}
+
+\ffinish
+
+\fname{FreeQ2}
+\fheading{\mb{FreeQ2[{\sl expr},\ \{{\sl form1},\ {\sl form2},\ ...\}]}} 
+\fusage{\mb{FreeQ2[{\sl expr},\ \{{\sl form1},\ {\sl form2},\ ...\}]}
+yields \mb{True} if $expr$ does not contain any occurrence of 
+$form1$, $form2$, \ldots . \mb{FreeQ2[{\sl expr},\ {\sl form}]} is the 
+same as \mb{FreeQ[{\sl expr},\ \{{\sl form1},\ {\sl form2},\ ...\}]}.
+}
+\fnotes{
+{\tiny $\blacksquare$}\  Stephen Wolfram pointed out that you can use alternatively 
+\mb{FreeQ[{\sl expr},\ {\sl form1}\ ||\ \ {\sl form2}\ ||\ ...]}.
+
+\seepage
+}
+
+\ffinish
+
+\fname{GellMannMatrix}
+\fheading{\mb{GellMannMatrix[{\sl a}]}}
+\fusage{\mb{GellMannMatrix[{\sl a}]}  is the Gell-Mann matrix $\lambda_a$. 
+A product of Gell-Mann matrices may be entered as
+\mb{GellMannMatrix[a,\ b,\ ...]} or 
+as \mb{GellmannMatrix[a]\ .\ GellMannMatrix[b]\ .\ ...}.
+\mb{GellMannMatrix[1]} denotes the unit-matrix in color space.
+}
+\fnotes{
+\seepage
+{\tiny $\blacksquare$}\  See also: \mb{SU3Delta}\hspace{0.2mm}, \mb{SU3F}, \mb{GellMannTrace}.
+}
+
+\ffinish
+
+\fname{GellMannTrace}
+\fheading{\mb{GellMannTrace[{\sl expr}]}}
+\fusage{\mb{GellMannTrace[{\sl expr}]}  calculates the trace of $expr$.
+All color indices should occur twice and $expr$ must be a product 
+of \mb{SU3F}, \mb{SU3Delta} and \mb{GellMannMatrix}.
+}
+\fnotes{
+{\tiny $\blacksquare$}\  The Cvitanovic algorithm is used. {\tiny $\blacksquare$}\  Examples: \mb{[GellMannTrace[GellMannMatrix[i.i]]\ } \ra 16.
+\mb{GellMannTrace[GellMannMatrix[a\ .\ b\ .\ c]\ SU3F[a,\ b,\ c]]} \ra 48 I.
+\mb{GellMannTrace[GellMannMatrix[a\ .\ c\ .\ e\ .\ d]\ SU3F[a,\ b,\ e]\ SU3F[b,\ c,\ d]]} \ra 0.
+\mb{GellMannTrace[GellMannMatrix[1]]} \ra 3.
+
+\seepage
+}
+
+\ffinish
+
+
+\fname{GraphName}
+\fheading{\mb{GraphName[{\sl a},\ {\sl b},\ {\sl c},\ {\sl d}]}} 
+\fusage{\mb{GraphName[{\sl a},\ {\sl b},\ {\sl c},\ {\sl d}]} is the first argument of 
+\mb{FeynAmp} given by \fa. It may be used also as first argument of 
+\mb{OneLoop}. The arguments \mb{{\sl a},\ {\sl b},\ {\sl c},\ {\sl d}} indicate information 
+of the graph under consideration.
+}
+\fnotes{
+\seepage}
+
+\ffinish
+
+\fname{InitialSubstitutions}
+\fheading{\mb{InitialSubstitutions}}
+\fusage{\mb{InitialSubstitutions}  is an option for \mb{PaVeReduce} 
+and \mb{OneLoop}. All substitutions hereby indicated will be performed at the 
+beginning of the calculation. Energy momentum conservation 
+may be especially indicated in the setting.
+}
+\fnotes{
+{\tiny $\blacksquare$}\  Example: \mb{InitialSubstitutions} \ra 
+\mb{\{CW\phat 2\ $\rightarrow$\ 1\ -\ SW\phat 2,\ k2\ $\rightarrow$\ -\ k1\ +\ p1\ +\ p2\ \ \}}.
+
+\seepage
+}
+
+\ffinish
+\fname{Isolate}
+\fheading{\mb{Isolate[{\sl expr},\ \{$\hbox{\sl x}_{1}$,\ $\hbox{\sl x}_{2}$,\ ...\ \}}}
+\fusage{\mb{Isolate[{\sl expr},\ \{$\hbox{\sl x}_{1}$,\ $\hbox{\sl x}_{2}$,\ ...\ \}]} 
+ substitutes \mb{K[{\sl i}]} for all subsums in $expr$
+which are free of any occurrence of \mb{$\hbox{\sl x}_{1}$,\ $\hbox{\sl x}_{2}$,\ ...}, 
+ if \mb{Length[{\sl expr}]>0}.  
+
+\mb{Isolate[{\sl expr}]} substitutes  an  
+abbreviation \mb{K[{\sl i}]} in \mb{HoldForm} for
+$expr$, if \mb{Length[{\sl expr}]>0}.
+}
+\fnotes{
+{\tiny $\blacksquare$}\  The following options can be given:
+\ftabthree
+{
+\mb{IsolateHead} & \mb{K} & the head of the abbreviations \cr
+\mb{IsolateSplit} & \mb{442} & a limit beyound which \mb{Isolate} splits 
+the expression in two sums 
+} {\tiny $\blacksquare$}\  \mb{IsolateSplit} is the maximum of the characters of the \mb{FortranForm}
+of the expression being isolated by \mb{Isolate}. 
+The default setting inhibits \mb{Write2} from producing too many 
+continuation lines when writing out in \mb{FortranForm}. {\tiny $\blacksquare$}\  The result of \mb{Isolate} can always be recovered by 
+\mb{MapAll[\ ReleaseHold,\ result\ ]}. {\tiny $\blacksquare$}\  Example:
+\mb{Isolate[a[z]\ (b+c)\ +\ d[f]\ (x+y),\ \{a,d\}\ ]} \ra \mb{a[z]\ K[1]\ +\ d[f]\ K[2]}.
+
+\seepage {\tiny $\blacksquare$}\   See also: \mb{Write2}.
+}
+
+\ffinish
+
+\fname{IsolateHead}
+\fheading{\mb{IsolateHead}}
+\fusage{\mb{IsolateHead} is an option for \mb{Isolate}.}
+\fnotes{
+\seepage 
+}
+
+\ffinish
+
+\fname{IsolateSplit}
+\fheading{\mb{IsolateSplit}}
+\fusage{\mb{IsolateSplit} is an option for \mb{Isolate}.}
+\fnotes{ 
+
+\seepage 
+}
+
+\ffinish
+
+\fname{K}
+\fheading{\mb{K[{\sl i}]}}
+\fusage{\mb{K[{\sl i}]} are abbreviations which may result from 
+\mb{PaVeReduce}, depending on the option \mb{IsolateHead}. 
+The \mb{K[{\sl i}]} are returned in \mb{HoldForm} and may be recovered 
+by \mb{ReleaseHold}.
+}
+\fnotes{ 
+\seepage 
+}
+\ffinish
+
+\fname{LeptonSpinor}
+\fheading{\mb{LeptonSpinor[{\sl p},\ {\sl mass}]}}
+\fusage{\mb{LeptonSpinor[{\sl p},\ {\sl mass}]} specifies a Dirac spinor.
+Which of the spinors $u, v, \overline{u}$ or $\overline{v}$
+is understood, depends on the sign of the mass argument and
+the relative position of \mb{DiracSlash[p]}:
+\mb{LeptonSpinor[{\sl p},\ {\sl mass}]}  is that spinor which yields
+\mb{mass*LeptonSpinor[{\sl p},\ {\sl mass}]} if the Dirac equation is applied to 
+\mb{DiracSlash[{\sl p}]\ .\ LeptonSpinor[{\sl p},\ {\sl mass}]} or 
+\mb{LeptonSpinor[{\sl p},\ {\sl mass}]\ .\ DiracSlash[{\sl p}]}.
+
+If a spinor is multiplied by a Dirac matrix or another spinor, the multiplication
+operator "." must be used. 
+}
+\fnotes{
+\seepage
+{\tiny $\blacksquare$}\  
+See also: \mb{DiracSimplify}.
+}
+
+\ffinish
+
+\fname{LeviCivita}
+\fheading{\mb{LeviCivita[{\sl mu},\ {\sl nu},\ {\sl ro},\ {\sl si}]}}
+\fusage{\mb{LeviCivita[{\sl mu},\ {\sl nu},\ {\sl ro},\ {\sl si}]}   is an input function
+for the totally antisymmetric Levi-Civita tensor.
+}
+\fnotes{
+{\tiny $\blacksquare$}\  \mb{LeviCivita[mu,\ nu,\ ro,\ si]} transforms to the internal 
+representation \mb{Eps[\ LorentzIndex[mu],\ LorentzIndex[nu],\ LorentzIndex[ro],\\
+LorentzIndex[si]\ ]}. {\tiny $\blacksquare$}\  For simplification of Levi-Civita tensors use \mb{EpsEvaluate}.
+
+\seepage {\tiny $\blacksquare$}\  See also: \mb{Eps}, \mb{EpsEvaluate}.
+}
+
+\ffinish
+
+
+\fname{LeviCivitaSign}
+\fheading{\mb{LeviCivitaSign}}
+\fusage{\mb{LeviCivitaSign} is an option for \mb{DiracTrace}.
+The possible settings are (+1) or (-1). This option determines the 
+sign convention of the result of 
+$tr(\,\gamma^{a} \, \gamma^{b} \,\gamma^{c} \,\gamma^{d} \,\gamma^{5} \,)$.}
+\fnotes{
+\seepage
+}
+
+\ffinish
+\fname{LorentzIndex}
+\fheading{\mb{LorentzIndex[{\sl mu}]}}
+\fusage{\mb{LorentzIndex[{\sl mu},\ {\sl optdim}]} is the head of Lorentz indices.
+The internal representation of a four-dimensional $\mu $ is
+\mb{LorentzIndex[mu]}. For other than four dimensions enter
+\mb{LorentzIndex[{\sl mu},\ {\sl dim}]}.
+}
+\fnotes{
+{\tiny $\blacksquare$}\  \mb{LorentzIndex[{\sl mu},\ 4]} simplifies to \mb{LorentzIndex[mu]}.
+
+\seepage
+}
+
+\ffinish
+
+\fname{MacsymaForm}
+\fheading{\mb{MacsymaForm}}
+\fusage{\mb{MacsymaForm} is an option for \mb{FormatType} in \mb{Write2}.
+}
+\fnotes{
+\seepage
+{\tiny $\blacksquare$}\  See also: \mb{Write2}, \mb{MapleForm}.
+}
+
+\ffinish
+
+\fname{Mandelstam}
+\fheading{\mb{Mandelstam}}
+\fusage{\mb{Mandelstam} is an option for
+\mb{DiracTrace}, \mb{OneLoop} and \mb{TrickMandelstam}.
+A typical setting is 
+\mb{Mandelstam\ $\rightarrow$\ \{s,\ t,\ u,\ m1\phat 2\ +\ m2\phat 2\ +\ m3\phat 2\ +\ m4\phat 2\}},
+which stands for  $s+t+u=m_{1}^{2} + m_{2}^{2} + m_{3}^{2} +  m_{4}^{2}$.
+}
+\fnotes{
+\seepage
+}
+
+\ffinish
+
+\fname{MapleForm}
+\fheading{\mb{MapleForm}}
+\fusage{\mb{MapleForm} is an option for \mb{Write2}.
+}
+\fnotes{
+\seepage {\tiny $\blacksquare$}\  See also: \mb{Write2}, \mb{MacsymaForm}.
+}
+
+\ffinish
+
+%\fname{MassiveBoson}
+%\fheading{\mb{MassiveBoson}}
+%\fusage{\mb{MassiveBoson} is an optional argument setting for
+%\mb{PolarizationVector} and \mb{Polarization}.
+%If given as argument it indicates that the polarization vector corresponds
+%to a Boson with non-zero mass.
+%}
+%\fnotes{
+%{\tiny $\blacksquare$}\  %
+%%\seepage
+%}
+%\ffinish
+
+\fname{MetricTensor}
+\fheading{\mb{MetricTensor[{\sl mu},\ {\sl nu}]}}
+\fusage{\mb{MetricTensor[{\sl mu},\ {\sl nu}]} is the input for a metric tensor 
+\mb{g}$^{\mu \nu}$. 
+}
+\fnotes{
+{\tiny $\blacksquare$}\  The following option can be given:
+\ftabthree
+{
+\mb{Dimension} & 4 & space-time dimension
+}
+
+%The internal representation of
+%\mb{MetricTensor[{\sl mu},\ {\sl nu},\ {\sl Dimension}\ $\rightarrow$\ dim]} is
+%\mb{Pair[\ LorentzIndex[{\sl mu},\ {\sl dim}],\ LorentzIndex[{\sl nu},\ {\sl dim}]\ ]}.
+%
+\seepage {\tiny $\blacksquare$}\  See also: \mb{Contract}, \mb{LorentzIndex}, \mb{Pair}.
+}
+
+\ffinish
+
+\fname{Momentum}
+\fheading{\mb{Momentum[{\sl p},\ {\sl optdim}]}}
+\fusage{\mb{Momentum[{\sl p},\ {\sl optdim}]} is the head of a momentum in the 
+internal representation. 
+A four-dimensional momentum \mb{p} is represented by \mb{Momentum[p]}.
+For other than four dimensions an extra argument must be given:
+\mb{Momentum[{\sl q},\ {\sl dim}]}.
+}
+\fnotes{
+{\tiny $\blacksquare$}\  
+\mb{Momentum[{\sl p},\ {\sl 4}]} is automatically transformed to \mb{Momentum[{\sl p}]}.
+
+\seepage
+}
+
+\ffinish
+
+\fname{NumericalFactor}
+\fheading{\mb{NumericalFactor[{\sl expr}]}}
+\fusage{\mb{NumericalFactor[{\sl expr}]} gives the numerical factor of $expr$.
+}
+\fnotes{
+\seepage
+}
+
+\ffinish
+
+\fname{OneLoop}
+\fheading{\mb{OneLoop[{\sl name},\ {\sl q},\ {\sl amplitude}]}}
+\fusage{\mb{OneLoop[{\sl name},\ {\sl q},\ {\sl amplitude}]}  calculates the 
+one-loop Feynman diagram \mb{amplitude}. The argument $q$ denotes the
+integration variable, i.e., the loop momentum. 
+%
+%For applying the method of dimensional regularization the default option 
+%of \mb{Dimension}, \mb{D}, may be used. You may however enter four-dimensional
+%\mb{MetricTensor}, \mb{FourVector} and \mb{PropagatorDenominator}. 
+%\mb{OneLoop} performs the necessary extensions to \mb{D} dimensions automatically.
+}
+\fnotes{
+{\tiny $\blacksquare$}\  The following options can be given:
+\ftabthree
+{
+\mb{ReduceToScalars}   &  \mb{False}  & reduce to $B_{0}, C_{0},D_{0}$ \cr
+\mb{DenominatorOrder} & \mb{False} & order the entries of \mb{FeynAmpDenominator} \cr 
+\mb{Dimension} & \mb{True} & dimension of integration \cr
+\mb{FinalSubstitutions} & \mb{\{\}} & substitutions done at the end of the 
+calculation \cr
+\mb{Factoring} & \mb{False}  &  factor the result \cr
+\mb{InitialSubstitutions} & \mb{\{\}} & substitutions done at the beginning 
+of the calculation \cr
+\mb{Mandelstam} & \mb{\{\}} &  indicate the Mandelstam relation \cr 
+\mb{Prefactor} &  \mb{1} & additional prefactor of the amplitude \cr 
+\mb{CancelQ2} & \mb{True} & cancel $q^{2}\,$ \cr
+\mb{CancelQP} & \mb{False} & cancel $q\cdot p\,$ \cr
+\mb{ReduceGamma}  & \mb{False} & eliminate $\gamma_6$ and
+ $\gamma_7$ \cr
+\mb{SmallVariables} & \mb{\{\}} &  a list of masses, which will get wrapped 
+around the head \mb{Small} \cr
+%VectorBosonPolarization & {} & choose a specific polarization \cr
+\mb{WriteOut} &  \mb{True} &  write out a result file \mb{name.m} 
+} {\tiny $\blacksquare$}\  Energy momentum conservation may be given as rule of \mb{InitialSubstitutions}.
+
+\seepage
+}
+
+\ffinish
+
+
+\fname{OneLoopResult}
+\fheading{\mb{OneLoopResult[{\sl name}]}}
+\fusage{\mb{OneLoopResult[{\sl name}]} is the variable in the result file written out by
+\mb{OneLoop} to which the corresponding result is assigned. $name$ is 
+constructed from the first argument of \mb{OneLoop}.
+}
+\fnotes{
+\seepage
+}
+
+\ffinish
+
+\fname{OneLoopSum}
+\fheading{\mb{OneLoopSum[\ FeynAmp[...],\ FeynAmp[...],\ ...\ ]}}
+\fusage{\mb{OneLoopSum[\ FeynAmp[...],\ FeynAmp[...],\ ...\ ]} calculates 
+a list of Feynman amplitudes by  replacing \mb{FeynAmp} step by step by 
+\mb{OneLoop} and sums the result.
+}
+\fnotes{
+{\tiny $\blacksquare$}\  The  following options can be given:
+\ftabthree
+{
+\mb{CombineGraphs} & \mb{\{\}} & which amplitudes to sum before invoking \mb{OneLoop} 
+\cr
+\mb{FinalSubstitutions} & \mb{\{\}} & substitutions done at the end of 
+the calculation \cr
+\mb{IsolateHead} & \mb{K} & \mb{Isolate} the result \cr
+\mb{Mandelstam} & \mb{\{\}} & use the Mandelstam relation \cr
+\mb{Prefactor} & \mb{1}  &  multiply the result by a pre-factor \cr
+\mb{ReduceToScalars} & \mb{True} & reduce the summed result to scalar integrals \cr
+\mb{SelectGraphs}& \mb{All} & which amplitudes to select \cr
+\mb{WriteOutPaVe} & \mb{False} & write out the reduced \mb{PaVe}
+}
+Possible settings for \mb{CombineGraphs} and \mb{SelectGraphs} are lists of integers.
+For indicating a range of graphs also a list \mb{\{i,\ j\}} instead of a single integer 
+may be provided.
+
+\seepage
+}
+
+\ffinish
+
+\fname{Pair}
+\fheading{\mb{Pair[{\sl a},\ {\sl b}]}}
+\fusage{\mb{Pair[{\sl a},\ {\sl b}]} is the head of a special pairing
+used in the internal representation.
+The arguments {\it a} and {\it b} may have 
+heads \mb{LorentzIndex} or \mb{Momentum}. 
+If both {\it a} and {\it b} have head \mb{LorentzIndex}, 
+the metric tensor is understood. 
+If {\it a} and {\it b} have head \mb{Momentum}, a scalar product is meant.
+If one of  {\it a} and {\it b} has head
+\mb{LorentzIndex} and the other head \mb{Momentum}, 
+a Lorentz vector $p^{\mu}$ is understood.
+}
+\fnotes{
+{\tiny $\blacksquare$}\  \mb{Pair} has only one functional definition: any integers multiplied with
+{\it a} or {\it b} will be pulled out.
+
+\seepage  {\tiny $\blacksquare$}\  See also: \mb{FourVector}, \mb{LorentzIndex}, \mb{MetricTensor},
+\mb{ExpandScalarProduct}, \mb{ScalarProduct}.
+}
+
+\ffinish
+
+\fname{PairCollect}
+\fheading{\mb{PairCollect}}
+\fusage{\mb{PairCollect} is an option for \mb{Contract}. }
+\fnotes{
+\seepage {\tiny $\blacksquare$}\  See also: \mb{Pair}, \mb{ScalarProduct}, \mb{Momentum}.
+}
+
+\ffinish
+
+\fname{PaVe}
+\fheading{\mb{PaVe[{\sl i},\ {\sl j},\ ...,\ {\sl plist},\ {\sl mlist}]}} 
+\fusage{\mb{PaVe[{\sl i},\ {\sl j},\ ...,\ {\sl plist},\ {\sl mlist}]} denotes the 
+Passarino-Veltman integrals. The length of the mass list $mlist$ 
+indicates if a one-, two-, three- or four-point integral is understood.
+The first set of arguments $i,j, \ldots$
+signifies that the coefficient of $p_{i}^{\mu} \, p_{j}^{\nu}, \ldots$
+of the tensor integral decomposition is meant,
+where $p_{0}^{\mu} \, p_{0}^{\nu} = g^{\mu \nu}$.
+Joining {\it plist} and {\it mlist} gives
+the same conventions as for \mb{A0}, \mb{B0}, \mb{C0} and \mb{D0}.
+}
+\fnotes{
+{\tiny $\blacksquare$}\  For the corresponding arguments of \mb{PaVe} 
+the special cases \mb{A0}, \mb{B0}, \mb{C0}, \mb{D0}, \mb{B1},  
+\mb{B00}, \mb{B11} are returned.
+
+\seepage
+}
+
+\ffinish
+
+%\fname{PaVeBr}
+%\fheading{\mb{PaVeBr[{\sl i},\ {\sl j},\ ...,\ {\sl plist},\ {\sl mlist}]}}
+%\fusage{\mb{PaVeBr[{\sl i},\ {\sl j},\ ...,\ {\sl plist},\ {\sl mlist}]} is like \mb{PaVe},
+%but breaks one level down, resulting in \mb{PaVe} with lower-order 
+%indices.
+%}
+%
+%\ffinish
+
+\fname{PaVeOrder}
+\fheading{\mb{PaVeOrder[{\sl expr}]}}
+\fusage{\mb{PaVeOrder[{\sl expr}]} 
+brings all arguments of \mb{C0} and \mb{D0} into a canical order.
+}
+\fnotes{
+{\tiny $\blacksquare$}\  The following option can be given:
+ \ftabthree
+    {
+PaVeOrderList & \mb{\{\}} & order according to a list of arguments
+}
+
+\seepage
+}
+
+\ffinish
+
+\fname{PaVeOrderList}
+\fheading{\mb{PaVeOrderList}}
+\fusage{\mb{PaVeOrderList} is an option for \mb{PaVeOrder} allowing to 
+specify a specific order of the \mb{D0} functions.
+}
+\fnotes{
+{\tiny $\blacksquare$}\  Possible settings are a sublist of the arguments of a \mb{D0}, or 
+a list of such lists.
+
+\seepage
+}
+
+\ffinish
+
+
+\fname{PaVeReduce}
+\fheading{\mb{PaVeReduce[{\sl expr}]}} 
+\fusage{\mb{PaVeReduce[{\sl expr}]} reduces Passarino-Veltman integrals \mb{PaVe} to 
+scalar integrals \mb{B0}, \mb{C0} and \mb{D0}, depending on the option \mb{BReduce} 
+  eventually also \mb{A0}, \mb{B1}, \mb{B00} and \mb{B11}.
+   }
+    \fnotes{
+{\tiny $\blacksquare$}\      The class of invariant  Passarino-Veltman integrals which
+    can be currently reduced consists of
+    all coefficients of the Lorentz invariant decomposition of
+    $B^{\mu},  B^{\mu \nu}, C^{\mu}, C^{\mu \nu},  C^{\mu \nu \rho},
+    D^{\mu}, D^{\mu \nu}, D^{\mu \nu \rho}, D^{\mu \nu \rho \sigma}$. {\tiny $\blacksquare$}\      The following options can be given:
+    \ftabthree
+    {
+    IsolateHead& \mb{False}  & use \mb{Isolate}\cr
+    Mandelstam    & \mb{\{\}} &  Mandelstam relation, e.g., \mb{\{s,\ t,\ u,\ 2\ mw\phat 2\}}
+    }
+
+\seepage {\tiny $\blacksquare$}\  See also: \mb{BReduce}, \mb{K}, \mb{PaVe}.
+}
+
+\ffinish
+
+
+\fname{Polarization}
+\fheading{\mb{Polarization[{\sl p},\ {\sl optargs}]}}
+\fusage{\mb{Polarization[{\sl p},\ {\sl optarg}]} is the head of a 
+polarization momentum$\varepsilon(p)$. \mb{Polarization} must 
+always occur inside \mb{Momentum}.  The full internal representation of
+$\varepsilon(p)$ is \mb{Momentum[\ Polarization[p]\ ]}. 
+With this notation transversality of polarization vectors is provided.
+}
+\fnotes{
+{\tiny $\blacksquare$}\  %The optional arguments are the same as in \mb{PolarizationVector}.
+\mb{Polarization[{\sl p},\ -1]} stands for the complex conjugate 
+$\varepsilon(p)^{*}$.
+
+\seepage {\tiny $\blacksquare$}\  See also: \mb{PolarizationVector}.
+}
+
+\ffinish
+
+\fname{PolarizationSum}
+\fheading{\mb{PolarizationSum[{\sl mu},\ {\sl nu},\ ...]}}
+\fusage{\mb{PolarizationSum[{\sl mu},\ {\sl nu},\ ...]}  defines different  
+polarization sums. 
+}
+\fnotes{
+{\tiny $\blacksquare$}\  \mb{PolarizationSum} does not calculate any polarization sum,
+it is just an abbreviation function. {\tiny $\blacksquare$}\  \mb{PolarizationSum[{\sl mu},\ {\sl nu}]}$ = -g_{\mu \nu}$. {\tiny $\blacksquare$}\  \mb{PolarizationSum[{\sl mu},\ {\sl nu},\ {\sl k}]}$ = -g_{\mu \nu} + k_{\mu} k_{\nu}/k^{2}$. {\tiny $\blacksquare$}\  \mb{PolarizationSum[{\sl mu},\ {\sl nu},\ {\sl k},\ {\sl n}]}$ = -g_{\mu \nu}
+- k_{\mu} k_{\nu} n^{2}/(k\cdot n)^{2}
++ (n_{\mu}  k_{\nu} +  n_{\nu}  k_{\mu})/(k \cdot n)$,
+where $n_{\mu}$ denotes an external four vector.
+
+\seepage
+}
+
+\ffinish
+
+\fname{PolarizationVector}
+\fheading{\mb{PolarizationVector[{\sl p},\ {\sl mu}]}}
+\fusage{\mb{PolarizationVector[{\sl p},\ {\sl mu}]} is an input function for a
+polarization vector $\varepsilon(k)^{\mu}$.
+}
+\fnotes{
+{\tiny $\blacksquare$}\  \mb{Conjugate\{PolarizationVector[{\sl p},\ {\sl mu}]\}} is the input for 
+$\varepsilon_{\mu}^{*}(k)$. {\tiny $\blacksquare$}\  The internal representation of \mb{PolarizationVector[{\sl p},\ {\sl mu}]} 
+is \mb{Pair[\ Momentum[Polarization[{\sl p}]],\ LorentzIndex[{\sl mu}]\ ]}. {\tiny $\blacksquare$}\  The internal representation of
+\mb{Conjugate\{PolarizationVector[{\sl p},\ {\sl mu}]\}} is
+\mb{Pair[\ Momentum[Polarization[{\sl p},-1]],\ LorentzIndex[{\sl mu}]\ ]}.
+
+\seepage {\tiny $\blacksquare$}\  See also: \mb{Polarization}.
+}
+
+\ffinish
+
+\fname{Prefactor}
+\fheading{\mb{Prefactor}}
+\fusage{\mb{Prefactor} is an option for \mb{OneLoop} and \mb{OneLoopSum}.
+If set as option of
+\mb{OneLoop}, the amplitude is multiplied by  
+\mb{Prefactor} before calculation; if
+   specified as option of \mb{OneLoopSum}, 
+it appears in the final result as
+   a global factor.
+}
+\fnotes{
+{\tiny $\blacksquare$}\  A possible setting is $1/(1-D)$ for calculating the transvere part
+of self energies. The option \mb{Dimension} of \mb{OneLoop} must then
+be set to $D$.
+
+\seepage
+} 
+
+\ffinish
+
+
+\fname{ProductExpand}
+\fheading{\mb{ProductExpand}}
+\fusage{\mb{ProductExpand} is an option for \mb{Collect2} and 
+\mb{Combine}.
+}
+\fnotes{
+\seepage
+}
+
+\ffinish
+
+\fname{PropagatorDenominator} 
+\fheading{\mb{PropagatorDenominator[{\sl q},\ {\sl m}]}}
+\fusage{\mb{PropagatorDenominator[{\sl q},\ {\sl m}]}  is the denominator of a 
+propagator, i.e.,  ($q^{2} - m^{2}$). 
+
+\mb{PropagatorDenominator[{\sl q}]} evaluates to 
+\mb{PropagatorDenominator[{\sl q},\ 0]}.
+}
+\fnotes{
+{\tiny $\blacksquare$}\  If {\it q} is supposed to be D-dimensional enter:
+\mb{PropagatorDenominator[\ Momentum[q,D],\ m]}. {\tiny $\blacksquare$}\  \mb{PropagatorDenominator} must always
+occur only as an argument of \mb{FeynAmpDenominator}.
+
+\seepage
+}
+
+\ffinish
+
+
+\fname{QuarkSpinor}
+\fheading{\mb{QuarkSpinor[{\sl p},\ {\sl mass}]}}
+\fusage{\mb{QuarkSpinor[{\sl p},\ {\sl mass}]} specifies a Dirac spinor.
+Which of the spinors $u, v, \overline{u}$ or $\overline{v}$
+is understood, depends on the sign of the mass argument and
+the relative position of \mb{DiracSlash[p]}:
+\mb{QuarkSpinor[{\sl p},\ {\sl mass}]}  is that spinor which yields
+\mb{mass*QuarkSpinor[{\sl p},\ {\sl mass}]} if the Dirac equation is applied to 
+\mb{DiracSlash[{\sl p}]\ .\ QuarkSpinor[{\sl p},\ {\sl mass}]} or 
+\mb{QuarkSpinor[{\sl p},\ {\sl mass}]\ .\ DiracSlash[{\sl p}]}.
+
+If a spinor is multiplied by a Dirac matrix or another spinor, the multiplication
+operator "." must be used. 
+}
+\fnotes{
+\seepage {\tiny $\blacksquare$}\  See also: \mb{DiracSimplify}.
+}
+
+\ffinish
+
+\fname{ReduceGamma}
+\fheading{\mb{ReduceGamma}}
+\fusage{\mb{ReduceGamma} is an option 
+for \mb{OneLoop} determining
+whether $\gamma_6$ and $\gamma_7$ are removed by their 
+definitions $1/2 (1 + \gamma_5)$ and $1/2 (1 - \gamma_5)$.
+}
+\fnotes{
+{\tiny $\blacksquare$}\  This option may be needed for certain standard matrixelements.
+ 
+\seepage
+}
+
+\ffinish
+
+\fname{ReduceToScalars}
+\fheading{\mb{ReduceToScalars}}
+\fusage{\mb{ReduceToScalars}  is an option for \mb{OneLoop} and
+\mb{OneLoopSum} that specifies whether the result is reduced to
+scalar integrals.
+}
+\fnotes{
+{\tiny $\blacksquare$}\  Depending on the option \mb{BReduce} the Passarino-Veltman functions \mb{B1}, \mb{B11}, 
+\mb{B00} and \mb{B11} may also remain.
+
+\seepage {\tiny $\blacksquare$}\  See also: \mb{PaVeReduce}.
+}
+
+\ffinish
+
+\fname{ScalarProduct}
+\fheading{\mb{ScalarProduct[{\sl p},\ {\sl q}]}}
+\fusage{\mb{ScalarProduct[{\sl p},\ {\sl q}]} is the input for a scalar product.
+}
+\fnotes{
+{\tiny $\blacksquare$}\  The following option can be given:
+\ftabthree
+{
+\mb{Dimension} & 4 & space-time dimension
+} {\tiny $\blacksquare$}\  The internal representation is: \mb{Pair[\ Momentum[p],\ Momentum[q]\ ]}. {\tiny $\blacksquare$}\  Scalar products may be set, e.g., \mb{ScalarProduct[a,\ b]\ =\ c};
+but \mb{a} and \mb{b} must not contain sums.
+
+\seepage {\tiny $\blacksquare$}\  See also \mb{ExpandScalarProduct}.
+}
+
+\ffinish
+
+\fname{SelectGraphs}
+\fheading{ \mb{SelectGraphs}}
+\fusage{\mb{SelectGraphs} is an option for \mb{OneLoopSum}.
+The default setting is \mb{All}. 
+It may be set to a list indicating that only a subclass of 
+all graphs supplied to \mb{OneLoopSum} should be calculated.
+}
+\fnotes{
+\seepage
+}
+\ffinish
+
+\fname{SetMandelstam}
+\fheading{
+\mb{SetMandelstam[{\sl s},\ {\sl t},\ {\sl u},\ $\hbox{\sl p}_{1}$,\ $\hbox{\sl p}_{2}$,\ $\hbox{\sl p}_{3}$,\ $\hbox{\sl p}_{4}$,\ $\hbox{\sl m}_{1}$,\ $\hbox{\sl m}_{2}$,\ $\hbox{\sl m}_{3}$,\ $\hbox{\sl m}_{4}$]}} 
+\fusage{
+\mb{SetMandelstam[{\sl s},\ {\sl t},\ {\sl u},\ $\hbox{\sl p}_{1}$,\ $\hbox{\sl p}_{2}$,\ $\hbox{\sl p}_{3}$,\ $\hbox{\sl p}_{4}$,\ $\hbox{\sl m}_{1}$,\ $\hbox{\sl m}_{2}$,\ $\hbox{\sl m}_{3}$,\ $\hbox{\sl m}_{4}$]} 
+defines the Mandelstam variables $s=(p_1 + p_2)^2$, $t=(p_1 + p_3)^2$,
+$u=(p_1 + p_4)^2$ and sets the $p_i$ on-shell: $p_i^{2}=m_i^{2}$, where 
+the $p_i$ satisfy $p_1 + p_2 + p_3 + p_4 = 0$.
+}
+\fnotes{
+{\tiny $\blacksquare$}\  If $p_3 = - k_1$ and $p_4 = -k_2$, i.e., $p_1 + p_2  = k_1 + k_2$,
+the input is: 
+\mb{SetMandelstam[s,\ t,\ u,\ $\hbox{\sl p}_{1}$,\ $\hbox{\sl p}_{2}$,\ -\ $\hbox{\sl k}_{1}$,\ -\ $\hbox{\sl k}_{2}$,\ $\hbox{\sl m}_{1}$,\ $\hbox{\sl m}_{2}$,\ $\hbox{\sl m}_{3}$,\ $\hbox{\sl m}_{4}$]}
+
+\seepage
+}
+
+\ffinish
+
+\fname{SetStandardMatrixElements}
+\fheading{
+\mb{SetStandardMatrixElements[\{{\sl sma1}\ $\rightarrow$\ {\sl abb1}\},\ \{{\sl sma2}\ $\rightarrow$\ {\sl abb2}\},\ ...\ ,{\sl enmomcon}]}} 
+\fusage{\mb{SetStandardMatrixElements[\{{\sl sma1}\ $\rightarrow$\ {\sl abb1}\},\ \{{\sl sma2}\ $\rightarrow$\ {\sl abb2}\},\ ...\ ,{\sl enmoconrule}\ ]}
+defines the standard matrix elements $sma1, sma2, ..$ (e.g., 
+\mb{Spinor[p1]\ .\ DiracSlash[k]\ .\ Spinor[p2]}), as 
+\mb{StandardMatrixelement[{\sl abb1}]}, \mb{StandardMatrixelement[{\sl abb2}]}, ... . 
+The last argument {\it enmomcon}
+defines energy momentum conservation; 
+e.g., $enmomcon=$ \mb{\{k2\ $\rightarrow$\ p1\ +\ p2\ -\ k1\}}.
+}
+\fnotes{
+{\tiny $\blacksquare$}\  \mb{SetStandardMatrixElements}  should be invoked only once for a whole
+process. It is most conveniently used in a separate specification
+batch file. In this file also the settings 
+of the scalar products should be done either directly and/or  with 
+\mb{SetMandelstam} before applying \mb{SetStandardMatrixElements}. {\tiny $\blacksquare$}\  It is not necessary to predefine standard matrix elements.
+
+\seepage {\tiny $\blacksquare$}\  See also: \mb{SetMandelstam}, \mb{StandardMatrixelement}. 
+}
+
+\ffinish
+
+\fname{Small}
+\fheading{\mb{Small[{\sl m}]}} 
+\fusage{\mb{Small[{\sl me}]} is the head of a small mass $me$. 
+The effect is that masses with this head are set to zero, if they occur outside a 
+Passarino-Veltman function.
+}
+\fnotes{
+\seepage
+}
+
+\ffinish
+
+\fname{SmallVariables}
+\fheading{\mb{SmallVariables}} 
+\fusage{\mb{SmallVariables} is an option for \mb{OneLoop}.
+}
+\fnotes{
+{\tiny $\blacksquare$}\  The setting of \mb{SmallVariables} is a list containing masses 
+which are small compared to others.
+If present the photon mass should always be listed.
+
+\seepage
+}
+
+\ffinish
+
+\fname{Spinor}
+\fheading{\mb{Spinor[{\sl p},\ {\sl mass}]}}
+\fusage{\mb{Spinor[{\sl p},\ {\sl mass}]} specifies a Dirac spinor.
+Which of the spinors $u, v, \overline{u}$ or $\overline{v}$
+is understood, depends on the sign of the mass argument and
+the relative position of \mb{DiracSlash[p]}:
+\mb{Spinor[{\sl p},\ {\sl mass}]}  is that spinor which yields
+\mb{mass*Spinor[{\sl p},\ {\sl mass}]} if the Dirac equation is applied to 
+\mb{DiracSlash[{\sl p}]\ .\ Spinor[{\sl p},\ {\sl mass}]} or 
+\mb{Spinor[{\sl p},\ {\sl mass}]\ .\ DiracSlash[{\sl p}]}.
+
+If a spinor is multiplied by a Dirac matrix or another spinor, the multiplication
+operator "." must be used. 
+}
+\fnotes{
+\seepage
+{\tiny $\blacksquare$}\  See also: \mb{DiracSimplify}.
+}
+
+\ffinish
+
+%\fname{SquareAmplitude}
+%\fheading{\mb{SquareAmplitude[{\sl amps}]}}
+%\fusage{\mb{SquareAmplitude[{\sl amp}]} squares the 
+%tree level amplitudes \mb{amps}. If polarization vectors with 
+%corresponding specifications --- \mb{LightBoson}/\mb{MassiveBoson} ---
+%are present, the polarization sum is carried out. 
+%}
+%\fnotes{
+%{\tiny $\blacksquare$}\  The following option can be given:
+%\ftabthree{
+%\mb{VectorBosonPolarization} & \mb{\{\}} & choose a specific vector boson polarization 
+%}
+%
+%If the spinors have a third argument the following rules are applied:
+%\mb{Spinor[{\sl p},\ {\sl m},\ LeftHanded]\ Spinor[{\sl p},\ {\sl m},\ LeftHanded]} \ra 
+%$(\bps+m) (1-\gamma_5)/2$.
+%
+%\mb{Spinor[{\sl p},\ {\sl m},\ RightHanded]\ Spinor[{\sl p},\ {\sl m},\ RightHanded]} \ra 
+%$(\bps+m) (1+\gamma_5)/2$.
+%
+%\mb{Spinor[{\sl p},\ {\sl m},\ {\sl n}]\ Spinor[{\sl p},\ {\sl m},\ {\sl n}]} \ra 
+%$(\bps+m) ( (1+\gamma_5)\,n)/2$, where $n$ denotes an external 
+%four-momentum.
+%
+%In some cases it is better to first apply \mb{DiracSimplify} to 
+%$amps$. 
+%}
+%
+%\ffinish
+
+\fname{StandardMatrixElement}
+\fheading{\mb{StandardMatrixElement[...]}}
+\fusage{\mb{StandardMatrixElement[...]}  is the head of the standard
+matrix elements. 
+The standard matrix elements are a basis for the Feynman amplitude
+which contain the spinor structure and, eventually, the 
+dependence on the polarization vectors.
+
+If \mb{SetStandardMatrixElements} has been used to define abbreviations 
+for the non commutative and/or scalar-product structure, the arguments of 
+\mb{StandardMatrixElement} are these abbreviations itself. 
+Without invoking \mb{SetStandardMatrixElements} the arguments of 
+\mb{StandardMatrixElement} contain the basis for the amplitude,
+i.e., the  non commutative structure and/or scalar-product structure. 
+}
+\fnotes{
+\seepage
+}
+
+\ffinish
+
+\fname{SU3Delta}
+\fheading{\mb{SU3Delta[{\sl a},\ {\sl b}]}}
+\fusage{\mb{SU3Delta[{\sl a},\ {\sl b}]} is the Kronecker $\delta$ with color indices 
+$a$ and $b$.
+}
+\fnotes{
+{\tiny $\blacksquare$}\  \mb{SU3Delta[i,\ i]} \ra 8.
+
+\seepage {\tiny $\blacksquare$}\  See also: \mb{SU3F}, \mb{GellMannMatrix}, \mb{GellMannTrace}.
+}
+
+\ffinish
+
+\fname{SU3F}
+\fheading{\mb{SU3F[{\sl a},\ {\sl b},\ {\sl c}]}}
+\fusage{\mb{SU3F[{\sl a},\ {\sl b},\ {\sl c}]} are the structure constants $f_{abc}$ of SU(3).}
+\fnotes{
+{\tiny $\blacksquare$}\  Only algebraic properties are implemented. {\tiny $\blacksquare$}\  The following option can be given:
+\ftabthree{
+SU3FToTraces & \mb{True} & replace $f_{abc}$ by 
+$\frac{i}{4}\,(tr(\lambda_a \lambda_c\lambda_b) - 
+tr(\lambda_a \lambda_b \lambda_c))$.
+}
+
+\seepage {\tiny $\blacksquare$}\  See also: \mb{SU3Delta}, \mb{GellMannMatrix}, \mb{GellMannTrace}.
+}
+
+\ffinish
+
+\fname{SU3FToTraces}
+\fheading{\mb{SU3FToTraces}}
+\fusage{\mb{SU3FToTraces} is an option for \mb{SU3F}.
+}
+\fnotes{
+\seepage
+}
+
+\ffinish
+
+\fname{Tr}
+\fheading{\mb{Tr[{\sl expr}]}} 
+\fusage{\mb{Tr[{\sl expr}]} calculates the Dirac trace of $expr$ directly.
+\mb{Tr} is identical to \mb{DiracTrace} up to the default setting
+of \mb{DiracTraceEvaluate}.}
+\fnotes{
+{\tiny $\blacksquare$}\  The following options can be given:
+\ftabthree
+{
+\mb{DiracTraceEvaluate}  &  \mb{True}  & evaluating the trace \cr
+\mb{LeviCivitaSign}      &  \mb{-1}     & sign convention for the
+$\varepsilon$-tensor \cr
+\mb{Factoring}           &  \mb{False}  & factor the result \cr
+\mb{Mandelstam}          &  \mb{\{\}}          &
+if set to \mb{\{{\sl s},\ {\sl t},\ {\sl u},\ $\hbox{\sl m}_{1}$\phat 2\ +\ $\hbox{\sl m}_{2}$\phat 2\ +\ $\hbox{\sl m}_{3}$\phat 2\ +\ $\hbox{\sl m}_{4}$\phat 2\}},
+\mb{TrickMandelstam} will be used \cr
+\mb{PairCollect}         &  \mb{True}   & collect the results 
+with respect to products of \mb{Pair}
+} {\tiny $\blacksquare$}\  See also: \mb{DiracTrace}.
+
+\seepage
+}
+
+\ffinish
+
+\fname{TrickMandelstam}
+\fheading{\mb{TrickMandelstam[{\sl expr},\ \{{\sl s},\ {\sl t},\ {\sl u},\ $\hbox{\sl m}_{1}$\phat 2\ +\ $\hbox{\sl m}_{2}$\phat 2\ +\ $\hbox{\sl m}_{3}$\phat 2\ +\ $\hbox{\sl m}_{4}$\phat 2\}]}}
+\fusage{\mb{TrickMandelstam[{\sl expr},\ \{{\sl s},\ {\sl t},\ {\sl u},\ $\hbox{\sl m}_{1}$\phat 2\ +\ $\hbox{\sl m}_{2}$\phat 2\ +\ $\hbox{\sl m}_{3}$\phat 2\ +\ $\hbox{\sl m}_{4}$\phat 2\}]} 
+simplifies all sums in {\it expr} in such a way that one of the 
+Mandelstam variables $s, t$ or $u$ is eliminated by the
+relation $s+t+u=m_{1}^2+m_{2}^2+m_{3}^2+m_{4}^2$.
+The trick is that the resulting sum has the shortest number of terms. 
+}
+\fnotes{
+{\tiny $\blacksquare$}\  Example: \mb{TrickMandelstam[\ s\ +\ t\ +\ u,\ \{s,t,u,2\ mw\phat 2\}\ ]} \ra 
+\mb{2\ mw\phat 2}.
+
+\seepage
+ }
+
+\ffinish
+
+%\fname{VectorBosonPolarization} 
+%\fheading{
+%\mb{VectorBosonPolarization}}
+%\fusage{\mb{VectorBosonPolarization} is an option for 
+%%\mb{OneLoop} and 
+%\mb{SquareAmplitude}. For a process with four external momenta all polarization
+%vectors of vector bosons can be expressed by the four-momenta.
+%}
+%\fnotes{
+%Possible settings are:
+%\ftabtwo
+%{
+%\mb{\{$\hbox{\sl p}_{i}$,\ "||",\ $\hbox{\sl p}_{1}$,\ $\hbox{\sl p}_{2}$,\ $\hbox{\sl p}_{3}$,\ $\hbox{\sl p}_{4}$\}}  &  parallel polarization for 
+%$\varepsilon(p_i)$ \cr 
+%\mb{\{$\hbox{\sl p}_{i}$,\ "O",\ $\hbox{\sl p}_{1}$,\ $\hbox{\sl p}_{2}$,\ $\hbox{\sl p}_{3}$,\ $\hbox{\sl p}_{4}$\}}  &  orthogonal polarization for 
+%$\varepsilon(p_i)$ \cr 
+%\mb{\{$\hbox{\sl p}_{i}$,\ "L",\ $\hbox{\sl p}_{1}$,\ $\hbox{\sl p}_{2}$,\ $\hbox{\sl p}_{3}$,\ $\hbox{\sl p}_{4}$\}}  &  longitudinal polarization for 
+%$\varepsilon(p_i)$ \cr 
+%\mb{\{$\hbox{\sl p}_{i}$,\ "+",\ $\hbox{\sl p}_{1}$,\ $\hbox{\sl p}_{2}$,\ $\hbox{\sl p}_{3}$,\ $\hbox{\sl p}_{4}$\}}  &  helicity +1 polarization for 
+%$\varepsilon(p_i)$ \cr 
+%\mb{\{$\hbox{\sl p}_{i}$,\ "-",\ $\hbox{\sl p}_{1}$,\ $\hbox{\sl p}_{2}$,\ $\hbox{\sl p}_{3}$,\ $\hbox{\sl p}_{4}$\}}  &  helicity -1 polarization for 
+%$\varepsilon(p_i)$
+%}
+%with $\sum p_i = 0$, $p_1$ and $p_2$ incoming and $p_3$ and $p_4$ outgoing particles.
+%}
+%
+%\ffinish
+
+\fname{Write2}
+\fheading{\mb{Write2[{\sl channel},\ $\hbox{\sl val}_{1}$\ =\ $\hbox{\sl expr}_{1}$,\ $\hbox{\sl val}_{2}$\ =\ $\hbox{\sl expr}_{2}$,\ ...]}}
+\fusage{\mb{Write2[{\sl channel},\ $\hbox{\sl val}_{1}$\ =\ $\hbox{\sl expr}_{1}$,\ $\hbox{\sl val}_{2}$\ =\ $\hbox{\sl expr}_{2}$,\ ...]}
+writes the settings $val_1 = expr_1$, $val_2 = expr_2$ in sequence   
+followed by a newline, to the specified output channel.
+}
+
+\fnotes{
+{\tiny $\blacksquare$}\  The following options can be given:
+\ftabthree{
+\mb{FormatType} & \mb{InputForm} & in which language to write out to the result 
+file \cr
+\mb{DOConvention} & \mb{0} & convention for scalar Passarino Veltman integrals
+}
+Other possible settings for \mb{FormatForm} are 
+\mb{FortranForm}, \mb{MacsymaForm} and
+\mb{MapleForm}.  {\tiny $\blacksquare$}\  Be careful on the ouput when generating Fortran files.
+There might be problems like powers of ratios of integers which you 
+have to correct by hand. {\tiny $\blacksquare$}\  If the expressions contain variables in \mb{HoldForm}, their values are 
+written out first, if the output language is \mma or Fortran.
+
+\seepage
+}
+
+\ffinish 
+
+\fname{WriteOut}
+\fheading{\mb{WriteOut}}
+\fusage{\mb{WriteOut} is an option for \mb{OneLoop},
+\mb{OneLoopSum}.
+}
+\fnotes{
+{\tiny $\blacksquare$}\  Possible settings are:
+\ftabtwo{
+\mb{True} &  write output into a file $name$, where $name$ is the first argument 
+of \mb{OneLoop}\cr
+\mb{False} &  write no output \cr
+\mb{"/usr/hep/weinberg/"} &  write result files in your local directory 
+}
+
+\seepage
+}
+
+\ffinish
+
+\fname{WriteOutPaVe}
+\fheading{\mb{WriteOutPaVe}}
+\fusage{\mb{WriteOutPave} is an option for \mb{OneLoopSum}. 
+If set to a string the reduced \mb{PaVe} are written into the file
+indicated.}
+\fnotes{
+\seepage
+}
+
+\ffinish
+
+
+\fname{\$BreitMaison}
+\fheading{\mb{\$BreitMaison}}
+\fusage{\mb{\$BreitMaison} is a global variable determining whether
+the Breitenlohner-Maison scheme is used. 
+}
+\fnotes{
+{\tiny $\blacksquare$}\  The default setting is \mb{False}, which implies the ''naive'' 
+$\gamma_5$ prescription: $\gamma_5$ is assumed to anticommute with
+Dirac matrices in all dimensions. {\tiny $\blacksquare$}\  If \mb{\$BreitMaison} is set to \mb{True}, $\gamma_5$ will anticommute 
+with the four-dimensional part of a Dirac matrix and commute with 
+the (D-4)-dimensional part. Reset \mb{\$PrePrint} for experimenting 
+with the Breitenlohner-Maison scheme.
+\mb{\$BreitMaison} must be set to \mb{True} before loading \fc.  The command is : \mb{FeynCalc`\$BreitMaison\ =\ True}. {\tiny $\blacksquare$}\  Not every operation has been 
+tested thoroughly, therefore beware!
+
+\seepage
+}
+
+\ffinish
+
+\fname{\$MemoryAvailable}
+\fheading{\mb{\$MemoryAvailable}}
+\fusage{\mb{\$MemoryAvailable} is a global variable which is set to an integer 
+$n$, where $n$ is the available amount of main memory in MB. 
+The default is 8. It should be increased if possible. 
+The higher \mb{\$MemoryAvailable} can be, 
+the more intermediate steps do not have to be repeated by \fc.
+}
+\fnotes{
+\seepage
+}
+
+\ffinish
+
+\fname{\$VeryVerbose}
+\fheading{\mb{\$VeryVerbose}}
+\fusage{\mb{\$VeryVerbose} is a global variable with default setting 
+\mb{0}. If set to \mb{1,\ 2,\ ...}, more and more 
+intermediate comments and informations
+are displayed during calculations.
+}
+\fnotes{
+\seepage
+}
+
+\ffinish
+
