@@ -1,10 +1,6 @@
-\section{Advanced Calculations}
+\section{Applications in Chiral Perturbation Theory}
 
-\subsection{QCD with FeynCalc}
-
-\subsection{ChPT with FeynCalc}
-
-\subsubsection{Introduction}
+\subsection{Introduction}
 
 The subpackage \fphi provides utilities for computations in the Chiral Perturbation Theory (ChPT). The general idea is to allow writing up a calculation starting with a lagrangian and ending up with an amplitude, all within the framework of \fc. For this to be possible, many functions on a rather general level were implemented, as was a method of interacting seamlessly with \fa. The following sections cover the more important features of the package. A fuller description can be found in \cite{PHI}.
 
@@ -19,7 +15,7 @@ The main features of \fphi are:
 \item \fa is used for generating Feynman diagrams and amplitudes, including counter-terms. Power counting and storing of Feynman rules is systematized.
 \end{itemize}
 
-\subsubsection{Chiral quantum fields and lagrangians}
+\subsection{Chiral quantum fields and lagrangians}
 
 \fphi comes with a number of predefined chiral models (or configurations). These define lagrangians etc. in terms of quantum fields. Which configuration and lagrangians are loaded should be defined before startup of \fc. The list of available configurations and lagrangians can be found by browsing the directory "HighEnergyPhysics/Phi/Configurations" and "HighEnergyPhysics/Phi/Lagrangians".
 \beom
@@ -105,7 +101,7 @@ defined in the chosen configuration file\cr
 
 Many operations can be performed on expressions like the ones above. We shall see some in the ChPT examples to come. But first we turn to some of the objects that \fphi adds to the basic framework of \fc. Of the many utilities, we shall focus on SU($N$) functions and the interaction with \fa. Notice that in ChPT, a condensed notation is used and objects like \mb{MM[x]} and \mb{SMM[x]} actually contain \mb{QuantumField}s. Remember that an explanation of the various symbols can be obtained by using the \mb{?} operator.
 
-\subsubsection{Chiral vectors, matrices and structure constants in SU(2) and SU(3)}
+\subsection{Chiral vectors, matrices and structure constants in SU(2) and SU(3)}
 
 \otabtwo{
 \mbs{IsoVector[{\sl v}]} & represents an SU(2) or SU(3) multiplet with number of
@@ -153,17 +149,14 @@ contracted indices\cr
 
 UGenerator, SU2Delta, SU2F, ...
 
-\subsubsection{Chiral lagrangians}
+\subsection{Chiral lagrangians}
 \label{chptLags}
 
-\subsubsection{Chiral divergent one-loop generating functionals}
+\subsection{Chiral divergent one-loop generating functionals}
 
-\subsubsection{Chiral power counting with \fa}
+\subsection{Chiral power counting with \fa}
 
 The database of amplitudes has been enlarged with all amplitudes calculated and stored using \mb{CheckF}
 
-\subsubsection{Example:\; $\pi^\pm \, \rightarrow  \, \mu^\pm \, \nu_\mu \, \gamma$}
+\subsection{Example:\; $\pi^\pm \, \rightarrow  \, \mu^\pm \, \nu_\mu \, \gamma$}
 
-\subsection{Two-Loop Calculations}
-
-\subsection{Amplitude and Integral Tables}
