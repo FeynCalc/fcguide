@@ -1,6 +1,10 @@
 \documentclass[11pt,a4paper]{report}
 %\documentclass[12pt,a4paper]{article}
 
+%% This document compiles with both latex and pdflatex, but best with:
+%% latex FCGuide.tex
+%% dvipdf FCGuide.dvi
+
 \usepackage{bm}
 \usepackage{amssymb}
 \usepackage{amsfonts}
@@ -37,13 +41,19 @@
 %\usepackage{colortab}
 %\usepackage{a4wide}
 \usepackage{framed}
+
 % Postscript fonts
 %\usepackage{courier}
 %\usepackage[T1]{fontenc}
 %\usepackage{textcomp}
-\usepackage{cite}
+
+%% cite doesn't work with hyperref; no hyperlinks on citations.
+%% So, we have to sort the bibliography manually...
+%\usepackage{cite}
+
 \usepackage{feynarts}
 %\usepackage{draftcopy}
+\usepackage{ifpdf}
 
 \definecolor{gray}{gray}{.5}
 \definecolor{lightgray}{gray}{.85}
@@ -208,18 +218,90 @@
 % SWITCH FOR PDFLATEX or LATEX
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\ifx\pdfoutput\undefined
-\def\pdf{0}
+\ifpdf
+%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% PDFLATEX %%%
+%%%
+%% Graphics for pdfLaTeX
+\usepackage[pdftex]{graphicx}
+
+%\setlength{\fboxrule}{0.0138889in}
+%\setlength{\fboxsep}{0.8pt}
+
+%% Thin frame around shaded boxes
+%\makeatletter
+%\renewenvironment{shaded}{%
+%  \def\FrameCommand{
+%  %\setlength{\fboxsep}{8pt}
+%  \fcolorbox{gray}{shadecolor}}
+%  \fram@d {}}
+% {\endfram@d}
+%\makeatother
+
+\renewcommand{\graybox}[3]{
+\definecolor{shadecolor}{gray}{#3}
+\begin{shaded}
+#1
+\end{shaded}
+}
+
+%% Standard extension for included graphics
+\DeclareGraphicsExtensions{.pdf}
+\newcommand{\mma}{\fontfamily{pmnx}\selectfont\textit{Mathematica}\fontfamily{ptm}\selectfont\xspace}
+\newcommand{\fc}{\fontfamily{pmnx}\selectfont\textit{FeynCalc}\fontfamily{ptm}\selectfont\xspace}
+\newcommand{\fa}{\fontfamily{pmnx}\selectfont\textit{FeynArts}\fontfamily{ptm}\selectfont\xspace}
+\newcommand{\fctables}{\fontfamily{pmnx}\selectfont\textit{fctables}\fontfamily{ptm}\selectfont\xspace}
+\newcommand{\fcloops}{\fontfamily{pmnx}\selectfont\textit{fcloops}\fontfamily{ptm}\selectfont\xspace}
+\newcommand{\fctools}{\fontfamily{pmnx}\selectfont\textit{fctools}\fontfamily{ptm}\selectfont\xspace}
+\newcommand{\general}{\fontfamily{pmnx}\selectfont\textit{general}\fontfamily{ptm}\selectfont\xspace}
+\newcommand{\qcd}{\fontfamily{pmnx}\selectfont\textit{qcd}\fontfamily{ptm}\selectfont\xspace}
+\newcommand{\fcdevel}{\fontfamily{pmnx}\selectfont\textit{fcdevel}\fontfamily{ptm}\selectfont\xspace}
+\newcommand{\fphi}{\fontfamily{pmnx}\selectfont\textit{PHI}\fontfamily{ptm}\selectfont\xspace}
+\newcommand{\tarcer}{\fontfamily{pmnx}\selectfont\textit{TARCER}\fontfamily{ptm}\selectfont\xspace}
+\newcommand{\hip}{\fontfamily{pmnx}\selectfont\textit{HIP}\fontfamily{ptm}\selectfont\xspace}
+\newcommand{\lpts}{\fontfamily{pmnx}\selectfont\textit{LoopTools}\fontfamily{ptm}\selectfont\xspace}
+\newcommand{\FoF}{\fontfamily{pmnx}\selectfont\textit{FormF}\fontfamily{ptm}\selectfont\xspace}
+\newcommand{\FF}{\fontfamily{pmnx}\selectfont\textit{FF}\fontfamily{ptm}\selectfont\xspace}
+\newcommand{\defsc}{\fontfamily{pmnx}\selectfont\textit{Italic small caps}\fontfamily{ptm}\selectfont\xspace}
+%% Thumbnails in case of pdfLaTeX
+%\usepackage[pdftex]{thumbpdf}
+%% Hyper-references for pdflatex
+\usepackage[pdfstartview=FitH,pdffitwindow=true,bookmarks=true,bookmarksopen=true,
+bookmarksopenlevel=5,backref=page,pagebackref=false,
+hyperfigures=false,colorlinks=true,linkcolor=lightblue,anchorcolor=lightblue,
+citecolor=lightblue,filecolor=lightblue,menucolor=lightblue,pagecolor=lightblue,
+urlcolor=lightblue,pdftex,plainpages=false,hypertexnames=false]{hyperref}
+%\usepackage[pdftex,
+%bookmarks=true,%                   %%% generate bookmarks ...
+%bookmarksnumbered=true,%           %%% ... with numbers
+%hypertexnames=false,%              %%% needed for correct links to figures !!!
+%breaklinks=true,%                  %%% break links if exceeding a single line
+%linkbordercolor={0 0 1}]{hyperref} %%% blue frames around links
+%                                  %%% pdfborder={0 0 1} is the default
+%% Graphics for pdfLaTeX
+\hypersetup{
+pdfauthor = {Rolf Mertig and Frederik Orellana},
+pdftitle = {Guide to FeynCalc},
+pdfsubject = {Computational Particle Physics},
+pdfkeywords = {Loops, Integrals, Feynman diagrams, Amplitudes, Scattering, Kinematics},
+%pdfcreator = {LaTeX with hyperref package},
+%pdfproducer = {dvips + ps2pdf}
+%pdfproducer = {pdflatex}
+}
+%                                  %%% pdfcreator, pdfproducer, 
+%                                      and CreatioDate are automatically set
+%                                      by pdflatex !!!
+%% Force LaTeX-like character spacing
+\pdfadjustspacing=1
+%
+%% Caption for gray boxes
+\def\GrayCaption#1{\setbox0=\hbox{\footnotesize\sffamily #1}%
+     \vspace{-5pt}
+     \begin{flushleft}\leavevmode%
+     \vbox{\hsize=\hsize\footnotesize\sffamily #1\par}\end{flushleft}
+  }
+
 \else
-\def\pdf{1}
-\fi
-\ifx\pdfoutput\relax
-\def\pdf{0}
-\else
-\def\pdf{1}
-\fi
-%\ifthenelse{\pdf = 0}{
-\ifthenelse{\pdf = 0 \or \isundefined{\pdfoutput}}{
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% LATEX %%%
 %%%
 %%
@@ -298,90 +380,9 @@ pdfproducer = {dvips + ps2pdf}
      \begin{flushleft}\leavevmode%
      \vbox{\hsize=\hsize\footnotesize\sffamily #1\par}\end{flushleft}
   }
-}{
-%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% PDFLATEX %%%
-%%%
-%% Graphics for pdfLaTeX
-\usepackage[pdftex]{graphicx}
 
-%\setlength{\fboxrule}{0.0138889in}
-%\setlength{\fboxsep}{0.8pt}
+\fi
 
-%% Thin frame around shaded boxes
-%\makeatletter
-%\renewenvironment{shaded}{%
-%  \def\FrameCommand{
-%  %\setlength{\fboxsep}{8pt}
-%  \fcolorbox{gray}{shadecolor}}
-%  \fram@d {}}
-% {\endfram@d}
-%\makeatother
-
-\renewcommand{\graybox}[3]{
-\definecolor{shadecolor}{gray}{#3}
-%\fcolorbox{gray}{lightgray}{\parbox{\textwidth}{
-\begin{shaded}
-#1
-\end{shaded}
-}
-
-%% Standard extension for included graphics
-\DeclareGraphicsExtensions{.pdf}
-\newcommand{\mma}{\fontfamily{pmnx}\selectfont\textit{Mathematica}\fontfamily{ptm}\selectfont\xspace}
-\newcommand{\fc}{\fontfamily{pmnx}\selectfont\textit{FeynCalc}\fontfamily{ptm}\selectfont\xspace}
-\newcommand{\fa}{\fontfamily{pmnx}\selectfont\textit{FeynArts}\fontfamily{ptm}\selectfont\xspace}
-\newcommand{\fctables}{\fontfamily{pmnx}\selectfont\textit{fctables}\fontfamily{ptm}\selectfont\xspace}
-\newcommand{\fcloops}{\fontfamily{pmnx}\selectfont\textit{fcloops}\fontfamily{ptm}\selectfont\xspace}
-\newcommand{\fctools}{\fontfamily{pmnx}\selectfont\textit{fctools}\fontfamily{ptm}\selectfont\xspace}
-\newcommand{\general}{\fontfamily{pmnx}\selectfont\textit{general}\fontfamily{ptm}\selectfont\xspace}
-\newcommand{\qcd}{\fontfamily{pmnx}\selectfont\textit{qcd}\fontfamily{ptm}\selectfont\xspace}
-\newcommand{\fcdevel}{\fontfamily{pmnx}\selectfont\textit{fcdevel}\fontfamily{ptm}\selectfont\xspace}
-\newcommand{\fphi}{\fontfamily{pmnx}\selectfont\textit{PHI}\fontfamily{ptm}\selectfont\xspace}
-\newcommand{\tarcer}{\fontfamily{pmnx}\selectfont\textit{TARCER}\fontfamily{ptm}\selectfont\xspace}
-\newcommand{\hip}{\fontfamily{pmnx}\selectfont\textit{HIP}\fontfamily{ptm}\selectfont\xspace}
-\newcommand{\lpts}{\fontfamily{pmnx}\selectfont\textit{LoopTools}\fontfamily{ptm}\selectfont\xspace}
-\newcommand{\FoF}{\fontfamily{pmnx}\selectfont\textit{FormF}\fontfamily{ptm}\selectfont\xspace}
-\newcommand{\FF}{\fontfamily{pmnx}\selectfont\textit{FF}\fontfamily{ptm}\selectfont\xspace}
-\newcommand{\defsc}{\fontfamily{pmnx}\selectfont\textit{Italic small caps}\fontfamily{ptm}\selectfont\xspace}
-%% Thumbnails in case of pdfLaTeX
-%\usepackage[pdftex]{thumbpdf}
-%% Hyper-references for pdflatex
-\usepackage[pdfstartview=FitH,pdffitwindow=true,bookmarks=true,bookmarksopen=true,
-bookmarksopenlevel=5,backref=page,pagebackref=false,
-hyperfigures=false,colorlinks=true,linkcolor=lightblue,anchorcolor=lightblue,
-citecolor=lightblue,filecolor=lightblue,menucolor=lightblue,pagecolor=lightblue,
-urlcolor=lightblue,pdftex,plainpages=false,hypertexnames=false]{hyperref}
-%\usepackage[pdftex,
-%bookmarks=true,%                   %%% generate bookmarks ...
-%bookmarksnumbered=true,%           %%% ... with numbers
-%hypertexnames=false,%              %%% needed for correct links to figures !!!
-%breaklinks=true,%                  %%% break links if exceeding a single line
-%linkbordercolor={0 0 1}]{hyperref} %%% blue frames around links
-%                                  %%% pdfborder={0 0 1} is the default
-%% Graphics for pdfLaTeX
-\hypersetup{
-pdfauthor = {Rolf Mertig and Frederik Orellana},
-pdftitle = {Guide to FeynCalc},
-pdfsubject = {Computational Particle Physics},
-pdfkeywords = {Loops, Integrals, Feynman diagrams, Amplitudes, Scattering, Kinematics},
-%pdfcreator = {LaTeX with hyperref package},
-%pdfproducer = {dvips + ps2pdf}
-%pdfproducer = {pdflatex}
-}
-%                                  %%% pdfcreator, pdfproducer, 
-%                                      and CreatioDate are automatically set
-%                                      by pdflatex !!!
-%% Force LaTeX-like character spacing
-\pdfadjustspacing=1
-%
-%% Caption for gray boxes
-\def\GrayCaption#1{\setbox0=\hbox{\footnotesize\sffamily #1}%
-     \vspace{-5pt}
-     \begin{flushleft}\leavevmode%
-     \vbox{\hsize=\hsize\footnotesize\sffamily #1\par}\end{flushleft}
-  }
-}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% END OF CONDITION %%%
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
