@@ -59,7 +59,10 @@ Tarcer \cite{Mertig:1998vk} is employed.
 
 % THIS DOES
 \begin{figure}[ht]
-\ifthenelse{\pdf = 0 \or \isundefined{\pdfoutput}}{\setlength\abovecaptionskip{-80pt}}{}
+\ifpdf
+\else
+\setlength\abovecaptionskip{-80pt}
+\fi
 \begin{center}
 \scalebox{1.0}{\includegraphics{qcd2loopgluon-tex_gr1}}
 \scalebox{1.0}{\includegraphics{qcd2loopgluon-tex_gr2}}
