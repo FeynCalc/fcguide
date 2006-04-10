@@ -40,11 +40,12 @@ As will be noticed there are some files and directories not mentioned so far. Ap
 \begin{itemize}
 
 \item{{\bf \fa} is made up of the file "FeynArts.m" , the directories "GraphInfo", "Models" and some more files on the top level of "HighEnergyPhysics". It is an independent package by Sepp Kueblbeck, Hagen Eck and Thomas Hahn for generating Feynman graphs and corresponding amplitudes with Feynman rules as input. Integration within \fc is not intended, but can, with a small effort, be achieved (see \fphi below).
-For more information on \fa, see ref \citen{feynarts}.}
+For more information on \fa, see \cite{feynarts}.}
 
 \item{{\bf \fphi} is a package by Frederik Orellana providing utilities for working with effective field theories and interacting with \fa. All files belonging to \fphi are contained in the directory "Phi". It was not conceived as a \fc subpackage and the file layout does not adhere to the \fc conventions. Never the less, it has been modified to effectively act as a \fc subpackage and is now distributed only with \fc.}
 
-\item{{\bf \tarcer} is a package by Rolf Mertig for working with 2-loop propagator type integrals. Its file layout also does not adhere to the \fc conventions, but it also is integrated tightly within \fc. The files belonging to \tarcer are contained in the directory "Tarcer". For more information on \tarcer, see ref. \citen{Mertig:1998vk}.}
+\item{{\bf \tarcer} is a package by Rolf Mertig for working with 2-loop
+propagator type integrals. Its file layout also does not adhere to the \fc conventions, but it also is integrated tightly within \fc. The files belonging to \tarcer are contained in the directory "Tarcer". For more information on \tarcer, see \cite{Mertig:1998vk}.}
 
 \item{{\bf \fcdevel} is code which is not considered production ready and is meant to be used by developers only.}
 
@@ -412,7 +413,10 @@ E.g. the description of the function \mb{FeynRule} is obtained by evaluating \mb
 More in-depth information about e.g. \mb{FeynRule} can be obtained by typing in FeynRule in the Add-ons part of the help browser (see figure \ref{help}).
 
 \begin{figure}[ht]
-\ifthenelse{\pdf = 0 \or \isundefined{\pdfoutput}}{\setlength\abovecaptionskip{-80pt}}{}
+\ifpdf
+\else
+\setlength\abovecaptionskip{-80pt}
+\fi
 \begin{center}
 \scalebox{0.7}{\includegraphics{help}}
 \caption{The help system of \fc.}
