@@ -1,0 +1,16 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{esscit}
+\RequirePackage{ifthen}
+\DeclareFontShape{T1}{cmr}{m}{scsl}%
+{<5><6><7><8><9><10><10.95><12><14.4><17.28><20.74><24.88>genb*ecsc}{}
+\DeclareFontShape{T1}{cmr}{bx}{scsl}%
+{<5><6><7><8><9><10><10.95><12><14.4><17.28><20.74><24.88>genb*ecoc}{}
+\DeclareFontShape{T1}{cmr}{b}{scsl}%
+{<5><6><7><8><9><10><10.95><12><14.4><17.28><20.74><24.88>genb*ecoc}{}
+\DeclareTextFontCommand{\textsc}{%
+\ifthenelse{\equal{\f@shape}{\sldefault}}{\fontshape{scsl}\selectfont}{%
+\ifthenelse{\equal{\f@shape}{\itdefault}}{\fontshape{scsl}\selectfont}{%
+\fontshape{sc}\selectfont}}}
+\DeclareTextFontCommand{\textit}{%
+\ifthenelse{\equal{\f@shape}{\scdefault}}{\fontshape{scsl}\selectfont}{\fontshape{it}\selectfont}}
+\endinput
