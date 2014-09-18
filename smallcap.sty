@@ -1,0 +1,20 @@
+% General Small Caps family by Daniel TAUPIN, May 1996, fit for
+% EC fonts
+
+\ifx\scfamily\undefined\else\endinput\fi
+
+\def\Scdefault{cmsc}
+
+\DeclareRobustCommand\scfamily
+        {\not@math@alphabet\scfamily\mathrm
+         \fontfamily\Scdefault\selectfont}
+
+\DeclareTextFontCommand{\textsc}{\scfamily}
+
+%\let\scshape\undefined
+
+\expandafter\def\csname sc \endcsname{\@fontswitch
+ {\normalfont \scfamily}{\mathrm }}
+
+\endinput
+
