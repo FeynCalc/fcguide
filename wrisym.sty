@@ -1,0 +1,1879 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Mathematica PostScript fonts for TeX and
+% additional symbols
+% (c) Jens-Peer Kuska Verion 2.0 Februar 2002
+% Fonts required are :
+% zwam? MathItalic OML encoding with additional symbols
+% zwar? MathOperators OT1 encoding with additional symbols
+% zway? MathSymbols OMS encoding with additional symbols
+% zwav? MathExtension OMX encoding with additional symbols
+% zwcm? Mono spaced MathItalic OML encoding with additional symbols
+% zwcr? Mono spaced MathOperators OT1 encoding with additional symbols
+% zwcy? Mono spaced MathSymbols OMS encoding with additional symbols
+% zwcv? Mono spaced MathExtension OMX encoding with additional symbols
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\NeedsTeXFormat{LaTeX2e}[1994/06/01]
+\ProvidesPackage{wrisym}[1999/04/20 Mathematica 4.2 fonts with LaTeX2e]
+\typeout{Mathematica Virtual Font Package}
+\typeout{(c) Jens-Peer Kuska V2.0 September 2001}
+%
+\RequirePackage{ifthen}
+\RequirePackage{xspace}
+\RequirePackage[T1]{fontenc}
+
+\newboolean{times@fonts}
+\setboolean{times@fonts}{true}
+
+
+% TMJ font set
+\newboolean{janson@fonts}
+\setboolean{janson@fonts}{false}
+
+\newboolean{garamond@fonts}
+\setboolean{garamond@fonts}{false}
+
+\newboolean{load@mono@fonts}
+\setboolean{load@mono@fonts}{false}
+\newboolean{upright@monomath}
+\setboolean{upright@monomath}{false}
+
+\newboolean{cmtt@fonts}
+\setboolean{cmtt@fonts}{false}
+
+%
+
+\DeclareOption{monospacemath}{%
+\setboolean{load@mono@fonts}{true}%
+\gdef\monom@thit{wcrm}%
+\typeout{With mono spaced math fonts.}}
+
+\DeclareOption{uprightmonomath}{%
+\setboolean{load@mono@fonts}{true}%
+\setboolean{upright@monomath}{true}
+\typeout{With upright mono spaced math fonts.}}
+
+\DeclareOption{cmtt}{%
+\setboolean{load@mono@fonts}{true}%
+\setboolean{cmtt@fonts}{true}%
+\typeout{With CMTT math fonts.}}
+
+\DeclareOption{times}{%
+\setboolean{times@fonts}{true}
+\typeout{With Times Text font.}
+}
+
+% TMJ font set
+\DeclareOption{janson}{%
+\setboolean{janson@fonts}{true}
+\typeout{With Janson Text font.}
+}
+
+\DeclareOption{garamond}{%
+\setboolean{garamond@fonts}{true}
+\typeout{With Adobe Garamond font.}
+}
+
+\ProcessOptions
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Replace the default text style with PostScript fonts
+% Running text font and symbol font
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\ifthenelse{\boolean{times@fonts}}{%
+\renewcommand{\sfdefault}{phv}  % Helvetica
+\renewcommand{\rmdefault}{ptm}  % Times
+\gdef\wri@letter@ord{wtmm}
+\gdef\wri@oper@ord{wtmr}
+}{}
+
+\def\wri@sym@ord{wtmy}
+\def\wri@largesym@ord{wtmv}
+
+\ifthenelse{\boolean{janson@fonts}}{%
+\renewcommand{\rmdefault}{pjn}          % Janson
+\renewcommand{\sfdefault}{pfu}          % Futura
+\renewcommand{\bfdefault}{b}
+\gdef\wri@letter@ord{wjnm}		% only italic letters 
+\gdef\wri@oper@ord{wjnr}		% and upright letter replaced by Janson characters
+%
+}{}
+%
+\ifthenelse{\boolean{garamond@fonts}}{%
+   \renewcommand{\rmdefault}{pad}     % Adobe Garamond
+   \renewcommand{\sfdefault}{lop}     % Linotype Optima
+   \renewcommand{\bfdefault}{b}
+   \gdef\wri@letter@ord{wadm}
+   \gdef\wri@oper@ord{wadr}
+  }{}% 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Mono space font for text and Mathematica input
+% default settings
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+\ifthenelse{\boolean{upright@monomath}}{%
+\gdef\monom@hit@{wcrum}
+\gdef\monom@hit@@{wttum}}{%
+\gdef\monom@hit@{wcrm}%
+\gdef\monom@hit@@{wttm}}%
+
+\ifthenelse{\boolean{cmtt@fonts}}{
+\renewcommand{\ttdefault}{wtt}
+\renewcommand{\bfdefault}{b}
+\gdef\wri@letter@mono{\monom@hit@@}
+\gdef\wri@oper@mono{wttr}
+\gdef\wri@sym@mono{wtty}
+\gdef\wri@largesym@mono{wttv}
+}{%
+\renewcommand{\ttdefault}{pcr}
+\renewcommand{\bfdefault}{b}
+\gdef\wri@letter@mono{\monom@hit@}
+\gdef\wri@oper@mono{wcrr}
+\gdef\wri@sym@mono{wcry}
+\gdef\wri@largesym@mono{wcrv}
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Declare the text symbols
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand{\MKeyFont}{\fontfamily{wsb}\fontencoding{U}%
+\fontshape{n}\selectfont}
+%\fontseries{m}\fontshape{n}\selectfont}
+\newcommand{\MKeySymbol}[1]{{\MKeyFont\char#1}}
+\newcommand{\MTextSymbol}[1]{{\fontfamily{\wri@oper@ord}\fontencoding{OT1}\selectfont\char#1}\xspace}
+\newcommand{\M@text@sym}[1]{{\fontfamily{\wri@oper@ord}\fontencoding{OT1}\selectfont\char#1}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Install the Mathematica mono space fonts
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\ifthenelse{\boolean{load@mono@fonts}}{%
+  \DeclareMathVersion{mono}
+  \DeclareMathVersion{monobold}
+}{}
+
+\DeclareSymbolFont{letters}{OML}{\wri@letter@ord}{m}{n}
+\DeclareSymbolFont{operators}{OT1}{\wri@oper@ord}{m}{n}
+\DeclareSymbolFont{symbols}{OMS}{\wri@sym@ord}{m}{n}
+\DeclareSymbolFont{largesymbols}{OMX}{\wri@largesym@ord}{m}{n}
+
+\SetSymbolFont{letters}{bold}{OML}{\wri@letter@ord}{b}{n}
+\SetSymbolFont{operators}{bold}{OT1}{\wri@oper@ord}{b}{n}
+\SetSymbolFont{symbols}{bold}{OMS}{\wri@sym@ord}{b}{n}
+\SetSymbolFont{largesymbols}{bold}{OMX}{\wri@largesym@ord}{b}{n}
+
+\ifthenelse{\boolean{load@mono@fonts}}{%
+  \SetSymbolFont{letters}{mono}{OML}{\wri@letter@mono}{m}{n}
+  \SetSymbolFont{operators}{mono}{OT1}{\wri@oper@mono}{m}{n}
+  \SetSymbolFont{symbols}{mono}{OMS}{\wri@sym@mono}{m}{n}
+  \SetSymbolFont{largesymbols}{mono}{OMX}{\wri@largesym@mono}{m}{n}
+%
+  \SetSymbolFont{letters}{monobold}{OML}{\wri@letter@mono}{b}{n}
+  \SetSymbolFont{operators}{monobold}{OT1}{\wri@oper@mono}{b}{n}
+  \SetSymbolFont{symbols}{monobold}{OMS}{\wri@sym@mono}{b}{n}
+  \SetSymbolFont{largesymbols}{monobold}{OMX}{\wri@largesym@mono}{b}{n}
+%
+}{}
+
+\DeclareFontSubstitution{OML}{wtmm}{m}{n}
+\DeclareFontSubstitution{OMS}{wtmy}{m}{n}
+\DeclareFontSubstitution{OMX}{wtmv}{m}{n}
+
+\ifthenelse{\boolean{load@mono@fonts}}{%
+  \newcommand{\monomath}{\mathversion{mono}}
+  \newcommand{\monoboldmath}{\mathversion{monobold}}
+}{
+  \newcommand{\monomath}{\typeout{wrisym::mono space fonts not loaded}}
+  \newcommand{\monoboldmath}{\typeout{wrisym::mono space fonts not loaded}}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Delimiter
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\makeatletter
+\DeclareMathDelimiter{\dbl@intsym}{\mathop}%
+                     {largesymbols}{'200}%
+					 {largesymbols}{'201}
+\def\dbloint{\mathop\dbl@intsym\nolimits}
+
+\DeclareMathDelimiter{\cntclock@intsym}{\mathop}%
+                     {largesymbols}{'202}%
+					 {largesymbols}{'203}
+\def\cntclockoint{\mathop\cntclock@intsym\nolimits}
+
+\DeclareMathDelimiter{\clock@intsym}{\mathop}%
+                     {largesymbols}{'204}%
+					 {largesymbols}{'205}
+\def\clockoint{\mathop\clock@intsym\nolimits}
+
+\DeclareMathDelimiter{\sqr@intsym}{\mathop}%
+                     {largesymbols}{'206}%
+					 {largesymbols}{'207}
+\def\sqrint{\mathop\sqr@intsym\nolimits}
+
+\DeclareMathDelimiter{\f@intsym}{\mathop}%
+                     {largesymbols}{'210}%
+					 {largesymbols}{'211}
+\def\fint{\mathop\f@intsym\nolimits}
+
+\DeclareMathDelimiter{\lpart}{\mathopen}%
+                     {largesymbols}{'212}%
+					 {largesymbols}{'214}
+\DeclareMathDelimiter{\rpart}{\mathclose}%
+                     {largesymbols}{'213}%
+					 {largesymbols}{'215}
+\let\llbracket=\lpart
+\let\rrbracket=\rpart
+
+\let\And=\bigwedge
+\let\Or=\bigvee
+\DeclareMathSymbol{\Nand}{\mathop}{largesymbols}{'356}
+\DeclareMathSymbol{\Nor}{\mathop}{largesymbols}{'360}
+\DeclareMathSymbol{\Xor}{\mathop}{largesymbols}{'362}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% up/down parents, backets, braces
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\DeclareMathSymbol{\braceUp@L}{\mathord}{largesymbols}{'270}
+\DeclareMathSymbol{\braceUp@Rep}{\mathord}{largesymbols}{'271}
+\DeclareMathSymbol{\braceUp@Mid}{\mathord}{largesymbols}{'272}
+\DeclareMathSymbol{\braceUp@R}{\mathord}{largesymbols}{'273}
+
+\DeclareMathSymbol{\braceDown@L}{\mathord}{largesymbols}{'300}
+\DeclareMathSymbol{\braceDown@Rep}{\mathord}{largesymbols}{'301}
+\DeclareMathSymbol{\braceDown@Mid}{\mathord}{largesymbols}{'302}
+\DeclareMathSymbol{\braceDown@R}{\mathord}{largesymbols}{'303}
+
+\def\D@wnFill#1#2#3#4{$\m@th \setbox\z@\hbox{$#2$}%
+  #1\leaders\copy\z@\hfill#3
+    \xleaders\box\z@\hfill#4$}
+\def\Up@Fill#1#2#3#4{$\m@th \setbox\z@\hbox{$#2$}%
+  #1\xleaders\copy\z@\hfill#3
+  \xleaders\box\z@\hfill#4$}
+
+\def\overbrace#1{\mathop{\vbox{\m@th\ialign{##\crcr\noalign{\kern3\p@}%
+      \D@wnFill{\braceUp@L}{\braceUp@Rep}{\braceUp@Mid}{\braceUp@R}\crcr%
+	  \noalign{\kern3\p@\nointerlineskip}%
+      $\hfil\displaystyle{#1}\hfil$\crcr}}}\limits}
+\def\underbrace#1{\mathop{\vtop{\m@th\ialign{##\crcr
+   $\hfil\displaystyle{#1}\hfil$\crcr
+   \noalign{\kern3\p@\nointerlineskip}%
+   \Up@Fill{\braceDown@L}{\braceDown@Rep}{\braceDown@Mid}{\braceDown@R}\crcr%
+   \noalign{\kern3\p@}}}}\limits}
+
+\DeclareMathSymbol{\parenUp@L}{\mathord}{largesymbols}{'252}
+\DeclareMathSymbol{\parenUp@Rep}{\mathord}{largesymbols}{'253}
+\DeclareMathSymbol{\parenUp@R}{\mathord}{largesymbols}{'254}
+
+\DeclareMathSymbol{\parenDown@L}{\mathord}{largesymbols}{'261}
+\DeclareMathSymbol{\parenDown@Rep}{\mathord}{largesymbols}{'262}
+\DeclareMathSymbol{\parenDown@R}{\mathord}{largesymbols}{'263}
+
+
+\def\D@@wnFill#1#2#3{$\m@th \setbox\z@\hbox{$#2$}%
+  #1\xleaders\box\z@\hfill#3$}
+\def\Up@@Fill#1#2#3{$\m@th \setbox\z@\hbox{$#2$}%
+  #1\xleaders\box\z@\hfill#3$}
+
+\def\overparen#1{\mathop{\vbox{\m@th\ialign{##\crcr\noalign{\kern3\p@}%
+      \D@@wnFill{\parenUp@L}{\parenUp@Rep}{\parenUp@R}\crcr%
+	  \noalign{\kern3\p@\nointerlineskip}%
+      $\hfil\displaystyle{#1}\hfil$\crcr}}}\limits}
+\def\underparen#1{\mathop{\vtop{\m@th\ialign{##\crcr
+   $\hfil\displaystyle{#1}\hfil$\crcr
+   \noalign{\kern3\p@\nointerlineskip}%
+   \Up@@Fill{\parenDown@L}{\parenDown@Rep}{\parenDown@R}\crcr%
+   \noalign{\kern3\p@}}}}\limits}
+
+\DeclareMathSymbol{\bracketUp@L}{\mathord}{largesymbols}{'234}
+\DeclareMathSymbol{\bracketUp@Rep}{\mathord}{largesymbols}{'235}
+\DeclareMathSymbol{\bracketUp@R}{\mathord}{largesymbols}{'236}
+
+\DeclareMathSymbol{\bracketDown@L}{\mathord}{largesymbols}{'243}
+\DeclareMathSymbol{\bracketDown@Rep}{\mathord}{largesymbols}{'244}
+\DeclareMathSymbol{\bracketDown@R}{\mathord}{largesymbols}{'245}
+
+\def\overbracket#1{\mathop{\vbox{\m@th\ialign{##\crcr\noalign{\kern3\p@}%
+      \D@@wnFill{\bracketUp@L}{\bracketUp@Rep}{\bracketUp@R}\crcr%
+	  \noalign{\kern3\p@\nointerlineskip}%
+      $\hfil\displaystyle{#1}\hfil$\crcr}}}\limits}
+\def\underbracket#1{\mathop{\vtop{\m@th\ialign{##\crcr
+   $\hfil\displaystyle{#1}\hfil$\crcr
+   \noalign{\kern3\p@\nointerlineskip}%
+   \Up@@Fill{\bracketDown@L}{\bracketDown@Rep}{\bracketDown@R}\crcr%
+   \noalign{\kern3\p@}}}}\limits}
+\let\OverBracket=\overbracket
+\let\UnderBracket=\underbracket
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Symbols
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcount\schar@cnt
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Double Struck
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\schar@cnt=176
+
+\DeclareMathSymbol{\DoubleStruckZero}{\mathord}{operators}{\schar@cnt}
+\advance \schar@cnt by 1
+\let\dsZero=\DoubleStruckZero
+
+\DeclareMathSymbol{\DoubleStruckOne}{\mathord}{operators}{\schar@cnt}
+\advance \schar@cnt by 1
+\let\dsOne=\DoubleStruckOne
+
+\DeclareMathSymbol{\DoubleStruckTwo}{\mathord}{operators}{\schar@cnt}
+\advance \schar@cnt by 1
+\let\dsTwo=\DoubleStruckTwo
+
+\DeclareMathSymbol{\DoubleStruckThree}{\mathord}{operators}{\schar@cnt}
+\advance \schar@cnt by 1
+\let\dsThree=\DoubleStruckThree
+
+\DeclareMathSymbol{\DoubleStruckFour}{\mathord}{operators}{\schar@cnt}
+\advance \schar@cnt by 1
+\let\dsFour=\DoubleStruckFour
+
+\DeclareMathSymbol{\DoubleStruckFive}{\mathord}{operators}{\schar@cnt}
+\advance \schar@cnt by 1
+\let\dsFive=\DoubleStruckFive
+
+\DeclareMathSymbol{\DoubleStruckSix}{\mathord}{operators}{\schar@cnt}
+\advance \schar@cnt by 1
+\let\dsSix=\DoubleStruckSix
+
+\DeclareMathSymbol{\DoubleStruckSeven}{\mathord}{operators}{\schar@cnt}
+\advance \schar@cnt by 1
+\let\dsSeven=\DoubleStruckSeven
+
+\DeclareMathSymbol{\DoubleStruckEight}{\mathord}{operators}{\schar@cnt}
+\advance \schar@cnt by 1
+\let\dsEight=\DoubleStruckEight
+
+\DeclareMathSymbol{\DoubleStruckNine}{\mathord}{operators}{\schar@cnt}
+\advance \schar@cnt by 1
+\let\dsNine=\DoubleStruckNine
+
+
+\schar@cnt=193
+\DeclareMathSymbol{\DoubleStruckCapitalA}{\mathord}{operators}{\schar@cnt}
+\advance \schar@cnt by 1
+\let\dsA=\DoubleStruckCapitalA
+%
+\DeclareMathSymbol{\DoubleStruckCapitalB}{\mathord}{operators}{\schar@cnt}
+\advance \schar@cnt by 1
+\let\dsB=\DoubleStruckCapitalB
+%
+\DeclareMathSymbol{\DoubleStruckCapitalC}{\mathord}{operators}{\schar@cnt}
+\advance \schar@cnt by 1
+\let\dsC=\DoubleStruckCapitalC
+%
+\DeclareMathSymbol{\DoubleStruckCapitalD}{\mathord}{operators}{\schar@cnt}
+\advance \schar@cnt by 1
+\let\dsD=\DoubleStruckCapitalD
+%
+\DeclareMathSymbol{\DoubleStruckCapitalE}{\mathord}{operators}{\schar@cnt}
+\advance \schar@cnt by 1
+\let\dsE=\DoubleStruckCapitalE
+%
+\DeclareMathSymbol{\DoubleStruckCapitalF}{\mathord}{operators}{\schar@cnt}
+\advance \schar@cnt by 1
+\let\dsF=\DoubleStruckCapitalF
+%
+\DeclareMathSymbol{\DoubleStruckCapitalG}{\mathord}{operators}{\schar@cnt}
+\advance \schar@cnt by 1
+\let\dsG=\DoubleStruckCapitalG
+%
+\DeclareMathSymbol{\DoubleStruckCapitalH}{\mathord}{operators}{\schar@cnt}
+\advance \schar@cnt by 1
+\let\dsH=\DoubleStruckCapitalH
+%
+\DeclareMathSymbol{\DoubleStruckCapitalI}{\mathord}{operators}{\schar@cnt}
+\advance \schar@cnt by 1
+\let\dsI=\DoubleStruckCapitalI
+\DeclareMathSymbol{\DoubleStruckCapitalJ}{\mathord}{operators}{\schar@cnt}
+\advance \schar@cnt by 1
+\let\dsJ=\DoubleStruckCapitalJ
+%
+\DeclareMathSymbol{\DoubleStruckCapitalK}{\mathord}{operators}{\schar@cnt}
+\advance \schar@cnt by 1
+\let\dsK=\DoubleStruckCapitalK
+%
+\DeclareMathSymbol{\DoubleStruckCapitalL}{\mathord}{operators}{\schar@cnt}
+\advance \schar@cnt by 1
+\let\dsL=\DoubleStruckCapitalL
+%
+\DeclareMathSymbol{\DoubleStruckCapitalM}{\mathord}{operators}{\schar@cnt}
+\advance \schar@cnt by 1
+\let\dsM=\DoubleStruckCapitalM
+%
+\DeclareMathSymbol{\DoubleStruckCapitalN}{\mathord}{operators}{\schar@cnt}
+\advance \schar@cnt by 1
+\let\dsN=\DoubleStruckCapitalN
+%
+\DeclareMathSymbol{\DoubleStruckCapitalO}{\mathord}{operators}{\schar@cnt}
+\advance \schar@cnt by 1
+\let\dsO=\DoubleStruckCapitalO
+%
+\DeclareMathSymbol{\DoubleStruckCapitalP}{\mathord}{operators}{\schar@cnt}
+\advance \schar@cnt by 1
+\let\dsP=\DoubleStruckCapitalP
+%
+\DeclareMathSymbol{\DoubleStruckCapitalQ}{\mathord}{operators}{\schar@cnt}
+\advance \schar@cnt by 1
+\let\dsQ=\DoubleStruckCapitalQ
+%
+\DeclareMathSymbol{\DoubleStruckCapitalR}{\mathord}{operators}{\schar@cnt}
+\advance \schar@cnt by 1
+\let\dsR=\DoubleStruckCapitalR
+%
+\DeclareMathSymbol{\DoubleStruckCapitalS}{\mathord}{operators}{\schar@cnt}
+\advance \schar@cnt by 1
+\let\dsS=\DoubleStruckCapitalS
+%
+\DeclareMathSymbol{\DoubleStruckCapitalT}{\mathord}{operators}{\schar@cnt}
+\advance \schar@cnt by 1
+\let\dsT=\DoubleStruckCapitalT
+%
+\DeclareMathSymbol{\DoubleStruckCapitalU}{\mathord}{operators}{\schar@cnt}
+\advance \schar@cnt by 1
+\let\dsU=\DoubleStruckCapitalU
+\DeclareMathSymbol{\DoubleStruckCapitalV}{\mathord}{operators}{\schar@cnt}
+\advance \schar@cnt by 1
+\let\dsV=\DoubleStruckCapitalV
+%
+\DeclareMathSymbol{\DoubleStruckCapitalW}{\mathord}{operators}{\schar@cnt}
+\advance \schar@cnt by 1
+\let\dsW=\DoubleStruckCapitalW
+%
+\DeclareMathSymbol{\DoubleStruckCapitalX}{\mathord}{operators}{\schar@cnt}
+\advance \schar@cnt by 1
+\let\dsX=\DoubleStruckCapitalX
+%
+\DeclareMathSymbol{\DoubleStruckCapitalY}{\mathord}{operators}{\schar@cnt}
+\advance \schar@cnt by 1
+\let\dsY=\DoubleStruckCapitalY
+%
+\DeclareMathSymbol{\DoubleStruckCapitalZ}{\mathord}{operators}{\schar@cnt}
+\advance \schar@cnt by 1
+\let\dsZ=\DoubleStruckCapitalZ
+\schar@cnt=225
+\DeclareMathSymbol{\DoubleStruckA}{\mathord}{operators}{\schar@cnt}
+\advance \schar@cnt by 1
+\let\dsa=\DoubleStruckA
+%
+\DeclareMathSymbol{\DoubleStruckB}{\mathord}{operators}{\schar@cnt}
+\advance \schar@cnt by 1
+\let\dsb=\DoubleStruckB
+%
+\DeclareMathSymbol{\DoubleStruckC}{\mathord}{operators}{\schar@cnt}
+\advance \schar@cnt by 1
+\let\dsc=\DoubleStruckC
+%
+\DeclareMathSymbol{\DoubleStruckD}{\mathord}{operators}{\schar@cnt}
+\advance \schar@cnt by 1
+\let\dsd=\DoubleStruckD
+%
+\DeclareMathSymbol{\DoubleStruckE}{\mathord}{operators}{\schar@cnt}
+\advance \schar@cnt by 1
+\let\dse=\DoubleStruckE
+%
+\DeclareMathSymbol{\DoubleStruckF}{\mathord}{operators}{\schar@cnt}
+\advance \schar@cnt by 1
+\let\dsf=\DoubleStruckF
+%
+\DeclareMathSymbol{\DoubleStruckG}{\mathord}{operators}{\schar@cnt}
+\advance \schar@cnt by 1
+\let\dsg=\DoubleStruckG
+%
+\DeclareMathSymbol{\DoubleStruckH}{\mathord}{operators}{\schar@cnt}
+\advance \schar@cnt by 1
+\let\dsh=\DoubleStruckH
+%
+\DeclareMathSymbol{\DoubleStruckI}{\mathord}{operators}{\schar@cnt}
+\advance \schar@cnt by 1
+\let\dsi=\DoubleStruckI
+\DeclareMathSymbol{\DoubleStruckJ}{\mathord}{operators}{\schar@cnt}
+\advance \schar@cnt by 1
+\let\dsj=\DoubleStruckJ
+%
+\DeclareMathSymbol{\DoubleStruckK}{\mathord}{operators}{\schar@cnt}
+\advance \schar@cnt by 1
+\let\dsk=\DoubleStruckK
+%
+\DeclareMathSymbol{\DoubleStruckL}{\mathord}{operators}{\schar@cnt}
+\advance \schar@cnt by 1
+\let\dsl=\DoubleStruckL
+%
+\DeclareMathSymbol{\DoubleStruckM}{\mathord}{operators}{\schar@cnt}
+\advance \schar@cnt by 1
+\let\dsm=\DoubleStruckM
+%
+\DeclareMathSymbol{\DoubleStruckN}{\mathord}{operators}{\schar@cnt}
+\advance \schar@cnt by 1
+\let\dsn=\DoubleStruckN
+%
+\DeclareMathSymbol{\DoubleStruckO}{\mathord}{operators}{\schar@cnt}
+\advance \schar@cnt by 1
+\let\dso=\DoubleStruckO
+%
+\DeclareMathSymbol{\DoubleStruckP}{\mathord}{operators}{\schar@cnt}
+\advance \schar@cnt by 1
+\let\dsp=\DoubleStruckP
+%
+\DeclareMathSymbol{\DoubleStruckQ}{\mathord}{operators}{\schar@cnt}
+\advance \schar@cnt by 1
+\let\dsq=\DoubleStruckQ
+%
+\DeclareMathSymbol{\DoubleStruckR}{\mathord}{operators}{\schar@cnt}
+\advance \schar@cnt by 1
+\let\dsr=\DoubleStruckR
+%
+\DeclareMathSymbol{\DoubleStruckS}{\mathord}{operators}{\schar@cnt}
+\advance \schar@cnt by 1
+\let\dss=\DoubleStruckS
+%
+\DeclareMathSymbol{\DoubleStruckT}{\mathord}{operators}{\schar@cnt}
+\advance \schar@cnt by 1
+\let\dst=\DoubleStruckT
+%
+\DeclareMathSymbol{\DoubleStruckU}{\mathord}{operators}{\schar@cnt}
+\advance \schar@cnt by 1
+\let\dsu=\DoubleStruckU
+\DeclareMathSymbol{\DoubleStruckV}{\mathord}{operators}{\schar@cnt}
+\advance \schar@cnt by 1
+\let\dsv=\DoubleStruckV
+%
+\DeclareMathSymbol{\DoubleStruckW}{\mathord}{operators}{\schar@cnt}
+\advance \schar@cnt by 1
+\let\dsw=\DoubleStruckW
+%
+\DeclareMathSymbol{\DoubleStruckX}{\mathord}{operators}{\schar@cnt}
+\advance \schar@cnt by 1
+\let\dsx=\DoubleStruckX
+%
+\DeclareMathSymbol{\DoubleStruckY}{\mathord}{operators}{\schar@cnt}
+\advance \schar@cnt by 1
+\let\dsy=\DoubleStruckY
+%
+\DeclareMathSymbol{\DoubleStruckZ}{\mathord}{operators}{\schar@cnt}
+\advance \schar@cnt by 1
+\let\dsz=\DoubleStruckZ
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Gothic letters
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\schar@cnt=193
+\DeclareMathSymbol{\GothicCapitalA}{\mathord}{letters}{\schar@cnt}
+\advance \schar@cnt by 1
+\let\goA=\GothicCapitalA
+%
+\DeclareMathSymbol{\GothicCapitalB}{\mathord}{letters}{\schar@cnt}
+\advance \schar@cnt by 1
+\let\goB=\GothicCapitalB
+%
+\DeclareMathSymbol{\GothicCapitalC}{\mathord}{letters}{\schar@cnt}
+\advance \schar@cnt by 1
+\let\goC=\GothicCapitalC
+%
+\DeclareMathSymbol{\GothicCapitalD}{\mathord}{letters}{\schar@cnt}
+\advance \schar@cnt by 1
+\let\goD=\GothicCapitalD
+%
+\DeclareMathSymbol{\GothicCapitalE}{\mathord}{letters}{\schar@cnt}
+\advance \schar@cnt by 1
+\let\goE=\GothicCapitalE
+%
+\DeclareMathSymbol{\GothicCapitalF}{\mathord}{letters}{\schar@cnt}
+\advance \schar@cnt by 1
+\let\goF=\GothicCapitalF
+%
+\DeclareMathSymbol{\GothicCapitalG}{\mathord}{letters}{\schar@cnt}
+\advance \schar@cnt by 1
+\let\goG=\GothicCapitalG
+%
+\DeclareMathSymbol{\GothicCapitalH}{\mathord}{letters}{\schar@cnt}
+\advance \schar@cnt by 1
+\let\goH=\GothicCapitalH
+%
+\DeclareMathSymbol{\GothicCapitalI}{\mathord}{letters}{\schar@cnt}
+\advance \schar@cnt by 1
+\let\goI=\GothicCapitalI
+\DeclareMathSymbol{\GothicCapitalJ}{\mathord}{letters}{\schar@cnt}
+\advance \schar@cnt by 1
+\let\goJ=\GothicCapitalJ
+%
+\DeclareMathSymbol{\GothicCapitalK}{\mathord}{letters}{\schar@cnt}
+\advance \schar@cnt by 1
+\let\goK=\GothicCapitalK
+%
+\DeclareMathSymbol{\GothicCapitalL}{\mathord}{letters}{\schar@cnt}
+\advance \schar@cnt by 1
+\let\goL=\GothicCapitalL
+%
+\DeclareMathSymbol{\GothicCapitalM}{\mathord}{letters}{\schar@cnt}
+\advance \schar@cnt by 1
+\let\goM=\GothicCapitalM
+%
+\DeclareMathSymbol{\GothicCapitalN}{\mathord}{letters}{\schar@cnt}
+\advance \schar@cnt by 1
+\let\goN=\GothicCapitalN
+%
+\DeclareMathSymbol{\GothicCapitalO}{\mathord}{letters}{\schar@cnt}
+\advance \schar@cnt by 1
+\let\goO=\GothicCapitalO
+%
+\DeclareMathSymbol{\GothicCapitalP}{\mathord}{letters}{\schar@cnt}
+\advance \schar@cnt by 1
+\let\goP=\GothicCapitalP
+%
+\DeclareMathSymbol{\GothicCapitalQ}{\mathord}{letters}{\schar@cnt}
+\advance \schar@cnt by 1
+\let\goQ=\GothicCapitalQ
+%
+\DeclareMathSymbol{\GothicCapitalR}{\mathord}{letters}{\schar@cnt}
+\advance \schar@cnt by 1
+\let\goR=\GothicCapitalR
+%
+\DeclareMathSymbol{\GothicCapitalS}{\mathord}{letters}{\schar@cnt}
+\advance \schar@cnt by 1
+\let\goS=\GothicCapitalS
+%
+\DeclareMathSymbol{\GothicCapitalT}{\mathord}{letters}{\schar@cnt}
+\advance \schar@cnt by 1
+\let\goT=\GothicCapitalT
+%
+\DeclareMathSymbol{\GothicCapitalU}{\mathord}{letters}{\schar@cnt}
+\advance \schar@cnt by 1
+\let\goU=\GothicCapitalU
+\DeclareMathSymbol{\GothicCapitalV}{\mathord}{letters}{\schar@cnt}
+\advance \schar@cnt by 1
+\let\goV=\GothicCapitalV
+%
+\DeclareMathSymbol{\GothicCapitalW}{\mathord}{letters}{\schar@cnt}
+\advance \schar@cnt by 1
+\let\goW=\GothicCapitalW
+%
+\DeclareMathSymbol{\GothicCapitalX}{\mathord}{letters}{\schar@cnt}
+\advance \schar@cnt by 1
+\let\goX=\GothicCapitalX
+%
+\DeclareMathSymbol{\GothicCapitalY}{\mathord}{letters}{\schar@cnt}
+\advance \schar@cnt by 1
+\let\goY=\GothicCapitalY
+%
+\DeclareMathSymbol{\GothicCapitalZ}{\mathord}{letters}{\schar@cnt}
+\advance \schar@cnt by 1
+\let\goZ=\GothicCapitalZ
+\schar@cnt=225
+\DeclareMathSymbol{\GothicA}{\mathord}{letters}{\schar@cnt}
+\advance \schar@cnt by 1
+\let\goa=\GothicA
+%
+\DeclareMathSymbol{\GothicB}{\mathord}{letters}{\schar@cnt}
+\advance \schar@cnt by 1
+\let\gob=\GothicB
+%
+\DeclareMathSymbol{\GothicC}{\mathord}{letters}{\schar@cnt}
+\advance \schar@cnt by 1
+\let\goc=\GothicC
+%
+\DeclareMathSymbol{\GothicD}{\mathord}{letters}{\schar@cnt}
+\advance \schar@cnt by 1
+\let\god=\GothicD
+%
+\DeclareMathSymbol{\GothicE}{\mathord}{letters}{\schar@cnt}
+\advance \schar@cnt by 1
+\let\goe=\GothicE
+%
+\DeclareMathSymbol{\GothicF}{\mathord}{letters}{\schar@cnt}
+\advance \schar@cnt by 1
+\let\gof=\GothicF
+%
+\DeclareMathSymbol{\GothicG}{\mathord}{letters}{\schar@cnt}
+\advance \schar@cnt by 1
+\let\gog=\GothicG
+%
+\DeclareMathSymbol{\GothicH}{\mathord}{letters}{\schar@cnt}
+\advance \schar@cnt by 1
+\let\goh=\GothicH
+%
+\DeclareMathSymbol{\GothicI}{\mathord}{letters}{\schar@cnt}
+\advance \schar@cnt by 1
+\let\goi=\GothicI
+\DeclareMathSymbol{\GothicJ}{\mathord}{letters}{\schar@cnt}
+\advance \schar@cnt by 1
+\let\goj=\GothicJ
+%
+\DeclareMathSymbol{\GothicK}{\mathord}{letters}{\schar@cnt}
+\advance \schar@cnt by 1
+\let\gok=\GothicK
+%
+\DeclareMathSymbol{\GothicL}{\mathord}{letters}{\schar@cnt}
+\advance \schar@cnt by 1
+\let\gol=\GothicL
+%
+\DeclareMathSymbol{\GothicM}{\mathord}{letters}{\schar@cnt}
+\advance \schar@cnt by 1
+\let\gom=\GothicM
+%
+\DeclareMathSymbol{\GothicN}{\mathord}{letters}{\schar@cnt}
+\advance \schar@cnt by 1
+\let\gon=\GothicN
+%
+\DeclareMathSymbol{\GothicO}{\mathord}{letters}{\schar@cnt}
+\advance \schar@cnt by 1
+\let\goo=\GothicO
+%
+\DeclareMathSymbol{\GothicP}{\mathord}{letters}{\schar@cnt}
+\advance \schar@cnt by 1
+\let\gop=\GothicP
+%
+\DeclareMathSymbol{\GothicQ}{\mathord}{letters}{\schar@cnt}
+\advance \schar@cnt by 1
+\let\goq=\GothicQ
+%
+\DeclareMathSymbol{\GothicR}{\mathord}{letters}{\schar@cnt}
+\advance \schar@cnt by 1
+\let\gor=\GothicR
+%
+\DeclareMathSymbol{\GothicS}{\mathord}{letters}{\schar@cnt}
+\advance \schar@cnt by 1
+\let\gos=\GothicS
+%
+\DeclareMathSymbol{\GothicT}{\mathord}{letters}{\schar@cnt}
+\advance \schar@cnt by 1
+\let\got=\GothicT
+%
+\DeclareMathSymbol{\GothicU}{\mathord}{letters}{\schar@cnt}
+\advance \schar@cnt by 1
+\let\gou=\GothicU
+\DeclareMathSymbol{\GothicV}{\mathord}{letters}{\schar@cnt}
+\advance \schar@cnt by 1
+\let\gov=\GothicV
+%
+\DeclareMathSymbol{\GothicW}{\mathord}{letters}{\schar@cnt}
+\advance \schar@cnt by 1
+\let\gow=\GothicW
+%
+\DeclareMathSymbol{\GothicX}{\mathord}{letters}{\schar@cnt}
+\advance \schar@cnt by 1
+\let\gox=\GothicX
+%
+\DeclareMathSymbol{\GothicY}{\mathord}{letters}{\schar@cnt}
+\advance \schar@cnt by 1
+\let\goy=\GothicY
+%
+\DeclareMathSymbol{\GothicZ}{\mathord}{letters}{\schar@cnt}
+\advance \schar@cnt by 1
+\let\goz=\GothicZ
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% full set of script letters
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\schar@cnt=48
+
+\DeclareMathSymbol{\ScriptZero}{\mathord}{letters}{\schar@cnt}
+\advance \schar@cnt by 1
+\let\scZero=\ScriptZero
+
+\DeclareMathSymbol{\ScriptOne}{\mathord}{letters}{\schar@cnt}
+\advance \schar@cnt by 1
+\let\scOne=\ScriptOne
+
+\DeclareMathSymbol{\ScriptTwo}{\mathord}{letters}{\schar@cnt}
+\advance \schar@cnt by 1
+\let\scTwo=\ScriptTwo
+
+\DeclareMathSymbol{\ScriptThree}{\mathord}{letters}{\schar@cnt}
+\advance \schar@cnt by 1
+\let\scThree=\ScriptThree
+
+\DeclareMathSymbol{\ScriptFour}{\mathord}{letters}{\schar@cnt}
+\advance \schar@cnt by 1
+\let\scFour=\ScriptFour
+
+\DeclareMathSymbol{\ScriptFive}{\mathord}{letters}{\schar@cnt}
+\advance \schar@cnt by 1
+\let\scFive=\ScriptFive
+
+\DeclareMathSymbol{\ScriptSix}{\mathord}{letters}{\schar@cnt}
+\advance \schar@cnt by 1
+\let\scSix=\ScriptSix
+
+\DeclareMathSymbol{\ScriptSeven}{\mathord}{letters}{\schar@cnt}
+\advance \schar@cnt by 1
+\let\scSeven=\ScriptSeven
+
+\DeclareMathSymbol{\ScriptEight}{\mathord}{letters}{\schar@cnt}
+\advance \schar@cnt by 1
+\let\scEight=\ScriptEight
+
+\DeclareMathSymbol{\ScriptNine}{\mathord}{letters}{\schar@cnt}
+\advance \schar@cnt by 1
+\let\scNine=\ScriptNine
+
+\schar@cnt=193
+\DeclareMathSymbol{\ScriptCapitalA}{\mathord}{symbols}{\schar@cnt}
+\advance \schar@cnt by 1
+\let\scA=\ScriptCapitalA
+%
+\DeclareMathSymbol{\ScriptCapitalB}{\mathord}{symbols}{\schar@cnt}
+\advance \schar@cnt by 1
+\let\scB=\ScriptCapitalB
+%
+\DeclareMathSymbol{\ScriptCapitalC}{\mathord}{symbols}{\schar@cnt}
+\advance \schar@cnt by 1
+\let\scC=\ScriptCapitalC
+%
+\DeclareMathSymbol{\ScriptCapitalD}{\mathord}{symbols}{\schar@cnt}
+\advance \schar@cnt by 1
+\let\scD=\ScriptCapitalD
+%
+\DeclareMathSymbol{\ScriptCapitalE}{\mathord}{symbols}{\schar@cnt}
+\advance \schar@cnt by 1
+\let\scE=\ScriptCapitalE
+%
+\DeclareMathSymbol{\ScriptCapitalF}{\mathord}{symbols}{\schar@cnt}
+\advance \schar@cnt by 1
+\let\scF=\ScriptCapitalF
+%
+\DeclareMathSymbol{\ScriptCapitalG}{\mathord}{symbols}{\schar@cnt}
+\advance \schar@cnt by 1
+\let\scG=\ScriptCapitalG
+%
+\DeclareMathSymbol{\ScriptCapitalH}{\mathord}{symbols}{\schar@cnt}
+\advance \schar@cnt by 1
+\let\scH=\ScriptCapitalH
+%
+\DeclareMathSymbol{\ScriptCapitalI}{\mathord}{symbols}{\schar@cnt}
+\advance \schar@cnt by 1
+\let\scI=\ScriptCapitalI
+\DeclareMathSymbol{\ScriptCapitalJ}{\mathord}{symbols}{\schar@cnt}
+\advance \schar@cnt by 1
+\let\scJ=\ScriptCapitalJ
+%
+\DeclareMathSymbol{\ScriptCapitalK}{\mathord}{symbols}{\schar@cnt}
+\advance \schar@cnt by 1
+\let\scK=\ScriptCapitalK
+%
+\DeclareMathSymbol{\ScriptCapitalL}{\mathord}{symbols}{\schar@cnt}
+\advance \schar@cnt by 1
+\let\scL=\ScriptCapitalL
+%
+\DeclareMathSymbol{\ScriptCapitalM}{\mathord}{symbols}{\schar@cnt}
+\advance \schar@cnt by 1
+\let\scM=\ScriptCapitalM
+%
+\DeclareMathSymbol{\ScriptCapitalN}{\mathord}{symbols}{\schar@cnt}
+\advance \schar@cnt by 1
+\let\scN=\ScriptCapitalN
+%
+\DeclareMathSymbol{\ScriptCapitalO}{\mathord}{symbols}{\schar@cnt}
+\advance \schar@cnt by 1
+\let\scO=\ScriptCapitalO
+%
+\DeclareMathSymbol{\ScriptCapitalP}{\mathord}{symbols}{\schar@cnt}
+\advance \schar@cnt by 1
+\let\scP=\ScriptCapitalP
+%
+\DeclareMathSymbol{\ScriptCapitalQ}{\mathord}{symbols}{\schar@cnt}
+\advance \schar@cnt by 1
+\let\scQ=\ScriptCapitalQ
+%
+\DeclareMathSymbol{\ScriptCapitalR}{\mathord}{symbols}{\schar@cnt}
+\advance \schar@cnt by 1
+\let\scR=\ScriptCapitalR
+%
+\DeclareMathSymbol{\ScriptCapitalS}{\mathord}{symbols}{\schar@cnt}
+\advance \schar@cnt by 1
+\let\scS=\ScriptCapitalS
+%
+\DeclareMathSymbol{\ScriptCapitalT}{\mathord}{symbols}{\schar@cnt}
+\advance \schar@cnt by 1
+\let\scT=\ScriptCapitalT
+%
+\DeclareMathSymbol{\ScriptCapitalU}{\mathord}{symbols}{\schar@cnt}
+\advance \schar@cnt by 1
+\let\scU=\ScriptCapitalU
+\DeclareMathSymbol{\ScriptCapitalV}{\mathord}{symbols}{\schar@cnt}
+\advance \schar@cnt by 1
+\let\scV=\ScriptCapitalV
+%
+\DeclareMathSymbol{\ScriptCapitalW}{\mathord}{symbols}{\schar@cnt}
+\advance \schar@cnt by 1
+\let\scW=\ScriptCapitalW
+%
+\DeclareMathSymbol{\ScriptCapitalX}{\mathord}{symbols}{\schar@cnt}
+\advance \schar@cnt by 1
+\let\scX=\ScriptCapitalX
+%
+\DeclareMathSymbol{\ScriptCapitalY}{\mathord}{symbols}{\schar@cnt}
+\advance \schar@cnt by 1
+\let\scY=\ScriptCapitalY
+%
+\DeclareMathSymbol{\ScriptCapitalZ}{\mathord}{symbols}{\schar@cnt}
+\advance \schar@cnt by 1
+\let\scZ=\ScriptCapitalZ
+\schar@cnt=225
+\DeclareMathSymbol{\ScriptA}{\mathord}{symbols}{\schar@cnt}
+\advance \schar@cnt by 1
+\let\sca=\ScriptA
+%
+\DeclareMathSymbol{\ScriptB}{\mathord}{symbols}{\schar@cnt}
+\advance \schar@cnt by 1
+\let\scb=\ScriptB
+%
+\DeclareMathSymbol{\ScriptC}{\mathord}{symbols}{\schar@cnt}
+\advance \schar@cnt by 1
+\let\scc=\ScriptC
+%
+\DeclareMathSymbol{\ScriptD}{\mathord}{symbols}{\schar@cnt}
+\advance \schar@cnt by 1
+\let\scd=\ScriptD
+%
+\DeclareMathSymbol{\ScriptE}{\mathord}{symbols}{\schar@cnt}
+\advance \schar@cnt by 1
+\let\sce=\ScriptE
+%
+\DeclareMathSymbol{\ScriptF}{\mathord}{symbols}{\schar@cnt}
+\advance \schar@cnt by 1
+\let\scf=\ScriptF
+%
+\DeclareMathSymbol{\ScriptG}{\mathord}{symbols}{\schar@cnt}
+\advance \schar@cnt by 1
+\let\scg=\ScriptG
+%
+\DeclareMathSymbol{\ScriptH}{\mathord}{symbols}{\schar@cnt}
+\advance \schar@cnt by 1
+\let\sch=\ScriptH
+%
+\DeclareMathSymbol{\ScriptI}{\mathord}{symbols}{\schar@cnt}
+\advance \schar@cnt by 1
+\let\sci=\ScriptI
+\DeclareMathSymbol{\ScriptJ}{\mathord}{symbols}{\schar@cnt}
+\advance \schar@cnt by 1
+\let\scj=\ScriptJ
+%
+\DeclareMathSymbol{\ScriptK}{\mathord}{symbols}{\schar@cnt}
+\advance \schar@cnt by 1
+\let\sck=\ScriptK
+%
+\DeclareMathSymbol{\ScriptL}{\mathord}{symbols}{\schar@cnt}
+\advance \schar@cnt by 1
+\let\scl=\ScriptL
+%
+\DeclareMathSymbol{\ScriptM}{\mathord}{symbols}{\schar@cnt}
+\advance \schar@cnt by 1
+\let\scm=\ScriptM
+%
+\DeclareMathSymbol{\ScriptN}{\mathord}{symbols}{\schar@cnt}
+\advance \schar@cnt by 1
+\let\scn=\ScriptN
+%
+\DeclareMathSymbol{\ScriptO}{\mathord}{symbols}{\schar@cnt}
+\advance \schar@cnt by 1
+\let\sco=\ScriptO
+%
+\DeclareMathSymbol{\ScriptP}{\mathord}{symbols}{\schar@cnt}
+\advance \schar@cnt by 1
+\let\scp=\ScriptP
+%
+\DeclareMathSymbol{\ScriptQ}{\mathord}{symbols}{\schar@cnt}
+\advance \schar@cnt by 1
+\let\scq=\ScriptQ
+%
+\DeclareMathSymbol{\ScriptR}{\mathord}{symbols}{\schar@cnt}
+\advance \schar@cnt by 1
+\let\scr=\ScriptR
+%
+\DeclareMathSymbol{\ScriptS}{\mathord}{symbols}{\schar@cnt}
+\advance \schar@cnt by 1
+\let\scs=\ScriptS
+%
+\DeclareMathSymbol{\ScriptT}{\mathord}{symbols}{\schar@cnt}
+\advance \schar@cnt by 1
+\let\sct=\ScriptT
+%
+\DeclareMathSymbol{\ScriptU}{\mathord}{symbols}{\schar@cnt}
+\advance \schar@cnt by 1
+\let\scu=\ScriptU
+\DeclareMathSymbol{\ScriptV}{\mathord}{symbols}{\schar@cnt}
+\advance \schar@cnt by 1
+\let\scv=\ScriptV
+%
+\DeclareMathSymbol{\ScriptW}{\mathord}{symbols}{\schar@cnt}
+\advance \schar@cnt by 1
+\let\scw=\ScriptW
+%
+\DeclareMathSymbol{\ScriptX}{\mathord}{symbols}{\schar@cnt}
+\advance \schar@cnt by 1
+\let\scx=\ScriptX
+%
+\DeclareMathSymbol{\ScriptY}{\mathord}{symbols}{\schar@cnt}
+\advance \schar@cnt by 1
+\let\scy=\ScriptY
+%
+\DeclareMathSymbol{\ScriptZ}{\mathord}{symbols}{\schar@cnt}
+\advance \schar@cnt by 1
+\let\scz=\ScriptZ
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\long\def\DoLongFutureLet #1#2#3#4{% 
+    \def\@FutureLetDecide{% 
+        #1#2\@FutureLetToken
+            \def\@FutureLetNext{#3}%
+        \else
+            \def\@FutureLetNext{#4}%
+        \fi
+        \@FutureLetNext
+    }%     
+\futurelet\@FutureLetToken\@FutureLetDecide}
+\def\DoFutureLet #1#2#3#4{\DoLongFutureLet{#1}{#2}{#3}{#4}}
+
+\def\EachCharacter #1\EndEachCharackter{%
+  \@EachCharacter #1\@EndEachCharacter
+}
+
+\def\@EachCharacter{%
+  \DoFutureLet{\ifx}{\@EndEachCharacter}%
+    {\@EachCharacterDone}%
+	{\@PickUpTheCharacter}%
+}
+
+% Set up the test for digits
+% This work currently only for 
+% double struck charackters
+% but it is open to future
+% extensions
+
+\def\m@keCharacter#1{\if#10{\csname\F@ntPrefix Zero\endcsname}%
+                     \else
+                       \if#11{\csname\F@ntPrefix One\endcsname}%
+                       \else
+                         \if#12{\csname\F@ntPrefix Two\endcsname}%
+                         \else
+                           \if#13{\csname\F@ntPrefix Three\endcsname}%
+                           \else
+                             \if#14{\csname\F@ntPrefix Four\endcsname}%
+                             \else
+                               \if#15{\csname\F@ntPrefix Five\endcsname}%
+                               \else
+                                 \if#16{\csname\F@ntPrefix Six\endcsname}%
+                                 \else
+                                   \if#17{\csname\F@ntPrefix Seven\endcsname}%
+                                   \else
+                                     \if#18{\csname\F@ntPrefix Eight\endcsname}%
+                                     \else
+                                       \if#19{\csname\F@ntPrefix Nine\endcsname}%
+                                       \else
+                                         \csname\F@ntPrefix#1\endcsname
+                                       \fi
+                                     \fi
+                                   \fi
+                                 \fi
+                               \fi
+                             \fi
+                           \fi
+                         \fi
+                       \fi
+                     \fi}
+
+\def\@PickUpTheCharacter#1{%
+  \m@keCharacter{#1}
+  \@EachCharacter
+}
+
+\def\@EachCharacterDone \@EndEachCharacter{}
+
+\DeclareRobustCommand*{\mathbb}[1]{%
+  \gdef\F@ntPrefix{ds}
+  \@EachCharacter #1\@EndEachCharacter
+ }
+
+\DeclareRobustCommand*{\mathfrak}[1]{%
+  \gdef\F@ntPrefix{go} 
+  \@EachCharacter #1\@EndEachCharacter
+ }
+
+\DeclareRobustCommand*{\mathcal}[1]{%
+  \gdef\F@ntPrefix{sc} 
+  \@EachCharacter #1\@EndEachCharacter
+ }
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\DeclareMathSymbol{\ee}{\mathord}{letters}{'241}
+\let\E=\ee
+\let\ExponetialE=\ee
+
+\DeclareMathSymbol{\ii}{\mathord}{letters}{'245}
+\let\I=\ii
+\let\ComplexI=\ii
+\let\imag=\ii
+
+\DeclareMathSymbol{\jj}{\mathord}{letters}{'246}
+\let\ComplexJ=\jj
+
+\DeclareMathSymbol{\dd}{\mathord}{letters}{'243}
+\let\DifferentialD=\dd
+
+\DeclareMathSymbol{\DD}{\mathord}{letters}{'244}
+\let\CapitalDifferentialD=\DD
+
+\DeclareMathSymbol{\DoublePi}{\mathord}{letters}{'247}
+
+\DeclareMathSymbol{\EulerGamma}{\mathord}{letters}{'242}
+
+\DeclareMathSymbol{\HBar}{\mathord}{letters}{'250}
+\let\hbar=\HBar
+\DeclareMathSymbol{\ScriptDotlessI}{\mathord}{letters}{'173}
+\DeclareMathSymbol{\ScriptDotlessJ}{\mathord}{letters}{'174}
+
+\DeclareMathSymbol{\Mho}{\mathord}{letters}{'251}
+\DeclareMathSymbol{\lambdaslash}{\mathord}{letters}{'252}
+\DeclareMathSymbol{\Angstroem}{\mathord}{letters}{'253}
+\DeclareMathSymbol{\beth}{\mathord}{letters}{'255}
+\DeclareMathSymbol{\daleth}{\mathord}{letters}{'257}
+\DeclareMathSymbol{\gimel}{\mathord}{letters}{'256}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% more greek letters
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\DeclareMathSymbol{\Digamma}{\mathord}{letters}{'230}
+\DeclareMathSymbol{\Stigma}{\mathord}{letters}{'231}
+\DeclareMathSymbol{\Koppa}{\mathord}{letters}{'232}
+\DeclareMathSymbol{\Sampi}{\mathord}{letters}{'233}
+\DeclareMathSymbol{\digamma}{\mathord}{letters}{'234}
+\DeclareMathSymbol{\stigma}{\mathord}{letters}{'235}
+\DeclareMathSymbol{\koppa}{\mathord}{letters}{'236}
+\DeclareMathSymbol{\sampi}{\mathord}{letters}{'240}
+\DeclareMathSymbol{\varkappa}{\mathord}{letters}{'237}
+
+\DeclareMathSymbol{\backepsilon}{\mathbin}{letters}{'261}
+\DeclareMathSymbol{\Euler}{\mathord}{letters}{'260}
+\let\euler=\Euler
+\DeclareMathSymbol{\Micro}{\mathord}{letters}{'227}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% insert the symbols for \hook*arrow
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+\DeclareMathSymbol{\HookLeftArrow}{\mathrel}{letters}{'262}
+\DeclareMathSymbol{\HookRightArrow}{\mathrel}{letters}{'263}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% long arrows
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\DeclareMathSymbol{\LongLeftArrow}{\mathrel}{symbols}{'240}
+\let\longleftarrow=\LongLeftArrow
+\DeclareMathSymbol{\LongRightArrow}{\mathrel}{symbols}{'241}
+\let\longrightarrow=\LongRightArrow
+\DeclareMathSymbol{\LongLeftRightArrow}{\mathrel}{symbols}{'242}
+\let\longleftrightarrow=\LongLeftRightArrow
+
+\DeclareMathSymbol{\DblLongLeftArrow}{\mathrel}{symbols}{'250}
+\let\Longleftarrow=\DblLongLeftArrow
+\DeclareMathSymbol{\DblLongRightArrow}{\mathrel}{symbols}{'251}
+\let\Longrightarrow=\DblLongRightArrow
+\DeclareMathSymbol{\DblLongLeftRightArrow}{\mathrel}{symbols}{'252}
+\let\Longleftrightarrow=\DblLongLeftRightArrow
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% extesible harpoons, double harpoons
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \three@char@fill{leftsym}{repsym}{rightsym}
+% will produce
+% leftsym repsym repsym repsym ... rightsym
+% version a) fit with minus or \@@extend
+\newcommand{\three@char@fill@@}[4]{%
+  \hbox to #4{$\mathord#1 \mkern-6mu
+  \cleaders\hbox{$\mkern-2mu \mathord#2 \mkern-2mu$}\hfill
+  \mkern-6mu \mathord#3$}}
+% version b) fit with \@extend
+\newcommand{\three@char@fill}[4]{%
+  \hbox to #4{$\mathord#1 \mkern-2mu
+  \cleaders\hbox{$\mkern-2mu \mathord#2 \mkern-2mu$}\hfill
+  \mkern-2mu \mathord#3$}}
+
+
+\DeclareMathSymbol{\@extend}{\mathord}{symbols}{'216}
+% The minus sign for extension of the arrows
+\DeclareMathSymbol{\@@extend}{\mathord}{symbols}{'000}
+
+\newcommand{\rightharpoonupfill}{%
+  $\m@th \@extend \mkern-6mu
+  \cleaders\hbox{$\mkern-2mu \@extend \mkern-2mu$}\hfill
+  \mkern-6mu \mathord\rightharpoonup$}
+
+\newcommand{\leftharpoonupfill}{%
+  $\m@th \mathord\leftharpoonup \mkern-6mu
+  \cleaders\hbox{$\mkern-2mu \@extend \mkern-2mu$}\hfill
+  \mkern-6mu \@extend$}
+
+\newcommand{\lrharpoonupfill}{%
+  $\m@th \mathord\leftharpoonup \mkern-6mu
+  \cleaders\hbox{$\mkern-2mu \@extend \mkern-2mu$}\hfill
+  \mkern-6mu \rightharpoonup$}
+
+\newcommand{\overrightharpoon}[1]{%
+  \vbox{\ialign{##\crcr
+  \rightharpoonupfill\crcr\noalign{\kern-1pt\nointerlineskip}
+  $\hfil\displaystyle{#1}\hfil$\crcr}}}
+
+\newcommand{\overleftharpoon}[1]{%
+  \vbox{\ialign{##\crcr
+  \leftharpoonupfill\crcr\noalign{\kern-1pt\nointerlineskip}
+  $\hfil\displaystyle{#1}\hfil$\crcr}}}
+
+\newcommand{\overlrharpoon}[1]{%
+  \vbox{\ialign{##\crcr
+  \lrharpoonupfill\crcr\noalign{\kern-1pt\nointerlineskip}
+  $\hfil\displaystyle{#1}\hfil$\crcr}}}
+
+\DeclareMathSymbol{\leftrightharpoonup}{\mathrel}{symbols}{'200}
+\DeclareMathSymbol{\leftrightharpoondown}{\mathrel}{symbols}{'201}
+
+\DeclareRobustCommand{\LeftHarpoonUpFill}[1][14pt]{%
+  \mathrel{\three@char@fill{\leftharpoonup}%
+                           {\@extend}%
+						   {\@extend}{#1}}}
+\DeclareRobustCommand{\RightHarpoonUpFill}[1][14pt]{%
+  \mathrel{\three@char@fill{\@extend}%
+                           {\@extend}%
+						   {\rightharpoonup}{#1}}}
+
+\DeclareRobustCommand{\LeftHarpoonDownFill}[1][14pt]{%
+  \mathrel{\three@char@fill{\leftharpoondown}%
+                           {\@extend}%
+						   {\@extend}{#1}}}
+\DeclareRobustCommand{\RightHarpoonDownFill}[1][14pt]{%
+  \mathrel{\three@char@fill{\@extend}%
+                           {\@extend}%
+						   {\rightharpoondown}{#1}}}
+
+\DeclareRobustCommand{\LeftArrowFill}[1][14pt]{%
+  \mathrel{\three@char@fill@@{\leftarrow}%
+                           {\@@extend}%
+						   {\@@extend}{#1}}}
+\DeclareRobustCommand{\RightArrowFill}[1][14pt]{%
+  \mathrel{\three@char@fill@@{\@@extend}%
+                           {\@@extend}%
+						   {\rightarrow}{#1}}}
+\DeclareRobustCommand{\LRArrowFill}[1][14pt]{%
+  \mathrel{\three@char@fill@@{\leftarrow}%
+                           {\@@extend}%
+						   {\rightarrow}{#1}}}
+
+\DeclareRobustCommand{\LRHarpoonUpFill}[1][14pt]{%
+  \mathrel{\three@char@fill{\leftharpoonup}%
+                           {\@extend}%
+						   {\rightharpoonup}{#1}}}
+\DeclareRobustCommand{\LRHarpoonDownFill}[1][14pt]{%
+  \mathrel{\three@char@fill{\leftharpoondown}%
+                           {\@extend}%
+						   {\rightharpoondown}{#1}}}
+
+
+\DeclareMathDelimiter{\upharpoonleftup}{\mathrel}%
+                     {symbols}{'204}%
+					 {largesymbols}{'304}
+\DeclareMathDelimiter{\upharpoonleftdown}{\mathrel}%
+                     {symbols}{'205}
+					 {largesymbols}{'306}
+\DeclareMathDelimiter{\upharpoonrightup}{\mathrel}%
+                     {symbols}{'206}%
+					 {largesymbols}{'307}
+\DeclareMathDelimiter{\upharpoonrightdown}{\mathrel}%
+                     {symbols}{'207}
+					 {largesymbols}{'311}
+\DeclareMathDelimiter{\uparrowdownarrow}{\mathrel}%
+                     {symbols}{'243}
+					 {largesymbols}{'322}
+\DeclareMathDelimiter{\downarrowuparrow}{\mathrel}%
+                     {symbols}{'244}
+					 {largesymbols}{'320}
+\DeclareMathDelimiter{\leftupdownharpoon}{\mathrel}%
+                     {largesymbols}{'326}
+					 {largesymbols}{'330}
+\DeclareMathDelimiter{\rightupdownharpoon}{\mathrel}%
+                     {largesymbols}{'327}
+					 {largesymbols}{'331}
+
+\DeclareMathDelimiter{\RightUpTeeVector}{\mathrel}%
+                     {largesymbols}{'340}
+					 {largesymbols}{'341}
+\DeclareMathDelimiter{\LeftUpTeeVector}{\mathrel}%
+                     {largesymbols}{'336}
+					 {largesymbols}{'337}
+\DeclareMathDelimiter{\RightDownTeeVector}{\mathrel}%
+                     {largesymbols}{'344}
+					 {largesymbols}{'345}
+\DeclareMathDelimiter{\LeftDownTeeVector}{\mathrel}%
+                     {largesymbols}{'342}
+					 {largesymbols}{'343}
+
+\DeclareMathDelimiter{\UpArrowBar}{\mathrel}%
+                     {largesymbols}{'332}
+					 {largesymbols}{'333}
+\DeclareMathDelimiter{\DownArrowBar}{\mathrel}%
+                     {largesymbols}{'334}
+					 {largesymbols}{'335}
+
+\DeclareMathDelimiter{\LeftUpVectorBar}{\mathrel}%
+                     {largesymbols}{'346}
+					 {largesymbols}{'347}
+\DeclareMathDelimiter{\RightUpVectorBar}{\mathrel}%
+                     {largesymbols}{'350}
+					 {largesymbols}{'351}
+\DeclareMathDelimiter{\LeftDownVectorBar}{\mathrel}%
+                     {largesymbols}{'352}
+					 {largesymbols}{'353}
+\DeclareMathDelimiter{\RightDownVectorBar}{\mathrel}%
+                     {largesymbols}{'354}
+					 {largesymbols}{'355}
+
+\DeclareMathSymbol{\RightVectorBar}{\mathrel}{operators}{'210}
+\DeclareMathSymbol{\LeftVectorBar}{\mathrel}{operators}{'211}
+\DeclareMathSymbol{\DownRightVectorBar}{\mathrel}{operators}{'213}
+\DeclareMathSymbol{\DownLeftVectorBar}{\mathrel}{operators}{'214}
+\DeclareMathSymbol{\RightTeeVector}{\mathrel}{operators}{'215}
+\DeclareMathSymbol{\LeftTeeVector}{\mathrel}{operators}{'216}
+\DeclareMathSymbol{\DownRightTeeVector}{\mathrel}{operators}{'217}
+\DeclareMathSymbol{\DownLeftTeeVector}{\mathrel}{operators}{'220}
+\DeclareMathSymbol{\RightArrowBar}{\mathrel}{operators}{'221}
+\DeclareMathSymbol{\LeftArrowBar}{\mathrel}{operators}{'222}
+
+\DeclareMathSymbol{\ShortUpArrow}{\mathrel}{operators}{'255}
+\DeclareMathSymbol{\ShortDownArrow}{\mathrel}{operators}{'256}
+\DeclareMathSymbol{\ShortRightArrow}{\mathrel}{operators}{'257}
+\DeclareMathSymbol{\ShortLeftArrow}{\mathrel}{operators}{'340}
+
+\DeclareMathSymbol{\equilibrium}{\mathrel}{symbols}{'202}
+\DeclareMathSymbol{\revequilibrium}{\mathrel}{symbols}{'203}
+
+\DeclareMathSymbol{\eq@l}{\mathord}{symbols}{'212}
+\DeclareMathSymbol{\dbl@ext}{\mathord}{symbols}{'217}
+\DeclareMathSymbol{\eq@r}{\mathord}{symbols}{'213}
+\DeclareMathSymbol{\req@l}{\mathord}{symbols}{'214}
+\DeclareMathSymbol{\req@r}{\mathord}{symbols}{'215}
+\def\join@rel{{\mkern-4mu}}
+\def\Equilibrium   {\mathrel{ \eq@l\join@rel\dbl@ext
+								   \join@rel\dbl@ext
+                                   \join@rel\dbl@ext
+								   \join@rel\dbl@ext
+								   \join@rel\eq@r}}
+\def\RevEquilibrium{\mathrel{\req@l\join@rel\dbl@ext
+                                   \join@rel\dbl@ext
+								   \join@rel\dbl@ext
+								   \join@rel\dbl@ext
+								   \join@rel\req@r}}
+
+\DeclareRobustCommand{\DblLeftArrowFill}[1][14pt]{%
+  \mathrel{\three@char@fill@@{\Leftarrow}%
+                           {\dbl@ext}%
+						   {\dbl@ext}{#1}}}
+\DeclareRobustCommand{\DblRightArrowFill}[1][14pt]{%
+  \mathrel{\three@char@fill@@{\dbl@ext}%
+                           {\dbl@ext}%
+						   {\Rightarrow}{#1}}}
+
+\DeclareRobustCommand{\DblLRArrowFill}[1][14pt]{%
+  \mathrel{\three@char@fill@@{\Leftarrow}%
+                           {\dbl@ext}%
+						   {\Rightarrow}{#1}}}
+
+\DeclareRobustCommand{\EquilibriumFill}[1][14pt]{%
+  \mathrel{\three@char@fill{\eq@l}{\dbl@ext}{\eq@r}{#1}}}
+\DeclareRobustCommand{\RevEquilibriumFill}[1][14pt]{%
+  \mathrel{\three@char@fill{\req@l}{\dbl@ext}{\req@r}{#1}}}
+
+\DeclareMathDelimiter{\upequilibrium}{\mathrel}%
+                     {symbols}{'210}
+					 {largesymbols}{'312}
+\DeclareMathDelimiter{\uprevequilibrium}{\mathrel}%
+                     {symbols}{'211}
+					 {largesymbols}{'315}
+
+\DeclareMathSymbol{\rightleftarrow}{\mathrel}{symbols}{'373}
+\DeclareMathSymbol{\leftrightarrow}{\mathrel}{symbols}{'374}
+
+\DeclareMathSymbol{\rla@l}{\mathrel}{symbols}{'245}
+\DeclareMathSymbol{\rla@r}{\mathrel}{symbols}{'246}
+
+\DeclareMathSymbol{\lra@l}{\mathrel}{symbols}{'260}
+\DeclareMathSymbol{\lra@r}{\mathrel}{symbols}{'257}
+
+\DeclareRobustCommand{\RightLeftArrowFill}[1][14pt]{%
+  \mathrel{\three@char@fill{\rla@l}{\dbl@ext}{\rla@r}{#1}}}
+\DeclareRobustCommand{\LeftRightArrowFill}[1][14pt]{%
+  \mathrel{\three@char@fill{\lra@l}{\dbl@ext}{\lra@r}{#1}}}
+
+\DeclareMathSymbol{\MapsTo}{\mathrel}{symbols}{'267}
+\let\mapsto=\MapsTo
+\DeclareMathSymbol{\MapsFrom}{\mathrel}{symbols}{'266}
+\let\mapsfrom=\MapsFrom
+\DeclareMathDelimiter{\MapsUp}{\mathrel}%
+                     {symbols}{'253}
+					 {largesymbols}{'324}
+\let\mapsup=\MapsUp
+\DeclareMathDelimiter{\MapsDown}{\mathrel}%
+                     {symbols}{'254}
+					 {largesymbols}{'325}
+\let\mapsdown=\MapsDown
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Mathematica specials
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\DeclareMathSymbol{\Rule}{\mathrel}{letters}{'373}
+\DeclareMathSymbol{\RuleDelayed}{\mathrel}{letters}{'374}
+\DeclareMathSymbol{\SetDelayed}{\mathrel}{letters}{'375}
+\DeclareMathSymbol{\Equal}{\mathrel}{letters}{'376}
+\DeclareMathSymbol{\Same}{\mathrel}{letters}{'377}
+\DeclareMathSymbol{\Slot}{\mathord}{operators}{'207}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Operators like +=  Mathematica listings
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% +=
+\def\PEQ{\mathbin{\hbox{$\mathord+\mkern-1.5mu\mathord=$}}}
+% -=
+\def\MEQ{\mathbin{\hbox{$\mathord-\mkern-1.5mu\mathord=$}}}
+% *=
+\def\TEQ{\mathbin{\hbox{$\mathord*\mkern-1mu\mathord=$}}}
+% /=
+\def\DEQ{\mathbin{\hbox{$\mathord/\mkern-1.5mu\mathord=$}}}
+% ++
+\def\PP{\mathord{\hbox{$\mathord+\mkern-1mu\mathord+$}}}
+% --
+\def\MM{\mathord{\hbox{$\mathord-\mkern-1mu\mathord-$}}}
+% StringJoin <>
+\def\SCAT{\mathbin{\hbox{$\mathord<\mkern-1.5mu\mathord>$}}}
+
+\def\caret{{\char'136}}
+\def\bslash{\texttt{\char'134}}
+
+% UpSet ^=
+\def\UPSET{\mathbin{\hbox{$\mathord\caret\mkern-1mu\mathord=$}}}
+% UpSetDelayed ^:=
+\def\UPSETD{\mathbin{\hbox{$\mathord\caret\mkern-1mu\mathord\SetDelayed$}}}
+% Tag
+\def\TAG{\mathbin{\hbox{$\mathord/\mkern-2mu\mathord:$}}}
+% Map /@
+\def\MAP{\mathbin{\hbox{\makeatletter$\mathord/\mkern-0.75mu\mathord{}@$\makeatother}}}
+% MapAll //@
+\def\MAPALL{\mathbin{\hbox{\makeatletter$\mathord/\mkern-3.5mu\mathord/\mkern-0.75mu\mathord{}@$\makeatother}}}
+% Condition /;
+\def\COND{\mathbin{\hbox{$\mathord/\mkern-2mu\mathord;$}}}
+%% Postfix function
+\def\PSTFIX{\mathbin{\hbox{$\mathord/\mkern-3.5mu\mathord/$}}}
+% Replace All /.
+\def\RPLC{\mathbin{\hbox{$\mathord/\mkern-1mu\mathord.$}}}
+% replace repeated //.
+\def\RPLCRP{\mathbin{\hbox{$\mathord/\mkern-3.5mu\mathord/\kern-1.pt\mathord.$}}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\DeclareMathAccent{\DDot}{\mathord}{letters}{'270}
+\DeclareMathAccent{\DDDot}{\mathord}{letters}{'271}
+\DeclareMathAccent{\lrvec}{\mathord}{letters}{'200}
+\DeclareMathAccent{\lvec}{\mathord}{letters}{'201}
+\DeclareMathAccent{\true@vec}{\mathord}{letters}{'202}
+\DeclareMathAccent{\LRVec}{\mathord}{letters}{'203}
+\DeclareMathAccent{\LVec}{\mathord}{letters}{'204}
+
+
+
+\let\Dot=\dot
+\let\Vec=\true@vec
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% angles
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\DeclareMathSymbol{\Angle}{\mathord}{symbols}{'334}
+\let\angle=\Angle
+\DeclareMathSymbol{\rightangle}{\mathord}{symbols}{'335}
+\let\RightAngle=\rightangle
+\DeclareMathSymbol{\measuredangle}{\mathord}{symbols}{'336}
+\let\MeasuredAngle=\measuredangle
+\DeclareMathSymbol{\sphericalangle}{\mathord}{symbols}{'337}
+\let\SphericalAngle=\sphericalangle
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Relations and negated relations
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\DeclareMathSymbol{\therefore}{\mathrel}{symbols}{'270}
+\let\Threfore=\therefore
+\DeclareMathSymbol{\because}{\mathrel}{symbols}{'272}
+\let\Because=\because
+\DeclareMathSymbol{\Proportion}{\mathrel}{letters}{'206}
+
+\DeclareMathSymbol{\NotEqual}{\mathrel}{symbols}{'261}
+\let\neq=\NotEqual
+
+\DeclareMathSymbol{\nexists}{\mathord}{symbols}{'271}
+\DeclareMathSymbol{\nasymp}{\mathrel}{symbols}{'220}
+\let\NotCupCap=\nasymp
+\DeclareMathSymbol{\nequiv}{\mathrel}{symbols}{'221}
+\DeclareMathSymbol{\nsupseteq}{\mathrel}{symbols}{'222}
+\DeclareMathSymbol{\nsubseteq}{\mathrel}{symbols}{'222}
+
+\DeclareMathSymbol{\nsqsupseteq}{\mathrel}{letters}{'272}
+\DeclareMathSymbol{\nsqsubseteq}{\mathrel}{letters}{'273}
+
+\DeclareMathSymbol{\nleq}{\mathrel}{symbols}{'224}
+\DeclareMathSymbol{\ngeq}{\mathrel}{symbols}{'225}
+
+\DeclareMathSymbol{\npreceq}{\mathrel}{symbols}{'226}
+\DeclareMathSymbol{\nsucceq}{\mathrel}{symbols}{'227}
+
+\DeclareMathSymbol{\nsim}{\mathrel}{symbols}{'230}
+\DeclareMathSymbol{\napprox}{\mathrel}{symbols}{'231}
+
+\DeclareMathSymbol{\nsubset}{\mathrel}{symbols}{'232}
+\DeclareMathSymbol{\nsupset}{\mathrel}{symbols}{'233}
+
+\DeclareMathSymbol{\nll}{\mathrel}{symbols}{'234}
+\DeclareMathSymbol{\ngg}{\mathrel}{symbols}{'235}
+\let\NotGreaterGreater=\ngg
+\DeclareMathSymbol{\nprec}{\mathrel}{symbols}{'236}
+\DeclareMathSymbol{\nsucc}{\mathrel}{symbols}{'237}
+
+\DeclareMathSymbol{\nin}{\mathrel}{symbols}{'262}
+\DeclareMathSymbol{\nni}{\mathrel}{symbols}{'263}
+
+\DeclareMathSymbol{\nless}{\mathrel}{symbols}{'273}
+\DeclareMathSymbol{\ngtr}{\mathrel}{symbols}{'274}
+\DeclareMathSymbol{\bumpeq}{\mathrel}{symbols}{'275}
+\DeclareMathSymbol{\Bumpeq}{\mathrel}{symbols}{'276}
+\DeclareMathSymbol{\nbumpeq}{\mathrel}{symbols}{'277}
+\DeclareMathSymbol{\nBumpeq}{\mathrel}{symbols}{'300}
+\DeclareMathSymbol{\dotequal}{\mathrel}{letters}{'276}
+\DeclareMathSymbol{\RoundImplies}{\mathrel}{letters}{'277}
+\DeclareMathSymbol{\LeftTriangleEqual}{\mathrel}{letters}{'265}
+\let\unlhd=\LeftTriangleEqual
+\DeclareMathSymbol{\RightTriangleEqual}{\mathrel}{letters}{'264}
+\let\unrhd=\RightTriangleEqual
+
+\DeclareMathSymbol{\NotTildeEqual}{\mathrel}{symbols}{'247}
+\let\nsimeq=\NotTildeEqual
+\DeclareMathSymbol{\TildeEqual}{\mathrel}{symbols}{'047}
+
+\DeclareMathSymbol{\TildeFullEqual}{\mathrel}{letters}{'274}
+\let\cong=\TildeFullEqual
+\DeclareMathSymbol{\NotTildeFullEqual}{\mathrel}{letters}{'275}
+\let\ncong=\NotTildeFullEqual
+
+\DeclareMathSymbol{\NotLeftTriangleEqual}{\mathrel}{letters}{'266}
+\let\nunlhd=\NotLeftTriangleEqual
+\DeclareMathSymbol{\NotRightTriangleEqual}{\mathrel}{letters}{'267}
+\let\nunrhd=\NotRightTriangleEqual
+\DeclareMathSymbol{\backepsilon}{\mathrel}{letters}{'261}
+
+\DeclareMathSymbol{\NestedLessLess}{\mathrel}{letters}{'333}
+\DeclareMathSymbol{\NotNestedLessLess}{\mathrel}{letters}{'335}
+\let\llnested=\NestedLessLess
+\let\nllnested=\NotNestedLessLess
+\DeclareMathSymbol{\NestedGreaterGreater}{\mathrel}{letters}{'334}
+\DeclareMathSymbol{\NotNestedGreaterGreater}{\mathrel}{letters}{'336}
+\let\ggnested=\NestedGreaterGreater
+\let\nggnested=\NotNestedGreaterGreater
+\DeclareMathSymbol{\GreaterLess}{\mathrel}{letters}{'337}
+\DeclareMathSymbol{\NotGreaterLess}{\mathrel}{letters}{'340}
+
+\DeclareMathSymbol{\GreaterTilde}{\mathrel}{operators}{'251}
+\DeclareMathSymbol{\LessTilde}{\mathrel}{operators}{'250}
+\DeclareMathSymbol{\NotGreaterTilde}{\mathrel}{operators}{'254}
+\DeclareMathSymbol{\NotLessTilde}{\mathrel}{operators}{'253}
+
+\DeclareMathSymbol{\PrecedesSlantEqual}{\mathrel}{operators}{'240}
+\DeclareMathSymbol{\SucceedsSlantEqual}{\mathrel}{operators}{'241}
+\DeclareMathSymbol{\NotPrecedesSlantEqual}{\mathrel}{operators}{'242}
+\DeclareMathSymbol{\NotSucceedsSlantEqual}{\mathrel}{operators}{'243}
+\DeclareMathSymbol{\PrecedesTilde}{\mathrel}{operators}{'244}
+\DeclareMathSymbol{\SucceedsTilde}{\mathrel}{operators}{'245}
+\DeclareMathSymbol{\NotPrecedesTilde}{\mathrel}{operators}{'246}
+\DeclareMathSymbol{\NotSucceedsTilde}{\mathrel}{operators}{'247}
+
+
+\DeclareMathSymbol{\RightTriangle}{\mathrel}{letters}{'222}
+\DeclareMathSymbol{\LeftTriangle}{\mathrel}{letters}{'223}
+\DeclareMathSymbol{\NotRightTriangle}{\mathrel}{letters}{'224}
+\DeclareMathSymbol{\NotLeftTriangle}{\mathrel}{letters}{'225}
+
+\DeclareMathSymbol{\RightTriangleBar}{\mathrel}{letters}{'216}
+\DeclareMathSymbol{\LeftTriangleBar}{\mathrel}{letters}{'217}
+\DeclareMathSymbol{\NotRightTriangleBar}{\mathrel}{letters}{'220}
+\DeclareMathSymbol{\NotLeftTriangleBar}{\mathrel}{letters}{'221}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Help commands
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\def\empty{}
+\DeclareRobustCommand{\texcmd}[1]{%
+  \def\test{#1}%
+  \ifx\test\empty%
+    {}%
+  \else%
+    \texttt{\char'134#1}%
+  \fi}
+\def\mmasym#1{\texttt{\char'134[#1]}}
+
+\newcommand{\MathIcon}  {{\fontencoding{OT1}\fontfamily{\wri@oper@ord}\selectfont\char'376}\xspace}
+\newcommand{\KernelIcon}{{\fontencoding{OT1}\fontfamily{\wri@oper@ord}\selectfont\char'375}\xspace}
+\newcommand{\MathLogo}  {{\fontencoding{OT1}\fontfamily{\wri@oper@ord}\selectfont\char'373\char'374}\xspace}
+\newcommand{\Wolf}      {{\fontencoding{OT1}\fontfamily{\wri@oper@ord}\selectfont\char'377}\xspace}
+\newcommand{\male}{\MKeySymbol{'060}\xspace}
+\newcommand{\female}{\MKeySymbol{'057}\xspace}
+\newcommand{\WatchIcon}{\MKeySymbol{'055}\xspace}
+\newcommand{\LightBulb}{\MKeySymbol{'053}\xspace}
+\newcommand{\WarningSign}{\MKeySymbol{'054}\xspace}
+\newcommand{\HappySmiley}{\MKeySymbol{'047}\xspace}
+\newcommand{\NeutralSmiley}{\MKeySymbol{'050}\xspace}
+\newcommand{\SadSmiley}{\MKeySymbol{'051}\xspace}
+\newcommand{\FreakedSmiley}{\MKeySymbol{'052}\xspace}
+\newcommand{\WaringSign}{\MKeySymbol{'054}\xspace}
+\newcommand{\AliasDelimiter}{\MKeySymbol{'042}\xspace}
+
+
+\newcommand{\CommandKey}{\MKeySymbol{'014}\xspace}
+\newcommand{\ControlKey}{\MKeySymbol{'016}\xspace}
+\newcommand{\AltKey}{\MKeySymbol{'010}\xspace}
+\newcommand{\ModeOneKey}{\MKeySymbol{'011}\xspace}
+\newcommand{\ModeTwoKey}{\MKeySymbol{'012}\xspace}
+\newcommand{\TabKey}{\MKeySymbol{'013}\xspace}
+
+\newcommand{\EscapeKey}{\MKeySymbol{'024}\xspace}
+\newcommand{\ReturnKey}{\MKeySymbol{'030}\xspace}
+\newcommand{\ShiftKey}{\MKeySymbol{'032}\xspace}
+\newcommand{\SpaceKey}{\MKeySymbol{'034}\xspace}
+\newcommand{\BackspaceKey}{\MKeySymbol{'003}\xspace}
+\newcommand{\HomeKey}{\MKeySymbol{'004}\xspace}
+\newcommand{\PageUpKey}{\MKeySymbol{'005}\xspace}
+\newcommand{\PageDownKey}{\MKeySymbol{'006}\xspace}
+\newcommand{\EndKey}{\MKeySymbol{'007}\xspace}
+\newcommand{\CloverLeaf}{\MKeySymbol{'041}\xspace}
+\newcommand{\ReturnIndicator}{\MKeySymbol{'056}\xspace}
+\newcommand{\LeftModfied}{\MKeySymbol{'036}\xspace}
+\newcommand{\RightModfied}{\MKeySymbol{'037}\xspace}
+\newcommand{\DottedSquare}{\MTextSymbol{'225}\xspace}
+\newcommand{\DownQuestion}{\MTextSymbol{'076}\xspace}
+
+\newcommand{\GoToFirstPage}{\MKeySymbol{'061}\xspace}
+\newcommand{\GoToLastPage}{\MKeySymbol{'062}\xspace}
+\newcommand{\GoToPreviousPage}{\MKeySymbol{'063}\xspace}
+\newcommand{\GoToNextPage}{\MKeySymbol{'064}\xspace}
+
+
+\newcommand{\FilledUpTriangle}{\MKeySymbol{'065}\xspace}
+\newcommand{\FilledDownTriangle}{\MKeySymbol{'066}\xspace}
+\newcommand{\EmptyUpTriangle}{\MKeySymbol{'067}\xspace}
+\newcommand{\EmptyDownTriangle}{\MKeySymbol{'070}\xspace}
+\newcommand{\FilledDiamond}{\MKeySymbol{'071}\xspace}
+\newcommand{\EmptyDiamond}{\MKeySymbol{'073}\xspace}
+\newcommand{\FilledSquare}{\MKeySymbol{'075}\xspace}
+\newcommand{\EmptySquare}{\MKeySymbol{'076}\xspace}
+\newcommand{\FilledSmallSquare}{\MKeySymbol{'077}\xspace}
+\newcommand{\EmptySmallSquare}{\MKeySymbol{'100}\xspace}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% symbols for text and math
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\DeclareMathSymbol{\mathSp@ce}{\mathord}{operators}{'201}
+\newcommand{\textSp@ce}{\M@text@sym{'201}}
+\DeclareRobustCommand{\SpaceIndicator}{\ifmmode\mathSp@ce\else\textSp@ce\fi}
+
+\DeclareMathSymbol{\mathRSp@ce}{\mathord}{operators}{'202}
+\newcommand{\textRSp@ce}{\M@text@sym{'202}}
+\DeclareRobustCommand{\RoundSpaceIndicator}{\ifmmode\mathRSp@ce\else\textRSp@ce\fi}
+
+\DeclareMathSymbol{\math@cont}{\mathord}{operators}{'206}
+\newcommand{\text@cont}{\MTextSymbol{'206}}
+\DeclareRobustCommand{\Continuation}{\ifmmode\math@cont\else\text@cont\fi}
+
+\DeclareMathSymbol{\math@err}{\mathord}{operators}{'205}
+\newcommand{\text@err}{\MTextSymbol{'205}}
+\DeclareRobustCommand{\ErrorIndicator}{\ifmmode\math@err\else\text@err\fi}
+
+\DeclareMathSymbol{\math@splaceh}{\mathord}{operators}{'204}
+\newcommand{\text@splaceh}{\MTextSymbol{'204}}
+\DeclareRobustCommand{\SelectionPlaceholder}{\ifmmode\math@splaceh\else\text@splaceh\fi}
+
+\DeclareMathSymbol{\math@placeh}{\mathord}{operators}{'203}
+\newcommand{\text@placeh}{\MTextSymbol{'203}}
+\DeclareRobustCommand{\Placeholder}{\ifmmode\math@placeh\else\text@placeh\fi}
+
+\DeclareMathSymbol{\math@uglyph}{\mathord}{operators}{'231}
+\newcommand{\text@uglyph}{\MTextSymbol{'231}}
+\DeclareRobustCommand{\UnknownGlyph}{\ifmmode\math@uglyph\else\text@uglyph\fi}
+
+\DeclareMathSymbol{\math@sixstar}{\mathord}{operators}{'237}
+\newcommand{\text@sixstar}{\MTextSymbol{'237}}
+\DeclareRobustCommand{\SixPointedStar}{\ifmmode\math@sixstar\else\text@sixstar\fi}
+
+\DeclareMathSymbol{\math@rect}{\mathord}{operators}{'226}
+\newcommand{\text@rect}{\MTextSymbol{'226}}
+\DeclareRobustCommand{\Rectangle}{\ifmmode\math@rect\else\text@rect\fi}
+
+\DeclareMathSymbol{\math@grect}{\mathord}{operators}{'227}
+\newcommand{\text@grect}{\MTextSymbol{'227}}
+\DeclareRobustCommand{\GrayRectangle}{\ifmmode\math@grect\else\text@grect\fi}
+
+\DeclareMathSymbol{\math@erect}{\mathord}{operators}{'230}
+\newcommand{\text@erect}{\MTextSymbol{'230}}
+\DeclareRobustCommand{\EmptyRectangle}{\ifmmode\math@erect\else\text@erect\fi}
+
+\DeclareMathSymbol{\math@square}{\mathord}{operators}{'231}
+\newcommand{\text@square}{\MTextSymbol{'231}}
+\DeclareRobustCommand{\Square}{\ifmmode\math@square\else\text@square\fi}
+
+\DeclareMathSymbol{\math@gsquare}{\mathord}{operators}{'232}
+\newcommand{\text@gsquare}{\MTextSymbol{'232}}
+\DeclareRobustCommand{\GraySquare}{\ifmmode\math@gsquare\else\text@gsquare\fi}
+
+\DeclareMathSymbol{\math@esquare}{\mathord}{operators}{'233}
+\newcommand{\text@esquare}{\MTextSymbol{'233}}
+\DeclareRobustCommand{\EmptySquare}{\ifmmode\math@esquare\else\text@esquare\fi}
+
+\DeclareMathSymbol{\math@circ}{\mathord}{operators}{'234}
+\newcommand{\text@circ}{\MTextSymbol{'234}}
+\DeclareRobustCommand{\Circle}{\ifmmode\math@circ\else\text@circ\fi}
+
+\DeclareMathSymbol{\math@gcirc}{\mathord}{operators}{'235}
+\newcommand{\text@gcirc}{\MTextSymbol{'235}}
+\DeclareRobustCommand{\GrayCircle}{\ifmmode\math@gcirc\else\text@gcirc\fi}
+
+\DeclareMathSymbol{\math@ecirc}{\mathord}{operators}{'236}
+\newcommand{\text@ecirc}{\MTextSymbol{'236}}
+\DeclareRobustCommand{\EmptyCircle}{\ifmmode\math@ecirc\else\text@ecirc\fi}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Dots
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\DeclareMathSymbol{\math@ldots}{\mathord}{operators}{'333}
+\newcommand{\text@ldots}{\MTextSymbol{'333}}
+\DeclareRobustCommand{\Ellipsis}{\ifmmode\math@ldots\else\text@ldots\fi}
+\let\ldots=\Ellipsis
+
+\DeclareMathSymbol{\math@cdots}{\mathord}{operators}{'334}
+\newcommand{\text@cdots}{\MTextSymbol{'334}}
+\DeclareRobustCommand{\CenterEllipsis}{\ifmmode\math@cdots\else\text@cdots\fi}
+\let\cdots=\CenterEllipsis
+
+\DeclareMathSymbol{\math@vdots}{\mathord}{operators}{'335}
+\newcommand{\text@vdots}{\MTextSymbol{'335}}
+\DeclareRobustCommand{\VerticalEllipsis}{\ifmmode\math@vdots\else\text@vdots\fi}
+\let\vdots=\VerticalEllipsis
+
+\DeclareMathSymbol{\math@rddots}{\mathord}{operators}{'336}
+\newcommand{\text@rddots}{\MTextSymbol{'336}}
+\DeclareRobustCommand{\AscendingEllipsis}{\ifmmode\math@rddots\else\text@rddots\fi}
+
+\DeclareMathSymbol{\math@ddots}{\mathord}{operators}{'337}
+\newcommand{\text@ddots}{\MTextSymbol{'337}}
+\DeclareRobustCommand{\DescendingEllipsis}{\ifmmode\math@ddots\else\text@ddots\fi}
+\let\ddots=\DescendingEllipsis
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Currency symbols
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\providecommand{\euro}{\MKeySymbol{'200}\xspace}
+\providecommand{\sterling}{\MKeySymbol{'243}\xspace}
+\providecommand{\cent}{\MKeySymbol{'242}\xspace}
+\providecommand{\yen}{\MKeySymbol{'245}\xspace}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Characters used by TeXSave[]
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\LatinFont}{\fontfamily{\rmdefault}\fontencoding{T1}%
+\selectfont}
+
+\newcommand{\DownExclamation}{{\LatinFont\char'275}}
+\newcommand{\CapitalEth}{{\LatinFont\char'320}}
+\providecommand{\Eth}{{\LatinFont\char'360}}
+\providecommand{\CapitalThorn}{{\LatinFont\char'336}}
+\providecommand{\Thorn}{{\LatinFont\char'376}}
+\newcommand{\ARing}{{\r a}}
+\newcommand{\Degree}{\ensuremath{{}^\circ}}
+\newcommand{\LeftGuillemet}{{\LatinFont\char'023}}
+\newcommand{\RightGuillemet}{{\LatinFont\char'024}}
+
+\let\qed=\UnknownGlyph
+
+\newcommand{\CapitalCHacek}{{\v C}}
+\newcommand{\CHacek}{{\v C}}
+
+\newcommand{\CapitalSHacek}{{\v S}}
+\newcommand{\SHacek}{{\v s}}
+
+\newcommand{\CapitalCCedilla}{{\LatinFont\char'307}}
+
+\newcommand{\CCedilla}{{\LatinFont\char'347}}
+
+\newcommand{\CapitalECup}{{\u E}}
+\newcommand{\ECup}{{\u e}}
+\newcommand{\CapitalICup}{{\u I}}
+\newcommand{\ICup}{{\u i}}
+
+\newcommand{\Diameter}{\ensuremath{\EmptyCircle\mkern-9mu\mathord/}}
+\newcommand{\ReversePrime}{{\LatinFont\char'000}}
+\newcommand{\ReverseDoublePrime}{\ReversePrime\kern-1.5\p@\ReversePrime}
+\newcommand{\InvisibleTimes}{\,}
+
+\DeclareMathSymbol{\NotVerticalBar}{\mathord}{operators}{'223}
+\DeclareMathSymbol{\NotDoubleVerticalBar}{\mathord}{operators}{'224}
+
+\DeclareMathSymbol{\LessFullEqual}{\mathord}{operators}{'272}
+\DeclareMathSymbol{\GreaterFullEqual}{\mathord}{operators}{'273}
+\DeclareMathSymbol{\NotLessFullEqual}{\mathord}{operators}{'274}
+\DeclareMathSymbol{\NotGreaterFullEqual}{\mathord}{operators}{'275}
+
+\DeclareMathSymbol{\LessEqualGreater}{\mathord}{operators}{'276}
+\DeclareMathSymbol{\GreaterEqualLess}{\mathord}{operators}{'277}
+
+\DeclareMathSymbol{\m@thtilde}{\mathord}{operators}{'176}
+\providecommand{\Tilde}{\ensuremath{\m@athtilde}}
+
+
+\let\DoubleContourIntegral=\dbloint
+\let\ClockwiseContourIntegral=\clockoint 
+\let\CounterClockwiseContourIntegral=\cntclockoint
+\let\DoubleDot=\DDot
+\let\TripleDot=\DDDot
+\let\SuchThat=\backepsilon
+
+\let\EqualTilde=\TildeEqual
+\let\NotTildeTilde=\napprox
+\let\precsim=\PrecedeesTilde
+\let\succsim=\SucceedsTilde 
+\let\NotSubset=\nsubset
+\let\NotSuperset=\nsupset
+\let\lesssim=\LessTilde
+\let\gtrsim=\GreaterTilde
+\let\LessGreater=\GreaterLess
+\let\NotLessGreater=\NotGreaterLess
+\let\NotCongruent=\nequiv
+\let\HumpDownHump=\Bumpeq
+\let\trianglelefteq=\unlhd 
+\let\trianglerighteq=\unrhd 
+\let\Star=\star
+\let\NotPrecedesEqual=\NotPrecedesSlantEqual 
+\let\NotSucceedsEqual=\NotSucceedsSlantEqual
+\let\SmallCircle=\circ
+\let\DownTee=\top
+\let\LeftTeeArrow=\MapsFrom
+\let\UpTeeArrow=\MapsUp
+\let\DownTeeArrow=\MapsDown
+\let\DownLeftVector=\LeftHarpoonDownFill
+\let\RightUpVector=\upharpoonrightup
+\let\LeftUpVector=\upharpoonleftup
+\let\DownRightVector=\RightHarpoonDownFill
+\let\RightDownVector=\upharpoonrightdown
+\let\LeftDownVector=\upharpoonleftdown
+\let\RightArrowLeftArrow=\rightleftarrow
+\let\UpArrowDownArrow=\uparrowdownarrow
+\let\LeftArrowRightArrow=\leftrightarrow
+\let\ReverseEquilibrium=\RevEquilibriumFill
+\let\NotReverseElement=\nni
+\let\NotSquareSubsetEqual=\nsqsubseteq
+\let\NotSquareSupersetEqual=\nsqsupseteq
+\let\blacklozenge=\FilledDiamond
+
+
+
+\endinput
+%
+% End of wrisym.sty
