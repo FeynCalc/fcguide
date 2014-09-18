@@ -1,0 +1,119 @@
+%%
+%% This is file `eqnarray.sty',
+%% generated with the docstrip utility.
+%%
+%% The original source files were:
+%%
+%% eqnarray.dtx  (with options: `style')
+%% 
+%% IMPORTANT NOTICE:
+%% 
+%% You are not allowed to change this file.
+%% 
+\def\fileversion{1.2a}
+\def\filedate{17 July 1997}
+\def\docdate{17 July 1997}
+\typeout{equationarray \fileversion\space<\filedate>}
+\typeout{English documentation\space\space<\docdate>}
+\RequirePackage{array}
+\def\eqnarr@left{\@centering}
+\let\eqnarr@opts\relax
+\DeclareOption{fleqn}{
+  \def\eqnarr@left{\mathindent}
+  \def\eqnarr@opts{\displaywidth\linewidth
+                   \advance\displaywidth-\mathindent} }
+\ProcessOptions
+\def\equationarray{%
+ \col@sep\arraycolsep
+ \def\d@llarbegin{$\displaystyle}%
+ \def\d@llarend{$}%
+ \stepcounter{equation}%
+ \let\@currentlabel=\theequation
+ \set@eqnsw \global\@eqcnt\z@ \global\@eqargcnt\z@
+ \let\@classz\@eqnclassz
+ \def\multicolumn##1##2##3{\@eqnmulticolumn{##1}{##2}{##3}%
+                           \global\advance\@eqcnt##1
+                           \global\advance\@eqcnt\m@ne}%
+ \def\@halignto{to\displaywidth}%
+ \@ifnextchar[{\@equationarray}{\@equationarray[.]}}
+\let\@eqnmulticolumn=\multicolumn
+\def\yesnumber{\global\@eqnswtrue}
+\let\set@eqnsw=\yesnumber
+\def\@amper{&}
+\newcount\@eqargcnt  % counts number of columns
+\def\@equationarray[#1]#2{%
+     \eqnarr@opts
+     \@tempdima \ht \strutbox
+     \advance \@tempdima by\extrarowheight
+     \setbox\@arstrutbox=\hbox{\vrule
+               \@height\arraystretch \@tempdima
+               \@depth\arraystretch \dp \strutbox
+               \@width\z@}%
+     \gdef\advance@eqargcnt{\global\advance\@eqargcnt\@ne}%
+     \begingroup
+     \@mkpream{#2}%
+     \xdef\@preamble{%
+      \if #1l\tabskip\z@ \else\if #1r\tabskip\@centering
+                         \else\if #1c\tabskip\@centering
+                         \else\tabskip\eqnarr@left \fi\fi\fi
+      \halign \@halignto
+      \bgroup \tabskip\z@ \@arstrut \@preamble
+      \if #1l\tabskip\@centering \else\if #1r\tabskip\z@
+                                 \else\tabskip\@centering \fi\fi
+      \@amper\llap{\@sharp}\tabskip\z@\cr}%
+     \endgroup
+     \gdef\advance@eqargcnt{}%
+     \bgroup
+     \let\@sharp## \let\protect\relax
+     \m@th   \let\\=\@equationcr
+     \let\par\@empty
+     $$                            % $$ BRACE MATCHING HACK
+     \lineskip \z@
+     \baselineskip \z@
+     \@preamble}
+\def\@eqnclassz{\@classx
+   \@tempcnta \count@
+   \advance@eqargcnt
+   \prepnext@tok
+   \@addtopreamble{%
+      \global\advance\@eqcnt\@ne
+      \ifcase \@chnum
+      \hfil \d@llarbegin \insert@column \d@llarend\hfil \or
+      \d@llarbegin \insert@column \d@llarend \hfil \or
+      \hfil\kern\z@ \d@llarbegin \insert@column \d@llarend \or
+      $\vcenter
+      \@startpbox{\@nextchar}\insert@column \@endpbox $\or
+      \vtop \@startpbox{\@nextchar}\insert@column \@endpbox \or
+      \vbox \@startpbox{\@nextchar}\insert@column \@endpbox
+      \fi}\prepnext@tok}
+\def\endequationarray{\@zequationcr
+   \egroup
+   \global\advance\c@equation\m@ne $$  % $$ BRACE MATCHING HACK
+   \egroup\global\@ignoretrue
+   \gdef\@preamble{}}
+\def\@equationcr{${\ifnum0=`}\fi\@ifstar{\global\@eqpen\@M
+    \@xequationcr}{\global\@eqpen\interdisplaylinepenalty
+                   \@xequationcr}}
+\def\@xequationcr{%
+    \@ifnextchar[{\@argequationcr}{\ifnum0=`{\fi}${}%
+    \@zequationcr}}
+\def\@argequationcr[#1]{\ifnum0=`{\fi}${}\ifdim #1>\z@
+   \@xargequationcr{#1}\else
+   \@yargequationcr{#1}\fi}
+\def\@xargequationcr#1{\unskip
+   \@tempdima #1\advance\@tempdima \dp \@arstrutbox
+   \vrule \@depth\@tempdima \@width\z@
+   \@zequationcr\noalign{\penalty\@eqpen}}
+\def\@yargequationcr#1{%
+   \@zequationcr\noalign{\penalty\@eqpen\vskip #1}}
+\def\@zequationcr{\@whilenum\@eqcnt <\@eqargcnt
+   \do{\@amper\omit\global\advance\@eqcnt\@ne}%
+   \@amper
+   \if@eqnsw\@eqnnum\stepcounter{equation}\fi
+   \set@eqnsw\global\@eqcnt\z@\cr}
+\@namedef{equationarray*}{%
+   \let\set@eqnsw=\nonumber \equationarray}
+\@namedef{endequationarray*}{\endequationarray}
+\endinput
+%%
+%% End of file `eqnarray.sty'.
