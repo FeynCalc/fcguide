@@ -18,8 +18,8 @@ Creative Commons Attribution-ShareAlike 4.0 International License
 </a>.
 
 Copyright (C) 1990-2014 Rolf Mertig,
-Copyright (C) 1997-2014 Frederik Orellana,
-Copyright (C) 2014      Vladyslav Shtabovenko.
+copyright (C) 1997-2014 Frederik Orellana,
+copyright (C) 2014      Vladyslav Shtabovenko.
 
 # Compiling the LaTeX source
 
