@@ -1,0 +1,68 @@
+\BOOKMARK [1][-]{section*.1}{Preface}{}% 1
+\BOOKMARK [0][]{chapter.12}{The FeynCalc Framework}{}% 2
+\BOOKMARK [1][-]{section.13}{Introduction}{chapter.12}% 3
+\BOOKMARK [1][-]{section.14}{Input Functions}{chapter.12}% 4
+\BOOKMARK [2][-]{subsection.16}{Lorentz Tensors and Scalar Products}{section.14}% 5
+\BOOKMARK [2][-]{subsection.22}{Dirac Matrices}{section.14}% 6
+\BOOKMARK [2][-]{subsection.27}{Spinors}{section.14}% 7
+\BOOKMARK [2][-]{subsection.30}{SU\(N\) Matrices and Structure Constants}{section.14}% 8
+\BOOKMARK [2][-]{subsection.36}{Denominators of Propagators}{section.14}% 9
+\BOOKMARK [2][-]{subsection.40}{Small Variables}{section.14}% 10
+\BOOKMARK [2][-]{subsection.42}{Quantum Fields}{section.14}% 11
+\BOOKMARK [2][-]{subsection.45}{Propagators}{section.14}% 12
+\BOOKMARK [2][-]{subsection.57}{Vertex functions}{section.14}% 13
+\BOOKMARK [2][-]{subsection.61}{Twist 2 Operators}{section.14}% 14
+\BOOKMARK [2][-]{subsection.62}{Propagators}{section.14}% 15
+\BOOKMARK [2][-]{subsection.70}{Vertex functions}{section.14}% 16
+\BOOKMARK [2][-]{subsection.72}{Twist 2 Operators}{section.14}% 17
+\BOOKMARK [1][-]{section.73}{Inside FeynCalc}{chapter.12}% 18
+\BOOKMARK [2][-]{subsection.74}{Startup Sequence, Modules, Add-ons and Extensibility}{section.73}% 19
+\BOOKMARK [2][-]{subsection.75}{Configuration and Runtime Variables}{section.73}% 20
+\BOOKMARK [2][-]{subsection.79}{Data Types}{section.73}% 21
+\BOOKMARK [2][-]{subsection.84}{Output Forms and Internal Representation}{section.73}% 22
+\BOOKMARK [2][-]{subsection.98}{Help System}{section.73}% 23
+\BOOKMARK [1][-]{section.101}{Elementary Calculations}{chapter.12}% 24
+\BOOKMARK [2][-]{subsection.102}{Lorentz Algebra }{section.101}% 25
+\BOOKMARK [2][-]{subsection.110}{Dirac Algebra}{section.101}% 26
+\BOOKMARK [2][-]{subsection.124}{Dirac Traces}{section.101}% 27
+\BOOKMARK [2][-]{subsection.133}{SU\(N\) Traces and Algebra}{section.101}% 28
+\BOOKMARK [2][-]{subsection.140}{Green's functions}{section.101}% 29
+\BOOKMARK [1][-]{section.147}{Tensor and Scalar Integrals}{chapter.12}% 30
+\BOOKMARK [2][-]{subsection.148}{Passarino-Veltman Integrals and Reduction of Coefficient Functions}{section.147}% 31
+\BOOKMARK [2][-]{subsection.161}{Tables of Integrals}{section.147}% 32
+\BOOKMARK [1][-]{section.164}{Miscellaneous Functions}{chapter.12}% 33
+\BOOKMARK [2][-]{subsection.165}{Low Level Dirac Algebra Functions}{section.164}% 34
+\BOOKMARK [2][-]{subsection.167}{Functions for Polynomial Manipulations}{section.164}% 35
+\BOOKMARK [2][-]{subsection.171}{An Isolating Function for Automatically Introducing Abbreviations}{section.164}% 36
+\BOOKMARK [2][-]{subsection.175}{An Extension of FreeQ and Two Other Useful Functions}{section.164}% 37
+\BOOKMARK [2][-]{subsection.178}{Writing Out to Mathematica and Fortran}{section.164}% 38
+\BOOKMARK [2][-]{subsection.183}{More on Levi-Civita Tensors}{section.164}% 39
+\BOOKMARK [2][-]{subsection.191}{Simplifications of Expressions with Mandelstam Variables}{section.164}% 40
+\BOOKMARK [2][-]{subsection.194}{Manipulation of Propagators}{section.164}% 41
+\BOOKMARK [2][-]{subsection.196}{Polarization Sums}{section.164}% 42
+\BOOKMARK [2][-]{subsection.199}{Permuting the Arguments of the Four-Point Function}{section.164}% 43
+\BOOKMARK [0][]{chapter.203}{Physics Applications}{}% 44
+\BOOKMARK [1][-]{section.204}{The Standard Model.}{chapter.203}% 45
+\BOOKMARK [2][-]{subsection.205}{A Photon One-Loop Self Energy Diagram}{section.204}% 46
+\BOOKMARK [2][-]{subsection.209}{Generic Diagrams for W fi 'j with OneLoop}{section.204}% 47
+\BOOKMARK [2][-]{subsection.214}{The Options of OneLoop}{section.204}% 48
+\BOOKMARK [2][-]{subsection.216}{OneLoopSum and Its Options}{section.204}% 49
+\BOOKMARK [2][-]{subsection.222}{Box Graphs of e+ e- ZH}{section.204}% 50
+\BOOKMARK [2][-]{subsection.224}{Processing Amplitudes}{section.204}% 51
+\BOOKMARK [1][-]{section.228}{QCD}{chapter.203}% 52
+\BOOKMARK [2][-]{subsection.229}{The 1-loop ghost self energy }{section.228}% 53
+\BOOKMARK [2][-]{subsection.230}{The 2-loop ghost self energy }{section.228}% 54
+\BOOKMARK [2][-]{subsection.231}{The 1-loop quark self energy }{section.228}% 55
+\BOOKMARK [2][-]{subsection.232}{The 2-loop quark self energy }{section.228}% 56
+\BOOKMARK [2][-]{subsection.233}{The 1-loop gluon self energy }{section.228}% 57
+\BOOKMARK [2][-]{subsection.234}{The 2-loop gluon self energy }{section.228}% 58
+\BOOKMARK [1][-]{section.238}{Chiral Perturbation Theory}{chapter.203}% 59
+\BOOKMARK [2][-]{subsection.239}{Introduction}{section.238}% 60
+\BOOKMARK [2][-]{subsection.240}{Models and Lagrangians}{section.238}% 61
+\BOOKMARK [2][-]{subsection.244}{Quantum Fields and their Space-Time Derivatives}{section.238}% 62
+\BOOKMARK [2][-]{subsection.248}{Vectors, Matrices and Structure Constants in SU\(2\) and SU\(3\)}{section.238}% 63
+\BOOKMARK [2][-]{subsection.268}{Model and Lagrangian Definitions}{section.238}% 64
+\BOOKMARK [2][-]{subsection.276}{Power Counting with FeynArts}{section.238}% 65
+\BOOKMARK [2][-]{subsection.282}{Example: Radiative Pion Decay}{section.238}% 66
+\BOOKMARK [0][]{chapter.283}{Reference Guide}{}% 67
+\BOOKMARK [0][]{chapter*.1522}{Bibliography}{}% 68
