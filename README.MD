@@ -1,6 +1,6 @@
 # FeynCalc guide
 
-FeynCalc is a Mathematica package for algebraic calculations in
+<a href="http://feyncalc.org/">FeynCalc</a> is a Mathematica package for algebraic calculations in
 elementary particle physics.
 
 This guide is a hands-on, practical introduction to automatized 
