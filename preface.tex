@@ -2,54 +2,49 @@
 \section*{Preface}
 
 This book is for practitioners of calculations in perturbative QCD,
-the Standard Model, Chiral Perturbation Theory and other theories.
-The intention is to serve both educational as well as research purposes.
-This is reflected in the layout of the parts.
+the Standard Model, Chiral Perturbation Theory and other quantum field theories.
+The intention is to serve educational as well as research purposes.
+This is reflected in the organization of the text:
 The first part is a tutorial-like introduction with many small examples.
 It is necessarily of a rather technical character and should prepare the
-reader for doing real physics calculations.
+reader for doing concrete physics calculations.
 The second part contains a variety of example calculations from textbook
-to research level. The interested student will find here calculations 
-from the literature worked through in a detail not usually given.
+to research level. The interested student will here find calculations 
+from the literature, worked through to a detail not usual in textbooks.
 The researcher will find calculations that should provide a starting point
-for calculations of his or her own research.
+for calculations in his or her own field of research.
 The third part is a reference guide, listing all important functions,
-also with many small examples.
-%The user is assumed to know Quantum Field Theory and have some understanding of \mma.
-%It is strongly recommended to study the \mma book \cite{Mathematica} by
-%Stephen Wolfram before starting with \fc.
+along with smaller examples.
 
 Over the years, the detailed course of and motivation for the development of \fc has
-changed somewhat both in scope and focus. The reasons are the different research
-interests of the two authors, the relative slowness of \mma and the rapid development of
-multi-loop calculations carried out with FORM and programs based on FORM 
-\cite{Vermaseren:2000nd, Hahn:1998yk}, which are  more suited for very large scale calculations.
-One focus has been the development of \fc tools for interacting with FORM. These tools allow
-taking advantage of FORM's efficient handling of large expressions, which can be simply
+changed somewhat both in scope and focus. Reasons for this include the
+different research interests of the authors, the relative slowness of \mma and the development of
+multi-loop calculations with other scientific software packages - in
+particular FORM and programs based on FORM \cite{Vermaseren:2000nd,
+Hahn:1998yk}. While such packages are typically faster than \fc and thus suited
+for very large scale calculations, we believe \fc has kept relevance by being a
+relatively comprehensive and complete framework while also exhibiting the
+user-friendliness and versatility of a pure \mma package.
+
+None the less, some effort has been put in the development of \fc tools,
+precisely for interacting with FORM.
+These tools allow taking advantage of FORM's efficient handling of large expressions, which can be simply
 unmanageable with \mma, while staying within the \mma system, which as a
-%are particularly useful if CPU time is an issue and/or if truly large expressions occur.
-%and a very efficient way to handle those  expressions is needed.
-%FORM is very much suited for this task. 
-%On the other hand,
-general purpose computer algebra system, has a more intuitive
-%flexibility in their
+general purpose computer algebra system, has an intuitive and flexible
 user interface and built-in mathematical knowledge.
-%one can use the already provided libraries for operations like
-%integration and series expansions and more mathematical tasks.
-%3) the rapid development of the raw computing power of hardware. 
-%As a consequence the focus has moved away from providing cutting edge results of multi-loop
-%calculations in the Standard Model and in QCD. 
+
 Another focus has been to explore other types of calculations than the evaluation of Feynman
 diagrams, e.g. complex algebraic manipulations of quantum fields and lagrangians, traditionally done by hand only.
-Such calculations have become feasible because of the steep increase of the computing
-power of commodity hardware.
+Such calculations have become feasible because of the steep increase of the
+computing power of commodity hardware.
 
-Despite the motivations driving development, the central vision remains largely the same: 
+Despite the shifting motivations driving development, the central vision remains
+largely the same:
 \fc was conceived as and continues to be developed as a general-purpose, relatively easy to use,
-modular toolbox for quantum field theory calculations. 
-Dirac algebra utilities, Lorentz and Color algebra manipulation capabilities, 
-functional derivation utilities, integral and other tables are separated off in distinct
-functions which do well-defined operations.
+modular toolbox for quantum field theory calculations.
+Dirac algebra utilities, Lorentz and color algebra manipulation capabilities, 
+functional derivation utilities, integral and other tables are encapsulated in
+distinct functions which do well-defined operations.
 Such basic functions can then be used on a higher level to build sophisticated model dependent
 functions.
 
@@ -71,9 +66,6 @@ checked as possible by as many people as possible. This implies openness and adh
 standards. It is proposed to build up a repository of lagrangians, amplitudes and integrals,
 stored in a standardized electronic form.}
 
-%\item{{\bf Algorithm optimization.} The more people using (an implementation of) an algorithm,
-%the better the chances of improving (the implementation of) it.}
-
 \item{{\bf Prototyping.} Electronic tools should be put to use for making it easy to
 try out new quantum field theory models. This should be achieved by providing predefined
 building blocks capturing the more general physics and the more common calculational tasks.}
@@ -84,20 +76,13 @@ vice versa.}
 
 \end{itemize}
 
-%Notice in this connection that the standards put forth in this document (and in the code) are what
-%the authors consider to be the most general but still useful standards for doing quantum fields
-%theory with \mma. This means that standards are to be considered as relatively fixed, but not that
-%they cannot be changed, given good enough reasons.
-
-We consider interaction with users to be crucial
-for the further evolving of \fc. Therefore, suggestions and in particular
-code contributions are warmly welcomed. Smaller contributions can be contributed
-on the web site \href{http://www.feyncalc.org/}{http://www.feyncalc.org/}; 
-larger contributions should be coordinated with the developers.
-Though much testing of the code has been done, there is absolutely no claim that
-\fc is bug free. Users are encouraged to be sceptical about results, and when sure that the
-program  returns a wrong answer, to report it via the web site
-\href{http://www.feyncalc.org/}{http://www.feyncalc.org/}.
+\fc is an open-source project and contributions are warmly welcomed. These are
+best done by checking out a working copy of code on
+\href{http://github.org/FeynCalc/feyncalc}{Github} and then getting in touch via
+the \href{http://www.feyncalc.org/}{website}. Though
+much testing of the code has been done, there is absolutely no claim that \fc is
+bug free. Users are encouraged to be sceptical about results, and when sure that
+the program returns a wrong answer, to report it via the website.
 
 \subsection*{Version History}
 
@@ -188,10 +173,9 @@ request}.
 
 \subsubsection*{1993-1996 : \fc 3.0, modularization, typesetting, Operator Product Expansion}
 
-Due to the rapidly increasing amount of code, \fc was reorganized in a modular way. The
-definitions of each function are contained in a package file which is loaded only on demand.
-For the maintenance of hundreds of packages, totalling 2.5 megabytes, software engineering was
-needed.
+Due to the rapidly increasing amount of code, totalling 2.5 megabytes, \fc was
+reorganized in a modular way. The definitions of each function were contained in
+a package file which was loaded only on demand.
 
 \begin{itemize}
 
@@ -223,12 +207,29 @@ for twist-2 (and higher) operators.
 \subsubsection*{1997-2000 : \fc 4.0-4.1, QCD and OPE, ChPT, tables}
 
 The package \tarcer, which was initially an independent project, was integrated
-into \fc.  \tarcer \cite{Mertig:1998vk} adds two-loop functionality for propagator-type integrals
+into \fc. \tarcer \cite{Mertig:1998vk} adds two-loop functionality for propagator-type integrals
 using the recurrence relations of Tarasov \cite{Tarasov:1997kx}.
 
-In 2000 maintenance of the package was taken over by Frederik Orellana.
+In 2000, Frederik Orellana, then a PhD student at the University of Zurich,
+started contributing to the package.
 He worked in Chiral Perturbation Theory \cite{Gasser:1984gg} (ChPT) and made some changes, as well
 as adding code to \fc in order to support ChPT and effective theories in general, and interfacing
-with \fa.
+with \fa. Eventually, he integrated his package, PHI, into FeynCalc. The
+ambition of PHI is to allow full automation of Feynman diagram calculations,
+starting from a Lagrangian - as opposed to starting from a \fa model definition,
+i.e. to automatize the generation of a \fa model and to allow the \fa output to
+be directly used by \fc.
 % Also, first implementations of the 'tHooft-Veltman formulae \cite{'tHooft:1978xw} for
-% numerical evaluation of the one-loop integrals $B_0, C_0$ and $D_0$ were added. 
+% numerical evaluation of the one-loop integrals $B_0, C_0$ and $D_0$ were added.
+
+\subsubsection*{2000-2014 : \fc 5-8, maintenance}
+
+With both authors out of theoretical physics, no new developments were
+undertaken, but the mailing list remained active and bugs were fixed.
+
+\subsubsection*{2014 : \fc 9, cleanup, testing}
+
+In 2014, Vladyslav Shtabovenko, has joined the team. He is working on effective
+theories in quarkonium production as a PhD student at the Technical University
+of Munich. To \fc, he has contributed work on Dirac gamma schemes and a unit
+testing framework.
