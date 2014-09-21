@@ -25,7 +25,7 @@ copyright (C) 2014      Vladyslav Shtabovenko.
 
 ## Prerequisites
 
-- A Mathematica installation (<= 9.x)
+- A Mathematica installation with TeX style files and fonts (<= 9.x)
 - A recent LaTeX installation (see http://latex-project.org/ftp.html) with 
 
 ## Mathematica styles and fonts
