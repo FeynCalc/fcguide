@@ -67,7 +67,7 @@ is specified by setting the option \mb{Dimension} of the corresponding
 input functions.
 The default is four. If \fc is  used for interactive
 $D$-dimensional calculations, you should change the option of the
-input functions. 
+input functions.
 Note that Lorentz indices, momenta and
 Dirac matrices carry their dimension
 locally, i.e., for calculating a Dirac trace in $D$ dimensions the
@@ -89,7 +89,7 @@ there is no need of a dimension option for e.g. the function \mb{DiracTrace}.
 \mbs{LC[$\mu$, $\nu$, $\rho$, $\sigma$],
      LCD[$\mu$, $\nu$, $\rho$, $\sigma$]} & 4- and D-dimensional Levi-Civita tensor $\varepsilon^{\mu \nu \rho \sigma}$  \cr
 \mbs{MT[$\mu$, $\nu$], \; MTD[$\mu$, $\nu$]} & 4- and D-dimensional metric tensor $g^{\mu \nu}$ \cr
-\mbs{SP[{\sl p},\ {\sl q}], SPD[{\sl p},\ {\sl q}]} & 4- and D-dimensional $p \cdot q$ \cr  
+\mbs{SP[{\sl p},\ {\sl q}], SPD[{\sl p},\ {\sl q}]} & 4- and D-dimensional $p \cdot q$ \cr
 } {Short input forms for basic Lorentz tensor input functions.}
 
 \otabthree{
@@ -370,11 +370,11 @@ This is how you enter $d_{a\,b\,c}$.
 }{
 They can be expressed in terms of the generating matrices (see section \ref{gelltrace} for a discussion of the trace).
 }
-\domtog{SUNF[a, b, c, Explicit $\Rule$ True]\ + \ 
+\domtog{SUNF[a, b, c, Explicit $\Rule$ True]\ + \
 SUNF[a, c, b, Explicit $\Rule$ True]\; //\; Expand}{\ 0\hfil\\
 }{
 Antisymmetry,
-$f_{a\,c\,b}\,= -f_{a\,b\,c}$.  } 
+$f_{a\,c\,b}\,= -f_{a\,b\,c}$.  }
 \domtog{SUND[a, b, c, Explicit $\Rule$ True]\ - \ SUND[a, c, b, Explicit $\Rule$ True]\; //\; Expand}{\ 0\hfil\\ }{Symmetry,
 $d_{a\,c\,b}\,= d_{a\,b\,c}$.}
 \enom
@@ -395,7 +395,7 @@ external four-vectors.
 PropagatorDenominator[{\sl q}\ +\ {\sl p},\ $\hbox{\sl m}_{1}$],\ ...]}
 &
 $1/( [ q^{2} - m_0^{2} ] [(q+p)^{2} - m_1^{2}])\, \ldots$ \cr
-\mbs{FAD[ \{{\sl q}, $\hbox{\sl m}_0 $\}, \{{\sl q-p,M}\}, \ldots ]} 
+\mbs{FAD[ \{{\sl q}, $\hbox{\sl m}_0 $\}, \{{\sl q-p,M}\}, \ldots ]}
 &
 $1/( [ q^{2} - m_0^{2} ] [(q+p)^{2} - m_1^{2}])\, \ldots$ \cr
 } {Entering denominators of propagators.}
@@ -488,7 +488,7 @@ Several utility functions for input of propagators are available.
 \mbs{QP[{\sl p,m}]} & gives the quark propagator with mass m\cr
 }{Input functions for gluon ghost and quark propagators.}
 
-{\raggedleft 
+{\raggedleft
 The options for \mbs{GluonPropagator} are:
 }
 \otabthree{
@@ -534,9 +534,9 @@ $
 \domtog{GluonPropagator[p, \{$\mu$,a\}, \{$\nu$,b\}, Gauge->$\{n, \alpha\}$]}{
 $
 \frac{\ImaginaryI \multsp \big(-{g^{\mu \nu}}-\frac{({{ p }^{\mu}})\multsp ({{ p }^{\nu}})
- \multsp {n^2}-\alpha \multsp ({{ n }^{\mu}})\multsp ({{ n }^{\nu}})\multsp {p^2}}{{{n 
+ \multsp {n^2}-\alpha \multsp ({{ n }^{\mu}})\multsp ({{ n }^{\nu}})\multsp {p^2}}{{{n
  \cdot p}^2}}+\frac{({{ p }^{\mu}})\multsp ({{ n }^{\nu}})+
- ({{ n }^{\mu}})\multsp ({{ p }^{\nu}})}{n \cdot p}\big)\multsp 
+ ({{ n }^{\mu}})\multsp ({{ p }^{\nu}})}{n \cdot p}\big)\multsp
  {{\delta }_{a b}}}{{p^2}}
 $
 }{Specifying an axial gauge.}
@@ -627,12 +627,12 @@ $
 \beom
 \domtog{GluonVertex[{\sl p , $\mu$,a, q, $\nu$,b, k, $\lambda$,c, r, $\sigma$,d}]\//\//Explicit}{
 $
--\ImaginaryI \multsp g_{s}^{2}\multsp 
- (({g^{\lambda \sigma }}\multsp {g^{\mu \nu }}-{g^{\lambda \mu }}\multsp {g^{\nu \sigma }})\multsp {f_{ad\Mvariable{u6}}}\multsp 
- {f_{bc\Mvariable{u6}}}+ 
-\\ 
-(  {g^{\lambda \sigma }}\multsp {g^{\mu \nu }}-{g^{\lambda \nu }}\multsp {g^{\mu \sigma }})\multsp {f_{ac\Mvariable{u6}}}\multsp 
- {f_{bd\Mvariable{u6}}}+({g^{\lambda \mu }}\multsp {g^{\nu \sigma }}-{g^{\lambda \nu }}\multsp {g^{\mu \sigma }})\multsp 
+-\ImaginaryI \multsp g_{s}^{2}\multsp
+ (({g^{\lambda \sigma }}\multsp {g^{\mu \nu }}-{g^{\lambda \mu }}\multsp {g^{\nu \sigma }})\multsp {f_{ad\Mvariable{u6}}}\multsp
+ {f_{bc\Mvariable{u6}}}+
+\\
+(  {g^{\lambda \sigma }}\multsp {g^{\mu \nu }}-{g^{\lambda \nu }}\multsp {g^{\mu \sigma }})\multsp {f_{ac\Mvariable{u6}}}\multsp
+ {f_{bd\Mvariable{u6}}}+({g^{\lambda \mu }}\multsp {g^{\nu \sigma }}-{g^{\lambda \nu }}\multsp {g^{\mu \sigma }})\multsp
  {f_{ab\Mvariable{u6}}}\multsp {f_{cd\Mvariable{u6}}})
 $
 }{One way how to enter a 4-gluon Vertex.}
@@ -641,13 +641,13 @@ $
 \subsection{Twist 2 Operators}
 
 $
-\frac{1}{2}\multsp (1+{{(-1)}^m})\multsp g_{s}^{2}\multsp 
- \big({f_{a\Mvariable{c3}d}}\multsp {f_{bc\Mvariable{c3}}}\multsp 
+\frac{1}{2}\multsp (1+{{(-1)}^m})\multsp g_{s}^{2}\multsp
+ \big({f_{a\Mvariable{c3}d}}\multsp {f_{bc\Mvariable{c3}}}\multsp
  \big(\Mfunction{O}_{\Mvariable{la}\VeryThinSpace \nu\VeryThinSpace \mu\VeryThinSpace \Mvariable{si}}^{\Mvariable{G4}}\Mfunction{(
- }k,q,p,s)\big)- 
-\\ {f_{ac\Mvariable{c3}}}\multsp {f_{b\Mvariable{c3}d}}\multsp 
+ }k,q,p,s)\big)-
+\\ {f_{ac\Mvariable{c3}}}\multsp {f_{b\Mvariable{c3}d}}\multsp
  \big(\Mfunction{O}_{\mu\VeryThinSpace \Mvariable{la}\VeryThinSpace \nu\VeryThinSpace \Mvariable{si}}^{\Mvariable{G4}}\Mfunction{(}p,
- k,q,s)\big)-{f_{ab\Mvariable{c3}}}\multsp {f_{c\Mvariable{c3}d}}\multsp 
+ k,q,s)\big)-{f_{ab\Mvariable{c3}}}\multsp {f_{c\Mvariable{c3}d}}\multsp
  \big(\Mfunction{O}_{\mu\VeryThinSpace \nu\VeryThinSpace \Mvariable{la}\VeryThinSpace \Mvariable{si}}^{\Mvariable{G4}}\Mfunction{(}p,
  q,k,s)\big)\big)
 $
@@ -666,7 +666,7 @@ Several utility functions for input of propagators are available.
 \mbs{QP[{\sl p,m}]} & gives the quark propagator with mass m\cr
 }{Input functions for gluon ghost and quark propagators.}
 
-{\raggedleft 
+{\raggedleft
 The options for \mbs{GluonPropagator} are:
 }
 \otabthree{

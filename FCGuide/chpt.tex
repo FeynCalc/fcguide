@@ -10,10 +10,10 @@ rather general level were implemented, as was a method of interacting seamlessly
 following sections cover the more important features of the package. A fuller description can be
 found in \cite{PHI}.
 
-The motivation for writing \fphi was a lack of software for implementing an effective model like 
-one of the various ChPT models, which have a more complicated power counting than models which 
-simply expand Green's functions perturbatively in a coupling constant. However, the package is 
-general enough that other models can be defined, as has been demonstrated with the simple example 
+The motivation for writing \fphi was a lack of software for implementing an effective model like
+one of the various ChPT models, which have a more complicated power counting than models which
+simply expand Green's functions perturbatively in a coupling constant. However, the package is
+general enough that other models can be defined, as has been demonstrated with the simple example
 of QED.
 % TODO: Add reference to calculations with other models
 % (HQET, soft collinear effective field theory??)
@@ -102,7 +102,7 @@ CommutatorReduce}
 $\ComplexI \pi^2\, \left( \overrightarrow{V_\mu} \cdot
                \overrightarrow{\bm{\sigma}}\, -\,
                      \overrightarrow{A_\mu} \cdot \overrightarrow{\bm{\sigma}}
-                     \right)\, -\, 
+                     \right)\, -\,
 \ComplexI \left( \overrightarrow{A_\mu} \cdot \overrightarrow{\bm{\sigma}}\, +\,
                 \overrightarrow{V_\mu} \cdot \overrightarrow{\bm{\sigma}}\right)
                      \pi^2 \, +\,\\
@@ -177,7 +177,7 @@ The SU($N$) matrices and vectors may be multiplied with each other using some ne
 The matrices generating flavor SU($N$) are denoted \mb{UGenerator}.
 
 \otabtwo{
-\mbs{UGenerator[{\sl i}]} & \mb{UMatrix[UGenerator[{\sl i}]]} is the {\sl i}'th generator of SU($N$) 
+\mbs{UGenerator[{\sl i}]} & \mb{UMatrix[UGenerator[{\sl i}]]} is the {\sl i}'th generator of SU($N$)
 }{Generators of flavor SU(2) or SU(3).}
 
 SU($N$) vectors and matrices may be written out explicitly using
@@ -198,7 +198,7 @@ SU($N$) vectors and matrices may be written out explicitly using
 \domtog{UMatrix[UGenerator[1]] // WriteOutUMatrices}{$\big(\NoBreak
   \MathBegin{MathArray}[c]{cc}
   0&-1 \\
-  -1&0 
+  -1&0
   \MathEnd{MathArray}\NoBreak \big)$}{The first generator of SU($N$) written out in components.
 In this case, the first of the triplet of
 generators of SU(2), because the default value of the option \mb{SUNN} of \mb{UMatrix} has been set to 2 by the active model file.}
@@ -207,16 +207,16 @@ The triplet of generators of SU(2).}
 \domtog{\% // WriteOutIsoVectors}{$\langle {{\bm{\sigma}}^1},{{\bm{\sigma}}^2},{{\bm{\sigma} }^3}\rangle$}{}
 \domtog{\% // WriteOutUMatrices}{$\langle \big(\NoBreak \MathBegin{MathArray}[c]{cc}
   0&-1 \\
-  -1&0 
-  \MathEnd{MathArray}\NoBreak 
+  -1&0
+  \MathEnd{MathArray}\NoBreak
      \big),\big(\NoBreak \MathBegin{MathArray}[c]{cc}
   0&-\ImaginaryI  \\
-  \ImaginaryI &0 
- 
+  \ImaginaryI &0
+
        \MathEnd{MathArray}\NoBreak \big),
     \big(\NoBreak \MathBegin{MathArray}[c]{cc}
   -1&0 \\
-  0&1 
+  0&1
   \MathEnd{MathArray}\NoBreak \big)
     \rangle$}{}
 \enom
@@ -273,20 +273,20 @@ ug = IsoVector[UMatrix[UGenerator[]]];}{}{A few abbreviations}
     NM[id[iv[b], ug], id[iv[c], ug], \\
     \mindent id[iv[a], ug]]]}{$\langle \bigg(\overvar{a}{\rightarrow }\cdot \overvar{\sigma }{\rightarrow }+
         \overvar{d}{\rightarrow }\cdot \overvar{\sigma }{\rightarrow }\bigg)\SixPointedStar
-       \overvar{b}{\rightarrow }\cdot \overvar{\sigma }{\rightarrow }\SixPointedStar 
+       \overvar{b}{\rightarrow }\cdot \overvar{\sigma }{\rightarrow }\SixPointedStar
      \overvar{c}{\rightarrow }\cdot \overvar{\sigma }{\rightarrow }\rangle -
-   \langle \overvar{b}{\rightarrow }\cdot \overvar{\sigma }{\rightarrow }\SixPointedStar 
-      \overvar{c}{\rightarrow }\cdot \overvar{\sigma }{\rightarrow }\SixPointedStar 
+   \langle \overvar{b}{\rightarrow }\cdot \overvar{\sigma }{\rightarrow }\SixPointedStar
+      \overvar{c}{\rightarrow }\cdot \overvar{\sigma }{\rightarrow }\SixPointedStar
      \overvar{a}{\rightarrow }\cdot \overvar{\sigma }{\rightarrow }\rangle$}{A deceptively complicated example,
 $\langle \bigg(\overvar{a}{\rightarrow }\cdot \overvar{\sigma }{\rightarrow }+
         \overvar{d}{\rightarrow }\cdot \overvar{\sigma }{\rightarrow }\bigg)
-       \overvar{b}{\rightarrow }\cdot \overvar{\sigma }{\rightarrow } 
+       \overvar{b}{\rightarrow }\cdot \overvar{\sigma }{\rightarrow }
      \overvar{c}{\rightarrow }\cdot \overvar{\sigma }{\rightarrow }\rangle -
-   \langle \overvar{b}{\rightarrow }\cdot \overvar{\sigma }{\rightarrow } 
-      \overvar{c}{\rightarrow }\cdot \overvar{\sigma }{\rightarrow } 
+   \langle \overvar{b}{\rightarrow }\cdot \overvar{\sigma }{\rightarrow }
+      \overvar{c}{\rightarrow }\cdot \overvar{\sigma }{\rightarrow }
      \overvar{a}{\rightarrow }\cdot \overvar{\sigma }{\rightarrow }\rangle$}
-\domtog{\% // NMExpand // CycleUTraces}{$\langle \overvar{b}{\rightarrow }\cdot \overvar{\sigma }{\rightarrow }\SixPointedStar 
-     \overvar{c}{\rightarrow }\cdot \overvar{\sigma }{\rightarrow }\SixPointedStar 
+\domtog{\% // NMExpand // CycleUTraces}{$\langle \overvar{b}{\rightarrow }\cdot \overvar{\sigma }{\rightarrow }\SixPointedStar
+     \overvar{c}{\rightarrow }\cdot \overvar{\sigma }{\rightarrow }\SixPointedStar
     \overvar{d}{\rightarrow }\cdot \overvar{\sigma }{\rightarrow }\rangle$}{Expanding the non-commutative products causes the trace to distribute over the sum. Cycling the trace to a unique form can often cause some cancellation.}
 \domtog{\% // ExpandU}{$2\multsp \ImaginaryI \multsp \overvar{{b^{\GothicC }}}{\rightarrow }\times \overvar{c}{\rightarrow }\cdot \overvar{{d^{\GothicC }}}{\rightarrow }$}{When the monomials of
 generator matrices are reduced to order 1 or 0, the trace is known.}
@@ -318,53 +318,53 @@ the result to change on each iteration.
 }{Options of \mb{SUNReduce}.}
 
 \beom
-\domtog{k(IsoDot[IsoCross[IsoVector[a], IsoVector[b]], 
-          IsoCross[IsoVector[a], IsoVector[b]]] + 
-        IsoDot[IsoCross[IsoVector[a], IsoVector[c]], 
+\domtog{k(IsoDot[IsoCross[IsoVector[a], IsoVector[b]],
+          IsoCross[IsoVector[a], IsoVector[b]]] +
+        IsoDot[IsoCross[IsoVector[a], IsoVector[c]],
           IsoCross[IsoVector[a], IsoVector[c]]])}{
-$k\multsp \bigg(\overvar{a}{\rightarrow }\times \overvar{b}{\rightarrow }\cdot 
+$k\multsp \bigg(\overvar{a}{\rightarrow }\times \overvar{b}{\rightarrow }\cdot
       \overvar{a}{\rightarrow }\times \overvar{b}{\rightarrow }+
-     \overvar{a}{\rightarrow }\times \overvar{c}{\rightarrow }\cdot 
+     \overvar{a}{\rightarrow }\times \overvar{c}{\rightarrow }\cdot
       \overvar{a}{\rightarrow }\times \overvar{c}{\rightarrow }\bigg)$}{Another deceptively complicated example.}
 \domtog{\% // IsoIndicesSupply}{
 $k\multsp \big(
-    (a({{i}_2})\SixPointedStar {{b({{i}_3})}^{\GothicC }}\SixPointedStar 
-         {{a({{i}_4})}^{\GothicC }}\SixPointedStar b({{i}_5}))\multsp 
+    (a({{i}_2})\SixPointedStar {{b({{i}_3})}^{\GothicC }}\SixPointedStar
+         {{a({{i}_4})}^{\GothicC }}\SixPointedStar b({{i}_5}))\multsp
       {f_{{{i}_{10}}{{i}_2}{{i}_3}}}\multsp {f_{{{i}_{10}}{{i}_4}{{i}_5}}}+\\
- (a({{i}_6})\SixPointedStar {{c({{i}_7})}^{\GothicC }}\SixPointedStar 
-        {{a({{i}_8})}^{\GothicC }}\SixPointedStar c({{i}_9}))\multsp 
+ (a({{i}_6})\SixPointedStar {{c({{i}_7})}^{\GothicC }}\SixPointedStar
+        {{a({{i}_8})}^{\GothicC }}\SixPointedStar c({{i}_9}))\multsp
      {f_{{{i}_{11}}{{i}_6}{{i}_7}}}\multsp {f_{{{i}_{11}}{{i}_8}{{i}_9}}}\big)$}{Write out with contracted indices.}
 \domtog{\% // CommutatorReduce}{
 $k\multsp \big(
-    a({{i}_2})\multsp b({{i}_5})\multsp {{a({{i}_4})}^{\GothicC }}\multsp 
-      {{b({{i}_3})}^{\GothicC }}\multsp {f_{{{i}_{10}}{{i}_2}{{i}_3}}}\multsp 
+    a({{i}_2})\multsp b({{i}_5})\multsp {{a({{i}_4})}^{\GothicC }}\multsp
+      {{b({{i}_3})}^{\GothicC }}\multsp {f_{{{i}_{10}}{{i}_2}{{i}_3}}}\multsp
       {f_{{{i}_{10}}{{i}_4}{{i}_5}}}+\\
- a({{i}_6})\multsp c({{i}_9})\multsp {{a({{i}_8})}^{\GothicC }}\multsp 
-     {{c({{i}_7})}^{\GothicC }}\multsp {f_{{{i}_{11}}{{i}_6}{{i}_7}}}\multsp 
+ a({{i}_6})\multsp c({{i}_9})\multsp {{a({{i}_8})}^{\GothicC }}\multsp
+     {{c({{i}_7})}^{\GothicC }}\multsp {f_{{{i}_{11}}{{i}_6}{{i}_7}}}\multsp
      {f_{{{i}_{11}}{{i}_8}{{i}_9}}}\big)$}{If variables have not been explicitly declared as non-commutative,
 \mb{CommutatorReduce} pulls them out of the non-commutative product \mb{NM}.}
 \domtog{\% // IndicesCleanup}{
-$-k\multsp a({{k}_1})\multsp b({{k}_2})\multsp 
-    {{a({{k}_5})}^{\GothicC }}\multsp {{b({{k}_4})}^{\GothicC }}\multsp 
+$-k\multsp a({{k}_1})\multsp b({{k}_2})\multsp
+    {{a({{k}_5})}^{\GothicC }}\multsp {{b({{k}_4})}^{\GothicC }}\multsp
     {f_{{{k}_1}{{k}_3}{{k}_4}}}\multsp {f_{{{k}_2}{{k}_3}{{k}_5}}}-\\
- k\multsp a({{k}_1})\multsp c({{k}_2})\multsp 
-   {{a({{k}_5})}^{\GothicC }}\multsp {{c({{k}_4})}^{\GothicC }}\multsp 
+ k\multsp a({{k}_1})\multsp c({{k}_2})\multsp
+   {{a({{k}_5})}^{\GothicC }}\multsp {{c({{k}_4})}^{\GothicC }}\multsp
    {f_{{{k}_1}{{k}_3}{{k}_4}}}\multsp {f_{{{k}_2}{{k}_3}{{k}_5}}}$}{
 \mb{IsoIndicesSupply} increments the index number. To have indices renamed in a
 unique and minimal way, use \mb{IndicesCleanup}.}
 \domtog{\% // SUNReduce // Simplify}{
-$k\multsp a({{k}_1})\multsp {{a({{k}_5})}^{\GothicC }}\multsp 
+$k\multsp a({{k}_1})\multsp {{a({{k}_5})}^{\GothicC }}\multsp
    (b({{k}_2})\multsp {{b({{k}_4})}^{\GothicC }}+
      c({{k}_2})\multsp {{c({{k}_4})}^{\GothicC }})\multsp
-     \big(\delta _{{{k}_1}{{k}_5}}^{(2)}\multsp 
+     \big(\delta _{{{k}_1}{{k}_5}}^{(2)}\multsp
      \delta _{{{k}_2}{{k}_4}}^{(2)}-
     \delta _{{{k}_1}{{k}_2}}^{(2)}\multsp \delta _{{{k}_4}{{k}_5}}^{(2)}\big)$}{By default, \mb{SUNReduce} just applies its reduction rules once.}
 \domtog{SUNReduce[\%, FullReduce \bm{$\rightarrow$} True] // Simplify}{
 $k\multsp a({{k}_1})\multsp
-   (b({{k}_2})\multsp {{a({{k}_1})}^{\GothicC }}\multsp 
-     {{b({{k}_2})}^{\GothicC }}-b({{k}_1})\multsp {{a({{k}_4})}^{\GothicC }}\multsp 
+   (b({{k}_2})\multsp {{a({{k}_1})}^{\GothicC }}\multsp
+     {{b({{k}_2})}^{\GothicC }}-b({{k}_1})\multsp {{a({{k}_4})}^{\GothicC }}\multsp
      {{b({{k}_4})}^{\GothicC }}+ \\
-     c({{k}_2})\multsp {{a({{k}_1})}^{\GothicC }}\multsp 
+     c({{k}_2})\multsp {{a({{k}_1})}^{\GothicC }}\multsp
      {{c({{k}_2})}^{\GothicC }}-
  c({{k}_1})
      \multsp {{a({{k}_4})}^{\GothicC }}\multsp {{c({{k}_4})}^{\GothicC }})$}
@@ -374,7 +374,7 @@ $k\multsp a({{k}_1})\multsp
    (b({{k}_1})\multsp (
       {{a({{k}_1})}^{\GothicC }}\multsp {{b({{k}_1})}^{\GothicC }}-
        {{a({{k}_4})}^{\GothicC }}\multsp {{b({{k}_4})}^{\GothicC }})+
- c({{k}_1})\multsp 
+ c({{k}_1})\multsp
      ({{a({{k}_1})}^{\GothicC }}\multsp {{c({{k}_1})}^{\GothicC }}-
        {{a({{k}_4})}^{\GothicC }}\multsp {{c({{k}_4})}^{\GothicC }}))$}
 {Now, \mb{IndicesCleanup} can bring some further simplification.}
@@ -397,7 +397,7 @@ to all ChPT models and are provided by the package \fphi itself, others are defi
 the model files and are only available upon loading the right configuration.
 
 The constants of the various models usually have head \mb{ParticleMass},
-\mb{CouplingConstant} or \mb{DecayConstant}. 
+\mb{CouplingConstant} or \mb{DecayConstant}.
 
 \otabtwo{
 \mbs{ParticleMass[{\sl p}]} & mass of the particle {\sl p}\cr
@@ -463,10 +463,10 @@ $2\multsp \ScriptCapitalB _{0}\multsp
        {2\multsp \ScriptCapitalB _{0}}+
       \overvar{{{s}}}{\rightarrow }\cdot \overvar{\sigma }{\rightarrow }+
       \DoubleStruckCapitalI \DoubleStruckD \multsp {{{{s}}}^0}\bigg)\SixPointedStar \\
-      \Bigg(-\frac{\ImaginaryI \multsp \overvar{{{\pi }}}{\rightarrow }\cdot 
+      \Bigg(-\frac{\ImaginaryI \multsp \overvar{{{\pi }}}{\rightarrow }\cdot
         \overvar{\sigma }{\rightarrow }}{f_{\pi }}-
    \frac{\overvar{{{\pi }}}{\rightarrow }\cdot \overvar{\sigma }{\rightarrow }
-      \SixPointedStar \overvar{{{\pi }}}{\rightarrow }\cdot 
+      \SixPointedStar \overvar{{{\pi }}}{\rightarrow }\cdot
        \overvar{\sigma }{\rightarrow }}{2\multsp {{(f_{\pi })}^2}}+\DoubleStruckCapitalI \DoubleStruckD \Bigg)
     \rangle$}{If space-time arguments are supplied, the matrices are expanded.}
 \domtog{
@@ -494,46 +494,46 @@ $\partial_\mu\left(\overrightarrow{\pi}\right) \cdot \overrightarrow{\bm{\sigma}
 Here is an example, involving also \mb{IsoVector}, \mb{UMatrix}. Notice that
 \mb{IsoVector} takes over the $x$-dependence.
 }
-\domtog{ArgumentsSupply[Lagrangian[ChPTVirtualPhotons2[2]], x, 
+\domtog{ArgumentsSupply[Lagrangian[ChPTVirtualPhotons2[2]], x,
   RenormalizationState[0], \\
   ExpansionOrder \bm{$\rightarrow$} 0,\\
   DropOrder \bm{$\rightarrow$} 0]}{
-$\frac{1}{4}\multsp 
-     \bigg(\langle \bigg(\ImaginaryI \multsp 
-       \bigg(\overvar{{{{{V}}}_{\mu }}}{\rightarrow }\cdot 
+$\frac{1}{4}\multsp
+     \bigg(\langle \bigg(\ImaginaryI \multsp
+       \bigg(\overvar{{{{{V}}}_{\mu }}}{\rightarrow }\cdot
           \overvar{\sigma }{\rightarrow }-
          \overvar{{{{{A}}}_{\mu }}}{\rightarrow }\cdot \overvar{\sigma }{\rightarrow }
           \bigg)-\ImaginaryI \multsp \bigg(
         \overvar{{{{{A}}}_{\mu }}}{\rightarrow }\cdot \overvar{\sigma }{\rightarrow }+
          \overvar{{{{{V}}}_{\mu }}}{\rightarrow }\cdot \overvar{\sigma }{\rightarrow }
           \bigg)+  \\
- \ImaginaryI \multsp 
+ \ImaginaryI \multsp
       \big({{Q}_{L}}\SixPointedStar {{{{\gamma }}}_{\mu }}\big)-
      \ImaginaryI \multsp \big({{Q}_{R}}\SixPointedStar {{{{\gamma }}}_{\mu }}\big)\bigg)
     \SixPointedStar \bigg(  \\
- -\ImaginaryI \multsp 
-    \bigg(\overvar{{{{{V}}}_{\mu }}}{\rightarrow }\cdot 
+ -\ImaginaryI \multsp
+    \bigg(\overvar{{{{{V}}}_{\mu }}}{\rightarrow }\cdot
        \overvar{\sigma }{\rightarrow }-
       \overvar{{{{{A}}}_{\mu }}}{\rightarrow }\cdot \overvar{\sigma }{\rightarrow }
        \bigg)+\ImaginaryI \multsp \bigg(
      \overvar{{{{{A}}}_{\mu }}}{\rightarrow }\cdot \overvar{\sigma }{\rightarrow }+
       \overvar{{{{{V}}}_{\mu }}}{\rightarrow }\cdot \overvar{\sigma }{\rightarrow }
        \bigg)-  \\
-\ImaginaryI \multsp 
+\ImaginaryI \multsp
        \big({{{{\gamma }}}_{\mu }}\SixPointedStar {{{{Q}_{L}}}^{\dagger }}\big)+
-      \ImaginaryI \multsp \big({{{{\gamma }}}_{\mu }}\SixPointedStar 
-         {{{{Q}_{R}}}^{\dagger }}\big)\bigg)\rangle + 
-    4\multsp \ScriptCapitalB _{0}\multsp 
+      \ImaginaryI \multsp \big({{{{\gamma }}}_{\mu }}\SixPointedStar
+         {{{{Q}_{R}}}^{\dagger }}\big)\bigg)\rangle +
+    4\multsp \ScriptCapitalB _{0}\multsp
        \bigg(\frac{{{(m_{\pi })}^2}}{\ScriptCapitalB _{0}}+
          2\multsp {{{{s}}}^0}\bigg)\bigg)\multsp {{(f_{\pi })}^2}-  \\
- \frac{1}{4}\multsp 
+ \frac{1}{4}\multsp
     \big(\big({{\partial }_{\mu }}{{\gamma }}_{\nu }-
         {{\partial }_{\nu }}{{\gamma }}_{\mu }\big)\SixPointedStar \big(
       {{\partial }_{\mu }}{{\gamma }}_{\nu }-
        {{\partial }_{\nu }}{{\gamma }}_{\mu }\big)\big)+
    {{C}}\multsp \langle {{Q}_{R}}\SixPointedStar {{Q}_{L}}\rangle -  \\
-\frac{1}{2}\multsp \lambda \multsp 
-   {{\partial }_{\mu }}{{\gamma }}_{\mu }\multsp 
+\frac{1}{2}\multsp \lambda \multsp
+   {{\partial }_{\mu }}{{\gamma }}_{\mu }\multsp
    {{\partial }_{\nu }}{{\gamma }}_{\nu }$}{The previously inspected lagrangian may be expanded in the meson field. For readability we expand only to order 0.}
 \enom
 
@@ -618,32 +618,32 @@ are reduced to monomials of order 0 or 1, using the commutation and anti-commuta
 of the generator matrices.}
 \domtog{ll = \% // IsoIndicesSupply // \\
 SUNReduce // IndicesCleanup // \\
-      CommutatorReduce // Simplify}{$\frac{1}{4}\multsp {{({{e}})}^2}\multsp 
+      CommutatorReduce // Simplify}{$\frac{1}{4}\multsp {{({{e}})}^2}\multsp
    {{{{\pi }}}^{{{k}_1}}}\multsp
  \big(
     -\delta _{3{{k}_1}}^{(2)}\multsp {{{{\pi }}}^3}+{{{{\pi }}}^{{{k}_1}}}-
-     \delta _{3{{k}_3}}^{(2)}\multsp f_{3{{k}_1}{{k}_4}}^{(2)}\multsp 
-      f_{{{k}_2}{{k}_3}{{k}_4}}^{(2)}\multsp {{{{\pi }}}^{{{k}_2}}}\big)\multsp  
+     \delta _{3{{k}_3}}^{(2)}\multsp f_{3{{k}_1}{{k}_4}}^{(2)}\multsp
+      f_{{{k}_2}{{k}_3}{{k}_4}}^{(2)}\multsp {{{{\pi }}}^{{{k}_2}}}\big)\multsp
 {{\gamma }}_{\Mvariable{\rho 1}}^{2}$}{The vector products are written in terms of contracted indices. Some simplification is done.}
-\domtog{fields = {QuantumField[Particle[Pion, RenormalizationState[0]], 
-        SUNIndex[I1]][p1], 
-    QuantumField[Particle[Pion, RenormalizationState[0]], 
-        SUNIndex[I2]][p2], 
-    QuantumField[Particle[Photon, RenormalizationState[0]], 
-        LorentzIndex[\bm{$\mu$}3]][p3], 
-    QuantumField[Particle[Photon, RenormalizationState[0]], 
+\domtog{fields = {QuantumField[Particle[Pion, RenormalizationState[0]],
+        SUNIndex[I1]][p1],
+    QuantumField[Particle[Pion, RenormalizationState[0]],
+        SUNIndex[I2]][p2],
+    QuantumField[Particle[Photon, RenormalizationState[0]],
+        LorentzIndex[\bm{$\mu$}3]][p3],
+    QuantumField[Particle[Photon, RenormalizationState[0]],
         LorentzIndex[\bm{$\mu$}4]][p4]}}{$\big\{{{{{\pi }}}^{{{I}_1}}},{{{{\pi }}}^{{{I}_2}}},
     {{{{\gamma }}}_{{{\mu }_3}}},{{{{\gamma }}}_{{{\mu }_4}}}\big\}$}{The fields of the vertex are defined.}
 \domtog{m = FeynRule[ll, fields] //\\
         SUNReduce[\#, FullReduce \bm{$\rightarrow$} True] \& // \\
         IndicesCleanup // CommutatorReduce // \\
-        Simplify}{$-2\multsp \ImaginaryI \multsp {{({{e}})}^2}\multsp {g^{{{\mu }_3}{{\mu }_4}}}\multsp 
+        Simplify}{$-2\multsp \ImaginaryI \multsp {{({{e}})}^2}\multsp {g^{{{\mu }_3}{{\mu }_4}}}\multsp
    \big(\delta _{3{{I}_1}}^{(2)}\multsp \delta _{3{{I}_2}}^{(2)}-
      \delta _{{{I}_1}{{I}_2}}^{(2)}\big)$}
 {The Feynman rule is calculated and reduced.}
-\domtog{mfa = MomentaCollect[m // Expand, PerturbationOrder \bm{$\rightarrow$} 2]}{${{({{e}})}^2}\multsp {g^{{{\mu }_3}{{\mu }_4}}}\multsp 
+\domtog{mfa = MomentaCollect[m // Expand, PerturbationOrder \bm{$\rightarrow$} 2]}{${{({{e}})}^2}\multsp {g^{{{\mu }_3}{{\mu }_4}}}\multsp
    \big(2\multsp \ImaginaryI \multsp \delta _{{{I}_1}{{I}_2}}^{(2)}-
-     2\multsp \ImaginaryI \multsp \delta _{3{{I}_1}}^{(2)}\multsp 
+     2\multsp \ImaginaryI \multsp \delta _{3{{I}_1}}^{(2)}\multsp
       \delta _{3{{I}_2}}^{(2)}\big)$}
 {The terms are collected according to powers of the chiral expansion parameters. In this
 particular case this step is redundant.}
@@ -655,17 +655,17 @@ particular case this step is redundant.}
         \Muserfunction{SUNDelta}[3,\Mvariable{I2}]-
        \Muserfunction{SUNDelta}[\Mvariable{I1},\Mvariable{I2}])\}\}$}
 {The classes coupling "vector" is generated.}
-\dtog{CheckDB[gencoup, 
-    XName[PhiModel \bm{$\rightarrow$} ChPTVirtualPhotons2, 
+\dtog{CheckDB[gencoup,
+    XName[PhiModel \bm{$\rightarrow$} ChPTVirtualPhotons2,
         VertexFields \bm{$\rightarrow$} {Pion[0], Pion[0], Photon[0],
              Photon[0]}, \\
-             PerturbationOrder \bm{$\rightarrow$} 2] <> 
+             PerturbationOrder \bm{$\rightarrow$} 2] <>
       ".Gen"];}{}{The generic coupling vector is saved.}
-\dtog{CheckDB[classcoup, 
-    XName[PhiModel \bm{$\rightarrow$} ChPTVirtualPhotons2, 
+\dtog{CheckDB[classcoup,
+    XName[PhiModel \bm{$\rightarrow$} ChPTVirtualPhotons2,
         VertexFields \bm{$\rightarrow$} {Pion[0], Pion[0], Photon[0],
              Photon[0]}, \\
-             PerturbationOrder \bm{$\rightarrow$} 2] <> 
+             PerturbationOrder \bm{$\rightarrow$} 2] <>
       ".Mod"];}{}{The classes coupling "vector" is saved.}
 \dtog{Clear[l,ll,m,mfa];}{}{Clean up.}
 \enom
@@ -683,7 +683,7 @@ stored as above.
 
 \beom
 \domtog{Amplitude["ChPTVirtualPhotons2P20P20V10V10o2"]}{$-2\multsp \ImaginaryI \multsp
-{{({{e}})}^2}\multsp {g^{{{\mu }_3}{{\mu }_4}}}\multsp 
+{{({{e}})}^2}\multsp {g^{{{\mu }_3}{{\mu }_4}}}\multsp
    ({{\delta }_{3\Mvariable{I1}}}\multsp {{\delta }_{3\Mvariable{I2}}}-
      {{\delta }_{\Mvariable{I1}\Mvariable{I2}}})$}{We may, for example, inspect the $\gamma \gamma
      \pi^+ \pi^-$ coupling.}

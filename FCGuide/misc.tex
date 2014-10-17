@@ -4,20 +4,20 @@
 \subsection{Low Level Dirac Algebra Functions}
 \label{diracLow}
 
-There are a number of lower level functions for doing Dirac algebra. 
+There are a number of lower level functions for doing Dirac algebra.
 Some are used by the functions described in
 section \ref{diracalg}, some may be useful to perform more controlled
 calculations. For completeness, they are described here.
 
 \otabtwo{
-\mbs{DiracGammaCombine[{\sl expr}]} & combines sums, \mb{DiracGamma[Momentum[{\sl a}]] + 
+\mbs{DiracGammaCombine[{\sl expr}]} & combines sums, \mb{DiracGamma[Momentum[{\sl a}]] +
         DiracGamma[Momentum[{\sl b}]] + ...}, in {\sl expr} into \mb{DiracGamma[
     Momentum[{\sl a} + {\sl b} + ..]]} \cr
 \mbs{DiracGammaExpand[{\sl expr}]} & expands all \mb{DiracGamma[
-    Momentum[{\sl a} + {\sl b} + ..]]} in {\sl expr} into\mb{ DiracGamma[Momentum[{\sl a}]] + 
+    Momentum[{\sl a} + {\sl b} + ..]]} in {\sl expr} into\mb{ DiracGamma[Momentum[{\sl a}]] +
         DiracGamma[Momentum[{\sl b}]] + ... }\cr
 \mbs{DiracGammaT[{\sl x}]} & the transpose of \mb{DiracGamma[{\sl x}]} \cr
-\mbs{DiracSigma[{\sl a}, {\sl b}]} & $i/2$ ({\sl a b} -{\sl  b a}) in 4 dimensions. 
+\mbs{DiracSigma[{\sl a}, {\sl b}]} & $i/2$ ({\sl a b} -{\sl  b a}) in 4 dimensions.
      {\sl a} and {\sl b} must have head \mb{DiracGamma}, \mb{DiracMatrix} or \mb{DiracSlash} \cr
 \mbs{DiracSigmaExplicit[{\sl expr}]} & inserts in {\sl expr} the definition of \mb{DiracSigma} \cr
 \mbs{DiracSpinor[{\sl p}, {\sl m}, {\sl ind}]} & a Dirac spinor for a fermion with momentum {\sl p} and mass {\sl m} and indices {\sl ind} \cr
@@ -29,15 +29,15 @@ calculations. For completeness, they are described here.
 \subsection{Functions for Polynomial Manipulations}
 
 Unfortunately, at least with \mma 2.0, the built-in functions \mb{Factor}, \mb{Collect}
-and \mb{Together} are either not general enough for the purposes needed in 
+and \mb{Together} are either not general enough for the purposes needed in
 \fc or consume too much CPU time for certain polynomials
-with rational coefficients. The \fc extensions \mb{Factor2}, \mb{Collect2} 
-and \mb{Combine} should be used instead when manipulating the rational 
-polynomials emerging from \mb{OneLoop} or \mb{PaVeReduce}. 
+with rational coefficients. The \fc extensions \mb{Factor2}, \mb{Collect2}
+and \mb{Combine} should be used instead when manipulating the rational
+polynomials emerging from \mb{OneLoop} or \mb{PaVeReduce}.
 
 \otabtwo{
 \mbs{Collect2[{\sl expr}, {\sl x}]} & group together powers of terms containing $x$\cr
-\mbs{Collect2[{\sl expr}, \{$\hbox{\sl x}_{1}$, $\hbox{\sl x}_{2}$, ...\}]} & group together powers of 
+\mbs{Collect2[{\sl expr}, \{$\hbox{\sl x}_{1}$, $\hbox{\sl x}_{2}$, ...\}]} & group together powers of
 terms containing $x_1, x_2,  ...$ \cr
 \mbs{Combine[{\sl expr}]} & put terms in a sum over a common denominator \cr
 \mbs{Factor2[{\sl expr}]} &  factor a polynomial in a canonical way
@@ -65,18 +65,18 @@ This puts terms over a common denominator without expanding the numerator.
 \domtog{{test\ =\ (a - b) x\ +\ (b - a) y\\
 }}{ $(a - b)\, x\, +\, (-a + b)\, y$\hfil\\
 }{
-Consider a generic polynomial. 
+Consider a generic polynomial.
 }
 \domtog{{Map[Factor, test]\\
 }}{ $(a - b)\, x\, +\, (-a + b)\, y$\hfil\\
 }{
-Under \mma 2.0, mapping \mb{Factor} on the summands shows that no canonical factorization 
+Under \mma 2.0, mapping \mb{Factor} on the summands shows that no canonical factorization
 of integers in sums takes place.
 }
 \domtog{{Map[Factor2, test]\\
 }}{ $(a - b)\, x\, -\, (a - b)\, y$\hfil\\
 }{
-If a canonical factorization is desired, 
+If a canonical factorization is desired,
 you may use \mb{Factor2} instead.
 }
 \domtog{{Factor[test]\\
@@ -96,7 +96,7 @@ The first term in a subsum gets a positive prefactor.
 \otabthree{
 {\sl option name} & {\sl default value} \cr
 \hhline
-\mb{ProductExpand} & \mb{False} & expand products 
+\mb{ProductExpand} & \mb{False} & expand products
 } {An expansion controlling  option for \mb{Collect2} and \mb{Combine}.}
 
 \subsection{An Isolating Function for Automatically Introducing Abbreviations}
@@ -104,7 +104,7 @@ The first term in a subsum gets a positive prefactor.
 
 \otabtwo{
 \mbs{Isolate[{\sl expr}]} & if \mb{Length[{\sl expr}]} > 0, substitute an abbreviation \mb{KK[{\sl i}]} for {\sl expr} \cr
-\mbs{Isolate[{\sl expr},\ \{$\hbox{\sl x}_{1}$,\ $\hbox{\sl x}_{2}$,\ ...\}]} & substitute abbreviations for subsums 
+\mbs{Isolate[{\sl expr},\ \{$\hbox{\sl x}_{1}$,\ $\hbox{\sl x}_{2}$,\ ...\}]} & substitute abbreviations for subsums
 free of $x_1, x_2, ...$ \cr
 } {A function for isolating variables by introducing abbreviations for common
 subexpressions.}
@@ -113,7 +113,7 @@ subexpressions.}
 {\sl option name} & {\sl default value}\cr
 \hhline
 \mb{IsolateNames} & \mb{KK} & head of the abbreviations \cr
-\mb{IsolateSplit} & \mb{442} & a limit beyond which \mb{Isolate} splits 
+\mb{IsolateSplit} & \mb{442} & a limit beyond which \mb{Isolate} splits
 the expression into two sums
 } {Options for \mb{Isolate} and \mb{Collect2}.}
 
@@ -126,7 +126,7 @@ the expression into two sums
 \domtog{{test = Isolate[(a + b) f + (c + d) f + e, f]\\
 }}{ $e + f {\rm KK}(1) + f {\rm KK}(2)$\hfil\\
 }{
-Here $f$ gets isolated with \mb{KK[1]}  and \mb{KK[2]} 
+Here $f$ gets isolated with \mb{KK[1]}  and \mb{KK[2]}
 replacing the bracketed subsums.
 }
 \domtog{{FullForm[test]\\
@@ -134,22 +134,22 @@ replacing the bracketed subsums.
 %Out[\the\promptcount]//FullForm=} \\
 Plus[e, Times[f, HoldForm[KK[1]]], Times[f, HoldForm[KK[2]]]]\hfil\\
 }{
-Looking at the \mb{FullForm} reveals that the \mb{KK[{\sl i}]} are 
+Looking at the \mb{FullForm} reveals that the \mb{KK[{\sl i}]} are
 given in \mb{HoldForm}.
 }
 \domtog{{\{ KK[1], test, ReleaseHold[test] \}\\
 }}{ $\{a\, +\, b,\, e\, +\, f\, {\rm KK}(1)\, +\, f\, {\rm KK}(2)\, e\, +\, (a + b)\, f\, +\, (c + d)\, f\}$\hfil\\
-}{ 
-Asking for \mb{KK[1]} returns its value, but in \mb{test} 
+}{
+Asking for \mb{KK[1]} returns its value, but in \mb{test}
 \mb{KK[1]} is held.
-} 
+}
 \domtog{{Isolate[a[z]\ (b + c (y + z)) + d[z] (y + z), \{a, d\}, \\
 IsolateNames $\Rule$ g] \\
 }}{ $d(z)\, g(1) + a(z)\, g(2)$\hfil\\
 }{
 For the term \\
 \mb{(b\, +\, c\, (y + z))}\\
-a single abbreviation \mb{g[2]} is 
+a single abbreviation \mb{g[2]} is
 returned.
 }
 \domtog{{und[x\_\_]\ :=\ Isolate[Plus[x], IsolateNames $\Rule$ h]/;\\
@@ -159,11 +159,11 @@ FreeQ2[\{x\}, \{a, d\}];\\
 }}{ $d(z)\, h(1) + a(z)\, h(2)$\hfil\\
 }{
 With the help of an additional \\
-function it is easy to introduce identical abbreviations for each 
+function it is easy to introduce identical abbreviations for each
 subsum.
 
-This trick of selectively substituting functions for 
-sums is also quite useful in special reordering 
+This trick of selectively substituting functions for
+sums is also quite useful in special reordering
 of polynomials.
 }
 \domtog{{ReleaseHold[\%]\\
@@ -176,8 +176,8 @@ Here it is clear that \mb{h[1]} = (y + z) is part of
 }}{ $l(2)$\hfil\\
 }{
 Decreasing the option \\
-\mb{IsolateSplit} significantly 
-forces \mb{Isolate} to 
+\mb{IsolateSplit} significantly
+forces \mb{Isolate} to
 use more than one \mb{l} for \mb{a - b - c - d - e}.
 }
 \domtog{{\{l[2], l[1]\}\\
@@ -191,20 +191,20 @@ The importance of \mb{Isolate} is significant, since it gives you a means
 to handle very big expressions. The use of \mb{Isolate} on
 big polynomials before writing them to a file is especially recommended.
 
-A subtle issue of the option \mb{IsolateSplit}, whose setting  refers 
+A subtle issue of the option \mb{IsolateSplit}, whose setting  refers
 to the "size" of an expression as returned by \\
-\mb{Length[Characters[ToString[FortranForm[{\sl expr}]]]]}, 
-is that it inhibits too many continuation lines in the Fortran file when writing out 
+\mb{Length[Characters[ToString[FortranForm[{\sl expr}]]]]},
+is that it inhibits too many continuation lines in the Fortran file when writing out
 expressions involving \mb{KK[i]} with \mb{Write2}. See Section \ref{write2} for the
 usage of \mb{Write2}.
 
 You may want to change \mb{IsolateSplit} when working with big rational polynomials
-in order to optimize the successive (\mb{FixedPoint}) application of 
+in order to optimize the successive (\mb{FixedPoint}) application of
 functions like \mb{Combine[ReleaseHold[\#]]\&}.
 
 \subsection{An Extension of FreeQ and Two Other Useful Functions}
 \otabtwo{
-\mbs{FreeQ2[{\sl expr}, \{$\hbox{\sl f}_{1}$, $\hbox{\sl f}_{2}$, ...\}]} & 
+\mbs{FreeQ2[{\sl expr}, \{$\hbox{\sl f}_{1}$, $\hbox{\sl f}_{2}$, ...\}]} &
 yields \mb{True} if $expr$ does not contain any occurrence of
 $f_1$, $f_2$, \ldots \cr
 \mbs{NumericalFactor[{\sl expr}]} &  gives the numerical factor of $expr$ \cr
@@ -240,40 +240,40 @@ subsums.
 }
 \label{write2}
 
-The \mma functions \mb{Write} and \mb{Save} may on rare occasions create files 
-that cannot  be read in again correctly. What sometimes happens is that, for 
+The \mma functions \mb{Write} and \mb{Save} may on rare occasions create files
+that cannot  be read in again correctly. What sometimes happens is that, for
 example, a division operator is written out as the first character of a line.
 When the file is loaded again, \mma may simply ignore that part  of the file
 before this character.
-You can easily work around this bug 
-by editing the file and wrapping  
+You can easily work around this bug
+by editing the file and wrapping
 the expressions with brackets ``( )''. Since this is a cumbersome
-procedure for lots of expressions, it has been automatized in 
-\mb{Write2} for writing out expressions. 
-If you use \mb{Save}, you should check 
+procedure for lots of expressions, it has been automatized in
+\mb{Write2} for writing out expressions.
+If you use \mb{Save}, you should check
 the output file for correctness.
 
-An option can be given to \mb{Write2} allowing the 
+An option can be given to \mb{Write2} allowing the
 output to be written in \mb{FortranForm}
 %, \mb{MacsymaForm} or \mb{MapleForm}
-. This facility is elementary and mostly limited to the 
-type of polynomials usually encountered in \fc. 
+. This facility is elementary and mostly limited to the
+type of polynomials usually encountered in \fc.
 
 At least with \mma 2.0, notice:
-The \mb{FortranForm} option should not be used if the expression to be 
+The \mb{FortranForm} option should not be used if the expression to be
 written out contains a term $(-x)^n$, where $n$ is a symbol, (such terms are never
 produced by \fc, unless they already contained in the input).
-The \mma \mb{FortranForm} is also incapable of recognizing some elementary 
+The \mma \mb{FortranForm} is also incapable of recognizing some elementary
 functions like \mb{Exp[x]}.
-%Therefore if you want to generate more elaborate Fortran code  you may want 
-%to use Maple, which provides an optimization option when 
-%translating Maple code to Fortran, or 
-%the most sophisticated package for Fortran code generation from 
+%Therefore if you want to generate more elaborate Fortran code  you may want
+%to use Maple, which provides an optimization option when
+%translating Maple code to Fortran, or
+%the most sophisticated package for Fortran code generation from
 %computer algebra systems: Gentran (by B.~Gates and H.~van Hulzen),
 %which is available in some Macsyma versions. To this end the \mb{Write2} option \mb{FormatType} may be set to \mb{MacsymaForm} or \mb{MapleForm}.
-%You may achieve a rudimentary optimization by applying \mb{Isolate} on 
-%the expression to be written out. With the option setting \mb{FortranForm} 
-%and \mb{InputForm} the function \mb{Write2} recognizes variables in 
+%You may achieve a rudimentary optimization by applying \mb{Isolate} on
+%the expression to be written out. With the option setting \mb{FortranForm}
+%and \mb{InputForm} the function \mb{Write2} recognizes variables in
 %\mb{HoldForm} and writes these out with their definitions first.
 
 \otabtwo{
@@ -287,13 +287,13 @@ write the setting $x = y$ into a file \mb{{\sl fi}} \cr
 {\sl option name} & {\sl default value} \cr
 \hhline
 \mb{FormatType} & \mb{InputForm} & language in which to write the output \cr
-\mb{D0Convention} & \mb{0} & which convention to use for the scalar integrals 
-} {Options for \mb{Write2}.} 
+\mb{D0Convention} & \mb{0} & which convention to use for the scalar integrals
+} {Options for \mb{Write2}.}
 
-With the default setting \mb{0} of \mb{D0Convention} the arguments of the 
+With the default setting \mb{0} of \mb{D0Convention} the arguments of the
 scalar integrals are not changed when written into a Fortran program.
 Another possible setting is \mb{1}, which  interchanges the fifth and sixth arguments
-of \mb{D0} and writes the mass arguments of \mb{A0}, \mb{B0}, \mb{C0} and 
+of \mb{D0} and writes the mass arguments of \mb{A0}, \mb{B0}, \mb{C0} and
 \mb{D0} (without squares).
 
 \otabtwo{
@@ -303,13 +303,13 @@ of \mb{D0} and writes the mass arguments of \mb{A0}, \mb{B0}, \mb{C0} and
 %\mb{MapleForm}  & write out in Maple form
 } {The four possible settings of the option \mb{FormatType} for \mb{Write2}.}
 
-%The output possibilities for the two other computer algebra systems 
-%Macsyma and Maple are very limited: square brackets in 
+%The output possibilities for the two other computer algebra systems
+%Macsyma and Maple are very limited: square brackets in
 %\mma are changed to round brackets,  additional replacements are for
-%\mb{MacsymaForm} \mb{\{ Pi $\Rule$ \%pi, I $\Rule$ \%i, = $\Rule$ : \}} and for 
+%\mb{MacsymaForm} \mb{\{ Pi $\Rule$ \%pi, I $\Rule$ \%i, = $\Rule$ : \}} and for
 %\mb{MapleForm} \mb{\{ = $\Rule$ := \}}.
 
-%The reasons to include these interface abilities are to utilize the 
+%The reasons to include these interface abilities are to utilize the
 %Fortran optimization possibility of Maple
 %and the excellent package Gentran for Fortran code generation.
 
@@ -324,7 +324,7 @@ Create a test polynomial.
 The default is to write out in \mma \mb{InputForm}.
 }
 \domtog{{!!test.m\\
-}}{\tt 
+}}{\tt
 KK[3] = (a - b\\
 );\\
 KK[4] = ((2*I)*Pi + f[x]*HoldForm[KK[3]]\\
@@ -374,7 +374,7 @@ Show the content of the Fortran file.
 
 \otabtwo{
 \mbs{EpsEvaluate[{\sl expr}]} & evaluate Levi-Civita \mb{Eps}
-} {A function for total antisymmetry and linearity with respect to 
+} {A function for total antisymmetry and linearity with respect to
 \mb{Momentum} \hspace{0.1mm}.}
 
 \beom
@@ -382,13 +382,13 @@ Show the content of the Fortran file.
 }}{ $\epsilon^{\mu, \nu, \rho, p + q}$\hfil\\
 }{
 This is $\varepsilon^{\mu\, \nu\, \rho\, \sigma} (p+q)_{\sigma} =
-          \varepsilon^{\mu\, \nu\, \rho\, (p+q)}$.  
+          \varepsilon^{\mu\, \nu\, \rho\, (p+q)}$.
 }
 \domtog{{EpsEvaluate[\%]\\
 }}{ $\epsilon^{\mu, \nu, \rho, p}\, +\, \epsilon^{\mu, \nu, \rho, q}$\hfil\\
 }{
 In this way linearity is enforced:
-$\varepsilon^{\mu \, \nu\,  \rho\,  (p+q)} = 
+$\varepsilon^{\mu \, \nu\,  \rho\,  (p+q)} =
  \varepsilon^{\mu \, \nu\,  \rho\,  p} + \varepsilon^{\mu\, \nu\, \rho\, q}$.
 }
 %\domtog{{LeviCivita[a, b, c, d] /. d $\Rule$ c\\
@@ -420,11 +420,11 @@ $\varepsilon^{\mu \, \nu\,  \rho\,  (p+q)} =
 \domtog{EpsChisholm[
   LeviCivita[$\alpha$, $\beta$, $\gamma$, $\delta$] DiracMatrix[$\mu$,
 $\alpha$] // FCI]
-}{$\ComplexI \gamma^\mu . \gamma^\beta . \gamma^\gamma . \gamma^\delta . \gamma^5 - 
-\ComplexI \gamma^\mu . \gamma^\delta . \gamma^5 . g^{\beta\gamma} + 
-\ComplexI \gamma^\mu . \gamma^\gamma . \gamma^5 . g^{\beta\delta} - 
+}{$\ComplexI \gamma^\mu . \gamma^\beta . \gamma^\gamma . \gamma^\delta . \gamma^5 -
+\ComplexI \gamma^\mu . \gamma^\delta . \gamma^5 . g^{\beta\gamma} +
+\ComplexI \gamma^\mu . \gamma^\gamma . \gamma^5 . g^{\beta\delta} -
 \ComplexI \gamma^\mu . \gamma^\beta . \gamma^5 . g^{\gamma\delta}$
-}{ 
+}{
 Use the Chisholm identity for\\
 $\varepsilon^{a \, b \, c\, d} \, \gamma^{\mu} \, \gamma^{a}$.
 }
@@ -448,10 +448,10 @@ This shows the internal structure.
 \domtog{{Contract[\%\ FourVector[p, s]] // StandardForm
 }}{ Eps[LorentzIndex[$\mu$], LorentzIndex[$\nu$],LorentzIndex[$\rho$], Momentum[p]]\hfil\\
 }{
-Contracting $\varepsilon^{\mu\,\nu\,\rho\,\sigma} \, p^{\sigma}$ 
+Contracting $\varepsilon^{\mu\,\nu\,\rho\,\sigma} \, p^{\sigma}$
 yields $\varepsilon^{\mu\,\nu\,\rho\,p}$.
 
-In the internal representation the $p$ has the head \mb{Momentum} wrapped 
+In the internal representation the $p$ has the head \mb{Momentum} wrapped
 around it.
 }
 \enom
@@ -498,10 +498,10 @@ The result is always given in a factorized form.
 \otabtwo{
 \mbs{PolarizationSum[{\sl mu}, {\sl nu}]} & $-g^{\mu \nu}$ \cr
 \mbs{PolarizationSum[{\sl mu}, {\sl nu}, {\sl k}]} & $-g^{\mu \nu} + k^{\mu}\,k^{\nu}/k^2$ \cr
-\mbs{PolarizationSum[{\sl mu}, {\sl nu}, {\sl k}, {\sl n}]} & 
-$-g^{\mu \nu} -   
+\mbs{PolarizationSum[{\sl mu}, {\sl nu}, {\sl k}, {\sl n}]} &
+$-g^{\mu \nu} -
 k_{\mu} k_{\nu} n^{2}/(k\cdot n)^{2}
-+ (n_{\mu}  k_{\nu} +  n_{\nu}  k_{\mu})/(k \cdot n)$ 
++ (n_{\mu}  k_{\nu} +  n_{\nu}  k_{\mu})/(k \cdot n)$
 }{Polarization sums.}
 
 \beom
@@ -513,14 +513,14 @@ This is the polarization sum for massive bosons:
 $\Sigma \varepsilon_{\mu} \varepsilon^{*}_{\nu}\, =\, -g^{\mu \nu} + k^\mu \, k^\nu/k^2$.
 }
 \domtog{{PolarizationSum[$\mu$, $\nu$, k, p1 - p2]\\
-}}{\renewcommand{\clineskip}{36pt} -$g^{\mu \nu}$\ 
--\ \Frac{k^\mu k^\nu\, {\rm p1}^2}{\Superscript{(k \cdot p1\, -\, k \cdot {\rm p2})}{2}}\ 
-+\ \Frac{2 k^\mu k^\nu\, {\rm p1 p2}}{\Superscript{(k \cdot p1\, -\, k \cdot {\rm p2})}{2}}\ 
--\ \Frac{k^\mu k^\nu\, {\rm p2}^2}{\Superscript{(k \cdot p1\, -\, k \cdot {\rm p2})}{2}}\ 
+}}{\renewcommand{\clineskip}{36pt} -$g^{\mu \nu}$\
+-\ \Frac{k^\mu k^\nu\, {\rm p1}^2}{\Superscript{(k \cdot p1\, -\, k \cdot {\rm p2})}{2}}\
++\ \Frac{2 k^\mu k^\nu\, {\rm p1 p2}}{\Superscript{(k \cdot p1\, -\, k \cdot {\rm p2})}{2}}\
+-\ \Frac{k^\mu k^\nu\, {\rm p2}^2}{\Superscript{(k \cdot p1\, -\, k \cdot {\rm p2})}{2}}\
 +\ \Frac{({\rm p1}\, -\, {\rm p2})^\mu\, k^\nu}{k {\rm p1}\, -\, k {\rm p2}}
 +\ \Frac{k^\mu\, ({\rm p1}\, -\, {\rm p2})^\nu}{k {\rm p1}\, -\, k {\rm p2}}
 \renewcommand{\clineskip}{20pt}}{
-Here the polarization sum for gluons is given; 
+Here the polarization sum for gluons is given;
 with external momentum $n=p_1 -p_2$.
 }
 \enom
@@ -528,13 +528,13 @@ with external momentum $n=p_1 -p_2$.
 \subsection{Permuting the Arguments of the Four-Point Function}
 
 The arguments of the Passarino-Veltman four-point function \mb{D0}
-are permuted by \fc into an alphabetical order. If you want a specific  
-permutation of the 24 possible ones, you can use the 
+are permuted by \fc into an alphabetical order. If you want a specific
+permutation of the 24 possible ones, you can use the
 function \mb{PaVeOrder}.
 
 \otabtwo{
 \mbs{PaVeOrder[{\sl expr}]}&
-order the arguments of \mb{C0} and \mb{D0} in $expr$ 
+order the arguments of \mb{C0} and \mb{D0} in $expr$
 canonically.
 }{An ordering function for $C_0$ and  $D_0$.}
 
@@ -556,10 +556,10 @@ It is sufficient to supply a subset of the arguments.
 PaVeOrderList\ $\Rule$\ \{f, e\}]\\
 }}{$D_0$($a, d, c, b, f, e$, m22, m12, m42, m32)\hfil\\
 }{
-This interchanges $f$ and $e$. 
+This interchanges $f$ and $e$.
 }
 \domtog{{PaVeOrder[D0[a, b, c, d, e, f, m12, m22, m32, m42]\ + \ D0[me2, me2, mw2, mw2, t, s, me2, 0, me2, 0],\ PaVeOrderList\ $\Rule$\ \{ \{me2, me2, 0, 0\}, \{f, e\}\}]\\
-}}{$D_0$($a, d, c, b, f, e$, m22, m12, m42, m32) + 
+}}{$D_0$($a, d, c, b, f, e$, m22, m12, m42, m32) +
 $D_0$(me2, $s$, mw2, $t$, mw2, me2, me2, 0, 0, me2)\hfil\\
 }{
 This shows how to permute several $D_0$.

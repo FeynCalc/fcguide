@@ -4,15 +4,15 @@
 
 \subsection{A Photon One-Loop Self Energy Diagram}
 \label{self}
-The function \mb{OneLoop} performs the algebraic simplifications 
-of a given amplitude. The result is given in a polynomial of standard 
-matrix elements, invariants of the process under consideration, 
+The function \mb{OneLoop} performs the algebraic simplifications
+of a given amplitude. The result is given in a polynomial of standard
+matrix elements, invariants of the process under consideration,
 and Passarino-Veltman integrals.
 
 \otabtwo{
 \mbs{OneLoop[{\sl q},\ {\sl amp}]} & calculates the one-loop amplitude $amp$
 with $q$ as  loop momentum\cr
-\mbs{OneLoop[{\sl name},\ {\sl q},\ {\sl amp}]} & calculates the one-loop amplitude $amp$ 
+\mbs{OneLoop[{\sl name},\ {\sl q},\ {\sl amp}]} & calculates the one-loop amplitude $amp$
 and gives it a name
 } {Calculating one-loop amplitudes.}
 
@@ -23,13 +23,13 @@ and gives it a name
 } {Representation of integrands.}
 
 The first argument to \mb{OneLoop} is optional. It indicates  a name
-for the amplitude for bookkeeping reasons. 
-The second argument $q$ is the loop momentum, i.e., the integration 
-variable. 
+for the amplitude for bookkeeping reasons.
+The second argument $q$ is the loop momentum, i.e., the integration
+variable.
 
-As last argument the analytical expression for the graph is given.      
-It may be given in four dimensions. \mb{OneLoop} performs the 
-necessary extension to $D$ dimensions automatically. 
+As last argument the analytical expression for the graph is given.
+It may be given in four dimensions. \mb{OneLoop} performs the
+necessary extension to $D$ dimensions automatically.
 
 \beom
 \domtog{{-I/Pi\phat 2\ FeynAmpDenominator[\\
@@ -40,7 +40,7 @@ This is \\ $ A_0=- i \, \pi^{-2} \, (2\,\pi \mu)^{4-D} \,
 \int d^{D}q\, (q^2 - m^{2})^{-1}$, \\
 corresponding to a tadpole diagram.
 
-The scaling variable $\mu$ is suppressed by 
+The scaling variable $\mu$ is suppressed by
 \fc.
 }
 \domtog{{a0\ =\ OneLoop[q,\ a0]\\
@@ -76,18 +76,18 @@ DiracTrace[(mf\ +\ DiracSlash[q\ -\ k])\ .\ DiracMatrix[mu]\ .\\
 (mf\phat 2)\ $\Rule$\ mf2\\
 }}{
 \Frac{
-{\rm el}^2\ \ (-{\rm k2}\ +6\ {\rm mf2}\ -\ 6\ A_0({\rm mf2})\ +\ 3\ ({\rm k2}\ +\ 2\ {\rm mf2})\ 
+{\rm el}^2\ \ (-{\rm k2}\ +6\ {\rm mf2}\ -\ 6\ A_0({\rm mf2})\ +\ 3\ ({\rm k2}\ +\ 2\ {\rm mf2})\
 B_0({\rm k2},\ {\rm mf2},\ {\rm mf2}))
 }{36\ \pi^2}\hfil\\
 }{
-This is the transversal part of a photon self energy diagram 
+This is the transversal part of a photon self energy diagram
 with a fermion loop.
 
 $i e^2/( (2 \pi)^4 \, (1-D))$
 
 $ \int d^4 q \, [q^2 - m_f^2]^{-1} [(q-k)^2 -m_f^2]^{-1} $
 
-${\rm tr}[\, (m_f + \bqs - \ks) \, \gamma^{\nu}\, (\bqs + m_f)\, \gamma^{\nu}\,]$ 
+${\rm tr}[\, (m_f + \bqs - \ks) \, \gamma^{\nu}\, (\bqs + m_f)\, \gamma^{\nu}\,]$
 
 $ = $
 
@@ -96,28 +96,28 @@ $-[ e^2 ( k^2 + 6 m_f^2 B_0(0,m_f^2,m_f^2) - $
 $- 3 ( k^2 + 2 m_f^2) B_0(k^2, m_f^2, m_f^2) )]/(36 \pi^2)$
 }
 \enom
-Note that in this example, where the dimension is entered explicitly as a 
-parameter ($D$), the option \mb{Dimension} of \mb{OneLoop} 
-must also be set to $D$ (this is the default). 
+Note that in this example, where the dimension is entered explicitly as a
+parameter ($D$), the option \mb{Dimension} of \mb{OneLoop}
+must also be set to $D$ (this is the default).
 
 \subsection{Generic Diagrams for
 ${\rm \mb{W}} \rightarrow {\rm \mb{f}}_i \bar{\mb{f}}'_j$ with  OneLoop}
 \label{generic}
 
-As an example for calculating triangle diagrams the result 
-for two generic one-loop diagrams of the 
+As an example for calculating triangle diagrams the result
+for two generic one-loop diagrams of the
 decay W $\rightarrow {\rm f}_i \bar{{\rm f}'_j}$ for massless fermions
-given in \cite{ansgar} 
-is verified with \fc. 
+given in \cite{ansgar}
+is verified with \fc.
 
-For the two diagrams different approaches are taken. 
-In the first one \fc introduces standard matrix elements 
-for the part of the diagram containing polarization 
+For the two diagrams different approaches are taken.
+In the first one \fc introduces standard matrix elements
+for the part of the diagram containing polarization
 dependencies.
-In the other approach the set of standard matrix elements is defined 
+In the other approach the set of standard matrix elements is defined
 by the user before \fc calculates the diagrams.
 The last possibility is usually preferable, since the choices of \fc
-for the standard matrix elements may have physical significance only 
+for the standard matrix elements may have physical significance only
 by accident.
 
 \begin{figure}[H]
@@ -162,43 +162,43 @@ Spinor[p2]\ \ ]\ /.\ (m\phat 2)\ $\Rule$\ m2\\
 -\Frac{1}{16\multsp {{\pi }^2}}$
     \big((4\multsp {B_0}(0,0,\Mvariable{m2})-
  2\multsp {B_0}(\Mvariable{k2},0,0)-\\
-   2\multsp \Mvariable{k2}\multsp 
+   2\multsp \Mvariable{k2}\multsp
     {C_0} ( 0 ,\ 0 ,
-      \Mvariable{k2} ,\ 0 ,\ 
-     \Mvariable{m2} ,\ 0 )- 2\multsp 
-    \Mvariable{m2}\multsp {C_0} ( 0 ,\ 0 ,\ \Mvariable{k2} ,\ 
+      \Mvariable{k2} ,\ 0 ,\
+     \Mvariable{m2} ,\ 0 )- 2\multsp
+    \Mvariable{m2}\multsp {C_0} ( 0 ,\ 0 ,\ \Mvariable{k2} ,\
      0 ,\ \Mvariable{m2} ,\ 0
       )- \\
     4\multsp \Muserfunction{PaVe}(
        0,0,\{0,\Mvariable{k2},0\},\{\Mvariable{m2},0,0\})-1)\multsp\\
  \big(
-   g_{1}^{+}\multsp g_{2}^{+}\multsp g_{3}^{+}\multsp 
-     \LeftDoubleBracketingBar 
-      \varphi  ( \Mvariable{p1} )\ .\ 
-       (\gamma  \cdot  
+   g_{1}^{+}\multsp g_{2}^{+}\multsp g_{3}^{+}\multsp
+     \LeftDoubleBracketingBar
+      \varphi  ( \Mvariable{p1} )\ .\
+       (\gamma  \cdot
          \varepsilon  ( k ))\ .\ {{\gamma }^6}\ . \
        \varphi  ( \Mvariable{p2} )
        \RightDoubleBracketingBar + \\
- g_{1}^{-}\multsp g_{2}^{-}\multsp 
-       g_{3}^{-}\multsp \LeftDoubleBracketingBar 
-        \varphi  ( \Mvariable{p1} )\ .\ 
-         (\gamma  \cdot  
-           \varepsilon  ( k ))\ .\ 
+ g_{1}^{-}\multsp g_{2}^{-}\multsp
+       g_{3}^{-}\multsp \LeftDoubleBracketingBar
+        \varphi  ( \Mvariable{p1} )\ .\
+         (\gamma  \cdot
+           \varepsilon  ( k ))\ .\
          {{\gamma }^7}\ .\ \varphi  ( \Mvariable{p2}
            )\RightDoubleBracketingBar \big)\big)$
 }{
 The analytical expression for the generic diagram is:
 \\
 \\
-$\delta {\mathcal m}_1 = i (2 \pi)^{-4}\, \int\, 
+$\delta {\mathcal m}_1 = i (2 \pi)^{-4}\, \int\,
 (2\pi\mu)^{4-D}\, d^{D}q$
 
 $[(q^2-m^2)\,(q+p_1)^2\,(q-p_2)^2]^{-1}$
 
-$\overline{u}(p_1) \, \gamma^{\nu}\,(g_1^{-} \omega_{-} + g_1^{+} \omega_{+}) 
-\,( \bqs + \bps)$ 
+$\overline{u}(p_1) \, \gamma^{\nu}\,(g_1^{-} \omega_{-} + g_1^{+} \omega_{+})
+\,( \bqs + \bps)$
 
-$\es (g_3^{-} \omega_{-} + g_3^{+} \omega_{+}) \, 
+$\es (g_3^{-} \omega_{-} + g_3^{+} \omega_{+}) \,
 (\qs - \ps_2 ) \, \gamma^{\nu}\,(g_2^{-} \omega_{-} + g_2^{+} \omega_{+}) \,
 v(p_2)$
 \\
@@ -208,10 +208,10 @@ Translated into the usual notation the result reads:
 \\
 $( 1 - 2 B_0(k^2, 0,0) + 2 k^2 C_0(0, 0, k^2, 0,m^2,0) +
 2 k^2\, C_1(k^2,0,0,0,0,m^2) + 4 C_{00}(k^2,0,0,0,0,m^2) \\
-(\, g_1^{+}\, g_2^{+}\, g_3^{+} 
+(\, g_1^{+}\, g_2^{+}\, g_3^{+}
 \,\overline{u}(p_1) \,\es\,\omega_{+} \, v(p_2)
- + \,g_1^{-}\, g_2^{-}\, g_3^{-} 
-\overline{u}(p_1) \,\es\,\omega_{-} \, v(p_2)))/(16 \pi^2)$ 
+ + \,g_1^{-}\, g_2^{-}\, g_3^{-}
+\overline{u}(p_1) \,\es\,\omega_{-} \, v(p_2)))/(16 \pi^2)$
 \\
 \\
 The remaining Dirac structure \\ is wrapped with the head \\
@@ -222,27 +222,27 @@ $\LeftDoubleBracketingBar\cdots\RightDoubleBracketingBar$.
 }}{
 \Frac{1}{16\multsp \Mvariable{k2}\multsp {{\pi }^2}}  \\
 $\big(
-   \big(-2\multsp (2\multsp \Mvariable{k2}+\Mvariable{m2})\multsp 
+   \big(-2\multsp (2\multsp \Mvariable{k2}+\Mvariable{m2})\multsp
       {B_0}(0,0,\Mvariable{m2})+
-     (3\multsp \Mvariable{k2}+2\multsp \Mvariable{m2})\multsp 
+     (3\multsp \Mvariable{k2}+2\multsp \Mvariable{m2})\multsp
       {B_0}(\Mvariable{k2}, 0, 0)+
      2\multsp \big({C_0}(\Mvariable{k2},
           0, 0, 0, 0, \Mvariable{m2}
           )\multsp {{(\Mvariable{k2}+\Mvariable{m2})}^2}+
         \Mvariable{k2}\big)\big)\multsp   \\
 \big(
-   g(1,+)\multsp g(2,+)\multsp g(3,+)\multsp 
-     \LeftDoubleBracketingBar 
-      \varphi (\Mvariable{p1})\ .\ 
-       (\gamma \cdot 
-         \varepsilon (k))\ .\ {{\gamma }^6}\ .\ 
+   g(1,+)\multsp g(2,+)\multsp g(3,+)\multsp
+     \LeftDoubleBracketingBar
+      \varphi (\Mvariable{p1})\ .\
+       (\gamma \cdot
+         \varepsilon (k))\ .\ {{\gamma }^6}\ .\
        \varphi (\Mvariable{p2})
        \RightDoubleBracketingBar +  \\
 g(1,-)\multsp g(2,-)\multsp g(3,-)
-       \multsp \LeftDoubleBracketingBar 
-        \varphi (\Mvariable{p1})\ .\ 
-         (\gamma \cdot 
-           \varepsilon (k))\ .\ 
+       \multsp \LeftDoubleBracketingBar
+        \varphi (\Mvariable{p1})\ .\
+         (\gamma \cdot
+           \varepsilon (k))\ .\
          {{\gamma }^7}\ .\ \varphi (\Mvariable{p2}
           )\RightDoubleBracketingBar \big)\big)
 $
@@ -250,17 +250,17 @@ $
 This reduces the result to scalar integrals.
 }
 \domtog{{var\ =\ Select[Variables[wff1a],\ (Head[\#]===StandardMatrixElement)\&]\\
-}}{$\{\LeftDoubleBracketingBar 
-      \varphi (\Mvariable{p1})\ .\ 
-       (\gamma \cdot 
-         \varepsilon (k))\ .\ {{\gamma }^6}\ .\ 
+}}{$\{\LeftDoubleBracketingBar
+      \varphi (\Mvariable{p1})\ .\
+       (\gamma \cdot
+         \varepsilon (k))\ .\ {{\gamma }^6}\ .\
        \varphi (\Mvariable{p2})
        \RightDoubleBracketingBar,\ \\
 \ \\
-\ \ \LeftDoubleBracketingBar 
-        \varphi (\Mvariable{p1})\ .\ 
-         (\gamma \cdot 
-           \varepsilon (k))\ .\ 
+\ \ \LeftDoubleBracketingBar
+        \varphi (\Mvariable{p1})\ .\
+         (\gamma \cdot
+           \varepsilon (k))\ .\
          {{\gamma }^7}\ .\ \varphi (\Mvariable{p2}
           )\RightDoubleBracketingBar\}$
 }{
@@ -278,7 +278,7 @@ g[i\_,\ "-"]\ $\Rule$\ gm[i],\ FormatType\ $\Rule$\ FortranForm];\\
 }}{}{
 In this way you can generate a Fortran file.
 
-With replacements you can adapt the result to your other 
+With replacements you can adapt the result to your other
 Fortran code.
 }
 \dtog{!!wff1a.for\\
@@ -301,13 +301,13 @@ Clear[gc, g, wff1, wff1a, ma];}{}{Clean up.}
 \mbs{StandardMatrixElement[ {\sl expr}]} & a standard matrix element \cr
 \hspace*{-18pt}\mbs{SetStandardMatrixElements[\{\ \{{\sl sm1}\ $\Rule$\ {\sl abb1}\},\ \{{\sl sm2}\ $\Rule$ \ {\sl abb2}\},\ ...\}]}&
 set abbreviations for standard matrix elements \cr
-\hspace*{-18pt}\mbs{SetStandardMatrixElements[\{\ \{{\sl sm1}\ $\Rule$\ {\sl abb1}\},\ \{{\sl sm2}\ $\Rule$ \ {\sl abb2}\},\ ...\}}, 
-$k_2 \Rule p_1+p_2-k_1$\mb{]}& set abbreviations  for standard matrix elements by using 
-energy momentum conservation 
+\hspace*{-18pt}\mbs{SetStandardMatrixElements[\{\ \{{\sl sm1}\ $\Rule$\ {\sl abb1}\},\ \{{\sl sm2}\ $\Rule$ \ {\sl abb2}\},\ ...\}},
+$k_2 \Rule p_1+p_2-k_1$\mb{]}& set abbreviations  for standard matrix elements by using
+energy momentum conservation
 } {A head for identifying standard matrix elements; {\sl sm1}, {\sl sm2} are the standard
 matrix elements, {\sl abb1}, {\sl abb2} the abbreviations.}
 
-The function \mb{SetStandardMatrixElements} introduces 
+The function \mb{SetStandardMatrixElements} introduces
 \mb{StandardMatrixElement[{\sl abb1}\\]} for \mb{{\sl sm1}}.
 The abbreviations \mb{{\sl abb1}}, \mb{{\sl abb2}}, $\ldots$ may be numbers or
 strings.
@@ -322,7 +322,7 @@ ScalarProduct[p1,\ p2]\ =\ k2/2\ ;\\
 SetOptions[\ OneLoop,\ \\
 Factoring\ $\Rule$\ True,\ FormatType\ $\Rule$\ FortranForm,\\
 ReduceToScalars\ $\Rule$\ True,\ WriteOut $\Rule$ True,\\
-FinalSubstitutions\ $\Rule$\ \{g[i\_,\ "+"]\ $\Rule$\ gp[i],\ 
+FinalSubstitutions\ $\Rule$\ \{g[i\_,\ "+"]\ $\Rule$\ gp[i],\
 g[i\_,\ "-"]\ $\Rule$\ gm[i],\\
 StandardMatrixElement\ $\Rule$ \ ma\}\ ];\\
 mt\ =\ MetricTensor;\ fv\ =\ FourVector;\\
@@ -330,22 +330,22 @@ feynden[x:\{\_,\ \_\}..]\ :=\ FeynAmpDenominator\ @@\ \\
 Map[Apply[PropagatorDenominator,\ \#]\&,\ \{x\}];\\
 }}{}{
 The option \mb{ReduceToScalars} is set to \mb{True};
-this will produce directly a result  in 
+this will produce directly a result  in
 terms of  $B_0$ and $C_0$.
 
-The other definitions are 
+The other definitions are
 convenient abbreviations:
-\mb{r} for the right-handed projection operator 
- $\gamma_6$, \mb{l} for the left-handed projection operator 
-$\gamma_7$, short mnemonic functions 
-like \mb{mt}, \mb{fv} and \mb{feynden} 
-stand for  metric tensors, four-vectors and 
+\mb{r} for the right-handed projection operator
+ $\gamma_6$, \mb{l} for the left-handed projection operator
+$\gamma_7$, short mnemonic functions
+like \mb{mt}, \mb{fv} and \mb{feynden}
+stand for  metric tensors, four-vectors and
 denominators of propagators.
 }
 \dtog{{SetStandardMatrixElements[\ \\
-\ \{\ (\ \ Spinor[p1]\ .\ DiracSlash[Polarization[k]].\ 
+\ \{\ (\ \ Spinor[p1]\ .\ DiracSlash[Polarization[k]].\
 r\ .\ Spinor[p2]\ )\ $\Rule$\ \{1\},\\
-(\ \ Spinor[p1]\ .\ DiracSlash[Polarization[k]].\ 
+(\ \ Spinor[p1]\ .\ DiracSlash[Polarization[k]].\
 l\ .\ Spinor[p2]\ )\ $\Rule$\ \{2\}\}];\\
 }}{}{
 This sets the standard matrix elements:
@@ -368,10 +368,10 @@ PolarizationVector[k,\ mu]\\
 ]\ /.\ (m1\phat 2)\ $\Rule$\ m12\ /.\ (m2\phat 2)\ $\Rule$\ m22\\
 }{
 -\Frac{1}{(16\ {\rm k2}\ \pi^2)} \\
-$({\rm g3}\ ((2\ {\rm k2}\ +\ {\rm m12})\ B_0(0,\ 0,\ {\rm m12})\ + \\ 
-(2\ {\rm k2}\ +\ {\rm m22})\ B_0(0,\ 0,\ {\rm m22})\ - \\ 
-({\rm k2}\ +\ {\rm m12}\ +\ {\rm m22})\ B_0({\rm k2},\ {\rm m12},\ {\rm m22})\ +\ 
-2\ ({\rm k2}\ {\rm m12}\ +\ {\rm m22}\ {\rm m12}\ +\ {\rm k2}\ {\rm m22})\ 
+$({\rm g3}\ ((2\ {\rm k2}\ +\ {\rm m12})\ B_0(0,\ 0,\ {\rm m12})\ + \\
+(2\ {\rm k2}\ +\ {\rm m22})\ B_0(0,\ 0,\ {\rm m22})\ - \\
+({\rm k2}\ +\ {\rm m12}\ +\ {\rm m22})\ B_0({\rm k2},\ {\rm m12},\ {\rm m22})\ +\
+2\ ({\rm k2}\ {\rm m12}\ +\ {\rm m22}\ {\rm m12}\ +\ {\rm k2}\ {\rm m22})\
 C_0({\rm k2},\ 0,\ 0,\ {\rm m12},\ {\rm m22},\ 0))\\
 ({\rm gp}(1)\ {\rm gp})(2)\ {\rm ma}(1)\ +\ {\rm gm}(1)\ {\rm gm}(2)\ {\rm ma}(2))
 )$
@@ -416,59 +416,59 @@ Clear[r,\ l,\ mt,\ fv,\ feynden,\ wff2];}{}{Clean up.}
 \label{oneopt}
 Several options of \mb{OneLoop} have already been introduced in the previous
 section.
-Here the full list of available options is given. 
+Here the full list of available options is given.
 The example in section \ref{eezh} shows the use of some options.
 
-In the automatic calculation of one-loop amplitudes it does not matter in which order the 
+In the automatic calculation of one-loop amplitudes it does not matter in which order the
 arguments of \mb{FeynAmpDenominator} are given. Therefore the default setting of \mb{DenomatorOrder}
-is \mb{True}. In case you want to verify a result obtained by hand calculation, you can set this 
+is \mb{True}. In case you want to verify a result obtained by hand calculation, you can set this
 option to \mb{False}, which will preserve the order of the propagators as entered.
 If you want to include the dimension $D$ explicitly in the input, as in the example
 in section \ref{self}, you have to set \mb{Dimension\ $\Rule$\ D}.
 
-With the default setting of \mb{Dimension} you can enter four-dimensional objects to 
+With the default setting of \mb{Dimension} you can enter four-dimensional objects to
 \mb{OneLoop}, which are automatically extended to $D$ dimensions inside \mb{OneLoop}.
 In case you want to calculate a finite amplitude, you can set \mb{Dimension\ $\Rule$\ 4}.
 
-%The option \mb{FinalSubstitutions} indicates substitutions that are done at the very end 
+%The option \mb{FinalSubstitutions} indicates substitutions that are done at the very end
 %of the calculation, which may be useful to adapt the output to your Fortran program.
 
-The \mb{Factoring} option should be used only for relatively small problems, since it may 
-be very time consuming to factor the result. Unless the result of \mb{OneLoop} is 
-very short, only 
+The \mb{Factoring} option should be used only for relatively small problems, since it may
+be very time consuming to factor the result. Unless the result of \mb{OneLoop} is
+very short, only
 the coefficients of \mb{StandardMatrixElement} are factored.
 
 \mb{FormatType} takes \mb{InputForm}, \mb{FortranForm}, \mb{MacsymaForm} or \mb{MapleForm}
-as settings. If the option \mb{WriteOut} is set to \mb{True}, the result is written out 
+as settings. If the option \mb{WriteOut} is set to \mb{True}, the result is written out
 into a file using \mb{Write2} with the setting of \mb{FormatType}.
 
-Replacements are  
+Replacements are
 done with \mb{InitialSubstitutions} and \mb{FinalSubstitutions}.
-Especially energy momentum conservation should be included, e.g., 
+Especially energy momentum conservation should be included, e.g.,
 \mb{InitialSubstitutions\ $\Rule$\ \{k2\ $\Rule$\ -\ k1\ \ +\ p1\ +\ p3\}}.
-Note that the rules listed in \mb{FinalSubstitutions} are not applied as one list of rules, 
+Note that the rules listed in \mb{FinalSubstitutions} are not applied as one list of rules,
 but sequentially in a loop.
 
 For more tuning, the option \mb{IntermediateSubstitutions} can be used. Usually this should not be necessary. These rules are applied somewhere in the middle of the calculation.
 
 If \mb{IsolateNames} is set to \mb{c}, for example, the result will be given as
 a \mb{c[i]} in \mb{HoldForm}. See \mb{Isolate} for more information.
-The setting of \mb{Mandelstam} may be, e.g., 
+The setting of \mb{Mandelstam} may be, e.g.,
 \mb{Mandelstam\ $\Rule$\ \{{\sl s},\ {\sl t},\ {\sl u},\ {\sl m1}\phat 2\ +\ {\sl m2}\phat 2\ +\ {\sl m3}\phat 2\ +\ {\sl m4}\phat 2\}}, where  $s + t + u = m_1^2 + m_2^2 + m_3^2 + m_4^2$.
 
-The option \mb{ReduceToScalars} should not be set to \mb{True} when calculating several complicated diagrams involving $D_{\mu \nu \rho}$ or $D_{\mu \nu \rho \sigma}$. 
-Depending on the computer you are using  it may nevertheless work, but it is usually better 
-to use \mb{OneLoopSum} with the appropriate options. Note that depending on the setting of the 
+The option \mb{ReduceToScalars} should not be set to \mb{True} when calculating several complicated diagrams involving $D_{\mu \nu \rho}$ or $D_{\mu \nu \rho \sigma}$.
+Depending on the computer you are using  it may nevertheless work, but it is usually better
+to use \mb{OneLoopSum} with the appropriate options. Note that depending on the setting of the
 option \mb{BReduce} also two-point coefficient functions may remain in the result.
 
 For processes with light external fermions it is best not to neglect the fermion masses
 everywhere, but to keep them in the arguments of the scalar Passarino-Veltman functions.
-This set of masses should be supplied as a list to the option \mb{SmallVariables}, see section \ref{eezh}. 
+This set of masses should be supplied as a list to the option \mb{SmallVariables}, see section \ref{eezh}.
 
 If \mb{WriteOut} is set to \mb{True}, the result is written to a file composed of the first
-argument of \mb{OneLoop}, i.e., the $name$. In which language, i.e., 
+argument of \mb{OneLoop}, i.e., the $name$. In which language, i.e.,
 \mma, Fortran, Macsyma or Maple the result is written, depends on the setting of the option \mb{FormatType}.
-You may also set \mb{WriteOut} to a string, which denotes the directory 
+You may also set \mb{WriteOut} to a string, which denotes the directory
 in which to the result (actually this string is simply prepended to the file names).
 
 \otabthree{
@@ -476,8 +476,8 @@ in which to the result (actually this string is simply prepended to the file nam
 \hhline
 \mb{Apart2} & \mb{True} & use \mb{Apart2} to partial fraction denominators \cr
 \mb{CancelQP} & \mb{True} & cancel $q\cdot p$ and $q^2$ \cr
-\mb{DenominatorOrder} & \mb{False}  &  
-order the arguments of \mb{FeynAmpDenominator} 
+\mb{DenominatorOrder} & \mb{False}  &
+order the arguments of \mb{FeynAmpDenominator}
 canonically \cr
 \mb{Dimension} & \mb{D} & number of space-time dimensions\cr
 \mb{Factoring} & \mb{False}  &  factor the result \cr
@@ -502,12 +502,12 @@ calculation \cr
 \subsection{OneLoopSum and Its Options}
 
 To sum a list of amplitudes two different methods are provided by
-\mb{OneLoopSum}. Either the provided list of amplitudes is calculated and 
+\mb{OneLoopSum}. Either the provided list of amplitudes is calculated and
 subsequently summed, or the summation is done partially before the calculation.
 This can be specified with the option \mb{CombineGraphs}.
 
 \otabtwo{
-\mbs{OneLoopSum[\{FeynAmp[ GraphName[...,\ {\sl N1}],\ {\sl q},\ {\sl amp1}], 
+\mbs{OneLoopSum[\{FeynAmp[ GraphName[...,\ {\sl N1}],\ {\sl q},\ {\sl amp1}],
 FeynAmp[GraphName[...,\ {\sl N2}],\ {\sl q},\ {\sl amp2}],\ ...\}]} & calculate a list of amplitudes \cr
 \mbs{OneLoopSum[{\sl expr}]} & sum already calculated amplitudes \cr
 }{A function for summing one-loop amplitudes.
@@ -516,13 +516,13 @@ FeynAmp[GraphName[...,\ {\sl N2}],\ {\sl q},\ {\sl amp2}],\ ...\}]} & calculate 
 
 The input of \mb{OneLoopSum} is adapted to the output of \fa \footnote{Actually to version 1 of \fa, but later versions provide a function translating to version 1 syntax (\mb{ToFA1Conventions}). The examples given here all use \fa version 3.} .
 After saving a list of Feynman diagrams (that is, unintegrated amplitudes)
-created with \fa\ using the function \mb{CreateFeynAmp}, you can start a new \mma session 
-\footnote{It is not possible to load \fc and \fa\ 
+created with \fa\ using the function \mb{CreateFeynAmp}, you can start a new \mma session
+\footnote{It is not possible to load \fc and \fa\
 simultaneously into one \mma session because some functions of \fa and \fc have the same name but are in different contexts (name spaces). A more sophisticated approach is provided by the optional subpackage \fphi, which patches \fa slightly, allowing the two packages to be loaded simultaneously.},
-load \fc, get the amplitudes, calculate the amplitude with \mb{OneLoopSum} and finally 
+load \fc, get the amplitudes, calculate the amplitude with \mb{OneLoopSum} and finally
 save the result e.g. as a Fortran file.
 %\footnote{Sometimes you will get an error message when loading a file.
-%This is a bug in the \mma saving routine and may be fixed by editing the 
+%This is a bug in the \mma saving routine and may be fixed by editing the
 %file and enclosing the whole expression in two round brackets $( ... )$.
 %Do not put a ";" after the last round bracket.}
 
@@ -551,7 +551,7 @@ The output of \mb{OneLoopSum} is typically given as a short expression wrapped i
 \mb{CombineGraphs} & \mb{\{\}} & combine amplitudes \cr
 %ahead of calculating \cr
 \mb{Dimension}  & \mb{True} & number of space-time dimensions \cr
-\mb{ExtraVariables}  & \mb{\{\}} & list of variables which are bracketed out in the result 
+\mb{ExtraVariables}  & \mb{\{\}} & list of variables which are bracketed out in the result
 like \mb{B0}, \mb{C0}, \mb{D0} and  \mb{PaVe} \cr
 \mb{FinalFunction}  & \mb{Identity} & function applied to the result \cr
 \mb{FinalSubstitutions}  & \mb{\{\}} & substitutions done at the end of the calculation \cr
@@ -566,53 +566,53 @@ like \mb{B0}, \mb{C0}, \mb{D0} and  \mb{PaVe} \cr
 \mb{WriteOutPaVe} & \mb{False} & write out the reduced \mb{PaVe}
 }{Options of \mb{OneLoopSum}.}
 
-With the default options \mb{OneLoopSum} calculates each amplitude 
-separately by 
-substituting \mb{OneLoop} for \mb{FeynAmp}. Then each single \mb{PaVe} is reduced 
-to scalar integrals. The hard final part consists in the simplification of 
-the rational coefficients of the scalar integrals. 
+With the default options \mb{OneLoopSum} calculates each amplitude
+separately by
+substituting \mb{OneLoop} for \mb{FeynAmp}. Then each single \mb{PaVe} is reduced
+to scalar integrals. The hard final part consists in the simplification of
+the rational coefficients of the scalar integrals.
 This may involve thousands of factorizations
-and can therefore take hours of CPU time. But the algebraic simplifications achieved 
-by putting all coefficients of the scalar integrals over a common denominator and 
-to factor them, possibly cancelling factors and reducing the singularity 
+and can therefore take hours of CPU time. But the algebraic simplifications achieved
+by putting all coefficients of the scalar integrals over a common denominator and
+to factor them, possibly cancelling factors and reducing the singularity
 structure, may be very significant.
 These calculations may need quite a lot of RAM space, therefore the options
 of \mb{OneLoopSum} allow you to split up the task of summing lots of diagrams.
 
 First you can select a certain subclass of diagrams with the option \mb{SelectGraphs}.
-You may set, e.g., \mb{SelectGraphs\ $\Rule$\ \{1,\ 2,\ 5,\ 8\}}, which selects the 
+You may set, e.g., \mb{SelectGraphs\ $\Rule$\ \{1,\ 2,\ 5,\ 8\}}, which selects the
 amplitudes at positions 1, 2, 5 and 8 of the argument list of \mb{OneLoopSum}.
 The setting \mb{SelectGraphs\ $\Rule$\ \{1,\ 2,\ 5,\ 8,\ \{10,\ 40\}\}} also includes the range of all amplitudes from position 10 to 40.
 
-With the option \mb{CombineGraphs} a possibility is given to sum the graphs before 
+With the option \mb{CombineGraphs} a possibility is given to sum the graphs before
 calculation. This is especially useful for combining a graph with its crossed counterpart.
-In general it makes sense to combine all graphs with the same propagators before 
+In general it makes sense to combine all graphs with the same propagators before
 calculation, but for very big sums this may reduce the performance considerably.
 The possible settings for \mb{CombineGraphs} are the same as for \mb{SelectGraphs}.
-If you use the \fa\ syntax for the first argument of \mb{FeynAmp},   
-i.e. \mb{GraphName[...,\ N1]}, the last arguments of \mb{GraphName} for 
+If you use the \fa\ syntax for the first argument of \mb{FeynAmp},
+i.e. \mb{GraphName[...,\ N1]}, the last arguments of \mb{GraphName} for
 combined graphs are concatenated and a new \mb{GraphName} for the summed amplitude
 is created.
 
-By setting the option \mb{WriteOutPaVe} you can save 
+By setting the option \mb{WriteOutPaVe} you can save
 the result of the reduction of each \mb{PaVe} to a file for later use.
 The names of the corresponding files are generated automatically.
 In case you use \mb{OneLoopSum} several times it recognizes previously saved
-reductions and loads these results automatically. This may save a considerable amount of time. 
-Instead of setting the option \mb{WriteOutPaVe} to an empty string 
-(which means that the files are written in the current directory), you can 
+reductions and loads these results automatically. This may save a considerable amount of time.
+Instead of setting the option \mb{WriteOutPaVe} to an empty string
+(which means that the files are written in the current directory), you can
 specify another directory (a string prepended to the file names).
 
-Note that these options together with the possibility of 
+Note that these options together with the possibility of
 using \mb{OneLoopSum} on already calculated graphs
-gives you a lot freedom to split up the calculation, 
+gives you a lot freedom to split up the calculation,
 which may be necessary in order to avoid memory overflow.
 It can also be a good idea to set \mb{\$VeryVerbose} to 1 or 2 for monitoring the calculation.
 
 The option \mb{Prefactor} may be used to extract global factors.
 You can, e.g., do \mb{SetOptions[OneLoop,\ Prefactor\ $\Rule$\ (2\ SW\phat 2)},
-which causes each single amplitude to be multiplied by $2 s_{\rm W}^2$, and 
-\mb{SetOptions[OneLoopSum,\ Prefactor\ $\Rule$\ 1/(2\ SW\phat 2)}, which causes the result of 
+which causes each single amplitude to be multiplied by $2 s_{\rm W}^2$, and
+\mb{SetOptions[OneLoopSum,\ Prefactor\ $\Rule$\ 1/(2\ SW\phat 2)}, which causes the result of
 \mb{OneLoopSum} to have $1/(2 s_{\rm W}^2)$ as a global factor.
 
 \subsection{Box Graphs of ${\rm e}^+ {\rm e}^- \rightarrow {\rm ZH}$}
@@ -658,21 +658,21 @@ The six standard matrix elements are:
 \begin{verbatim}
 
 (*Generate the box topologies*)
-tops = CreateTopologies[1, 2 -> 2, Adjacencies -> {3}, 
-      ExcludeTopologies -> {SelfEnergies, WFCorrections, Tadpoles, 
+tops = CreateTopologies[1, 2 -> 2, Adjacencies -> {3},
+      ExcludeTopologies -> {SelfEnergies, WFCorrections, Tadpoles,
           Boxes[3]}];
 
 (*Check that the right topologies were generated*)
 Paint[tops, ColumnsXRows -> {3, 1}];
 
 (*Insert fields*)
-inserttops = 
+inserttops =
     InsertFields[tops, {F[2, {1}], -F[2, {1}]} -> {V[2], S[1]}, Model -> "SM",
-       GenericModel -> "Lorentz", InsertionLevel -> Particles, 
+       GenericModel -> "Lorentz", InsertionLevel -> Particles,
       ExcludeFieldPoints -> {FieldPoint[F, -F, S]}];
 
 (*Display the graphs*)
-graphs = Paint[inserttops, PaintLevel -> {Particles}, AutoEdit -> False, 
+graphs = Paint[inserttops, PaintLevel -> {Particles}, AutoEdit -> False,
       SheetHeader -> False, Numbering -> False, ColumnsXRows -> {3, 2}];
 
 (*Generate amplitude*)
@@ -692,45 +692,45 @@ PickLevel[Particles][eezhb] // ToFA1Conventions >> "eezhb.amp";
 \begin{verbatim}
 
 (*Define the Mandelstam variables and put momenta on - shell*)
-  SetMandelstam[s, t, u, p1, p2, -k1, -k2, SmallVariable[ME], 
+  SetMandelstam[s, t, u, p1, p2, -k1, -k2, SmallVariable[ME],
     SmallVariable[ME], MZ, MH];
 
 (*Set the option for the ordering of D0's*)
 SetOptions[PaVeOrder, PaVeOrderList -> {{s, t}, {s, u}, {t, u}}];
 
 (*Set the options for OneLoop*)
-SetOptions[OneLoop, Mandelstam -> {s, t, u, MH^2 + MZ^2}, 
-    Prefactor -> 1/ALPHA2, 
-    InitialSubstitutions -> {k2 -> p1 + p2 - k1, CW -> MW/MZ, 
+SetOptions[OneLoop, Mandelstam -> {s, t, u, MH^2 + MZ^2},
+    Prefactor -> 1/ALPHA2,
+    InitialSubstitutions -> {k2 -> p1 + p2 - k1, CW -> MW/MZ,
         EL -> Sqrt[4 Pi Sqrt[ALPHA2]]}, SmallVariables -> {ME, ME2}];
 
 (*The option for OneLoopSum introduces abbreviations at the end*)
-SetOptions[OneLoopSum, Prefactor -> 2 ALP4PI FLUFAC, 
-    Mandelstam -> {s, t, u, MH^2 + MZ^2}, 
-    FinalSubstitutions -> {SW -> Sqrt[SW2], ME -> Sqrt[ME2], MW -> Sqrt[MW2], 
-        MZ -> Sqrt[MZ2], MH -> Sqrt[MH2], 
-        ME2^n_ :> ME^(2 n) /; Head[n] =!= Integer, 
-        MZ2^n_ :> MZ^(2 n) /; Head[n] =!= Integer, 
-        MW2^n_ :> MW^(2 n) /; Head[n] =!= Integer, 
-        MH2^n_ :> MH^(2 n) /; Head[n] =!= Integer, 
-        SW2^n_ :> SW^(2 n) /; Head[n] =!= Integer, 
+SetOptions[OneLoopSum, Prefactor -> 2 ALP4PI FLUFAC,
+    Mandelstam -> {s, t, u, MH^2 + MZ^2},
+    FinalSubstitutions -> {SW -> Sqrt[SW2], ME -> Sqrt[ME2], MW -> Sqrt[MW2],
+        MZ -> Sqrt[MZ2], MH -> Sqrt[MH2],
+        ME2^n_ :> ME^(2 n) /; Head[n] =!= Integer,
+        MZ2^n_ :> MZ^(2 n) /; Head[n] =!= Integer,
+        MW2^n_ :> MW^(2 n) /; Head[n] =!= Integer,
+        MH2^n_ :> MH^(2 n) /; Head[n] =!= Integer,
+        SW2^n_ :> SW^(2 n) /; Head[n] =!= Integer,
         StandardMatrixElement -> MBM}, WriteOutPaVe -> ""];
 
 (*Define the standard matrix elements*)
 SetStandardMatrixElements[{Spinor[p1].DiracSlash[
             Conjugate[Polarization[k1]]].ChiralityProjector[+1].Spinor[
-            p2] -> {0, 1}, 
+            p2] -> {0, 1},
       Spinor[p1].DiracSlash[
             Conjugate[Polarization[k1]]].ChiralityProjector[-1].Spinor[
-            p2] -> {0, 2}, 
+            p2] -> {0, 2},
       ScalarProduct[Conjugate[Polarization[k1]], p1]*
-          Spinor[p1].DiracSlash[k1].ChiralityProjector[+1].Spinor[p2] -> {1, 
+          Spinor[p1].DiracSlash[k1].ChiralityProjector[+1].Spinor[p2] -> {1,
           1}, ScalarProduct[Conjugate[Polarization[k1]], p1]*
-          Spinor[p1].DiracSlash[k1].ChiralityProjector[-1].Spinor[p2] -> {1, 
+          Spinor[p1].DiracSlash[k1].ChiralityProjector[-1].Spinor[p2] -> {1,
           2}, ScalarProduct[Conjugate[Polarization[k1]], p2]*
-          Spinor[p1].DiracSlash[k1].ChiralityProjector[+1].Spinor[p2] -> {2, 
+          Spinor[p1].DiracSlash[k1].ChiralityProjector[+1].Spinor[p2] -> {2,
           1}, ScalarProduct[Conjugate[Polarization[k1]], p2]*
-          Spinor[p1].DiracSlash[k1].ChiralityProjector[-1].Spinor[p2] -> {2, 
+          Spinor[p1].DiracSlash[k1].ChiralityProjector[-1].Spinor[p2] -> {2,
           2}}, {k2 -> (p1 + p2 - k1)}];
 
 (*get the amplitudes, which have been written to a file by FeynArts*)
@@ -840,7 +840,7 @@ KK[4] = (B0[MZ2, 0, 0]
        );
 KK[5] = (B0[MZ2, MW2, MW2]
        );
-KK[6] = ( D0[MH2, SmallVariable[ME2], MZ2, SmallVariable[ME2], t, u, MZ2, MZ2, 
+KK[6] = ( D0[MH2, SmallVariable[ME2], MZ2, SmallVariable[ME2], t, u, MZ2, MZ2,
  SmallVariable[ME2], SmallVariable[ME2]]
        );
 KK[7] = ( D0[MH2, MZ2, SmallVariable[ME2], SmallVariable[ME2], s, t, MW2, MW2, MW2, 0]
@@ -910,8 +910,8 @@ Calculating loop integrals will in many cases lead to very large expressions. Th
 \beom
 \dtog{<< "eezhb.m"}{}{Load a stored amplitude (see section \ref{eezh}).}
 \domtog{EEZHBOXES // LeafCount}{10415}{Check the 'size' of the expression.}
-\dtog{eezhoxes = 
-    Collect[EEZHBOXES // Expand, {ALP4PI, FLUFAC, \_MBM, \_D0, \_C0, \_B0}, 
+\dtog{eezhoxes =
+    Collect[EEZHBOXES // Expand, {ALP4PI, FLUFAC, \_MBM, \_D0, \_C0, \_B0},
       If[FreeQ[\#, \_MBM | \_D0 | \_C0 | \_B0 | \_PaVe], FullSimplify[\#], \#] \&];}{
 }{
 Expand the expressions, collect with respect to factors we know will be overall or "interesting", simplify what the non-overall factors multiply.}
@@ -929,20 +929,20 @@ In the one-loop calculations considered thus far, amplitudes have been computed.
 \begin{verbatim}
 
 (*Construction of topologies*)
-tops = CreateTopologies[0, 2 -> 2, Adjacencies -> {3}, 
+tops = CreateTopologies[0, 2 -> 2, Adjacencies -> {3},
       ExcludeTopologies -> {SelfEnergies, WFCorrections}];
 
 (*Check*)
 Paint[tops, ColumnsXRows -> {3, 1}, AutoEdit -> False];
 
 (*Field insertion*)
-inserttops = 
-    InsertFields[tops, {F[1, {1}], F[1, {1}]} -> {F[1, {1}], F[1, {1}]}, 
+inserttops =
+    InsertFields[tops, {F[1, {1}], F[1, {1}]} -> {F[1, {1}], F[1, {1}]},
       Model -> "QED", GenericModel -> "QED", InsertionLevel -> Particles];
 
 (*Check*)
-treegraphs = 
-    Paint[inserttops, PaintLevel -> {Particles}, AutoEdit -> False, 
+treegraphs =
+    Paint[inserttops, PaintLevel -> {Particles}, AutoEdit -> False,
       SheetHeader -> False, Numbering -> False, ColumnsXRows -> {2, 1}];
 
 (*Calculate the amplitudes*)
@@ -971,13 +971,13 @@ amps = << moelleramps.m;
 amp = (OneLoopSum[amps, CombineGraphs -> {1, 2}] // FRH) /. D :> Sequence[] //
      Contract
 
-(*Square the amplitude, 
+(*Square the amplitude,
   transform the spin sums into traces and evaluate the traces*)
-squaredamp = 
-  FermionSpinSum[amp ComplexConjugate[amp /. li2 -> li1] // Expand] /. 
-          DiracTrace -> Tr // DiracSimplify // 
+squaredamp =
+  FermionSpinSum[amp ComplexConjugate[amp /. li2 -> li1] // Expand] /.
+          DiracTrace -> Tr // DiracSimplify //
       TrickMandelstam[#, {s, t, u, 4ME^2}] & // Simplify
-squaredamp1 = 
+squaredamp1 =
   squaredamp // Contract // PropagatorDenominatorExplicit // Simplify
 
 (*The kinematical factor in the center of mass frame*)
@@ -987,8 +987,8 @@ kinfac = 1/(64 \[Pi]^2s);
 in terms of Mandelstam variables*)
 dcrosssection = 1/4*kinfac*squaredamp1 // Simplify
 (*Shift to other variables : Scattering angle and half the CMS energy*)
-dc = dcrosssection /. u -> 4ME^2 - s - t /. {s -> 4 \[Omega]^2, 
-          t -> -2 q2(1 - Sqrt[1 - sin[\[Theta]]^2])} /. 
+dc = dcrosssection /. u -> 4ME^2 - s - t /. {s -> 4 \[Omega]^2,
+          t -> -2 q2(1 - Sqrt[1 - sin[\[Theta]]^2])} /.
       q2 -> \[Omega]^2 - ME^2 // Simplify
 
 (*Clean up*)

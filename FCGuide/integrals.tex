@@ -27,26 +27,26 @@ These are written purely in \mma but are not very well tested.
 \label{passvelt}
 
 The scalar integrals $A_0, B_0, C_0$ and $D_0$ are represented
-in \fc as functions with all arguments consisting of scalar products or 
-masses squared. Thus $A_0$ has one, $B_0$ three, $C_0$ six, and 
-$D_0$ ten arguments. The symmetry properties of the arguments  are 
-implemented, i.e., a standard representative of all possible 
+in \fc as functions with all arguments consisting of scalar products or
+masses squared. Thus $A_0$ has one, $B_0$ three, $C_0$ six, and
+$D_0$ ten arguments. The symmetry properties of the arguments  are
+implemented, i.e., a standard representative of all possible
 argument permutations of each $ B_0, C_0$ and $D_0$ is returned.
-For example, \mb{B0[pp,\ m2\phat 2,\ m1\phat 2]} \ra \mb{B0[pp,\ m1\phat 2,\ m2\phat 2]}, where 
+For example, \mb{B0[pp,\ m2\phat 2,\ m1\phat 2]} \ra \mb{B0[pp,\ m1\phat 2,\ m2\phat 2]}, where
 \mb{pp} denotes the scalar product $(p\cdot p) = p^2$.
 
 \otabtwo{
 \mbs{A0[{\sl m02}]} &$(i\pi^2)^{-1} \int d^{D}q (q^{2}-m_0^{2})^{-1}$ \cr
-\mbs{B0[{\sl p10},{\sl m02},{\sl m12}]} & 
+\mbs{B0[{\sl p10},{\sl m02},{\sl m12}]} &
 $(i\pi^2)^{-1}\int  d^{D}q ([(q^{2}-m_0^{2}][(q+p_1)^{2}-m_1^{2}])^{-1}$ \cr
 \mbs{DB0[{\sl p10},{\sl m02},{\sl m12}]} &
 $\partial B_0(p_1^2,m_0^2,m_1^2)/\partial p_1^2$ \cr
 \mbs{C0[{\sl p10},{\sl p12},{\sl p20},{\sl m02},{\sl m12}, {\sl m22}]} &
-$(i\pi^2)^{-1} \int  d^{D}q 
+$(i\pi^2)^{-1} \int  d^{D}q
 ([q^{2}-m_0^{2}][(q+p_1)^{2}-m_1^{2}][(q+p_2)^{2}-m_2^{2}])^{-1} $ \cr
 \mbs{D0[{\sl p10},{\sl p12},{\sl p23},{\sl p30},{\sl p20},{\sl p13}, {\sl m02},{\sl m12},{\sl m22},{\sl m32}]} &
 $(i\pi^2)^{-1} \int  d^{D}q ([q^{2}-m_0^{2}][(q+p_1)^{2}-m_1^{2}][(q+p_2)^{2}-m_2^{2}]
-[(q+p_3)^{2}-m_3^{2}])^{-1} $ 
+[(q+p_3)^{2}-m_3^{2}])^{-1} $
 } {Scalar Passarino-Veltman functions $A_0$, $B_0$,$B_0'$, $C_0$ and $D_0$.}
 
 In \fc and in the mathematical definitions given above,
@@ -69,13 +69,13 @@ Taking the derivative with respect to the first argument yields
 \enom
 
 The tensor-integral decomposition is automatically done by
-\fc when calculating one-loop amplitudes, 
-but extra functions are provided to reduce the coefficients of the 
+\fc when calculating one-loop amplitudes,
+but extra functions are provided to reduce the coefficients of the
 tensor-integral decomposition.
 
 For fixing the conventions of the coefficient functions
 the definitions of the tensor-integrals and the decomposition are given below.
-In general the one-loop tensor integral is 
+In general the one-loop tensor integral is
 \[
 T^{N}_{\mu_{1}\ldots\mu_{P}} (p_{1},\ldots,p_{N-1},m_{0},\ldots,m_{N-1})=
 \frac{(2\pi\mu)^{4-D}}{i\pi^{2}}\int d^{D}\!q
@@ -87,7 +87,7 @@ T^{N}_{\mu_{1}\ldots\mu_{P}} (p_{1},\ldots,p_{N-1},m_{0},\ldots,m_{N-1})=
 with the denominator factors
 \[
 {\mathcal D}_{0}=
-q^{2}-m_{0}^{2} \nonumber \qquad 
+q^{2}-m_{0}^{2} \nonumber \qquad
 {\mathcal D}_{i}=
 (q+p_{i})^{2}-m_{i}^{2}, \nonumber \qquad i=1,\ldots,N-1 \nonumber
 \]
@@ -97,7 +97,7 @@ The $i \varepsilon $ part of the denominator factors is suppressed.
 
 The tensor integral decompositions for the integrals that \fc can
 do are listed below. The coefficient functions $B_i, B_{ij},
-C_i, C_{ij}, C_{ijk}, D_i, D_{ij}, D_{ijk}$ and $D_{ijkl}$ 
+C_i, C_{ij}, C_{ijk}, D_i, D_{ij}, D_{ijk}$ and $D_{ijkl}$
 are totally symmetric in their indices.
 
 \[
@@ -166,18 +166,18 @@ are summarized in one generic function, \mb{PaVe}.
 Passarino-Veltman coefficient functions
 } {Passarino-Veltman coefficient functions of the tensor integral decomposition.}
 
-The first set of arguments \mb{{\sl i},\ {\sl j},\ ...} are exactly those 
+The first set of arguments \mb{{\sl i},\ {\sl j},\ ...} are exactly those
 indices of the coefficient functions of the tensor integral decomposition.
-If only a \mb{0} is given as first argument, the scalar integrals are 
-understood. The last argument, the list of inner masses 
+If only a \mb{0} is given as first argument, the scalar integrals are
+understood. The last argument, the list of inner masses
 $m_0^2,\, m_1^2,\, ...$, determines whether a one-, two-,
-three- or four-point function is meant. 
+three- or four-point function is meant.
 \mb{PaVe} is totally symmetric in the  \mb{{\sl i},\ {\sl j},\ ...} arguments.
 The foremost argument is the list of scalar products of the $p_i$.
-They are the same as defined above for the scalar $B_0$, $C_0$ and 
+They are the same as defined above for the scalar $B_0$, $C_0$ and
 $D_0$ functions. For $A_0$ an empty list has to be given.
 
-A certain set of special \mb{PaVe} shown in the following 
+A certain set of special \mb{PaVe} shown in the following
 examples simplify to the usual notation.
 
 To shorten the input squared masses are abbreviated with a suffix 2,
@@ -206,7 +206,7 @@ $B_0(p^2, m_0^2, m_1^2)$.
 }
 \domtog{{PaVe[1,\ \{pp\},\ \{m12,\ m22\}]\\
 }}{\ $B_1$(pp,\ m12,\ m22)\hfil\\
-}{ 
+}{
 Here is the coefficient function \\ $B_1(p^2,m_0^2,m_1^2)$.
 }
 \domtog{{PaVe[0,0,\ \{pp\},\ \{m02,\ m12\}]\\
@@ -218,13 +218,13 @@ tensors have two "0" indices for each $g^{\mu \nu}$.
 \domtog{{PaVe[1,1,\ \{p10\},\ \{m12,\ m22\}]\\
 }}{\ $B_{11}$(p10,\ m12,\ m22)\hfil\\
 }{
-This is $B_{11}(p_1^2,m_1,m_2)$, the coefficient 
+This is $B_{11}(p_1^2,m_1,m_2)$, the coefficient
 function of $p_{1\mu} \,p_{1\nu}$ of $B_{\mu\nu}$.
 }
 \domtog{{PaVe[0,\ \{p10,\ p12,\ p20\},\ \{m12,\ m22,\ m32\}]\\
 }}{\ $C_0$(p10,\ p12,\ p20,\ m12,\ m22,\ m32)\hfil\\
 }{
-\mb{PaVe} with one $0$ as first argument are scalar Passarino-Veltman integrals. 
+\mb{PaVe} with one $0$ as first argument are scalar Passarino-Veltman integrals.
 }
 \domtog{{PaVe[0,\ \{p10,\ p12,\ p23,\ p30,\ p20,\ p13\},\ \\
 \{m12,\ m22,\ m32,\ m42\}]\\
@@ -237,22 +237,22 @@ This is $D_0$ with 10 arguments.
 \otabtwo{
 \mbs{B1[{\sl p10},\ {\sl m02},\ {\sl m12}]} & coefficient function $B_1(p_1^2,m_0^2,m_1^2)$
  \cr
-\mbs{B00[{\sl p10},\ {\sl m02},\ {\sl m12}]} & coefficient function 
+\mbs{B00[{\sl p10},\ {\sl m02},\ {\sl m12}]} & coefficient function
 $B_{00}(p_1^2,m_0^2,m_1^2)$\cr
 \mbs{B11[{\sl p10},\ {\sl m02},\ {\sl m12}]} & coefficient function $
 B_{11}(p_1^2,m_0^2,m_1^2)$
 } {Two-point coefficient functions.}
 
-The two-point coefficient functions can be reduced to lower-order 
+The two-point coefficient functions can be reduced to lower-order
 ones.  For special arguments, also $B_0$ is expressed  in terms of $A_0$,
-if the option \mb{BReduce} is set. Setting the option 
+if the option \mb{BReduce} is set. Setting the option
 \mb{B0Unique} to \mb{True} simplifies $B_0(m^2,0,m^2) \rightarrow
 2 + B_0(0,m^2,m^2)$ and $B_0(0,0,m^2)  \rightarrow 1  + B_0(0,m^2,m^2)$.
 
 \otabthree{
 {\sl option name} & {\sl default value} &\cr
 \hhline
-\mb{A0ToB0} & \mb{False} & express $A_0(m^2)$ by 
+\mb{A0ToB0} & \mb{False} & express $A_0(m^2)$ by
 $m^2 (1 + B_0(0, m^2, m^2))$\cr
 \mb{BReduce} & \mb{True}, \mb{False} for \mb{B0}& reduce \mb{B0}, \mb{B1}, \mb{B00}, \mb{B11} to \mb{A0} and \mb{B0} \cr
 \mb{B0Unique} & \mb{False} & simplify $B_0(a,0,a)$ and $B_0(0,0,a)$
@@ -267,8 +267,8 @@ The default is to reduce $B_1$ to $B_0$.
 }
 \enom
 
-Arguments of two-point functions with head \mb{SmallVariable} are replaced 
-by 0, if the other arguments have no head \mb{SmallVariable} 
+Arguments of two-point functions with head \mb{SmallVariable} are replaced
+by 0, if the other arguments have no head \mb{SmallVariable}
 and are nonzero. \mb{A0[0]} and \mb{A0[SmallVariable[m]\phat 2]} simplify to $0$.
 
 \beom
@@ -277,7 +277,7 @@ and are nonzero. \mb{A0[0]} and \mb{A0[SmallVariable[m]\phat 2]} simplify to $0$
 \Frac{{\rm m22}\ (-B_0{\rm (0,\ 0,\ m22)}\ +\ B_0{\rm (pp,\ 0,\ m22)})}{\rm 2\ pp}\hfil\\
 \renewcommand{\clineskip}{20pt}}{
 The small mass \mb{m}
-is set to 0, since the other arguments are 
+is set to 0, since the other arguments are
 non-zero and not \mb{SmallVariable}.
 }
 \domtog{{B1[SmallVariable[me2],\ SmallVariable(me2),\ 0]\\
@@ -291,7 +291,7 @@ In \mb{StandardForm} we see them.
 \enom
 
 Any mass with head \mb{SmallVariable} is neglected if it appears in a
-sum, but not as an argument of Passarino-Veltman (\mb{PaVe}) functions or 
+sum, but not as an argument of Passarino-Veltman (\mb{PaVe}) functions or
 \mb{PropagatorDenominator}.
 
 \otabtwo{
@@ -299,7 +299,7 @@ sum, but not as an argument of Passarino-Veltman (\mb{PaVe}) functions or
 } {Head for small variables.}
 
 \otabtwo{
-\mbs{PaVeReduce[{\sl expr}]} & reduces coefficient functions \mb{PaVe} to 
+\mbs{PaVeReduce[{\sl expr}]} & reduces coefficient functions \mb{PaVe} to
 \mb{A0}, \mb{B0},  \mb{C0}, \mb{D0} \cr
 \mbs{KK[{\sl i}]} & abbreviations in \mb{HoldForm}  in the result of \mb{PaVeReduce}
 } {Reduction function for Passarino-Veltman coefficient functions.}
@@ -311,7 +311,7 @@ Depending on the option \mb{BReduce} \mb{B1}, \mb{B00} and
 {\sl option name} & {\sl default value} &\cr
 \hhline
 \mb{IsolateNames} & \mb{False} & use \mb{Isolate} with this option\cr
-\mb{Mandelstam} & \mb{\{\}} & Mandelstam relation, e.g., 
+\mb{Mandelstam} & \mb{\{\}} & Mandelstam relation, e.g.,
 \mb{\{s,\ t,\ u,\ 2\ mw\phat 2\}}
 } {Options for \mb{PaVeReduce}.}
 
@@ -328,7 +328,7 @@ to scalar integrals.
 IsolateNames\ $\Rule$\ c\ ]\ \\
 }}{\ $c(11)$\hfil\\
 }{
-Break down the  coefficient function 
+Break down the  coefficient function
 $C_{12}(s,m^{2},m^{2},m^2,m^2,w^2)$.
 
 This is the result in \mb{HoldForm}.
@@ -338,10 +338,10 @@ This is the result in \mb{HoldForm}.
 }}{\renewcommand{\clineskip}{36pt}\Frac{2\ {\rm m}2\ c(3)}{s\ c(6)}\ + \ \Frac{c(1)\ c(7)}{s\ \Superscript{c(6)}{2}}\ + \ \Frac{c(2)\ c(8)}{2\ \Superscript{c(6)}{2}}\ + \ \Frac{c(4)\ c(9)}{s\ c(6)}\ + \ \Frac{{\rm w}2\ c(5)\ c(10)}{\Superscript{c(6)}{2}}\ + \ \Frac{1}{2\ c(6)}\hfil\\
 \renewcommand{\clineskip}{20pt}}{
 The \mb{FullForm} of the \\
-assignment to \mb{c12} is 
+assignment to \mb{c12} is
 \mb{HoldForm[c[11]]}.
 If you want to get the value of \mb{c[11]},
-you can either type \mb{ReleaseHold[c12]} or \mb{c[11]} as 
+you can either type \mb{ReleaseHold[c12]} or \mb{c[11]} as
 done in the example.
 }
 \dtog{SetOptions[B1,\ BReduce\ $\Rule$\ True];}{}{Have $B_1$'s be reduced to $B_0$'s.}
@@ -352,7 +352,7 @@ done in the example.
 +\ \Frac{{\rm w}2\ (8\ {\rm m}2\ -\ 3\ {\rm w}2\ -\ 2\ s)\ C_0({\rm m}2,\ {\rm m}2,\ s,\ {\rm m}2,\ {\rm w}2,\ {\rm m}2)}{\Superscript{(4\ {\rm m}2\ -\ s)}{2}}\hfil\\
 \renewcommand{\clineskip}{20pt}}{
 Repeated application of \\
-\mb{ReleaseHold} 
+\mb{ReleaseHold}
 reinserts all \mb{K}.
 }
 \domtog{{d122\ =\ PaVeReduce[\ \\
@@ -409,37 +409,37 @@ This shows the resulting Fortran file.
 
 The first abbreviations are always the scalar integrals.
 
-The partially recursive definitions of the 
-abbreviations are not fully optimized. 
-%If you want to have a more optimized 
+The partially recursive definitions of the
+abbreviations are not fully optimized.
+%If you want to have a more optimized
 %Fortran output you may use the settings
 %\mb{MacsymaForm} or \mb{MapleForm} of the option
 %\mb{FormatType} for creating an output file
-%with the syntax of the computer algebra systems 
+%with the syntax of the computer algebra systems
 %{\it Macsyma} and {\it Maple}, respectively.
 %Then you can use the Fortran code generators
 %of {\it Maple} or {\it Macsyma}. In some versions
-%of {\it Macsyma} the excellent package 
-%{\it Gentran} by B.~Gates and H.~van Hulzen is 
+%of {\it Macsyma} the excellent package
+%{\it Gentran} by B.~Gates and H.~van Hulzen is
 %available.
 
 The function \mb{Write2} is explained in section \ref{misc}.
 
-Note that the head \mb{SmallVariable} is eliminated in the 
+Note that the head \mb{SmallVariable} is eliminated in the
 Fortran output automatically.
 }
 \dtog{DeleteFile["d122.for"];}{}{Delete the output file.}
 \enom
 The Fortran code generated by \mb{Write2} should be checked with care.
-All integer numbers (except 0 as argument of \mb{B0}, \mb{C0}, \mb{D0}) 
-are translated to integers. This causes problems when translating 
-variables with rational powers and must be corrected in the Fortran 
+All integer numbers (except 0 as argument of \mb{B0}, \mb{C0}, \mb{D0})
+are translated to integers. This causes problems when translating
+variables with rational powers and must be corrected in the Fortran
 output by hand.
 
 \subsection{Tables of Integrals}
 
 \otabtwo{
-\mbs{CheckDB[{\sl expr}, {\sl fil}]} & saves or retrieves 
+\mbs{CheckDB[{\sl expr}, {\sl fil}]} & saves or retrieves
 {\sl expr} to/from a file {\sl fil} \cr
 } {Storing and retrieving results.}
 

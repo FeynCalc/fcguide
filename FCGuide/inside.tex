@@ -15,7 +15,7 @@ recommended reading.
 
 which causes the program file "FeynCalc.m" to be loaded. This file contains definitions of the core objects, used by higher level, functions. Some of the more important of these objects are: \mb{DiracGamma}, \mb{FeynAmpDenominator}, \mb{FourVector}, \mb{LorentzIndex}, \mb{Momentum}, \mb{NonCommutative}, \mb{Pair}, \mb{PartialD}, \mb{PropagatorDenominator}, \mb{QuantumField}, S\mb{UNIndex}, \mb{ScalarProduct}, \mb{Spinor}.
 
-"FeynCalc.m" also scans the subdirectories of the directory "HighEnergyPhysics" for files with an extension ".m". Each such file, like "FeynRule.m", should contain the definition of a function (e.g. \mb{FeynRule}). 
+"FeynCalc.m" also scans the subdirectories of the directory "HighEnergyPhysics" for files with an extension ".m". Each such file, like "FeynRule.m", should contain the definition of a function (e.g. \mb{FeynRule}).
 
 Each definition, whether in one of these files or in "FeynCalc.m" is, however, not loaded into memory. Instead the function name is declared using \mb{DeclarePackage}, so that when this function is used the first time, the definition is loaded into memory. This standard technique significantly reduces startup time and memory consumption. Subdirectories not to be scanned are defined in "FeynCalc.m". The idea is that each directory corresponds to a module, that is, a group of functions pertaining to some subject within quantum field theory. The core modules are:
 
@@ -74,20 +74,20 @@ Others can be set at runtime; e.g. \mb{\$Color, \$Covariant, \$Gauge, \$NonComm,
 \mb{\$Color} & \mb{False} &  color special variables \cr
 \mb{\$Covariant} & \mb{True} &  display Lorentz indices as upper or lower indices \cr
 \mb{\$Gauge} & \mb{1} & the gauge fixing parameter of QED in Lorentz gauge. 1 corresponds to Feynman gauge. Notice that \mb{\$Gauge} is used by some functions, the option \mb{Gauge} by others \cr
-\mb{\$NonComm} & \mb{\{DiracGamma, DiracGammaT, 
-..., 
-% DiracMatrix, DiracSlash, DiracSigma, DiracSpinor, GA, 
-% GS, GSD, ChargeConjugationMatrix, RightPartialD, LeftRightPartialD, 
-% LeftRightPartialD2, PartialD, QuantumField, SUNT, Spinor, SpinorU, SpinorUBar, SpinorV, SpinorVBar, 
+\mb{\$NonComm} & \mb{\{DiracGamma, DiracGammaT,
+...,
+% DiracMatrix, DiracSlash, DiracSigma, DiracSpinor, GA,
+% GS, GSD, ChargeConjugationMatrix, RightPartialD, LeftRightPartialD,
+% LeftRightPartialD2, PartialD, QuantumField, SUNT, Spinor, SpinorU, SpinorUBar, SpinorV, SpinorVBar,
 OPESum\}} &  a list of all noncommutative heads \cr
-\mb{\$Abbreviations} & \mb{\{"\phat" $\Rule$ "", "*" $\Rule$ "", 
- ..., 
- %"\{" $\Rule$ "", "[" $\Rule$ "", "\}" $\Rule$ "", 
- %"]" $\Rule$ "", "/" $\Rule$ "", "{\bksl}n" $\Rule$ "", "{\bksl}r" $\Rule$ "", " " $\Rule$ "", 
- %", " $\Rule$ "", "AxialVector" $\Rule$ "AV", "Fermion" $\Rule$ "F", 
- %"Momentum" $\Rule$ "", "Pair" $\Rule$ "", "ParticleMass" $\Rule$ "m", 
- %"PseudoScalar" $\Rule$ "PS", "RenormalizationState" $\Rule$ "", 
- %"Scalar" $\Rule$ "S", "SmallVariable" $\Rule$ "sma", "Subscript" $\Rule$ "su", 
+\mb{\$Abbreviations} & \mb{\{"\phat" $\Rule$ "", "*" $\Rule$ "",
+ ...,
+ %"\{" $\Rule$ "", "[" $\Rule$ "", "\}" $\Rule$ "",
+ %"]" $\Rule$ "", "/" $\Rule$ "", "{\bksl}n" $\Rule$ "", "{\bksl}r" $\Rule$ "", " " $\Rule$ "",
+ %", " $\Rule$ "", "AxialVector" $\Rule$ "AV", "Fermion" $\Rule$ "F",
+ %"Momentum" $\Rule$ "", "Pair" $\Rule$ "", "ParticleMass" $\Rule$ "m",
+ %"PseudoScalar" $\Rule$ "PS", "RenormalizationState" $\Rule$ "",
+ %"Scalar" $\Rule$ "S", "SmallVariable" $\Rule$ "sma", "Subscript" $\Rule$ "su",
 "Vector" $\Rule$ "V"\}} &  a list of string substitution rules used when generating names for storing intermediate results. Used by \mb{OneLoop} and \mb{PaVeReduce} \cr
 \mb{\$BreitMaison} & \mb{False} & use the Breitenlohner-Maison $\gamma^5$ scheme (currently not supported)\cr
 \mb{\$Larin} & \mb{False} & use the Larin-Gorishny-Atkyampo-DelBurgo $\gamma^5$ scheme\cr
@@ -96,14 +96,14 @@ OPESum\}} &  a list of all noncommutative heads \cr
 \mb{\$SpinorMinimal} & \mb{False} & a global switch for an additional simplification attempt in \mb{DiracSimplify} for more than one Spinor line
 } {Runtime variables.}
 
-The variable \mb{\$VeryVerbose} may be set to $0, 1, 2$ or 3. 
+The variable \mb{\$VeryVerbose} may be set to $0, 1, 2$ or 3.
 The higher the setting the more intermediate information is printed during
 the calculations.
 
-\fc is designed in such a way that certain intermediate results can be 
-stored in order to speed up the computations. 
-This of course may  become too memory consuming. 
-The storing stops, when the value of \mb{10\phat(-6)*MemoryInUse[\ ]} gets bigger 
+\fc is designed in such a way that certain intermediate results can be
+stored in order to speed up the computations.
+This of course may  become too memory consuming.
+The storing stops, when the value of \mb{10\phat(-6)*MemoryInUse[\ ]} gets bigger
 than \mb{\$MemoryAvailable-1}.
 
 The default of  \fc is to use the naive $\gamma^{5}$ prescription, i.e.,
@@ -111,11 +111,11 @@ $\gamma^{5}$ anticommutes with $D$-dimensional Dirac matrices.
 Setting \mb{\$BreitMaison} to \mb{True} changes the commutation behaviour\footnote{
 %\mb{DiracTrace}, \mb{DiracSimplify}, \mb{DiracReduce} and \mb{DiracTrick}
 In fact, how \fc treats $\gamma^5$ depends on the setting of the variables \mb{\$BreitMaison}, \mb{\$Larin} and \mb{\$West}. They are all boolean variables; the first two specify the $\gamma^5$ scheme. None of them have been neither thoroughly implemented nor tested. If \mb{\$West} is set to True (which is the default), traces involving more than 4 Dirac matrices and a $\gamma^5$ are calculated recursively according to formula (A.5) from \cite{west}, which is based on the Breitenlohner Maison -scheme.
-} of $\gamma^{5}$: It anti-commutes with Dirac matrices in four dimensions, 
+} of $\gamma^{5}$: It anti-commutes with Dirac matrices in four dimensions,
 but commutes with the $(D-4)$-dimensional part.
-The basic features of the Breitenlohner-Maison scheme are implemented in 
-\fc, but they have not been tested  very thoroughly (some simple 
-calculations are given in section \ref{diracalg}). 
+The basic features of the Breitenlohner-Maison scheme are implemented in
+\fc, but they have not been tested  very thoroughly (some simple
+calculations are given in section \ref{diracalg}).
 Therefore one should check the results for correctness.
 
 \subsection{Data Types}
@@ -209,16 +209,16 @@ representation is done. To see the internal representation of an object, the fun
 \mb{FeynCalcInternal} can always be used.
 
 The basic idea is to wrap a special head around each special input variable.
-For example, the arguments of \mb{MetricTensor[mu, nu]} each get a head 
-\mb{LorentzIndex}. These heads have only a few 
-functional definitions. A \mb{D}-dimensional \mb{LorentzIndex[mu, D]}, for example, 
+For example, the arguments of \mb{MetricTensor[mu, nu]} each get a head
+\mb{LorentzIndex}. These heads have only a few
+functional definitions. A \mb{D}-dimensional \mb{LorentzIndex[mu, D]}, for example,
 simplifies to \mb{LorentzIndex[mu]} when \mb{D} is replaced by 4.
 
-Inside \fc the functions and rules are specified in such a way that they only 
-apply to those objects with the right head. 
-This programming style, which makes strong use of the pattern matching 
-capabilities of \mma, especially the so-called upvalue function definitions, 
-has proven to be useful and reliable for the purpose of 
+Inside \fc the functions and rules are specified in such a way that they only
+apply to those objects with the right head.
+This programming style, which makes strong use of the pattern matching
+capabilities of \mma, especially the so-called upvalue function definitions,
+has proven to be useful and reliable for the purpose of
 algebraic calculations in physics.
 
 %\otabtwo{
@@ -231,17 +231,17 @@ algebraic calculations in physics.
 %} {Heads of the internal representation.}
 
 \otabtwo{
-\mbs{Pair[{\sl a},\ {\sl b}]} &  is a special pairing used in the internal representation: 
-{\sl a} and {\sl b} may have heads \mb{LorentzIndex} or \mb{Momentum}. 
-If both {\sl a} and {\sl b} have head \mb{LorentzIndex}, the metric tensor is 
-understood. If {\sl a} and {\sl b} have head \mb{Momentum}, a scalar product is meant. 
+\mbs{Pair[{\sl a},\ {\sl b}]} &  is a special pairing used in the internal representation:
+{\sl a} and {\sl b} may have heads \mb{LorentzIndex} or \mb{Momentum}.
+If both {\sl a} and {\sl b} have head \mb{LorentzIndex}, the metric tensor is
+understood. If {\sl a} and {\sl b} have head \mb{Momentum}, a scalar product is meant.
 If one of {\sl a} and {\sl b} has head \mb{LorentzIndex} and the other \mb{Momentum}, a Lorentz \
 vector (e.g. $p_{\mu}$) is understood \cr
-\mbs{Momentum[{\sl p}]} & is a four-dimensional momentum. For other than four dimensions ($d \neq 4 $) use 
+\mbs{Momentum[{\sl p}]} & is a four-dimensional momentum. For other than four dimensions ($d \neq 4 $) use
 \mb{Momentum[{\sl p}, {\sl d}]}. \mb{Momentum[{\sl p}, 4]} simplifies to \mb{Momentum[{\sl p}]} \cr
-\mbs{LorentzIndex[$\mu$]} & is a four-dimensional Lorentz index. When $\mu$ is an integer, it evaluates to mb{ExplicitLorentzIndex[$\mu$]}. For other than four dimensions use 
-\mb{LorentzIndex[{\sl p}, {\sl d}]}. \mb{LorentzIndex[{\sl p}, 4]} simplifies to \mb{LorentzIndex[{\sl p}]} \cr 
-\mbs{ExplicitLorentzIndex[$\mu$]} & is an explicit Lorentz index, i.e., $\mu$ is an integer \cr 
+\mbs{LorentzIndex[$\mu$]} & is a four-dimensional Lorentz index. When $\mu$ is an integer, it evaluates to mb{ExplicitLorentzIndex[$\mu$]}. For other than four dimensions use
+\mb{LorentzIndex[{\sl p}, {\sl d}]}. \mb{LorentzIndex[{\sl p}, 4]} simplifies to \mb{LorentzIndex[{\sl p}]} \cr
+\mbs{ExplicitLorentzIndex[$\mu$]} & is an explicit Lorentz index, i.e., $\mu$ is an integer \cr
 } {Internal representation of Lorentz input functions.}
 
 %In the following it is assumed that \mb{\$PrePrint} has been cleared
@@ -276,7 +276,7 @@ Here is a $\gamma^{\mu}$ in $D$ dimensions.
 }}{ DiracGamma[Momentum[q]] . DiracGamma[Momentum[q, D], D]\hfil\\
 }{
 This is a product of a four-\\
-dimensional $\qs$ and 
+dimensional $\qs$ and
 a $D$-dimensional $\qs$.
 }
 \domtog{{DiracSimplify[\%]\\
