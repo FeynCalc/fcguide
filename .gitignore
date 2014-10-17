@@ -1,0 +1,7 @@
+FCGuide.pdf
+*.aux
+*.log
+*.toc
+*.dvi
+*.out
+*.fdb_latexmk
