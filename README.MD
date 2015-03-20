@@ -1,7 +1,6 @@
-# FeynCalc guide
+﻿# FeynCalc guide
 
-<a href="http://feyncalc.org/">FeynCalc</a> is a Mathematica package for algebraic calculations in
-elementary particle physics.
+[FeynCalc](http://www.feyncalc.org/) is a Mathematica package for symbolic evaluation of Feynman diagrams and algebraic calculations in quantum field theory and elementary particle physics.
 
 This guide is a hands-on, practical introduction to automatized 
 quantum field theory calculations with FeynCalc and Mathematica.
@@ -17,16 +16,18 @@ This work is licensed under a
 Creative Commons Attribution-ShareAlike 4.0 International License
 </a>.
 
-Copyright (C) 1990-2014 Rolf Mertig,
-copyright (C) 1997-2014 Frederik Orellana,
-copyright (C) 2014      Vladyslav Shtabovenko.
+Copyright (C) 1990-2015 Rolf Mertig,
+
+Copyright (C) 1997-2015 Frederik Orellana,
+
+Copyright (C) 2014-2015 Vladyslav Shtabovenko.
 
 # Compiling the LaTeX source
 
 ## Prerequisites
 
-- A Mathematica installation with TeX style files and fonts (<= 9.x)
-- A recent LaTeX installation (see http://latex-project.org/ftp.html) with 
+* A Mathematica installation with TeX style files and fonts (<= 9.x)
+* A recent LaTeX installation (see http://latex-project.org/ftp.html) with 
 
 ## Mathematica styles and fonts
 
@@ -42,9 +43,17 @@ Run the following as root - modifying the path to match your Mathematica and TeX
 
 ### Linux:
 
-Run the following - modifying the path to match your Mathematica instllation.
+In the following we assume that your Mathematica installation is located in 
+`/opt/Mathematica/9.0/`. If not, please modify the path accordingly.
 
-	cp -a /opt/Mathematica/9.0/SystemFiles/IncludeFiles/TeX/texmf ~/
+	cp -a /opt/Mathematica/9.0/SystemFiles/IncludeFiles/TeX/texmf ~/.texmf-var
+	mkdir ~/.texmf-var/fonts/map
+	cp -a ~/.texmf-var/pdftex ~/.texmf-var/fonts/map/
+	cp -a ~/.texmf-var/dvips ~/.texmf-var/fonts/map/
+	echo "Map wolfram.map" > ~/.updmap.cfg
+	echo "Map pdfwolfram.map" >> ~/.updmap.cfg
+	updmap --cnffile ~/updmap.cfg
+	rm ~/.updmap.cfg
 
 ### Windows:
 
@@ -53,6 +62,15 @@ The texmf directory of Mathematica should be put in the search path of the TeX i
 
 ## LaTeX invocation
 
+### Using PDFLaTex
+
+	pdflatex FCGuide.tex
+
+### Using Latexmk
+
+	latexmk -pdfdvi FCGuide.tex 
+
+### Using Latex
 	latex FCGuide.tex
 	dvips FCGuide.dvi
 	ps2pdf FCGuide.ps
