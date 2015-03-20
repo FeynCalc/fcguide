@@ -52,8 +52,10 @@ In the following we assume that your Mathematica installation is located in
 	cp -a ~/.texmf-var/dvips ~/.texmf-var/fonts/map/
 	echo "Map wolfram.map" > ~/.updmap.cfg
 	echo "Map pdfwolfram.map" >> ~/.updmap.cfg
-	updmap --cnffile ~/updmap.cfg
+	updmap --cnffile ~/.updmap.cfg
 	rm ~/.updmap.cfg
+
+* On Fedora 20 please use `~/.texlive2013/texmf-var` instead of `~/.texmf-var`
 
 ### Windows:
 
