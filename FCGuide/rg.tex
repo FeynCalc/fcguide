@@ -518,18 +518,18 @@ See also:  QuantumField, QuarkField.
 \overvar{\psi }{\_}
 }
 
-\Subsection*{AntiSymmetrize}
+\Subsection*{FCAntiSymmetrize}
 
 \Subsubsection*{Description}
 
-AntiSymmetrize[expr, \{a1, a2, ...\}] antisymmetrizes expr with respect to the variables a1,a2, ...
+FCAntiSymmetrize[expr, \{a1, a2, ...\}] antisymmetrizes expr with respect to the variables a1,a2, ...
 
-See also: Symmetrize.
+See also: FCSymmetrize.
 
 \Subsubsection*{Examples}
 
 \dispSFinmath{
-\Muserfunction{AntiSymmetrize}[f[a,b],\{a,b\}]
+\Muserfunction{FCAntiSymmetrize}[f[a,b],\{a,b\}]
 }
 
 \dispSFoutmath{
@@ -537,7 +537,7 @@ See also: Symmetrize.
 }
 
 \dispSFinmath{
-\Muserfunction{AntiSymmetrize}[f[x,y,z],\{x,y,z\}]
+\Muserfunction{FCAntiSymmetrize}[f[x,y,z],\{x,y,z\}]
 }
 
 \dispSFoutmath{
@@ -19511,13 +19511,13 @@ SymbolicSum2 is similar to SymbolicSum (Algegra`SymbolicSum`SymbolicSum was a fu
 SymbolicSymbolicSum3 is similar to SymbolicSum (Algegra`SymbolicSum`SymbolicSum was a function to do symbolic summation. It was obsolete
   from version 3 - all functionality is now autoloaded by Sum), but extended to several double sums.
 
-\Subsection*{Symmetrize}
+\Subsection*{FCSymmetrize}
 
 \Subsubsection*{Description}
 
-Symmetrize[expr, \{a1, a2, ...\}] antisymmetrizes expr with respect to the variables a1,a2, ...
+FCSymmetrize[expr, \{a1, a2, ...\}] antisymmetrizes expr with respect to the variables a1,a2, ...
 
-See also: AntiSymmetrize.
+See also: FCAntiSymmetrize.
 
 \Subsubsection*{Examples}
 
@@ -19645,7 +19645,7 @@ Tensorfunction[t, mu, nu, ...] transform into t[LorentzIndex[mu], LorentzIndex[n
   tensoriell function t. A symmetric tensor can be obtained by Tensorfunction[\{t, "S"\}, mu, nu, ...], and an antisymmteric one by
   Tensorfunction[\{t, "A"\}, mu, nu, ...].
 
-See also:  Symmetrize.
+See also:  FCSymmetrize.
 
 \Subsubsection*{Examples}
 
@@ -19658,7 +19658,7 @@ See also:  Symmetrize.
 }
 
 \dispSFinmath{
-\Muserfunction{Symmetrize}[f[a,b],\{a,b\}]
+\Muserfunction{FCSymmetrize}[f[a,b],\{a,b\}]
 }
 
 \dispSFoutmath{
@@ -19666,7 +19666,7 @@ See also:  Symmetrize.
 }
 
 \dispSFinmath{
-\Muserfunction{Symmetrize}[f[x,y,z],\{x,y,z\}]
+\Muserfunction{FCSymmetrize}[f[x,y,z],\{x,y,z\}]
 }
 
 \dispSFoutmath{
