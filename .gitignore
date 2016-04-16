@@ -11,3 +11,7 @@ FCGuide.pdf
 *.cfg
 *.fls
 .nfs*
+/.project
+/.texlipse
+/FCGuide.ps
+/.gitignore
