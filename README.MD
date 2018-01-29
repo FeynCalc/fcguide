@@ -26,7 +26,7 @@ Copyright (C) 2014-2015 Vladyslav Shtabovenko.
 
 ## Prerequisites
 
-* A Mathematica installation with TeX style files and fonts (<= 9.x)
+* Mathematica TeX style files and fonts - get them here: http://feyncalc.org/download/texmf.tar.gz
 * A recent LaTeX installation (see http://latex-project.org/ftp.html) with 
 
 ## Mathematica styles and fonts
@@ -35,18 +35,22 @@ Copyright (C) 2014-2015 Vladyslav Shtabovenko.
 
 Run the following as root - modifying the path to match your Mathematica and TeX installation.
 
-	tar -cvzf /usr/local/texlive.orig.tar.gz /usr/local/texlive
-	rsync --recursive /Applications/Mathematica.app/SystemFiles/IncludeFiles/TeX/texmf/ /usr/local/texlive/texmf-local/
-	cp -i /Applications/Mathematica.app/SystemFiles/IncludeFiles/TeX/texmf/dvips/config/wolfram.map 2014/texmf-var/fonts/map/dvips/updmap/
-	mktexlsr
+```
+	curl -o texmf.tar.gz http://feyncalc.org/download/texmf.tar.gz
+	tar -xvzf texmf.tar.gz
+	sudo tar -cvzf /usr/local/texlive.orig.tar.gz /usr/local/texlive
+	sudo rsync --recursive texmf/ /usr/local/texlive/texmf-local/
+	sudo cp -i texmf/dvips/config/wolfram.map /usr/local/texlive/*/texmf-var/fonts/map/dvips/updmap/
+	sudo mktexlsr
 	updmap-sys --enable Map=wolfram.map
+```
 
 ### Linux:
 
-In the following we assume that your Mathematica installation is located in 
-`/opt/Mathematica/9.0/`. If not, please modify the path accordingly.
-
-	cp -a /opt/Mathematica/9.0/SystemFiles/IncludeFiles/TeX/texmf ~/.texmf-var
+```
+	curl -o texmf.tar.gz http://feyncalc.org/download/texmf.tar.gz
+	tar -xvzf texmf.tar.gz
+	cp -a texmf ~/.texmf-var
 	mkdir ~/.texmf-var/fonts/map
 	cp -a ~/.texmf-var/pdftex ~/.texmf-var/fonts/map/
 	cp -a ~/.texmf-var/dvips ~/.texmf-var/fonts/map/
@@ -54,13 +58,14 @@ In the following we assume that your Mathematica installation is located in
 	echo "Map pdfwolfram.map" >> ~/.updmap.cfg
 	updmap --cnffile ~/.updmap.cfg
 	rm ~/.updmap.cfg
+```
 
 * On Fedora 20 please use `~/.texlive2013/texmf-var` instead of `~/.texmf-var`
 
 ### Windows:
 
 --- not tested ---
-The texmf directory of Mathematica should be put in the search path of the TeX installation.
+The texmf directory with Mathematica TeX style files should be put in the search path of the TeX installation.
 
 ## LaTeX invocation
 
