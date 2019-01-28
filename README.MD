@@ -26,7 +26,7 @@ Copyright (C) 2014-2015 Vladyslav Shtabovenko.
 
 ## Prerequisites
 
-* Mathematica TeX style files and fonts - get them here: http://feyncalc.org/download/texmf.tar.gz
+* Mathematica TeX style files and fonts - get them here: http://www.feyncalc.org/download/mma_tex.tar.gz
 * A recent LaTeX installation (see http://latex-project.org/ftp.html) with 
 
 ## Mathematica styles and fonts
@@ -36,11 +36,10 @@ Copyright (C) 2014-2015 Vladyslav Shtabovenko.
 Run the following as root - modifying the path to match your Mathematica and TeX installation.
 
 ```
-	curl -o texmf.tar.gz http://feyncalc.org/download/texmf.tar.gz
-	tar -xvzf texmf.tar.gz
+	curl -O http://www.feyncalc.org/download/mma_tex.tar.gz
+	tar -xvzf mma_tex.tar.gz
 	sudo tar -cvzf /usr/local/texlive.orig.tar.gz /usr/local/texlive
-	sudo rsync --recursive texmf/ /usr/local/texlive/texmf-local/
-	sudo cp -i texmf/dvips/config/wolfram.map /usr/local/texlive/*/texmf-var/fonts/map/dvips/updmap/
+	sudo rsync --recursive mma_tex/ /usr/local/texlive/texmf-local/
 	sudo mktexlsr
 	updmap-sys --enable Map=wolfram.map
 ```
@@ -48,15 +47,14 @@ Run the following as root - modifying the path to match your Mathematica and TeX
 ### Linux:
 
 ```
-	curl -o texmf.tar.gz http://feyncalc.org/download/texmf.tar.gz
-	tar -xvzf texmf.tar.gz
-	cp -a texmf ~/.texmf-var
-	mkdir ~/.texmf-var/fonts/map
-	cp -a ~/.texmf-var/pdftex ~/.texmf-var/fonts/map/
-	cp -a ~/.texmf-var/dvips ~/.texmf-var/fonts/map/
+	curl -O http://www.feyncalc.org/download/mma_tex.tar.gz
+	tar -xvzf mma_tex.tar.gz
+	[ -e ~/.texlive2017/texmf-var ] || mkdir -p ~/.texlive2017/texmf-var
+	rsync -r mma_tex/ ~/.texlive2017/texmf-var/
 	echo "Map wolfram.map" > ~/.updmap.cfg
 	echo "Map pdfwolfram.map" >> ~/.updmap.cfg
-	updmap --cnffile ~/.updmap.cfg
+	mktexlsr ~/.texlive2017/texmf-var
+	updmap -user --cnffile ~/.updmap.cfg
 	rm ~/.updmap.cfg
 ```
 
