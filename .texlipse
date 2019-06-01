@@ -1,0 +1,14 @@
+#TeXlipse project settings
+#Sun Jun 02 00:42:22 CEST 2019
+markTmpDer=false
+builderNum=6
+outputDir=FCGuide/
+makeIndSty=
+bibrefDir=
+outputFormat=pdf
+tempDir=FCGuide/tmp
+mainTexFile=FCGuide.tex
+outputFile=FCGuide.pdf
+langSpell=
+markDer=false
+srcDir=FCGuide/

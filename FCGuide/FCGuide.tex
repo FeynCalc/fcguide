@@ -66,6 +66,9 @@
 %% Conditionals in TeX
 \usepackage{ifthen}
 
+\usepackage[T1]{fontenc}
+\usepackage[ansinew]{inputenc}
+
 % Text width and height
 \newcommand{\twt}{490pt}
 \newcommand{\tht}{540pt}
@@ -246,22 +249,22 @@
 
 %% Standard extension for included graphics
 \DeclareGraphicsExtensions{.pdf}
-\newcommand{\mma}{\fontfamily{pmnx}\selectfont\textit{Mathematica}\fontfamily{ptm}\selectfont\xspace}
-\newcommand{\fc}{\fontfamily{pmnx}\selectfont\textit{FeynCalc}\fontfamily{ptm}\selectfont\xspace}
-\newcommand{\fa}{\fontfamily{pmnx}\selectfont\textit{FeynArts}\fontfamily{ptm}\selectfont\xspace}
-\newcommand{\fctables}{\fontfamily{pmnx}\selectfont\textit{fctables}\fontfamily{ptm}\selectfont\xspace}
-\newcommand{\fcloops}{\fontfamily{pmnx}\selectfont\textit{fcloops}\fontfamily{ptm}\selectfont\xspace}
-\newcommand{\fctools}{\fontfamily{pmnx}\selectfont\textit{fctools}\fontfamily{ptm}\selectfont\xspace}
-\newcommand{\general}{\fontfamily{pmnx}\selectfont\textit{general}\fontfamily{ptm}\selectfont\xspace}
-\newcommand{\qcd}{\fontfamily{pmnx}\selectfont\textit{qcd}\fontfamily{ptm}\selectfont\xspace}
-\newcommand{\fcdevel}{\fontfamily{pmnx}\selectfont\textit{fcdevel}\fontfamily{ptm}\selectfont\xspace}
-\newcommand{\fphi}{\fontfamily{pmnx}\selectfont\textit{PHI}\fontfamily{ptm}\selectfont\xspace}
-\newcommand{\tarcer}{\fontfamily{pmnx}\selectfont\textit{TARCER}\fontfamily{ptm}\selectfont\xspace}
-\newcommand{\hip}{\fontfamily{pmnx}\selectfont\textit{HIP}\fontfamily{ptm}\selectfont\xspace}
-\newcommand{\lpts}{\fontfamily{pmnx}\selectfont\textit{LoopTools}\fontfamily{ptm}\selectfont\xspace}
-\newcommand{\FoF}{\fontfamily{pmnx}\selectfont\textit{FormF}\fontfamily{ptm}\selectfont\xspace}
-\newcommand{\FF}{\fontfamily{pmnx}\selectfont\textit{FF}\fontfamily{ptm}\selectfont\xspace}
-\newcommand{\defsc}{\fontfamily{pmnx}\selectfont\textit{Italic small caps}\fontfamily{ptm}\selectfont\xspace}
+\newcommand{\mma}{\fontfamily{pmnj}\selectfont\textit{Mathematica}\fontfamily{ptm}\selectfont\xspace}
+\newcommand{\fc}{\fontfamily{pmnj}\selectfont\textit{FeynCalc}\fontfamily{ptm}\selectfont\xspace}
+\newcommand{\fa}{\fontfamily{pmnj}\selectfont\textit{FeynArts}\fontfamily{ptm}\selectfont\xspace}
+\newcommand{\fctables}{\fontfamily{pmnj}\selectfont\textit{fctables}\fontfamily{ptm}\selectfont\xspace}
+\newcommand{\fcloops}{\fontfamily{pmnj}\selectfont\textit{fcloops}\fontfamily{ptm}\selectfont\xspace}
+\newcommand{\fctools}{\fontfamily{pmnj}\selectfont\textit{fctools}\fontfamily{ptm}\selectfont\xspace}
+\newcommand{\general}{\fontfamily{pmnj}\selectfont\textit{general}\fontfamily{ptm}\selectfont\xspace}
+\newcommand{\qcd}{\fontfamily{pmnj}\selectfont\textit{qcd}\fontfamily{ptm}\selectfont\xspace}
+\newcommand{\fcdevel}{\fontfamily{pmnj}\selectfont\textit{fcdevel}\fontfamily{ptm}\selectfont\xspace}
+\newcommand{\fphi}{\fontfamily{pmnj}\selectfont\textit{PHI}\fontfamily{ptm}\selectfont\xspace}
+\newcommand{\tarcer}{\fontfamily{pmnj}\selectfont\textit{TARCER}\fontfamily{ptm}\selectfont\xspace}
+\newcommand{\hip}{\fontfamily{pmnj}\selectfont\textit{HIP}\fontfamily{ptm}\selectfont\xspace}
+\newcommand{\lpts}{\fontfamily{pmnj}\selectfont\textit{LoopTools}\fontfamily{ptm}\selectfont\xspace}
+\newcommand{\FoF}{\fontfamily{pmnj}\selectfont\textit{FormF}\fontfamily{ptm}\selectfont\xspace}
+\newcommand{\FF}{\fontfamily{pmnj}\selectfont\textit{FF}\fontfamily{ptm}\selectfont\xspace}
+\newcommand{\defsc}{\fontfamily{pmnj}\selectfont\textit{Italic small caps}\fontfamily{ptm}\selectfont\xspace}
 %% Thumbnails in case of pdfLaTeX
 %\usepackage[pdftex]{thumbpdf}
 %% Hyper-references for pdflatex
@@ -400,7 +403,7 @@ pdfproducer = {dvips + ps2pdf}
 %% Directory with images
 \newcommand{\FigDir}{Figures}
 \newcommand{\mindent}{\hspace*{12pt}}
-\newcommand{\mb}[1]{{\small\tt \textbf{#1}}}
+\newcommand{\mb}[1]{{\small \tt \textbf{#1}}}
 
 \newcommand{\disp}{\displaystyle}
 \newcommand{\es}{\varepsilon \hspace{-0.5em}/\hspace{0.1em}}
