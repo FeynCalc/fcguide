@@ -12550,122 +12550,87 @@ See also:  ExpandPartialD, PartialD, LeftRightPartialD, RightPartialD.
 
 \Subsubsection*{Description}
 
-LeftRightPartialD[mu] denotes \({A_{\mu }}.{{\partial }_{\rho }}A_{\nu }^{ }+{{\partial }_{\rho }}A_{\mu }^{ }.{A_{\nu }}\), acting to
-the left and right. ExplicitPartialD[LeftRightPartialD[\(\Mfunction{StandardForm}[\%]\)]] gives 1/2 (RightPartialD[$\MathBegin{MathArray}{l}
-\Muserfunction{QuantumField}[A,\Muserfunction{LorentzIndex}[\mu ]].  \\
-\noalign{\vspace{0.5ex}}
-   \hspace{2.em} \Muserfunction{QuantumField}[\Muserfunction{PartialD}[\Muserfunction{LorentzIndex}[\rho ]],A,
-      \Muserfunction{LorentzIndex}[\nu ]]+  \\
-\noalign{\vspace{0.5ex}}
-\hspace{1.em} \Muserfunction{QuantumField}[
-    \Muserfunction{PartialD}[\Muserfunction{LorentzIndex}[\rho ]],A,\Muserfunction{LorentzIndex}[\mu ]].  \\
-   \noalign{\vspace{0.5ex}}
-\hspace{2.em} \Muserfunction{QuantumField}[A,\Muserfunction{LorentzIndex}[\nu ]]\\
-\MathEnd{MathArray}$] - LeftPartialD[\({{\left( \overvar{\partial }{\leftrightarrow } \right) }_{\mu }}\)]).
+LeftRightPartialD[mu] denotes
+${\overvar{\partial }{\leftrightarrow }}_{\mu }$
+acting to the left and right.
+
+ExplicitPartialD[LeftRightPartialD[LeftRightPartialD[mu]]] gives
+1/2 (LeftPartialD[mu] - RightPartialD[mu]).
+
 
 See also: ExplicitPartialD, ExpandPartialD, PartialD, LeftPartialD, LeftRightPartialD2, RightPartialD.
 
 \Subsubsection*{Examples}
 
 \dispSFinmath{
-\mu
-}
-
-\dispSFoutmath{
-\mu
-}
-
-\dispSFinmath{
-\mu
-}
-
-\dispSFoutmath{
 \Muserfunction{LeftRightPartialD}[\mu ]
 }
 
-\dispSFinmath{
+\dispSFoutmath{
 {{\left( \overvar{\partial }{\leftrightarrow } \right) }_{\mu }}
 }
 
-\dispSFoutmath{
+\dispSFinmath{
 \Muserfunction{ExplicitPartialD}[\%]
 }
 
-\dispSFinmath{
+\dispSFoutmath{
 \frac{1}{2}\multsp \big({{\left( \overvar{\partial }{\rightarrow } \right) }_{\mu }}-
      {{\left( \overvar{\partial }{\leftarrow } \right) }_{\mu }}\big)
 }
 
-\dispSFoutmath{
+\dispSFinmath{
 \Muserfunction{LeftRightPartialD}[\mu ].\Muserfunction{QuantumField}[A,\Muserfunction{LorentzIndex}[\nu ]]
 }
 
-\dispSFinmath{
+\dispSFoutmath{
 {{\left( \overvar{\partial }{\leftrightarrow } \right) }_{\mu }}.{A_{\nu }}
 }
 
-\dispSFoutmath{
+\dispSFinmath{
 \Muserfunction{ExpandPartialD}[\%]
 }
 
-\dispSFinmath{
-\frac{{{\partial }_{\mu }}A_{\nu }^{ }}{2}-\frac{1}{2}\multsp {{\left( \overvar{\partial }{\leftarrow } \right) }_{\mu }}.{A_{\nu }}
-}
-
 \dispSFoutmath{
-\MathBegin{MathArray}{l}
-\Muserfunction{QuantumField}[A,\Muserfunction{LorentzIndex}[\mu ]].  \\
-\noalign{\vspace{0.5ex}}
-   \hspace{1.em} \Muserfunction{LeftRightPartialD}[\nu ].\Muserfunction{QuantumField}[A,\Muserfunction{LorentzIndex}[\rho ]]\\
-   \MathEnd{MathArray}
+\frac{{{\partial }_{\mu }}A_{\nu }^{ }}{2}-\frac{1}{2}\multsp {{\left( \overvar{\partial }{\leftarrow } \right) }_{\mu }}.{A_{\nu }}
 }
 
 \Subsection*{LeftRightPartialD2}
 
 \Subsubsection*{Description}
 
-LeftRightPartialD2[mu] denotes \({A_{\mu }}.{{\left( \overvar{\partial }{\leftrightarrow } \right) }_{\nu }}.{A_{\rho }}\), acting to the left and
-right. ExplicitPartialD[LeftRightPartialD2[\(\Muserfunction{ExpandPartialD}[\%]\)]] gives (RightPartialD[\(\frac{1}{2}\multsp {A_{\mu }}.{{\partial
-}_{\nu }}A_{\rho }^{ }-\frac{1}{2}\multsp {{\partial }_{\nu }}A_{\mu }^{ }.{A_{\rho }}\)] \(+\) LeftPartialD[\({{\left( \overvar{\partial
-}{\leftrightarrow } \right) }_{\mu }}\)]).
+LeftRightPartialD[mu] denotes
+${\overvar{\partial }{\leftrightarrow }}_{\mu }$
+acting to the left and right.
+
+ExplicitPartialD[LeftRightPartialD[LeftRightPartialD[mu]]] gives
+LeftPartialD[mu] - RightPartialD[mu].
 
 See also:  ExplicitPartialD, ExpandPartialD, PartialD, LeftPartialD, RightPartialD.
 
 \Subsubsection*{Examples}
 
 \dispSFinmath{
-\mu
-}
-
-\dispSFoutmath{
-\mu
-}
-
-\dispSFinmath{
-\mu
-}
-
-\dispSFoutmath{
 \Muserfunction{LeftRightPartialD2}[\mu ]
 }
 
-\dispSFinmath{
+\dispSFoutmath{
 {{\left( \overvar{\partial }{\leftrightarrow } \right) }_{\mu }}
 }
 
-\dispSFoutmath{
+\dispSFinmath{
 \Muserfunction{ExplicitPartialD}[\%]
 }
 
-\dispSFinmath{
+\dispSFoutmath{
 {{\left( \overvar{\partial }{\leftarrow } \right) }_{\mu }}+{{\left( \overvar{\partial }{\rightarrow } \right) }_{\mu }}
 }
 
-\dispSFoutmath{
+\dispSFinmath{
 \Muserfunction{LeftRightPartialD2}[\mu ].\Muserfunction{QuantumField}[A,\Muserfunction{LorentzIndex}[\nu ]]
 }
 
-\dispSFinmath{
+\dispSFoutmath{
 {{\left( \overvar{\partial }{\leftrightarrow } \right) }_{\mu }}.{A_{\nu }}
 }
 
@@ -12673,16 +12638,8 @@ See also:  ExplicitPartialD, ExpandPartialD, PartialD, LeftPartialD, RightPartia
 \Muserfunction{ExpandPartialD}[\%]
 }
 
-\dispSFinmath{
-{{\left( \overvar{\partial }{\leftarrow } \right) }_{\mu }}.{A_{\nu }}+{{\partial }_{\mu }}A_{\nu }^{ }
-}
-
 \dispSFoutmath{
-\MathBegin{MathArray}{l}
-\Muserfunction{QuantumField}[A,\Muserfunction{LorentzIndex}[\mu ]].  \\
-\noalign{\vspace{0.5ex}}
-   \hspace{1.em} \Muserfunction{LeftRightPartialD2}[\nu ].\Muserfunction{QuantumField}[A,\Muserfunction{LorentzIndex}[\rho ]]\\
-   \MathEnd{MathArray}
+{{\left( \overvar{\partial }{\leftarrow } \right) }_{\mu }}.{A_{\nu }}+{{\partial }_{\mu }}A_{\nu }^{ }
 }
 
 \Subsection*{LeviCivita }
@@ -12697,77 +12654,66 @@ in LorentzIndex for the Dimension, if the option Dimension of LeviCivita is
   changed). LeviCivita[\(\mu \)][ \(\nu \).] evaluates to Eps[LorentzIndex[\(\rho \)], LorentzIndex[\(\mu ,\multsp \nu \multsp ...\)], ..., Momentum[\(p,\multsp
 ..\)], ...].
 
-\dispSFinmath{
-\mu
-}
-
-\dispSFoutmath{
-\nu
-}
 
 See also:  Eps, Contract, LC, LCD.
 
 \Subsubsection*{Examples}
 
 \dispSFinmath{
-p
-}
-
-\dispSFoutmath{
 \Mfunction{Options}[\Mvariable{LeviCivita}]
 }
 
-\dispSFinmath{
+\dispSFoutmath{
 \{\Mvariable{Dimension}\rightarrow D\}
 }
 
-\dispSFoutmath{
+\dispSFinmath{
 \Muserfunction{LeviCivita}[\alpha ,\beta ,\gamma ,\delta ]
 }
 
-\dispSFinmath{
+\dispSFoutmath{
 {{\epsilon }^{\alpha \beta \gamma \delta }}
 }
 
-\dispSFoutmath{
+\dispSFinmath{
 \Muserfunction{LeviCivita}[\mu ,\nu ][\Mvariable{OPEDelta},p]
 }
 
-\dispSFinmath{
+\dispSFoutmath{
 {{\epsilon }^{\mu \nu \Delta p}}
 }
 
-\dispSFoutmath{
+\dispSFinmath{
 \Muserfunction{LeviCivita}[][p,q,r,s]
 }
 
-\dispSFinmath{
+\dispSFoutmath{
 {{\epsilon }^{pqrs}}
 }
 
-\dispSFoutmath{
+\dispSFinmath{
 \Muserfunction{LeviCivita}[\alpha ,\beta ,\beta ,\delta ]
 }
 
-\dispSFinmath{
+\dispSFoutmath{
 0
 }
 
-\dispSFoutmath{
+\dispSFinmath{
 \Muserfunction{LeviCivita}[\mu ,\nu ][\Mvariable{OPEDelta},p]//\Mfunction{StandardForm}
 }
 
-\dispSFinmath{
+\dispSFoutmath{
 \Muserfunction{Eps}[\Muserfunction{LorentzIndex}[\mu ],\Muserfunction{LorentzIndex}[\nu ],\Muserfunction{Momentum}[\Mvariable{OPEDelta}],
     \Muserfunction{Momentum}[p]]
 }
 
-\dispSFoutmath{
+\dispSFinmath{
 \Mvariable{t1}\multsp =\multsp \Muserfunction{LeviCivita}[\alpha ,\beta ,\gamma ,\rho ].
      \Muserfunction{LeviCivita}[\alpha ,\beta ,\gamma ,\rho ]\multsp
 }
 
-\dispSFinmath{
+\dispSFoutmath{
 {{\epsilon }^{\alpha \beta \gamma \rho }}.{{\epsilon }^{\alpha \beta \gamma \rho }}
 }
 
@@ -12833,19 +12779,6 @@ See also: Li3.
 \Subsubsection*{Examples}
 
 \dispSFinmath{
-{{\epsilon }^{\alpha \beta \gamma \delta }}
-}
-
-\dispSFoutmath{
-\Mfunction{Clear}[\Mvariable{t1}]
-}
-
-\dispSFinmath{
-\{ \}
-}
-
-
-\dispSFinmath{
 \Muserfunction{Li2}[x]
 }
 
@@ -12862,22 +12795,6 @@ See also: Li3.
 See also: Li2.
 
 \Subsubsection*{Examples}
-
-\dispSFinmath{
-\Muserfunction{Li2}//\Mfunction{StandardForm}
-}
-
-\dispSFoutmath{
-\Mfunction{PolyLog}[2,\#1]\&
-}
-
-\dispSFinmath{
--\int \frac{\log [1-x]}{x}\DifferentialD x
-}
-
-\dispSFoutmath{
-{{\Mvariable{Li}}_2}(x)
-}
 
 \dispSFinmath{
 \Muserfunction{Li3}[x]
@@ -12915,30 +12832,15 @@ See also:  ChangeDimension, Momentum.
 This denotes a four-dimensional Lorentz index.
 
 \dispSFinmath{
-\Mfunction{D}[\Muserfunction{Li3}[x],x]
-}
-
-\dispSFoutmath{
-\frac{{{\Mvariable{Li}}_2}(x)}{x}
-}
-
-An optional second argument can be given for a dimension different from 4.
-
-\dispSFinmath{
-\int \frac{\Muserfunction{Li2}[x]}{x}\DifferentialD x
-}
-
-\dispSFoutmath{
-{{\Mvariable{Li}}_3}(x)
-}
-
-\dispSFinmath{
 \Muserfunction{LorentzIndex}[\alpha ]
 }
 
 \dispSFoutmath{
 \alpha
 }
+
+An optional second argument can be given for a dimension different from 4.
+Setting \${}LorentzIndices\(=\)True displays the dimension (if different from 4) as a subindex.
 
 \dispSFinmath{
 \Muserfunction{LorentzIndex}[\alpha ,n]
@@ -12956,21 +12858,19 @@ An optional second argument can be given for a dimension different from 4.
 {{\alpha }^*}
 }
 
-Setting \${}LorentzIndices\(=\)True displays the dimension (if different from 4) as a subindex.
-
 \dispSFinmath{
 \Muserfunction{ComplexConjugate}[\Muserfunction{LorentzIndex}[\mu ]]
 }
 
-\dispSFinmath{
+\dispSFoutmath{
 \mu
 }
 
-\dispSFoutmath{
+\dispSFinmath{
 \Muserfunction{ComplexConjugate}[\Muserfunction{LorentzIndex}[\Muserfunction{ComplexIndex}[\beta ]]]
 }
 
-\dispSFinmath{
+\dispSFoutmath{
 {{\beta }^*}
 }
 
